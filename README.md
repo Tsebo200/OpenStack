@@ -1,10 +1,10 @@
 
 <br />
 
-![GitHub repo size](https://img.shields.io/github/repo-size/WiaanDuvenhage-200307/OpenStack?color=lightblue)
-![GitHub watchers](https://img.shields.io/github/watchers/WiaanDuvenhage-200307/OpenStack?color=lightblue)
-![GitHub language count](https://img.shields.io/github/languages/count/WiaanDuvenhage-200307/OpenStack?color=lightblue)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/WiaanDuvenhage-200307/OpenStack?color=lightblue)
+![GitHub repo size](https://img.shields.io/github/repo-size/wiaandev/OpenStack?color=lightblue)
+![GitHub watchers](https://img.shields.io/github/watchers/wiaandev/OpenStack?color=lightblue)
+![GitHub language count](https://img.shields.io/github/languages/count/wiaandev/OpenStack?color=lightblue)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/wiaandev/OpenStack?color=lightblue)
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [![Instagram][instagram-shield]][instagram-url]
 
@@ -14,7 +14,7 @@
 </br>
 <p align="center">
 
-  <a href="https://github.com/WiaanDuvenhage-200307/OpenStack">
+  <a href="https://github.com/wiaandev/OpenStack">
     <img src="client\src\Assets\logo-light.svg/" width="100px">
   </a>
 
@@ -27,9 +27,9 @@
    <br />
    <a href="https://youtu.be/8iZ_rSmcN0E">View Demo</a>
     ·
-    <a href="https://github.com/WiaanDuvenhage-200307/OpenStack/issues">Report Bug</a>
+    <a href="https://github.com/wiaandev/OpenStack/issues">Report Bug</a>
     ·
-    <a href="https://github.com/WiaanDuvenhage-200307/OpenStack/issues">Request Feature</a>
+    <a href="https://github.com/wiaandev/OpenStack/issues">Request Feature</a>
 </p>
 <!-- TABLE OF CONTENTS -->
 
@@ -96,13 +96,13 @@ For development, the latest version of Android Studio is required. The latest ve
 Here are a couple of ways to clone this repo:
 
 1.  GitHub Desktop </br>
-    Enter `https://github.com/WiaanDuvenhage-200307/OpenStack.git` into the URL field and press the `Clone` button.
+    Enter `https://github.com/wiaandev/OpenStack.git` into the URL field and press the `Clone` button.
 
 2.  Clone Repository </br>
     Run the following in the command-line to clone the project:
 
     ```sh
-    git clone https://github.com/WiaanDuvenhage-200307/OpenStack.git
+    git clone https://github.com/wiaandev/OpenStack.git
     ```
 
         Open `Software` and select `File | Open...` from the menu. Select cloned directory and press `Open` button
@@ -239,13 +239,13 @@ To see a run through of OpenStack, click below:
 
 [View Demonstration](https://youtu.be/8iZ_rSmcN0E)
 
-See the [open issues](https://github.com/WiaanDuvenhage-200307/OpenStack/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/wiaandev/OpenStack/issues) for a list of proposed features (and known issues).
 
 <!-- AUTHORS -->
 
 ## Authors
 
-- **Wiaan Duvenhage** - [Github](https://github.com/WiaanDuvenhage-200307)
+- **Wiaan Duvenhage** - [Github](https://github.com/wiaandev)
 
 <!-- LICENSE -->
 
@@ -258,7 +258,7 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 ## Contact
 
 - **Wiaan Duvenhage** - [wiaanduvenhage.dev@gmail.com](mailto:wiaanduvenhage.dev@gmail.com) - [@wiaan.dev](https://www.instagram.com/wiaan.dev/)
-- **Project Link** - https://github.com/WiaanDuvenhage-200307/OpenStack
+- **Project Link** - https://github.com/wiaandev/OpenStack
 
 <!-- ACKNOWLEDGEMENTS -->
 
