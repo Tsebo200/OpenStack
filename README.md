@@ -8,9 +8,9 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [![Instagram][instagram-shield]][instagram-url]
 
-<h5 align="center" style="padding:0;margin:0;">Wiaan Duvenhage</h5>
-<h5 align="center" style="padding:0;margin:0;">200307</h5>
-<h6 align="center">DV200 | Term 3</h6>
+<h5 align="center" style="padding:0;margin:0;">Caidyn Ginger | Carlo Kuyper | Tsebo Ramonyalioa | Wiaan Duvenhage</h5>
+<h5 align="center" style="padding:0;margin:0;">21100204 | 180145 | 200200 | 200307</h5>
+<h6 align="center">DV200 | Term 4</h6>
 </br>
 <p align="center">
 
@@ -21,7 +21,7 @@
 <h3 align="center">OpenStack</h3>
 
   <p align="center">
-    A Guitar E-Commerce Website Build with the MERN Stack.<br>
+    A Developer's Q&A platform for The Open Window, similar to that of StackOverflow.<br>
 
    <br />
    <br />
