@@ -15,7 +15,7 @@
 <p align="center">
 
   <a href="https://github.com/wiaandev/OpenStack">
-    <img src="client/src/assests/OpenStackLogo-white.png" width="100px">
+    <img src="client/src/assests/OpenStackLogo-white.svg" width="100px">
   </a>
 
 <h3 align="center">OpenStack</h3>
