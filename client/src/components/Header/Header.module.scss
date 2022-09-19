@@ -1,0 +1,37 @@
+@import '../../index.scss';
+
+.header{
+    box-shadow: 0px 4px 4px 0px #00000040;
+    height: 56px;
+    width: 100vw;
+}
+
+.header_nav_container{
+    max-width: 1440px;
+    margin: auto;
+    height: 100%;
+}
+
+.header_nav{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.header_nav a{
+    color: black;
+    margin-left: 60px;
+}
+
+.header_nav a:hover{
+    color: $primary-light;
+}
+
+.logo{
+    width: auto;
+    height: 48px;
+}
