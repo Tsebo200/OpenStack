@@ -1,0 +1,71 @@
+$heading1: 42px;
+$heading2: 36px;
+$heading3: 24px;
+$heading4: 20px;
+$heading5: 16px;
+$headingp: 14px;
+
+// Colors
+$primary: #FCA62B;
+$primary-light: #F7CB3F;
+$secondary: #84D5DE;
+$white: #FFFFFF;
+$black: #1E1E1E;
+$error: #FF9090;
+$success: #8AF58E;
+
+$font-weight-thin: 300;
+$font-weight-regular: 400; 
+$font-weight-bold: 700;
+
+.App{
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+* {
+    scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    ul, li, a{
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+        list-style-type: none;
+        display: inline;
+        display: flex;
+        gap: 50px;
+        transition: 0.1s ease-in-out;
+    }
+}
+
+h1 {
+font-size: $heading1;
+}
+
+h2 {
+font-size: $heading2;
+}
+
+h3 {
+font-size: $heading3;
+}
+
+h4 {
+font-size: $heading4;
+padding: 0;
+margin: 0;
+}
+
+h5 {
+font-size: $heading5;
+}
+
+.p1, p, label {
+font-size: $headingp;
+}
+
