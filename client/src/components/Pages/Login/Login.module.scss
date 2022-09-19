@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.main_container{
+    position: relative;
+    width: 548px;
+    height: 787px;
+    // background: #FFFFFF;
+    background: #2b2b2b;
+    border-radius: 0px 0px 100px 0px;
+}
+
+.logo{
+    position: absolute;
+    width: 207.88px;
+    height: 58.05px;
+    left: 95px;
+    top: 102.06px;
+    // background: url('/client/src/assests/OpenStackLogo.png');
+}
+
+.login_heading{
+    position: absolute;
+    font-weight: 400;
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 37.9884px;
+    left: 105.36px;
+    top: 221.78px;
+}
+
+
+.login_welcome_msg{
+    position: absolute;
+    left: 105.36px;
+    top: 300px;
+    font-family: 'Inter';
+    font-size: 14.9651px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.login_email_input{
+    box-sizing: border-box;
+    position: absolute;
+    width: 346.5px;
+    height: 43.74px;
+    left: 105.36px;
+    top: 361.07px;
+    background: #FFFFFF;
+    border: 1.15116px solid #000000;
+    border-radius: 10.3605px;
+}
+
+.login_password_input{
+    box-sizing: border-box;
+    position: absolute;
+    width: 346.5px;
+    height: 43.74px;
+    left: 105.36px;
+    top: 448.56px;
+    background: #FFFFFF;
+    border: 1.15116px solid #000000;
+    border-radius: 10.3605px;
+}
+
+.login_remember_box{
+    box-sizing: border-box;
+    position: absolute;
+    width: 13.81px;
+    height: 13.81px;
+    left: 107.66px;
+    top: 516.48px;
+    background: #D9D9D9;
+    border: 1.15116px solid #000000;
+    border-radius: 3.45349px;
+}
+
+.login_remember_text{
+    position: absolute;
+    width: 138px;
+    height: 17px;
+    left: 128.38px;
+    top: 501px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13.814px;
+    line-height: 17px;
+    letter-spacing: -0.042em;
+    color: #000000;
+}
+
+.forgot_password{
+    position: absolute;
+    width: 124px;
+    height: 18px;
+    left: 329.84px;
+    top: 501px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14.9651px;
+    line-height: 18px;
+    color: #000000;
+}
+
+.sign_in_btn{
+    position: absolute;
+    width: 346.5px;
+    height: 44.9px;
+    left: 105.36px;
+    top: 555.62px;
+    border-style: none;
+    background: #FCA62B;
+    border-radius: 10.3605px;
+    color: white;
+}
+
+.sign_in_btn:hover{
+    background: #F7CB3F;
+}

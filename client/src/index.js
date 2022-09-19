@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import App from './App';
+import { Login } from './components/Pages/Login/Login';
+// import App from './App';
 
 import './index.scss'
 
@@ -9,7 +10,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<App />} />
+            {/* <Route path="/" element={<App />} /> */}
+            <Route path="/login" element={<Login />} />
         </Routes>
     </BrowserRouter>
 
