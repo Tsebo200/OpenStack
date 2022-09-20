@@ -12,6 +12,7 @@
     height: 100%;
     font-size: $headingp;
     padding-left: 40px;
+    border-radius: 5px;
     border: 1px rgb(199, 199, 199) solid;
 }
 
@@ -29,8 +30,7 @@
 }
 
 .search_from_icon ion-icon {
-    height: 25px;
-    width: 25px;
-    margin-top: 6px;
+    font-size: 25px;
+    margin-top: 7px;
     color: gray;
 }
