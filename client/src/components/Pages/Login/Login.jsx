@@ -1,4 +1,5 @@
 import React from "react";
+import { Input } from "../../UI/Input/Input";
 import styles from './Login.module.scss';
 // import logo from '/client/src/assests/Backround.png';
 
@@ -11,8 +12,7 @@ export const Login = () => {
                 
                 <h1>Log In</h1>
                 <h5 className={styles.login_welcome_msg}>Welcome back! Please enter your details</h5>
-                
-                <input placeholder="username"/>
+                <Input type="text" label="username" name="username"/>
                 {/* <div className={styles.login_email_input}></div>
                 <div className={styles.login_password_input}></div>
                 <div className={styles.login_remember_box}></div>
