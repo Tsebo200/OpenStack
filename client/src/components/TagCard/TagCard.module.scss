@@ -1,0 +1,10 @@
+@import '../../index.scss';
+
+.container{
+    width: fit-content;
+    padding: 3%;
+    margin: 5% 1%;
+    background-color: $white;
+    border: 1px solid $primary;
+    border-radius: 10px;
+}

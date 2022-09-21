@@ -1,0 +1,20 @@
+@import '../../index.scss';
+
+
+// Login Input Styling
+.questionInput{
+    padding: 2%;
+    border: 1px solid rgb(199, 199, 199);
+    font-size: $headingp;
+    background-color: white;
+    border-radius: 5px;
+    width: 100%;
+    transition: 0.2s ease-in-out;
+    height: 10%;
+    margin-bottom: 3%;
+
+    &:focus{
+        outline: none;
+        border: 1px solid $primary;
+    }
+}
