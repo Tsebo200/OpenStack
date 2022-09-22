@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './QuestionPortal.module.scss';
 import { Header } from '../../Header/Header';
-import questionImg from '../../../assests/question_img.png';
+import questionImg from '../../../assets/question_img.png';
 import Input from '../../Input/Input';
 import Button from '../../Button/Button';
 import TagCard from '../../TagCard/TagCard';
