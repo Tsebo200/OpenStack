@@ -7,7 +7,7 @@ $headingp: 14px;
 
 // Colors
 $primary: #FCA62B;
-$primary-light: #F7CB3F;
+$primary-light: #f7c627;
 $secondary: #84D5DE;
 $secondary-shadow: rgba(132, 213, 222, 0.2);
 $white: #FFFFFF;
@@ -20,10 +20,28 @@ $font-weight-regular: 400;
 $font-weight-bold: 700;
 
 .App{
-    display: flex;
-    flex-flow: column;
-    min-height: 100vh;
+    overflow: hidden;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 
 * {
     scroll-behavior: smooth;
