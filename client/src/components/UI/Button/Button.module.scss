@@ -1,16 +1,14 @@
+@import '../../../index.scss';
+
 button {
+  box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f;
+  box-sizing: border-box;
   width: 100%;
-  font: inherit;
   padding: 0.5rem 0;
-  border: #eba611 1px solid;
+  border: none;
   color: white;
-  background-color: #ee0c0c21;
-  /* transform: rotateY(0deg) rotate(-45deg); */
-  bottom: 1px;
-  /* box-shadow: 0 0 7px #f00, 0 0 10px #f00, 0 0 21px #f00; */
-  /* box-shadow: 0 0 4px rgba(0, 0, 0, 0.26); */
+  background-color: $primary;
   cursor: pointer;
-  letter-spacing: 0.05rem;
   font-size: 18px;
 }
 
@@ -20,7 +18,7 @@ button {
 
 .button:hover,
 .button:active {
-  background-color: #eed70c75;
+  background-color: #F7CB3F;
 }
 
 .button:hover ion-icon {
