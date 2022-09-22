@@ -7,6 +7,7 @@ import Register from './components/Pages/Register/Register';
 import App from './App';
 
 import './index.scss'
+import { LandingPage } from './components/Pages/LandingPage/LandingPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

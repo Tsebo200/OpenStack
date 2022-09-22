@@ -1,6 +1,5 @@
 import React from "react";
-import { useRef } from "react";
-import classes from "./Button.module.css";
+import classes from "./Button.module.scss";
 
 export const Button = props => {
   return (
