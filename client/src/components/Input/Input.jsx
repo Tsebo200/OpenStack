@@ -11,6 +11,7 @@ const Input =  forwardRef((props, ref) => {
           className={`
             ${props.className ? props.classname : ""}
             ${props.type == "questionInput" ? style.questionInput :
+            props.type == "questionError" ? style.questionError :
             style.tersiary}
           `} 
           id={props.id}

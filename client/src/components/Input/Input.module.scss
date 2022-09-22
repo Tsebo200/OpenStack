@@ -11,7 +11,22 @@
     width: 100%;
     transition: 0.2s ease-in-out;
     height: 10%;
-    margin-bottom: 3%;
+
+    &:focus{
+        outline: none;
+        border: 1px solid $primary;
+    }
+}
+
+.questionError{
+    padding: 2%;
+    border: 1px solid $error;
+    font-size: $headingp;
+    background-color: white;
+    border-radius: 5px;
+    width: 100%;
+    transition: 0.2s ease-in-out;
+    height: 10%;
 
     &:focus{
         outline: none;
