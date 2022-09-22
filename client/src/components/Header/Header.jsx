@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styles from './Header.module.scss'
-import openStackLogo from '../../assests/OpenStackLogo.png'
+import openStackLogo from '../../assets/OpenStackLogo.png'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { SearchForm } from './UI/SearchForm'
@@ -16,7 +16,8 @@ export const Header = () => {
         <Link to="/about">About</Link>
         <Link to="/teams">Teams</Link>
         <SearchForm/>
-        <Link className={styles.login} to="/login">Login</Link>
+        <a className={styles.login}>Login</a>
+        {/* <Link  to="/login">Login</Link> */}
       </nav>
     </header>
   )
