@@ -18,6 +18,8 @@ function QuestionPortal() {
     const codeBlock = useRef();
 
     const [titleError, setTitleError] = useState();
+    const [bodyError, setBodyError] = useState();
+    const [codeError, setCodeError] = useState();
 
     const handleChange = e => {
         const {name, value} = e.target;
@@ -34,9 +36,12 @@ function QuestionPortal() {
         let bodyString = body.current.value;
         let code = codeBlock.current.value;
 
-        if(titleString === ""){
-            setTitleError("Enter a title");
+        if(titleString === "" || bodyString === "" || code === ""){
+            setTitleError("Enter a title!");
+            setCodeError("Include some code!");
+            setBodyError("Enter your question!");
         }
+
     }
 
     return (
@@ -52,15 +57,19 @@ function QuestionPortal() {
                 </div>
                 
                 <label htmlFor='title'>Question Title</label>
-                { titleError ? <Input name="title" type="questionError" inputType="text" ref={title} value={values["title"]}/> : <Input name="title" type="questionInput" inputType="text" ref={title} value={values["title"]}/>}
+                {titleError ? <Input name="title" type="questionError" inputType="text" ref={title} value={values["title"]}/> : <Input name="title" type="questionInput" inputType="text" ref={title} value={values["title"]}/>}
                 {titleError ? <p className={styles.error}><ion-icon name="warning-outline"></ion-icon> {titleError}</p> : ""}
                 <br />
+                <br />
                 <label htmlFor='body'>Body</label>
-                <textarea className={styles.questionText} name="body" ref={body}></textarea>
+                {bodyError ? <textarea className={styles.questionError} name="body" ref={body}></textarea> : <textarea className={styles.questionText} name="body" ref={body}></textarea>}
+                {bodyError ? <p className={styles.error}><ion-icon name="warning-outline"></ion-icon> {bodyError}</p> : ""}
                 <label htmlFor='codeBlock'>Code Block</label>
-                <textarea className={styles.questionText} name="codeBlock" ref={codeBlock}></textarea>
-                <label htmlFor="upload">Upload Screenshot(s)</label>
-                <Input inputType="file" accept="image/*"/>
+                {codeError ? <textarea className={styles.questionError} name="codeBlock" ref={codeBlock}></textarea> : <textarea className={styles.questionText} name="codeBlock" ref={codeBlock}></textarea>}
+                {codeError ? <p className={styles.error}><ion-icon name="warning-outline"></ion-icon> {codeError}</p> : ""}
+                <label className={styles.upload} for="upload">Upload Screenshot(s)
+                    <Input name="upload" type="imgUpload" inputType="file"/>
+                </label>
                 <label htmlFor='tagSelect'>Select Tags related to questions (min. 3)</label>
                 <div className={styles.tagGroup}>
                     <TagCard/>

@@ -53,5 +53,21 @@
             color: $error;
             margin-bottom: 3%;
         }
+
+        .questionError{
+            padding: 2%;
+            border: 1px solid $error;
+            font-size: $headingp;
+            background-color: white;
+            border-radius: 5px;
+            width: 100%;
+            transition: 0.2s ease-in-out;
+            height: 70%;
+        
+            &:focus{
+                outline: none;
+                border: 1px solid $primary;
+            } 
+        }
     }
 }
