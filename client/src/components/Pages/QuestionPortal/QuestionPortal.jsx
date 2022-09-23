@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import Dropdown from '../../Dropdown/Dropdown';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
 function QuestionPortal() {
 
@@ -31,6 +32,8 @@ function QuestionPortal() {
             [name]:value
         });
     }
+
+    const exampleCode = `const hello = "written code will go here";`
 
     const formHandle = e => {
         e.preventDefault();
@@ -110,7 +113,9 @@ function QuestionPortal() {
                 <hr />
                 <h2>Review your question</h2>
                 <hr />
-                <p>Question will be displayed here</p>
+                <SyntaxHighlighter className={styles.code} language="javascript" children={true}>
+                   {exampleCode}
+                </SyntaxHighlighter>
                 <Button text="Submit" type="questionSubmit" onClick={formHandle}/>
             </div>
 
