@@ -63,10 +63,11 @@
             width: 100%;
             transition: 0.2s ease-in-out;
             height: 70%;
+            color: $error;
         
             &:focus{
                 outline: none;
-                border: 1px solid $primary;
+                border: 1px solid $error;
             } 
         }
     }

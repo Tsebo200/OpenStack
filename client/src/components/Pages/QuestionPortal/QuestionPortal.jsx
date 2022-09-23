@@ -11,11 +11,11 @@ import { useRef } from 'react';
 function QuestionPortal() {
 
     const defValues = ["title", "body", "codeBlock", "upload", "tagOne", "tagTwo", "tagThree", "tagFour"];
-    const [screenshot, setScreenshot] = useState()
     const [values, setValues] = useState(defValues);
     const title = useRef();
     const body = useRef();
     const codeBlock = useRef();
+    const img = useRef();
 
     const [titleError, setTitleError] = useState();
     const [bodyError, setBodyError] = useState();
@@ -35,12 +35,36 @@ function QuestionPortal() {
         let titleString = title.current.value;
         let bodyString = body.current.value;
         let code = codeBlock.current.value;
+        let imgName = img.current.value;
 
-        if(titleString === "" || bodyString === "" || code === ""){
-            setTitleError("Enter a title!");
-            setCodeError("Include some code!");
-            setBodyError("Enter your question!");
+        const imgSubStr = imgName.substr(12);
+
+        if(titleString === ""){
+            setTitleError("Enter a title");
+        }else{
+            setTitleError();
         }
+
+        if(bodyString === ""){
+            setBodyError("Enter your question!");
+        }else{
+            setBodyError();
+        }
+
+        if(code === ""){
+            setCodeError("Include some code!");
+        }else{
+            setCodeError();
+        }
+
+        let payload = {
+            questionTitle: titleString,
+            questionBody: bodyString,
+            questionCode: code,
+            img: imgSubStr,  
+        }
+
+        console.log(payload);
 
     }
 
@@ -68,11 +92,11 @@ function QuestionPortal() {
                 {codeError ? <textarea className={styles.questionError} name="codeBlock" ref={codeBlock}></textarea> : <textarea className={styles.questionText} name="codeBlock" ref={codeBlock}></textarea>}
                 {codeError ? <p className={styles.error}><ion-icon name="warning-outline"></ion-icon> {codeError}</p> : ""}
                 <label className={styles.upload} for="upload">Upload Screenshot(s)
-                    <Input name="upload" type="imgUpload" inputType="file"/>
+                    <Input name="upload" type="imgUpload" inputType="file" ref={img}/>
                 </label>
                 <label htmlFor='tagSelect'>Select Tags related to questions (min. 3)</label>
                 <div className={styles.tagGroup}>
-                    <TagCard/>
+                    <TagCard value={values["tagOne"]}/>
                     <TagCard/>
                     <TagCard/>
                     <TagCard/>
