@@ -1,28 +1,23 @@
 @import '../../../index.scss';
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-body{
-    padding: 0;
-    margin: 0;
+.register_main_container{
+    display: flex;
+    width: 80%;
+    height: 90vh;
+    padding: 5% 0%;
+    background: #FFFFFF;
 }
 
-// .register_main_container{
-//     position: relative;
-//     width: 1440px;
-//     height: 1024px;
-//     background: #FFFFFF;
-// }
-
 .register_container{
-    position: relative;
-    width: 1204px;
+    width: 80%;
     height: 780px;
     left: 118px;
     top: 3px;
 }
+//percentage widths and define height in px
 
 .register_left{
-    position: absolute;
+    // position: absolute;
     width: 602px;
     height: 780px;
     background: #E4E4E4;
@@ -30,7 +25,7 @@ body{
 }
 
 .register_right{
-    position: absolute;
+    // position: absolute;
     width: 602px;
     height: 780px;
     left: 602px;
