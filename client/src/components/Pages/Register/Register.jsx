@@ -1,5 +1,7 @@
 import React from "react";
 import styles from './Register.module.scss';
+import { Button } from "../../UI/Button/Button";
+import { Input } from "../../UI/Input/Input"; 
 
 const Register = () => {
     return(

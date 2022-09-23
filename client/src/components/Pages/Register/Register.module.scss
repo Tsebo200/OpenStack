@@ -9,26 +9,44 @@
 }
 
 .register_container{
+<<<<<<< Updated upstream
     width: 80%;
     height: 780px;
     left: 118px;
     top: 3px;
+=======
+    width: 90vw;
+    height: 70vh;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+>>>>>>> Stashed changes
 }
 //percentage widths and define height in px
 
 .register_left{
+<<<<<<< Updated upstream
     // position: absolute;
     width: 602px;
     height: 780px;
+=======
+    width: 30vw;
+    height: 90vh;
+>>>>>>> Stashed changes
     background: #E4E4E4;
     border-radius: 15px 0px 0px 15px;
 }
 
 .register_right{
+<<<<<<< Updated upstream
     // position: absolute;
     width: 602px;
     height: 780px;
     left: 602px;
+=======
+    width: 30vw;
+    height: 90vh;
+>>>>>>> Stashed changes
     background: #FFFFFF;
     box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
     border-radius: 0px 15px 15px 0px;

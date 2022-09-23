@@ -21,12 +21,10 @@
 }
 
 .logo{
-    position: absolute;
-    width: 207.88px;
-    height: 58.05px;
-    left: 95px;
-    top: 102.06px;
-    // background: url('/client/src/assests/Backround.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // margin-top: 10%;
 }
 
 .login_welcome_msg{
