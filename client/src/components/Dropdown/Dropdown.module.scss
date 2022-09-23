@@ -1,0 +1,29 @@
+@import '../../index.scss';
+
+.container{
+    width: 50%;
+
+    .dropdown{
+        background-color: transparent;
+        width: 100%;
+        padding: 3%;
+        color: $black;
+        border: 1px solid rgb(199,199,199);
+        border-radius: 5px;
+
+        &:hover{
+            cursor: pointer;
+        }
+
+        &:focus, &:visited{
+            outline: none;
+            border: 1px solid $primary;
+        }
+
+        option{
+            color: $primary;
+            background-color: $primary;
+            color: $white;
+        }
+    }
+}

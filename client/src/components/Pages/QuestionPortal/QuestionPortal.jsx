@@ -7,6 +7,8 @@ import Button from '../../Button/Button';
 import TagCard from '../../TagCard/TagCard';
 import { useState } from 'react';
 import { useRef } from 'react';
+import { useEffect } from 'react';
+import Dropdown from '../../Dropdown/Dropdown';
 
 function QuestionPortal() {
 
@@ -61,7 +63,8 @@ function QuestionPortal() {
             questionTitle: titleString,
             questionBody: bodyString,
             questionCode: code,
-            img: imgSubStr,  
+            img: imgSubStr,
+            tagSelected: values["tagOne"]  
         }
 
         console.log(payload);
@@ -91,6 +94,8 @@ function QuestionPortal() {
                 <label htmlFor='codeBlock'>Code Block</label>
                 {codeError ? <textarea className={styles.questionError} name="codeBlock" ref={codeBlock}></textarea> : <textarea className={styles.questionText} name="codeBlock" ref={codeBlock}></textarea>}
                 {codeError ? <p className={styles.error}><ion-icon name="warning-outline"></ion-icon> {codeError}</p> : ""}
+                <label htmlFor='dropdown'>Select Your Year</label>
+                <Dropdown/>
                 <label className={styles.upload} for="upload">Upload Screenshot(s)
                     <Input name="upload" type="imgUpload" inputType="file" ref={img}/>
                 </label>
@@ -104,6 +109,7 @@ function QuestionPortal() {
                 </div>
                 <hr />
                 <h2>Review your question</h2>
+                <hr />
                 <p>Question will be displayed here</p>
                 <Button text="Submit" type="questionSubmit" onClick={formHandle}/>
             </div>
