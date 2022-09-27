@@ -13,7 +13,7 @@ router.post('/api/addUser', (req, res) => {
     .catch(err => {
         res.status(400).json({msg: "User could not be added!", err});
     });
-    
+
 });
 
 module.exports = router;
