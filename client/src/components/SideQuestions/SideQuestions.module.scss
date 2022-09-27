@@ -1,0 +1,23 @@
+@import '../../index.scss';
+
+.mainCon {
+    width: 25vw;
+    height: auto;
+    float: right;
+    border-left-style: solid;
+    border-width: .25vh;
+    margin-right: 3vw;
+    margin-top: 3vh;
+    padding-bottom: 2vh;
+}
+
+.title{
+    margin-bottom: 1vh;
+    margin-left: 1vw;
+}
+
+.questions{
+    margin-bottom: 3vh;
+    margin-left: 1vw;
+    color: #0083fc;
+}
