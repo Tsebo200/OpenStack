@@ -9,6 +9,7 @@ import App from "./App";
 import { LandingPage } from "./components/Pages/LandingPage/LandingPage";
 import { ResultsPage } from "./components/Pages/ResultsPage/ResultsPage";
 import "./index.scss";
+import Playground from "./components/Pages/Register Redo/Playground";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,6 +21,7 @@ root.render(
         <Route path="/Register" element={<Register />} />
         <Route path="/question-portal" element={<QuestionPortal />} />
         <Route path="/resultsPage" element={<ResultsPage />} />
+        <Route path="/playground" element={<Playground />} />
       </Route>
     </Routes>
   </BrowserRouter>
