@@ -1,3 +1,42 @@
+@import '../../../index.scss';
+
 .landing_page{
     height: 1000px;
+    max-width: 1440px;
+    margin: auto;
+    border-radius: 50px;
+    background-color: rgb(68, 76, 83);
+    padding-top: 50px;
+    margin-top: 50px;
+}
+
+.call_to_action{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: center;
+    width: 1050px;
+    margin: auto;
+}
+
+.sentence_animation{
+    text-align: center;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 70px;
+}
+
+.sentence_animation h2{
+    font-size: 70px;
+    color: white;
+}
+
+.sentence_animation span{
+    color: $primary;
+}
+
+.old_word{
+    position: absolute;
 }
