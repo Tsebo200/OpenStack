@@ -26,6 +26,17 @@ const userSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    key: {
+        type: Boolean,
+        default: false
+    },
+    achievements: {
+        type: Array
+        //get id and push to arr
+    },
+    userScore: {
+        type: Number
+    },
     profileImg: String 
 
 });
