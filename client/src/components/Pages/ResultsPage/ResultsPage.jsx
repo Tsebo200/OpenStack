@@ -11,7 +11,7 @@ import styles from './ResultsPage.module.scss'
 export const ResultsPage = () => {
   return (
     <>
-      <Header/>
+      {/* <Header/> */}
         <div className={styles.results_page}>
          
           <div className={styles.titleCon}>

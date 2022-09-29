@@ -13,13 +13,11 @@ export const Header = () => {
   const [LoginContainerBackgroundCss, setLoginContainerBackgroundCss] = useState(`${styles.login_container_background}`)
 
   const showLoginHandler = () => {
-    console.log("Awdawd");
     console.log(LoginContainerCss === `${styles.login_container} ${styles.show_login}`);
     if (LoginContainerCss === `${styles.login_container} ${styles.show_login}`) {
       setLoginContainerCss(`${styles.login_container}`)
       setLoginContainerBackgroundCss(`${styles.login_container_background}`)
     } else {
-      console.log("login");
       setLoginContainerCss(`${styles.login_container} ${styles.show_login}`)
       setLoginContainerBackgroundCss(`${styles.login_container_background} ${styles.show_login}`)
     }
@@ -32,7 +30,6 @@ export const Header = () => {
         <Link to="/teams">Teams</Link>
         <SearchForm/>
         <a className={styles.login} onClick={showLoginHandler}>Login</a>
-        {/* <Link  to="/login">Login</Link> */}
       </nav>
       <div onClick={showLoginHandler} className={LoginContainerBackgroundCss}></div>
       <div className={LoginContainerCss}>

@@ -42,7 +42,7 @@
     position: fixed;
     right: -30vw;
     top: 0;
-    max-height: 100vh;
+    height: 100vh;
     z-index: 3;
     transition: right 0.3s ease-in-out;
 }
@@ -55,7 +55,7 @@
     z-index: 2;
     top: 0;
     right: -100vw;
-    transition: right 0.2s ease-in-out;
+    // transition: right 0.2s ease-in-out;
 }
 
 .show_login{
