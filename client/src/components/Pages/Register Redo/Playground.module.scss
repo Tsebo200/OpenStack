@@ -18,19 +18,34 @@
 
 .register_box{
   display: inline-block;
-  width: 50%;
   height: 100%;
 }
 
 .inputs_container{
-  background-color: #d12f2f;
   overflow: hidden;
+  padding: 30px;
+  width: 80%;
 }
 
-.test{
-  display: block;
-  overflow: hidden;
+.inputs_container h4{
+  text-align: center;
 }
+
+.form_logo{
+  width: 150px;
+  height: auto;
+}
+
+.inputs_container hr{
+  margin-top: 10px;
+}
+
+.other{
+  border-left: 1px solid black;
+  background-color: #ececec;
+  width: 20%;
+}
+
 
 
 
