@@ -1,0 +1,57 @@
+@import '../../../index.scss';
+
+.container{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+
+    .pageContent{
+        padding: 5% 20%;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+
+        .flexCon{
+            display: flex;
+
+            .flex{
+                display: flex;
+                margin: 2%;
+                align-items: center;
+            }
+
+            ion-icon{
+                color: $black;
+            }
+
+            .userInfo{
+                justify-content: flex-end;
+            }
+        }
+        
+        .body{
+            padding: 2%;
+            border: 1px solid rgb(199, 199, 199);
+            font-size: $headingp;
+            background-color: white;
+            border-radius: 5px;
+            width: 100%;
+            transition: 0.2s ease-in-out;
+            height: 70%;
+            margin-bottom: 3%;
+        
+            &:focus{
+                outline: none;
+                border: 1px solid $primary;
+            } 
+        }
+
+        .correct{
+            color: #2D6F2F;
+            padding: 2%;
+            background-color: $success;
+            width: fit-content;
+            border-radius: 5px;
+        }
+    }
+}

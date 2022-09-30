@@ -8,7 +8,9 @@ export default function Button(props) {
         brand={props.brand}
         className={`
         ${props.className ? props.classname : ""}
-        ${props.type == "questionSubmit" ? styles.questionSubmit : styles.tersiary}
+        ${props.type == "questionSubmit" ? styles.questionSubmit :
+          props.type == "report" ? styles.report :
+          styles.tersiary}
         `} 
         onBlur={props.onBlur}
         onClick={props.onClick}>

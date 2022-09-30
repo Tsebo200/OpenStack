@@ -11,3 +11,16 @@
     transition: 0.2s ease-in-out;
     margin: 2% 0%;
 }
+
+.report{
+    background-color: transparent;
+    font-size: $headingp;
+    color: $error;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid $error;
+    width: 25%;
+    transition: 0.2s ease-in-out;
+    margin: 2% 0%;
+    box-shadow: none;
+}

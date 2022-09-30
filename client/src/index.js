@@ -10,6 +10,7 @@ import { LandingPage } from "./components/Pages/LandingPage/LandingPage";
 import { ResultsPage } from "./components/Pages/ResultsPage/ResultsPage";
 import "./index.scss";
 import Playground from "./components/Pages/Register Redo/Playground";
+import IndividualQuestion from "./components/Pages/IndividualQuestion/IndividualQuestion";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,6 +23,7 @@ root.render(
         <Route path="/question-portal" element={<QuestionPortal />} />
         <Route path="/resultsPage" element={<ResultsPage />} />
         <Route path="/playground" element={<Playground />} />
+        <Route path="/individual-question" element={<IndividualQuestion />} />
       </Route>
     </Routes>
   </BrowserRouter>
