@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Playground.module.scss";
 
 import backgroundImageUrl from "../../../assets/background-register.jpg";
@@ -7,6 +7,13 @@ import { Input } from "../../UI/Input/Input";
 import { Button } from "../../UI/Button/Button";
 
 const Playground = () => {
+
+    const [Username, setUsername] = useState('')
+
+    const UsernameChangeHandler = event => {
+        setUsername(event.target.value)
+    }
+
   return (
     <div
       style={{ backgroundImage: `url(${backgroundImageUrl})` }}
@@ -17,7 +24,7 @@ const Playground = () => {
           <img className={styles.form_logo} src={formLogo}/>
             <h4>Hello user lets get you account started</h4>
             <hr></hr>
-            <Input label="Username" name="username" type="text"/>
+            <Input onChange={UsernameChangeHandler} value={Username} label="Username" name="username" type="text"/>
             <Input label="email" name="username" type="text"/>
             <Input label="password" name="username" type="text"/>
             <Input label="re-enter password" name="username" type="text"/>
