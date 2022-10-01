@@ -1,28 +1,37 @@
 import React from "react";
 import styles from './Register.module.scss';
+// import { Button } from "../../UI/Button/Button";
+// import { Input } from "../../UI/Input/Input"; 
+
+
+import backgroundImageUrl from "../../../assets/background-register.jpg";
+import formLogo from "../../../assets/OpenStackLogo.png";
+import { Input } from "../../UI/Input/Input";
 import { Button } from "../../UI/Button/Button";
-import { Input } from "../../UI/Input/Input"; 
 
 const Register = () => {
     return(
         <>
-            <div className={styles.register_main_container}>
-               <div className={styles.register_container}>
-                    <div className={styles.register_left}></div>
-                    <div className={styles.register_right}>
-                        <div className={styles.register_logo}></div>
-                        <p className={styles.register_create_text}>Create An Account</p>
-                        <p className={styles.register_already_text}>Already a member?</p>
-                        <p className={styles.register_signin_link}>Sign in</p>
-                        <div className={styles.register_student_number_input}></div>
-                        <div className={styles.register_username_input}></div>
-                        <div className={styles.register_email_input}></div>
-                        <div className={styles.register_password_input}></div>
-                        <div className={styles.register_confirm_password_input}></div>
-                        <button className={styles.register_create_account_btn}>Create Account</button>
-                    </div>
-                </div>
-            </div>
+          <div
+      style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+      className={styles.register_background}
+    >
+      <div className={styles.register_container}>
+        <form className={`${styles.register_box} ${styles.inputs_container}`}>
+          <img className={styles.form_logo} src={formLogo}/>
+            <h5>Hello user lets get you account started</h5>
+            <hr></hr>
+            <Input label="Username" name="username" type="text"/>
+            <Input label="Email" name="email" type="text"/>
+            <Input label="Password" name="password" type="text"/>
+            <Input label="Confirm Password" name="password" type="text"/>
+            <br/>
+            <br/>
+            <Button>Submit</Button>
+        </form>
+        <div className={`${styles.register_box} ${styles.other}`}></div>
+      </div>
+    </div>
         </>
     )
 }

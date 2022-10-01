@@ -1,156 +1,136 @@
-@import '../../../index.scss';
-
-.register_main_container{
-    display: flex;
-    width: 80%;
-    height: 90vh;
-    padding: 5% 0%;
-    background: #FFFFFF;
-}
-
-.register_container{
-    width: 90vw;
-    height: 70vh;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-}
-//percentage widths and define height in px
-
-.register_left{
-    width: 30vw;
-    height: 90vh;
-    background: #E4E4E4;
-    border-radius: 15px 0px 0px 15px;
-}
-
-.register_right{
-    width: 30vw;
-    height: 90vh;
-    background: #FFFFFF;
-    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
-    border-radius: 0px 15px 15px 0px;
-}
-
-.register_logo{
+.register_background{
+    background-position: center;
+    background-size: cover;
+    height: calc(100vh - 112px);
+    background-color: #d12f2f;
+    position: relative;
+  } 
+  
+  .register_container{
+    height: 525px;
+    background-color: white;
+    width: 50vw;
     position: absolute;
-    width: 180.58px;
-    height: 50.43px;
-    background: #2b2b2b;
-    left: 138px;
-    top: 129px;
-}
-
-.register_create_text{
-    position: absolute;
-    width: 291px;
-    height: 40px;
-    top: 211px;
-    left: 151px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 33px;
-    color: #000000;
-}
-
-.register_already_text{
-    position: absolute;
-    width: 119px;
-    height: 16px;
-    top: 264px;
-    left: 151px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    color: #000000;
-}
-
-.register_signin_link{
-    position: absolute;
-    width: 42px;
-    height: 16px;
-    left: 273px;
-    top: 264px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    color: #F7CB3F;
-}
-
-.register_signin_link:hover{
-    color: #84D5DE;
-}
-
-.register_student_number_input{
-    box-sizing: border-box;
-    position: absolute;
-    width: 315px;
-    height: 38px;
-    left: 151px;
-    top: 332px;
-    border: 1px solid #000000;
-    border-radius: 9px;
-}
-
-.register_username_input{
-    box-sizing: border-box;
-    position: absolute;
-    width: 315px;
-    height: 38px;
-    left: 151px;
-    top: 421px;
-    border: 1px solid #000000;
-    border-radius: 9px;   
-}
-
-.register_email_input{
-    box-sizing: border-box;
-    position: absolute;
-    width: 315px;
-    height: 38px;
-    left: 151px;
-    top: 497px;
-    border: 1px solid #000000;
-    border-radius: 9px;   
-}
-
-.register_password_input{
-    box-sizing: border-box;
-    position: absolute;
-    width: 315px;
-    height: 38px;
-    left: 151px;
-    top: 573px;
-    border: 1px solid #000000;
-    border-radius: 9px;  
-}
-
-.register_confirm_password_input{
-    box-sizing: border-box;
-    position: absolute;
-    width: 315px;
-    height: 38px;
-    left: 151px;
-    top: 649px;
-    border: 1px solid #000000;
-    border-radius: 9px;
-}
-
-.register_create_account_btn{
-    position: absolute;
-    width: 301px;
-    height: 39px;
-    left: 158px;
-    top: 712px;
-    color: #FFFFFF;
-    border-style: none;
-    background: #FCA62B;
-    border-radius: 9px;
-}
-
-.register_create_account_btn:hover{
-    background: #F7CB3F;
-}
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+  }
+  
+  .register_box{
+    display: inline-block;
+    height: 100%;
+    // width: 200vw;
+  }
+  
+  .inputs_container{
+    overflow: hidden;
+    padding: 30px;
+    width: 50%;
+  }
+  
+  .inputs_container h4{
+    text-align: center;
+  }
+  
+  .form_logo{
+    width: 150px;
+    height: auto;
+  }
+  
+  .inputs_container hr{
+    margin-top: 10px;
+  }
+  
+  .other{
+    border-left: 1px solid black;
+    background-color: #ececec;
+    border-radius: 10px;
+    width: 50%;
+  }
+  
+  
+  
+  
+  
+  
+    .register_main_container{
+      position: relative;
+      width: 70%;
+      height: 675px;
+      margin: auto;
+      margin-top: 55px;
+      border-radius: 15px;
+      border: 5px solid;
+      background: #D9D9D9;
+    }
+    
+    .register_left{
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      border-radius: 15px 0px 0px 15px;
+      background: #2b2b2b;
+    }
+    
+    .register_logo{
+      position: absolute;
+      width: 40%;
+      height: 7vh;
+      margin-top: 70px;
+      margin-left: 70px;
+      background: #000;
+    }
+    
+    .register_create_heading{
+      margin-top: 180px;
+      margin-left: -50px;
+    }
+    
+    .register_already_member{
+      margin-left: -140px;
+    }
+    
+    .reg_form_student_number{
+      width: 23%;
+      height: 4vh; 
+      margin: auto 105px;
+      background: #ffffff;
+    }
+    
+    .reg_form_username{
+      width: 23%;
+      height: 4vh; 
+      margin: -31px 240px;
+      background: #ffffff;
+    }
+    
+    .reg_form_email{
+      width: 50%;
+      height: 4vh; 
+      margin: 55px 105px;
+      background: #ffffff;
+    }
+    
+    .reg_form_password{
+      width: 50%;
+      height: 4vh; 
+      margin: -30px 105px;
+      background: #ffffff;
+    }
+    
+    .reg_form_confirm_password{
+      width: 50%;
+      height: 4vh; 
+      margin: 55px 105px;
+      background: #ffffff;
+    }
+    
+    .reg_form_create_btn{
+      width: 50%;
+      height: 4vh; 
+      margin: -35px 105px;
+      background: #ffffff;
+    }
+    
+    
