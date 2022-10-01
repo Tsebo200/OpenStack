@@ -19,7 +19,10 @@ const Register = () => {
       <div className={styles.register_container}>
         <form className={`${styles.register_box} ${styles.inputs_container}`}>
           <img className={styles.form_logo} src={formLogo}/>
-            <h5>Hello user lets get you account started</h5>
+          <br/>
+          <br/>
+          <div className="invisible-breaker"/>
+            <h5>Hey user let's get your account setup</h5>
             <hr></hr>
             <Input label="Username" name="username" type="text"/>
             <Input label="Email" name="email" type="text"/>
