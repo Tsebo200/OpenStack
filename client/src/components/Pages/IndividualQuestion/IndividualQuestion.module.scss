@@ -5,6 +5,12 @@
     display: flex;
     flex-flow: column;
 
+    ion-icon{
+        color: $black;
+        font-size: 20px;
+        margin-right: 5px;
+    }
+
     .pageContent{
         padding: 5% 20%;
         display: flex;
@@ -20,12 +26,12 @@
                 align-items: center;
             }
 
-            ion-icon{
-                color: $black;
-            }
-
             .userInfo{
                 justify-content: flex-end;
+            }
+
+            .report{
+                margin-left: auto;
             }
         }
         

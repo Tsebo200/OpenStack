@@ -15,12 +15,16 @@
 .report{
     background-color: transparent;
     font-size: $headingp;
-    color: $error;
-    padding: 20px;
+    color: rgba(200, 200, 200);
     border-radius: 10px;
-    border: 1px solid $error;
-    width: 25%;
-    transition: 0.2s ease-in-out;
+    width: 100%;
     margin: 2% 0%;
     box-shadow: none;
+    text-underline-offset: 2px;
+
+    &:hover{
+        color: $error;
+        cursor: pointer;
+        text-decoration: underline;
+    }
 }
