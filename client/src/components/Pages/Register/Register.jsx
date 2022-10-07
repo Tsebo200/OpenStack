@@ -13,8 +13,10 @@ const Register = () => {
     return(
         <>
           <div
-      style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+      // style={{ backgroundImage: `url(${backgroundImageUrl})` }}
       className={styles.register_background}
+      // style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+      // className={styles.register_background}
     >
       <div className={styles.register_container}>
         <form className={`${styles.register_box} ${styles.inputs_container}`}>
