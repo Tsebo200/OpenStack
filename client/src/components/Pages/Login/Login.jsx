@@ -15,16 +15,20 @@ export const Login = () => {
     <div className="test"></div>
     <form onSubmit={loginHandler} className={styles.main_container}>
       <div className="logo_breaker">
-      <div className={styles.logo}> <img src= {logo} width={130}/></div>
+      <div className={styles.logo}> <img src= {logo} width={190}/></div>
       </div>
       <div className={styles.main_container_child}>
         <h1>Log In</h1>
         <h5 className={styles.login_welcome_msg}>
-          Welcome back! Please enter your details
+          <center>Welcome Back! Please enter your details to continue</center>
         </h5>
+        <br/>
         <Input type="text" label="Email" name="username" />
-        <Input type="password" label="password" name="password" />
+        <span class="br"></span> 
+        <Input type="password" label="Password" name="password" />
         <br />
+        <br />
+
         <div className={styles.button_container}>
           <Button>Login</Button>
         </div>

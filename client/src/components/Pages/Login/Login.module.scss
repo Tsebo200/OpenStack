@@ -47,7 +47,7 @@
     width: 346.5px;
     height: 43.74px;
     left: 105.36px;
-    top: 361.07px;
+    // top: 361.07px;
     background: #FFFFFF;
     border: 1.15116px solid #000000;
     border-radius: 10.3605px;
@@ -120,4 +120,14 @@
 
 .sign_in_btn:hover{
     background: #F7CB3F;
+}
+
+.input-breaker{
+    display: block;
+    margin: 5px 0;
+}
+
+.br {
+    display: block;
+    margin-bottom: -50em;
 }
