@@ -20,11 +20,20 @@
     transform: translate(-50%, -50%);
 }
 
+.logo_breaker{
+    position:relative;
+    width: 1000%;
+    height: 900px;
+    background: red;
+}
+
 .logo{
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    // margin-top: 10%;
+    top: 50px
+    // margin-top: 50px;
 }
 
 .login_welcome_msg{

@@ -11,8 +11,12 @@ export const Login = () => {
   };
 
   return (
+    <>
+    <div className="test"></div>
     <form onSubmit={loginHandler} className={styles.main_container}>
-      <div className={styles.logo}> <img src= {logo} width={200}/></div>
+      <div className="logo_breaker">
+      <div className={styles.logo}> <img src= {logo} width={130}/></div>
+      </div>
       <div className={styles.main_container_child}>
         <h1>Log In</h1>
         <h5 className={styles.login_welcome_msg}>
@@ -26,5 +30,6 @@ export const Login = () => {
         </div>
       </div>
     </form>
+    </>
   );
 };
