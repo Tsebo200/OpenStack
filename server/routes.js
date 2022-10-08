@@ -51,18 +51,26 @@ router.post('/api/newUser', (req, res) =>{
         <a href="#">Click to verify</a>
     `;
 
-    const transporter = nodemailer.createTransport({
-        host: "mail.patterntry.com",
-        port: 465,
-        secure: true,
-        auth: {
-            user: "mailer@patterntry.com",
-            pass: "4d%T0Q{9v$mR"
+    // const transporter = nodemailer.createTransport({
+    //     host: "mail.patterntry.com",
+    //     port: 465,
+    //     secure: true,
+    //     auth: {
+    //         user: "mailer@patterntry.com",
+    //         pass: "4d%T0Q{9v$mR"
+    //     }
+    // });
+
+    const mailTransporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth:{
+            user: "200307@virtualwindow.co.za",
+            password: "owistudent"
         }
     });
 
     const mailOptions = {
-        from: '"Website Mailer Client <mailer@patterntry.com>"',
+        from: '"200307@virtualwindow.co.za"',
         to: data.email,
         subject: 'New User Registration',
         html: mailerOutput
