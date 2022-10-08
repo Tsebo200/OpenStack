@@ -10,6 +10,7 @@ export const Input = ({
   onChange,
   value,
   name,
+  ref
 }) => {
   return (
     <div className={classes.group}>
@@ -22,6 +23,7 @@ export const Input = ({
         required
         id={id}
         onChange={onChange}
+        ref={ref}
       />
       <span className={classes.highlight}></span>
       <span className={classes.bar}></span>

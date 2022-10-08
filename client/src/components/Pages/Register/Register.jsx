@@ -1,15 +1,41 @@
-import React from "react";
+import React,{ useState, useRef } from "react";
 import styles from './Register.module.scss';
-// import { Button } from "../../UI/Button/Button";
-// import { Input } from "../../UI/Input/Input"; 
-
-
 import backgroundImageUrl from "../../../assets/background-register.jpg";
 import formLogo from "../../../assets/OpenStackLogo.png";
 import { Input } from "../../UI/Input/Input";
 import { Button } from "../../UI/Button/Button";
+import Axios from 'axios';
 
 const Register = () => {
+
+  let usernameVal = useRef();
+  let emailVal = useRef();
+  let passwordVal = useRef();
+  let passwordConVal = useRef();
+
+  const addUser = e => {
+    e.preventDefault();
+
+    let payload = {
+      // first: formValues['name'], 
+      username: usernameVal.current.value,
+      email: emailVal.current.value,
+      password: passwordVal.current.value
+    }
+
+    console.log(payload);
+
+    Axios.post('http://localhost:5000/api/newUser', payload)
+    .then((res)=> {
+      if(res){
+        console.log("User Added"); 
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
     return(
         <>
           <div
@@ -19,7 +45,7 @@ const Register = () => {
       // className={styles.register_background}
     >
       <div className={styles.register_container}>
-        <form className={`${styles.register_box} ${styles.inputs_container}`}>
+        <form onSubmit={addUser} className={`${styles.register_box} ${styles.inputs_container}`}>
           <img className={styles.form_logo} src={formLogo}/>
           <br/>
           <br/>
@@ -28,8 +54,8 @@ const Register = () => {
             <hr></hr>
             <Input label="Username" name="username" type="text"/>
             <Input label="Email" name="email" type="text"/>
-            <Input label="Password" name="password" type="text"/>
-            <Input label="Confirm Password" name="password" type="text"/>
+            <Input label="Password" name="pass" type="text"/>
+            <Input label="Confirm Password" name="conPass" type="text"/>
             <br/>
             <br/>
             <Button>Submit</Button>

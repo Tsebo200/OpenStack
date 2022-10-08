@@ -14,13 +14,11 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    userLevel:{
-        type: String,
-        required: true
-    },
+    userLevel: String,
     admin: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     },
     date:{
         type: Date,
@@ -36,8 +34,7 @@ const userSchema = mongoose.Schema({
     },
     userScore: {
         type: Number
-    },
-    profileImg: String 
+    }
 
 });
 
