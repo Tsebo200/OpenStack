@@ -35,13 +35,13 @@ const Register = () => {
     });
   }
 
-  const ref = React.createRef();
+  // const ref = React.createRef();
 
-  const Input = React.forwardRef((props, ref) => (
-    <button ref={ref} className="Input">
-      {props.children}
-    </button>
-  ));
+  // const Input = React.forwardRef((props, ref) => (
+  //   <button ref={ref} className="Input">
+  //     {props.children}
+  //   </button>
+  // ));
   
 
 
@@ -62,10 +62,10 @@ const Register = () => {
             <h5>Hey user let's get your account setup</h5>
             <hr></hr>
        
-            <Input ref="ref" label="Username" name="username" type="text"></Input>;
-            <Input ref="ref" label="Email" name="email" type="text"></Input>
-            <Input ref="ref" label="Password" name="pass" type="text"></Input>
-            <Input ref="ref" label="Confirm Password" name="conPass" type="text"></Input>
+            <Input label="Username" name="username" type="text"></Input>
+            <Input label="Email" name="email" type="text"></Input>
+            <Input label="Password" name="pass" type="text"></Input>
+            <Input label="Confirm Password" name="conPass" type="text"></Input>
             <br/>
             <br/>
             <Button>Submit</Button>
