@@ -7,7 +7,6 @@ import { Button } from "../../UI/Button/Button";
 import Axios from 'axios';
 
 const Register = () => {
-
   let usernameVal = useRef();
   let emailVal = useRef();
   let passwordVal = useRef();
@@ -36,6 +35,16 @@ const Register = () => {
     });
   }
 
+  const ref = React.createRef();
+
+  const Input = React.forwardRef((props, ref) => (
+    <button ref={ref} className="Input">
+      {props.children}
+    </button>
+  ));
+  
+
+
     return(
         <>
           <div
@@ -52,10 +61,11 @@ const Register = () => {
           <div className="invisible-breaker"/>
             <h5>Hey user let's get your account setup</h5>
             <hr></hr>
-            <Input label="Username" name="username" type="text"/>
-            <Input label="Email" name="email" type="text"/>
-            <Input label="Password" name="pass" type="text"/>
-            <Input label="Confirm Password" name="conPass" type="text"/>
+       
+            <Input ref="ref" label="Username" name="username" type="text"></Input>;
+            <Input ref="ref" label="Email" name="email" type="text"></Input>
+            <Input ref="ref" label="Password" name="pass" type="text"></Input>
+            <Input ref="ref" label="Confirm Password" name="conPass" type="text"></Input>
             <br/>
             <br/>
             <Button>Submit</Button>
