@@ -1,6 +1,6 @@
 .group {
   position: relative;
-  margin-top: 32px;
+  margin-top: 15px;
 }
 .group input {
   font-size: 18px;
@@ -25,7 +25,7 @@
   position: absolute;
   pointer-events: none;
   left: 5px;
-  top: -10px;
+  top: 10px;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
@@ -34,7 +34,7 @@
 /* active state */
 .group input:focus ~ label,
 .group input:valid ~ label {
-  top: -15px;
+  top: -8px;
   font-size: 13.5px;
   color: #FCA62B;
 }
@@ -119,4 +119,9 @@
     width: 0;
     background: transparent;
   }
+}
+
+.error{
+  margin-top: 3px;
+  color: red;
 }

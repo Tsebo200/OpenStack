@@ -10,11 +10,11 @@ export const LecturerCard = () => {
       <Card>
         <ion-icon name="people-outline"></ion-icon>
         <h4>
-          Can’t figure out this imposible problem, find the answer on open stack
+          Are you a lecturer? Create an account and monitor students questions and administrate user profiles 
         </h4>
-        <Button>Join the Open Stack community</Button>
+        <Button>Get Lecture Account</Button>
         <p>
-          or<a>search now</a>
+          or <a>Login now</a>
         </p>
       </Card>
       <span className={styles.card_shaper_negative}></span>
