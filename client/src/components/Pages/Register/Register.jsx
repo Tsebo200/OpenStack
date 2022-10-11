@@ -1,78 +1,144 @@
-import React,{ useState, useRef } from "react";
-import styles from './Register.module.scss';
+import React, { useState, useRef } from "react";
+import styles from "./Register.module.scss";
 import formLogo from "../../../assets/OpenStackLogo.png";
 import { Input } from "../../UI/Input/Input";
 import { Button } from "../../UI/Button/Button";
-import Axios from 'axios';
+import Axios from "axios";
+
+import backgroundImageUrl from "../../../assets/background-register.jpg";
 
 const Register = () => {
-  let usernameVal = useRef();
-  let emailVal = useRef();
-  let passwordVal = useRef();
-  let passwordConVal = useRef();
 
-  const addUser = e => {
-    e.preventDefault();
-
-    let payload = {
-      // first: formValues['name'], 
-      username: usernameVal.current.value,
-      email: emailVal.current.value,
-      password: passwordVal.current.value
-    }
-
-    console.log(payload);
-
-    Axios.post('http://localhost:5000/api/newUser', payload)
-    .then((res)=> {
-      if(res){
-        console.log("User Added"); 
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
+  // const Register = () => {
+    const [FormDetails, setFormDetails] = useState({
+      username: "",
+      email: "",
+      password: "",
+      re_password: "",
     });
-  }
 
-  // const ref = React.createRef();
+    const [FormDetailsErrorMessages, setFormDetailsErrorMessages] = useState({
+      usernameError: "",
+      emailError: "",
+      password: "",
+      re_password: "",
+      formError: false
+    });
 
-  // const Input = React.forwardRef((props, ref) => (
-  //   <button ref={ref} className="Input">
-  //     {props.children}
-  //   </button>
-  // ));
-  
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormDetails((prevState) => {
+        return {
+          ...prevState,
+          [name]: value,
+        };
+      });
+    };
 
+    const handleUserRegistration = (event) => {
+      event.preventDefault();
+      if(!FormDetailsErrorMessages.formError){
+        console.log("form is valid");
+      }
+      else{
+        console.log("form invalid");
+      }
+  //     Axios.post("http://localhost:5000/api/newUser", payload)
+  //     .then((res) => {
+  //       if (res) {
+  //         console.log("User Added");
+  //       }
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
+    };
 
-    return(
-        <>
-          <div
-      // style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-      className={styles.register_background}
-      // style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-      // className={styles.register_background}
-    >
-      <div className={styles.register_container}>
-        <form onSubmit={addUser} className={`${styles.register_box} ${styles.inputs_container}`}>
-          <img className={styles.form_logo} src={formLogo}/>
-          <br/>
-          <br/>
-          <div className="invisible-breaker"/>
+    const handleErrorCheckUsername = () => {
+      if (FormDetails.username.length > 3) {
+        setFormDetailsErrorMessages((prevState) => {
+          return {
+            ...prevState,
+            usernameError: "",
+            formError: false
+          };
+        });
+      } else {
+        setFormDetailsErrorMessages((prevState) => {
+          return {
+            ...prevState,
+            usernameError: "Username Must be more than 3 characters",
+            formError: true
+          };
+        });
+      }
+    };
+
+    const handleErrorCheckEmail = () => {
+      if (!FormDetails.email.includes("@virtualwindow.co.za")) {
+        setFormDetailsErrorMessages((prevState) => {
+          return {
+            ...prevState,
+            emailError: "Email must be an open window email",
+            formError: true
+          };
+        });
+      } else {
+        setFormDetailsErrorMessages((prevState) => {
+          return {
+            ...prevState,
+            emailError: "",
+            formError: false
+          };
+        });
+      }
+    };
+
+    return (
+      <div
+        className={styles.register_background}
+      >
+        <div className={styles.register_container}>
+          <form
+            onSubmit={handleUserRegistration}
+            className={`${styles.register_box} ${styles.inputs_container}`}
+          >
+            <img className={styles.form_logo} src={formLogo} />
+            <br />
             <h5>Hey user let's get your account setup</h5>
             <hr></hr>
-       
-            <Input label="Username" name="username" type="text"></Input>
-            <Input label="Email" name="email" type="text"></Input>
-            <Input label="Password" name="pass" type="text"></Input>
-            <Input label="Confirm Password" name="conPass" type="text"></Input>
-            <br/>
-            <br/>
-            <Button>Submit</Button>
-        </form>
-        <div className={`${styles.register_box} ${styles.other}`}></div>
+            <Input
+              value={FormDetails.username}
+              onChange={handleInputChange}
+              onBlur={handleErrorCheckUsername}
+              label="Username"
+              name="username"
+              type="text"
+            />
+            <p className={styles.error}>
+              {FormDetailsErrorMessages.usernameError}
+            </p>
+            <Input
+              value={FormDetails.email}
+              onChange={handleInputChange}
+              onBlur={handleErrorCheckEmail}
+              label="Email"
+              name="email"
+              type="text"
+            />
+            <p className={styles.error}>
+              {FormDetailsErrorMessages.emailError}
+            </p>
+            <Input label="Password" name="password" type="password" />
+            <Input label="Confirm Password" name="password" type="password" />
+            <br />
+            <br />
+            <Button>Create Account</Button>
+          </form>
+        </div>
       </div>
-    </div>
-        </>
-    )
-}
-export default Register
+    );
+  };
+
+export default Register 

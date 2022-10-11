@@ -9,6 +9,7 @@ export const Input = ({
   onBlur,
   onChange,
   value,
+  errorMessage,
   name,
   ref
 }) => {

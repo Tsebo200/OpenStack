@@ -24,7 +24,7 @@ export const Login = () => {
         </h5>
         <br/>
         <Input type="text" label="Email" name="username" />
-        <span class="br"></span> 
+        {/* <span class="br"></span>  */}
         <Input type="password" label="Password" name="password" />
         <br />
         <br />
