@@ -54,31 +54,109 @@ router.post('/api/newUser', (req, res) =>{
         res.json(item);
 
         const mailerOutput = `
-        <div style=" width: 60vw; ">
-            <div style="border-radius: 5px; padding-bottom: 5vh; background-color: #fbfbfb; box-shadow: 0 3px 10px rgb(0 0 0 / 0.25);">
-                <div style="border-radius: 5px; background-color: #84d5de; box-shadow: 0 3px 10px rgb(0 0 0 / 0.25);">
-                <div style=" height: 40vh; width: 35vw; margin-left: 20%; background-size: contain; background-repeat: no-repeat; background-image: url(https://lh3.googleusercontent.com/8MnmKDqQfagpkWhsJhBZKW1HuuavJtAKvOwLw34H-cIn0-6937vPEv9zAtgK8mDzDR31G7ZXrjuNIse87LHn1fEFHadvEVSJbxNLyze-qKCxgsha1AxY_wMzZMyN-sROYeis11-0ptWQKxrrYI8Efmk2Q3laldvh3ikBlzkFgfD4uiac-KCXAEy7_nMHjP7P8DxrdsW66jGs2OeGI7fTp1RVD55bQNGcpnoLUhyUeLKB679NqceihpESZm6YqBHakSvMdmK4Hhb26piQGI9iH_JvcN_AcEMMhWT4IQj1w33wKgevlVB_yUGkgSz9ERaek6PeS0GVRqkTWg2jL5Q8BAz9EOuOYZgRXvlODzTvw3yf6eASdA47K-pag04VhNIAWUjTyGKYEV85_ZQ5Fr4AGu2SSVqGydixr03bMXxIGTm6LJtefc-5VhWJuudVUrXNWkft6V051g2kF3ACTlX2OGoo9wjQSx5IOQm-IXXmzc52tfUd_fv45YhFXC2lZlwRIuV0C_oqhJIrUHLC7follyMVZIPovYSOry7r0ruhcKEtnRT3rlxkODhtCnAOuHIG5qA_ubLPWdsFsfFn0M0A9op0H-bcxxTlh9QlXjPN3rVSHtu_QilEm50tv15Nt7dtWALPfJMgFJULzFcquHWoZkva5qfdk7oSQKGC_RbbIbrTnTbcQCshCJhKO8QoZeL8vpqrmPgunVL4xTFPtWVaq0gIwgREsHoK6i4VEeAkkIKx59ZRBb0uVVyUhQeeEAW2rSrU3Orb7pMaPDZ6rGwfHStcbxn4KGqM2m9inoxjpRCIxMcjf5x5qzW8K50FROKx8_kKLPpzXX2GI4SqtQ7iUjVjxr48_QdNsNN-i1HcRaKBDwqm5eAkU1JJBV4G0a4wekYoADmuJ0rZsXL-qI4TauBrk7g-hY34H0gC8HpeL2kWT92an4RiopTsjJP96Fyh9E2lrSSfKSswA-A=w1200-h554-no?authuser=0); "></div>
-                </div>
-                <div>
-                    <h2 style="text-align: center;">Email Confirmation</h2>
-                    <br>
-                    <p style="text-align: center; ">You're almost finished singing, ${data.username}! <br>
-                        Just press the huge sign up button to finish the process <br>
-                        and confirm your email address.</p>
-                    <br>
-                    <a href="#"><div style="width: 15vw; margin-left: 17.5vw; padding-top: 1vh; padding-bottom: 1vh; border-radius: 5px; text-align: center; background-color: #fca62b; box-shadow: 0 3px 10px rgb(0 0 0 / 0.25);">Verify email address</div></a>
-                </div>
-            </div> 
-            <br>
-            <div style="height: 200px;">
-                <h3 style="text-align: center;">Stay in touch</h3>
-                <div style="margin-left: 40vw;">                
-                    <a href="https://www.facebook.com/theopenwindow/"><div style="height: 40px; width: 40px; float: left; background-image: url(https://cdn-icons-png.flaticon.com/512/5968/5968764.png); background-size: contain; border-radius: 100%; margin: .25vw;"></div></a>
-                    <a href="https://mobile.twitter.com/open_window_"><div style="height: 40px; width: 40px; float: left; background-image: url(https://cdn-icons-png.flaticon.com/512/145/145812.png); background-size: contain; border-radius: 100%; margin: .25vw;"></div></a>
-                    <a href="https://www.instagram.com/openwindowinstitute/"><div style="height: 40px; width: 40px; float: left; background-image: url(https://cdn-icons-png.flaticon.com/512/4138/4138124.png); background-size: contain; border-radius: 100%; margin: .25vw;"></div></a>
-                </div>
-            </div>
+        <div style="width: 100vw;">
+        <div
+          style="
+            border-radius: 5px;
+            padding-bottom: 5vh;
+            background-color: #fbfbfb;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.25);
+          "
+        >
+          <img
+            style="padding: 30px; text-align: center; margin: 0;"
+            src="https://drive.google.com/uc?id=1ZV1qtT5fJiYlqZEWCk2DL7nlCoqpY4KW"
+            width="200px"
+            alt="Hello"
+          />
+          <div style="padding: 30px; max-height: 70vh; background-color: #84d5de;">
+            <h1 style="text-align: center;">
+              Hello World...I mean hello ${data.username}!
+            </h1>
+            <div
+              style="
+                height: 100vh;
+                width: 50vw;
+                margin: 0 auto;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-image: url(https://drive.google.com/uc?id=11GgFUghBQ4d5A-mSMzipDAir84sCKdwV);
+              "
+            ></div>
+          </div>
+          <div>
+            <h2 style="text-align: center;">Hey you're almost done!</h2>
+            <br />
+            <p style="text-align: center;">
+              You're almost finished signing up, ${data.username}! <br />
+              Just press the huge sign up button to finish the process <br />
+              and confirm your email address.
+            </p>
+            <br />
+            <a href="#" style="text-decoration: none; color: white;"
+              ><div
+                style="
+                  width: 80vw;
+                  padding: 1vh;
+                  border-radius: 5px;
+                  text-align: center;
+                  margin: 0 auto;
+                  background-color: #fca62b;
+                  box-shadow: 0 3px 10px rgb(0 0 0 / 0.25);
+                "
+              >
+                Verify email address
+              </div></a
+            >
+          </div>
         </div>
+        <br />
+        <div style="height: 200px;">
+          <h3 style="text-align: center;">Stay in touch</h3>
+          <div style="margin-left: 40vw;">
+            <a href="https://www.facebook.com/theopenwindow/"
+              ><div
+                style="
+                  height: 40px;
+                  width: 40px;
+                  float: left;
+                  background-image: url(https://drive.google.com/uc?id=1afDSpPjl8V68R3L9kLEgRWpozjyjEplc);
+                  background-size: contain;
+                  border-radius: 100%;
+                  margin: 0.25vw;
+                "
+              ></div
+            ></a>
+            <a href="https://mobile.facebook.com/openwindow"
+              ><div
+                style="
+                  height: 40px;
+                  width: 40px;
+                  float: left;
+                  background-image: url(https://drive.google.com/uc?id=1yVEkhDw1DdcaaNyKiU2CblFsM3kSEzpM);
+                  background-size: contain;
+                  border-radius: 100%;
+                  margin: 0.25vw;
+                "
+              ></div
+            ></a>
+            <a href="https://www.instagram.com/openwindowinstitute/"
+              ><div
+                style="
+                  height: 40px;
+                  width: 40px;
+                  float: left;
+                  background-image: url(https://drive.google.com/uc?id=1kcR42EhCoDtu4UsBFRpKMTQbs9pW61I2);
+                  background-size: contain;
+                  border-radius: 100%;
+                  margin: 0.25vw;
+                "
+              ></div
+            ></a>
+          </div>
+        </div>
+      </div>
+      
         `;
 
 
@@ -161,7 +239,7 @@ router.patch('/api/validate/:id', async (req, res) => {
         } catch (err) {
             res.json({success: false, msg: "Invalid Token"});
         }
-        
+
     }else {
         res.json({success: false, msg: "Verification Error: Contact System Admin"})
     }
