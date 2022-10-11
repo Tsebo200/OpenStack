@@ -1,6 +1,5 @@
 import React,{ useState, useRef } from "react";
 import styles from './Register.module.scss';
-import backgroundImageUrl from "../../../assets/background-register.jpg";
 import formLogo from "../../../assets/OpenStackLogo.png";
 import { Input } from "../../UI/Input/Input";
 import { Button } from "../../UI/Button/Button";
