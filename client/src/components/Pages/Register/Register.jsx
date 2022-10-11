@@ -8,6 +8,11 @@ import Axios from "axios";
 import backgroundImageUrl from "../../../assets/background-register.jpg";
 
 const Register = () => {
+  const options = ['First', 'Second', 'Third', ,'Honours', 'Creative Computing', 'Lecturer'];
+  const onOptionChangeHandler = (event) => {
+      console.log("User Selected Value - ", event.target.value)
+  }
+
 
   // const Register = () => {
     const [FormDetails, setFormDetails] = useState({
@@ -141,6 +146,15 @@ const Register = () => {
               name="level"
               type="text"
             </select>
+            <br></br>
+            <select onChange={handleInputChange}>
+            <option>Please Choose Your Current Level</option>
+            {options.map((option, index) => {
+                return <option key={index} >
+                    {option}
+                </option>
+            })}
+          </select>
 
             <p className={styles.error}>
               {FormDetailsErrorMessages.emailError}
