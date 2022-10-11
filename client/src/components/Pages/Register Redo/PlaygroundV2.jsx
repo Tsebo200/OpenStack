@@ -128,7 +128,7 @@ const Register = () => {
               name="email"
               type="text"
             />
-            <Select  onChange={handleInputChange} name="levels" >
+            <Select onChange={handleInputChange} name="levels">
             <option>First Year</option> 
             <option>Second Year</option> 
             <option>Third Year</option> 
