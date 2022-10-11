@@ -8,7 +8,7 @@ import Axios from "axios";
 import backgroundImageUrl from "../../../assets/background-register.jpg";
 
 const Register = () => {
-  const options = ['First', 'Second', 'Third', ,'Honours', 'Creative Computing', 'Lecturer'];
+  const options = ['First Year', 'Second Year', 'Third Year' ,'Honours', 'Creative Computing', 'Lecturer'];
   const onOptionChangeHandler = (event) => {
       console.log("User Selected Value - ", event.target.value)
   }
@@ -73,7 +73,7 @@ const Register = () => {
         setFormDetailsErrorMessages((prevState) => {
           return {
             ...prevState,
-            usernameError: "Username Must be more than 3 characters",
+            usernameError: "Must contain more than 3 characters",
             formError: true
           };
         });
@@ -85,7 +85,7 @@ const Register = () => {
         setFormDetailsErrorMessages((prevState) => {
           return {
             ...prevState,
-            emailError: "Email must be an open window email",
+            emailError: "Must be a registered open window email",
             formError: true
           };
         });
@@ -133,7 +133,10 @@ const Register = () => {
               name="email"
               type="text"
             />
-            <br></br>
+               <p className={styles.error}>
+              {FormDetailsErrorMessages.emailError}
+            </p>
+            <br />
             <select onChange={handleInputChange}>
             <option>Please Choose Your Current Level</option>
             {options.map((option, index) => {
@@ -144,7 +147,7 @@ const Register = () => {
           </select>
 
             <p className={styles.error}>
-              {FormDetailsErrorMessages.emailError}
+              {FormDetailsErrorMessages.levelError}
             </p>
             <Input label="Password" name="password" type="password" />
             <Input label="Confirm Password" name="password" type="password" />
