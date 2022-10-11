@@ -128,7 +128,7 @@ const Register = () => {
               name="email"
               type="text"
             />
-            <Select  onChange={handleInputChange} name="levels" >
+            <select onChange={handleInputChange} name="levels" >
             <option>First Year</option> 
             <option>Second Year</option> 
             <option>Third Year</option> 
@@ -136,12 +136,11 @@ const Register = () => {
             <option>Honours</option> 
             <option>Lecturers</option> 
               value={FormDetails.email}
-             
               onBlur={handleErrorCheckEmail}
               label="Level"
               name="level"
               type="text"
-            </Select>
+            </select>
 
             <p className={styles.error}>
               {FormDetailsErrorMessages.emailError}

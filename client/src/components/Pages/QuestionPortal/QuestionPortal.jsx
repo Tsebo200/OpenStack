@@ -4,7 +4,6 @@ import { Header } from '../../Header/Header';
 import questionImg from '../../../assets/question_img.png';
 import Input from '../../Input/Input';
 import Button from '../../Button/Button';
-import TagCard from '../../TagCard/TagCard';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
@@ -102,13 +101,8 @@ function QuestionPortal() {
                 <label className={styles.upload} for="upload">Upload Screenshot(s)
                     <Input name="upload" type="imgUpload" inputType="file" ref={img}/>
                 </label>
-                <label htmlFor='tagSelect'>Select Tags related to questions (min. 3)</label>
+                <label htmlFor='tagSelect'>Select Tags related to questions</label>
                 <div className={styles.tagGroup}>
-                    <TagCard value={values["tagOne"]}/>
-                    <TagCard/>
-                    <TagCard/>
-                    <TagCard/>
-                    <TagCard/>
                 </div>
                 <hr />
                 <h2>Review your question</h2>
