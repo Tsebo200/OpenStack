@@ -76,6 +76,38 @@ opacity: 0.8;
     margin-left: 5px;
   }
 
-  option{
-    width: 100%;
+  select{
+    width: 100%;  
+    font-size: 14px;
+    padding: 10px 10px 10px 5px;
+    color: #999;
+    font-weight: normal;
+    border: 1px solid #757575;
+    border-radius: 3px;
   }
+
+  select:hover{
+    cursor: pointer;
+    border: 1px solid #FCA62B;
+  }
+
+  //Trying to change the color of the selected item to yellow 
+  .select-items{
+    color: #FCA62B
+  }
+
+  //Trying to change the arrow to flip up when dropdown is selected/active
+  .select:after {
+    border-color: #fff transparent transparent transparent;
+    color: red;
+  }
+  .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    margin-top: 7px;
+  }
+
+//   .styled-select select {
+//     -moz-appearance:none; /* Firefox */
+//     -webkit-appearance:none; /* Safari and Chrome */
+//     appearance:none;
+// }
