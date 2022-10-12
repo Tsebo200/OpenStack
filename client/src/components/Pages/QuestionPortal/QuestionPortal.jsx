@@ -9,19 +9,23 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import Dropdown from '../../Dropdown/Dropdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import axios from 'axios';
 
 function QuestionPortal() {
 
-    const defValues = ["title", "body", "codeBlock", "selectedYear", "upload"];
+    const defValues = ["title", "body", "codeBlock", "selectedYear", "upload", "tag"];
     const [values, setValues] = useState(defValues);
     const title = useRef();
     const body = useRef();
     const codeBlock = useRef();
+    const yearSelection = useRef();
+    const tag = useRef();
     const img = useRef();
 
     const [titleError, setTitleError] = useState();
     const [bodyError, setBodyError] = useState();
     const [codeError, setCodeError] = useState();
+    const [tagError, setTagError] = useState();
 
     const handleChange = e => {
         const {name, value} = e.target;
@@ -40,6 +44,8 @@ function QuestionPortal() {
         let bodyString = body.current.value;
         let code = codeBlock.current.value;
         let imgName = img.current.value;
+        let year = yearSelection.current.value;
+        let tags = tag.current.value;
 
         const imgSubStr = imgName.substr(12);
 
@@ -61,15 +67,33 @@ function QuestionPortal() {
             setCodeError();
         }
 
+        if(tags === ""){
+            setTagError("Enter at least 1 tag");
+        }else{
+            setTagError();
+        }
+
         let payload = {
             questionTitle: titleString,
             questionBody: bodyString,
             questionCode: code,
+            selectedYear: year,
             img: imgSubStr,
-            tagSelected: values["tagOne"]  
+            tagSelected: tags,
+            user: "Wiaan",
+            answers: 0,
+            views: 0,
+            upVotes: 0,
+            downVotes: 0,
+            reports: 0
         }
 
         console.log(payload);
+
+        axios.post('http://localhost:5001/api/addQuestion', payload)
+        .then(res => {
+            console.log("Question Added!");
+        })
 
     }
 
@@ -97,13 +121,12 @@ function QuestionPortal() {
                 {codeError ? <textarea className={styles.questionError} name="codeBlock" ref={codeBlock}></textarea> : <textarea className={styles.questionText} name="codeBlock" ref={codeBlock}></textarea>}
                 {codeError ? <p className={styles.error}><ion-icon name="warning-outline"></ion-icon> {codeError}</p> : ""}
                 <label htmlFor='dropdown'>Select Your Year</label>
-                <Dropdown/>
+                <Dropdown ref={yearSelection}/>
                 <label className={styles.upload} for="upload">Upload Screenshot(s)
                     <Input name="upload" type="imgUpload" inputType="file" ref={img}/>
                 </label>
-                <label htmlFor='tagSelect'>Select Tags related to questions</label>
-                <div className={styles.tagGroup}>
-                </div>
+                <label htmlFor='enteredTags'>Enter Tags related to questions</label>
+                {tagError ? <Input name="enteredTags" type="questionError" inputType="text" ref={tag} value={values["tag"]}/> : <Input type="questionInput" name="enteredTags" inputType="text" ref={tag} value={values["tag"]}/>}
                 <hr />
                 <h2>Review your question</h2>
                 <hr />
