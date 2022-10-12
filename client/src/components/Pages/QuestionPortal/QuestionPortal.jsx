@@ -74,9 +74,9 @@ function QuestionPortal() {
         }
 
         let payload = {
-            questionTitle: titleString,
-            questionBody: bodyString,
-            questionCode: code,
+            title: titleString,
+            body: bodyString,
+            code: code,
             selectedYear: year,
             img: imgSubStr,
             tagSelected: tags,

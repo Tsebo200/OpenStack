@@ -14,7 +14,6 @@ router.post('/api/addQuestion', (req, res) => {
         code: req.body.code,
         screenshot: String,
         tags: req.body.tags,
-        date: Date.now,
         user: req.body.user,
         answers: +req.body.answers,
         views: +req.body.views,
@@ -23,12 +22,12 @@ router.post('/api/addQuestion', (req, res) => {
         reports: +req.body.reports
     });
 
-    newUser.save()
+    newQuestion.save()
     .then(i => {
         res.json(i)
     })
     .catch(err => {
-        res.status(400).json({msg: "User could not be added!", err});
+        res.status(400).json({msg: "Question could not be added!", err});
     });
 
 });
