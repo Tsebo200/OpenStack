@@ -133,6 +133,19 @@ const Register = () => {
               name="email"
               type="text"
             />
+            <select onChange={handleInputChange} name="levels" >
+            <option>First Year</option> 
+            <option>Second Year</option> 
+            <option>Third Year</option> 
+            <option>Creative Computing</option> 
+            <option>Honours</option> 
+            <option>Lecturers</option> 
+              value={FormDetails.email}
+              onBlur={handleErrorCheckEmail}
+              label="Level"
+              name="level"
+              type="text"
+            </select>
                <p className={styles.error}>
               {FormDetailsErrorMessages.emailError}
             </p>
