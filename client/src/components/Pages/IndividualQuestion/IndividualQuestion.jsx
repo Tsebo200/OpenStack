@@ -3,7 +3,6 @@ import styles from './IndividualQuestion.module.scss';
 // import Button from '@mui/material/Button';
 import Button from '../../Button/Button';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/prism';
-import style from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark';
 
 export default function IndividualQuestion() {
 
@@ -58,7 +57,7 @@ export default function IndividualQuestion() {
             <p>How do you write some html code? The reason I am asking this question because I have no idea how to write some html code so that I can create the coolest of apps. Here is some example code I am including</p>
 
             <SyntaxHighlighter className={styles.code} language="javascript" children={true}>
-                   {exampleCode}
+                {exampleCode}
             </SyntaxHighlighter>
             <br />
             <hr />

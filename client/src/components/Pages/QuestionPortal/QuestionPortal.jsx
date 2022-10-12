@@ -12,7 +12,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 
 function QuestionPortal() {
 
-    const defValues = ["title", "body", "codeBlock", "upload", "tagOne", "tagTwo", "tagThree", "tagFour"];
+    const defValues = ["title", "body", "codeBlock", "selectedYear", "upload"];
     const [values, setValues] = useState(defValues);
     const title = useRef();
     const body = useRef();
