@@ -8,10 +8,11 @@ import Axios from "axios";
 import backgroundImageUrl from "../../../assets/background-register.jpg";
 
 const Register = () => {
-  const options = ['First Year', 'Second Year', 'Third Year' ,'Honours', 'Creative Computing', 'Lecturer'];
-  const onOptionChangeHandler = (event) => {
-      console.log("User Selected Value - ", event.target.value)
-  }
+  // Will not use this drop down anymore
+  // const options = ['First Year', 'Second Year', 'Third Year' ,'Honours', 'Creative Computing', 'Lecturer'];
+  // const onOptionChangeHandler = (event) => {
+  //     console.log("User Selected Value - ", event.target.value)
+  // }
 
 
   // const Register = () => {
@@ -109,8 +110,10 @@ const Register = () => {
             onSubmit={handleUserRegistration}
             className={`${styles.register_box} ${styles.inputs_container}`}
           >
+
             <img className={styles.form_logo} src={formLogo} />
             <br />
+            <br/>
             <h5>Hey user let's get your account setup</h5>
             <hr></hr>
 
@@ -150,14 +153,16 @@ const Register = () => {
               {FormDetailsErrorMessages.emailError}
             </p> */}
             <br />
-            <select onChange={handleInputChange}>
+
+            {/* This is part of the DropDown */}
+            {/* <select onChange={handleInputChange}>
             <option>Please Choose Your Current Level</option>
             {options.map((option, index) => {
                 return <option key={index} >
                     {option}
                 </option>
-            })}
-          </select>
+            })} */}
+          {/* </select> */}
 
             <p className={styles.error}>
               {FormDetailsErrorMessages.levelError}
