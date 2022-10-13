@@ -12,6 +12,7 @@ import "./index.scss";
 import Playground from "./components/Pages/Register Redo/Playground";
 import IndividualQuestion from "./components/Pages/IndividualQuestion/IndividualQuestion";
 import UserSettings from "./components/Pages/UserSettings/UserSettings";
+import AdminPage from "./components/Pages/AdminPage/AdminPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -26,6 +27,7 @@ root.render(
         <Route path="/playground" element={<Playground />} />
         <Route path="/individual-question" element={<IndividualQuestion />} />
         <Route path="/UserSettings" element={<UserSettings />} />
+        <Route path="/admin" element={<AdminPage/>}/>
       </Route>
     </Routes>
   </BrowserRouter>
