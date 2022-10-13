@@ -114,7 +114,7 @@ const Register = () => {
             <img className={styles.form_logo} src={formLogo} />
             <br />
             <br/>
-            <h5>Hey user let's get your account setup</h5>
+            <center><h5>Hey user let's get your account setup</h5></center>
             <hr></hr>
 
             <Input
@@ -152,7 +152,7 @@ const Register = () => {
                <p className={styles.error}>
               {FormDetailsErrorMessages.emailError}
             </p> */}
-            <br />
+
 
             {/* This is part of the DropDown */}
             {/* <select onChange={handleInputChange}>
