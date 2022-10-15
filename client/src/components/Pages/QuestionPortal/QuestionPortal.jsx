@@ -22,6 +22,15 @@ function QuestionPortal() {
     const tag = useRef();
     const img = useRef();
 
+    // const [previewQuestion, setPreviewQuestion] = useState({
+    //     qTitle: "",
+    //     qBody: "",
+    //     qCode: ""
+    // })
+
+    const [questionTitle, setQuestionTitle] = useState();
+    const [questionBody, setQuestionBody] = useState();
+
     const [titleError, setTitleError] = useState();
     const [bodyError, setBodyError] = useState();
     const [codeError, setCodeError] = useState();
@@ -37,6 +46,14 @@ function QuestionPortal() {
     }
 
     const exampleCode = `const hello = "written code will go here";`
+
+    const onChange = e => {
+
+        let value = e.target.value;
+
+        // setPreviewQuestion([...previewQuestion]);
+        setQuestionTitle(value);
+    }
 
     const formHandle = e => {
         e.preventDefault();
@@ -110,12 +127,12 @@ function QuestionPortal() {
                 </div>
                 
                 <label htmlFor='title'>Question Title</label>
-                {titleError ? <Input name="title" type="questionError" inputType="text" ref={title} value={values["title"]}/> : <Input name="title" type="questionInput" inputType="text" ref={title} value={values["title"]}/>}
+                {titleError ? <Input name="title" type="questionError" inputType="text" ref={title} value={values["title"]} onChange={onChange}/> : <Input name="title" type="questionInput" inputType="text" ref={title} value={values["title"]} onChange={onChange}/>}
                 {titleError ? <p className={styles.error}><ion-icon name="warning-outline"></ion-icon> {titleError}</p> : ""}
                 <br />
                 <br />
                 <label htmlFor='body'>Body</label>
-                {bodyError ? <textarea className={styles.questionError} name="body" ref={body}></textarea> : <textarea className={styles.questionText} name="body" ref={body}></textarea>}
+                {bodyError ? <textarea className={styles.questionError} name="body" ref={body} onChange={onChange}></textarea> : <textarea className={styles.questionText} name="body" ref={body} onChange={onChange}></textarea>}
                 {bodyError ? <p className={styles.error}><ion-icon name="warning-outline"></ion-icon> {bodyError}</p> : ""}
                 <label htmlFor='codeBlock'>Code Block</label>
                 {codeError ? <textarea className={styles.questionError} name="codeBlock" ref={codeBlock}></textarea> : <textarea className={styles.questionText} name="codeBlock" ref={codeBlock}></textarea>}
@@ -130,6 +147,8 @@ function QuestionPortal() {
                 <hr />
                 <h2>Review your question</h2>
                 <hr />
+                <h1>{questionTitle}</h1>
+                <h3>{questionBody}</h3>
                 <SyntaxHighlighter className={styles.code} language="javascript" children={true}>
                    {exampleCode}
                 </SyntaxHighlighter>
