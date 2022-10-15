@@ -49,16 +49,15 @@ const Register = () => {
       else{
         console.log("form invalid");
       }
-  //     Axios.post("http://localhost:5000/api/newUser", payload)
-  //     .then((res) => {
-  //       if (res) {
-  //         console.log("User Added");
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
+      // Axios.post("http://localhost:5001/api/newUser", payload)
+      // .then((res) => {
+      //   if (res) {
+      //     console.log("User Added");
+      //   }
+      // })
+      // .catch(function (error) {
+      //   console.log(error);
+      // });
     };
 
     const handleErrorCheckUsername = () => {

@@ -160,17 +160,17 @@ router.post('/api/newUser', (req, res) =>{
 
 
         const transporter = nodemailer.createTransport({
-            host: "mail.patterntry.com",
+            host: "open-stack.co.za",
             port: 465,
             secure: true,
             auth: {
-                user: "mailer@patterntry.com",
-                pass: "4d%T0Q{9v$mR"
+                user: "noreply@open-stack.co.za",
+                pass: "eUmmR3cnk3kNe32"
             }
         });
 
         const mailOptions = {
-            from: '"Website Mailer Client <mailer@patterntry.com>"',
+            from: '"Website Mailer Client <noreply@open-stack.co.za>"',
             to: data.email,
             subject: 'New User Registration',
             html: mailerOutput
