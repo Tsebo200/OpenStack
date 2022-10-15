@@ -49,15 +49,15 @@ const Register = () => {
       else{
         console.log("form invalid");
       }
-      // Axios.post("http://localhost:5001/api/newUser", payload)
-      // .then((res) => {
-      //   if (res) {
-      //     console.log("User Added");
-      //   }
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
+      Axios.post("http://localhost:5001/api/newUser", FormDetails)
+      .then((res) => {
+        if (res) {
+          console.log("User Added");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     };
 
     const handleErrorCheckUsername = () => {
@@ -166,8 +166,8 @@ const Register = () => {
             <p className={styles.error}>
               {FormDetailsErrorMessages.levelError}
             </p>
-            <Input label="Password" name="password" type="password" />
-            <Input label="Confirm Password" name="password" type="password" />
+            <Input label="Password" name="password" type="password" value={FormDetails.password} onChange={handleInputChange}/>
+            <Input label="Confirm Password" name="re_password" type="password" value={FormDetails.re_password} onChange={handleInputChange}/>
             <br />
             <br />
             <Button>Create Account</Button>
