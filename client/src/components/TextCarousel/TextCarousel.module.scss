@@ -4,4 +4,20 @@
     display: flex;
     justify-content: space-between;
     margin: 10% 0% 3% 0%;
+
+    .selected{
+        transition: 0.3s linear;
+        color: $primary;
+        text-decoration: underline;
+
+    }
+
+    h5{
+        transition: 0.3s linear;
+
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+    }
 }

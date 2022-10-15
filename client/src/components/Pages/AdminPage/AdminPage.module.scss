@@ -7,20 +7,38 @@
 
     .pageContent{
         width: 100%;
-        padding: 10% 20% 5% 20%;
+        padding: 10% 5% 5% 5%;
 
         table{
             width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+
+            th{
+                text-align: left;
+                width: fit-content;
+                font-weight: bold;
+                background-color: rgb(199, 199, 199);
+                padding: 20px;
+            }
+
+
+            td{
+                border-right: 1px solid rgb(199, 199, 199);
+                padding: 10px;
+            }
         }
 
-        tr, td{
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            text-align: left;
-            align-items: center;
-            border-bottom: 1px solid rgb(199, 199, 199);
-            border-collapse: collapse;
-        }
+
+        // tr, td{
+        //     width: 100%;
+        //     display: flex;
+        //     justify-content: space-around;
+        //     text-align: left;
+        //     align-items: center;
+        //     border-bottom: 1px solid rgb(199, 199, 199);
+        //     border-collapse: collapse;
+        // }
+
     }
 }

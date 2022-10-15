@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import TextCarousel from '../../TextCarousel/TextCarousel';
 import styles from './AdminPage.module.scss';
@@ -16,28 +17,28 @@ export default function AdminPage() {
             <Input type="searchFilter" inputType="text" placeholder="Search Users"/>
             <br />
             <br />
+            <br />
             <table>
-                <tr>
-                    <th><p>Id</p></th>
-                    <th><p>Username</p></th>
-                    <th><p>Email</p></th>
-                    <th><p>Questions Asked</p></th>
-                    <th><p>Questions Answered</p></th>
-                </tr>
-                <tr>
-                    <td>4304349JHfndj</td>
-                    <td>CrunchBurger420</td>
-                    <td>21100243@virtualwindow.co.za</td>
-                    <td>23</td>
-                    <td>11</td>
-                </tr>
-                <tr>
-                    <td>4304349JHfndj</td>
-                    <td>CrunchBurger420</td>
-                    <td>21100243@virtualwindow.co.za</td>
-                    <td>23</td>
-                    <td>11</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Level</th>
+                        <th>Questions Asked</th>
+                        <th>Questions Answered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1118393</td>
+                        <td>Ezpionage</td>
+                        <td>21100483@virtualwindow.co.za</td>
+                        <td>Second Year</td>
+                        <td>23</td>
+                        <td>11</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
