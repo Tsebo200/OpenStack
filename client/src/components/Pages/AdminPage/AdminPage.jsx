@@ -5,6 +5,8 @@ import TextCarousel from '../../TextCarousel/TextCarousel';
 import styles from './AdminPage.module.scss';
 
 export default function AdminPage() {
+
+    
   return (
     <div className={styles.container}>
 

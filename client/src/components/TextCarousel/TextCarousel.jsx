@@ -8,14 +8,6 @@ export default function TextCarousel() {
 
     let arr = ["First Year", "Second Year", "Third Year", "Creative Computing", "Lecturer", "Reported"];
 
-    const changeAppearance = () => {
-      if(setTab){
-        setTab(false);
-      } else {
-        setTab(true);
-      }
-    }
-
 
   return (
     <div className={styles.container}>
