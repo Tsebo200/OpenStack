@@ -5,7 +5,7 @@ import { forwardRef } from 'react';
 const Dropdown = forwardRef((props, ref) => {
   return (
     <div className={style.container}>
-        <select className={style.dropdown} ref={ref}>
+        <select className={style.dropdown} ref={ref} onChange={props.onChange}>
             <option value="N/A">-- Please Select --</option>
             <option value="First Year">First Year</option>
             <option value="Second Year">Second Year</option>
