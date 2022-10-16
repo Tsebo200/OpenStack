@@ -210,7 +210,6 @@ function QuestionPortal() {
                 <h1>{previewQuestion.qTitle}</h1>
                 <h4>{previewQuestion.qSelectedYear}</h4>
                 <h3>{previewQuestion.qBody}</h3>
-                {previewQuestion.qLanguage}
                 <SyntaxHighlighter className={styles.code} language={previewQuestion.qLanguage} children={true}>
                    {previewQuestion.qCode}
                 </SyntaxHighlighter>
