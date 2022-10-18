@@ -1,20 +1,22 @@
 import React from 'react';
 import styles from './QuestionPortal.module.scss';
-import { Header } from '../../../Header/Header';
+import {Header} from '../../../Header/Header'
 import questionImg from '../../../../assets/question_img.png';
 import Input from '../../../Input/Input';
 import Button from '../../../Button/Button';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
-import Dropdown from '../../../Dropdown/Dropdown';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/prism';
 import axios from 'axios';
 
 function QuestionPortal() {
 
     // useState's and Ref's
-    const defValues = ["title", "body", "codeBlock", "selectedYear", "upload", "tag"];
+    const defValues = ["title", "body", "codeBlock", "selectedYear", "image", "tag"];
+
+    const [questionImage, setQuestionImage] = useState();
+
     const [values, setValues] = useState(defValues);
     const title = useRef();
     const body = useRef();
@@ -83,8 +85,10 @@ function QuestionPortal() {
         setPreviewQuestion({...previewQuestion, qSelectedYear: value});
     }
 
-    const imageVal = (e) => {           
+    const imageVal = (e) => {   
+        
         let file = e.target.files[0];
+        setQuestionImage(file);
         let reader = new FileReader();
 
         reader.onloadend = function() {
@@ -108,10 +112,18 @@ function QuestionPortal() {
 
         // setPreviewQuestion([...previewQuestion]);
         setPreviewQuestion({...previewQuestion, qLanguage: value});
+
+        console.log(value);
     }
+
+    let languages = ["-- Please Select --", "cpp", "csharp", "css", "html", "javascript", "json", "kotlin", "markdown", "php", "python", "sass", "scss", "swift", "typescript"];
+    let levels = ["-- Please Select --", "First Year", "Second Year", "Third Year", "Honours", "Creative Computing", "Lecturer"];
 
     const formHandle = e => {
         e.preventDefault();
+
+        const payloadData = new FormData();
+
         let titleString = title.current.value;
         let bodyString = body.current.value;
         let code = codeBlock.current.value;
@@ -162,9 +174,17 @@ function QuestionPortal() {
 
         console.log(payload);
 
-        axios.post('http://localhost:5001/api/addQuestion', payload)
+        payloadData.append("information", JSON.stringify(payload));
+        payloadData.append("image", questionImage);
+
+        console.log(payloadData);
+
+        axios.post('http://localhost:5001/api/add-question', payloadData)
         .then(res => {
             console.log("Question Added!");
+        })
+        .catch(err => {
+            console.log(err);
         })
 
     }
@@ -194,13 +214,13 @@ function QuestionPortal() {
                 {bodyError ? <textarea className={styles.questionError} name="body" ref={body} onChange={bodyPreview}></textarea> : <textarea className={styles.questionText} name="body" ref={body} onChange={bodyPreview}></textarea>}
                 {bodyError ? <p className={styles.error}><ion-icon name="warning-outline"></ion-icon> {bodyError}</p> : ""}
                 <label htmlFor='language'>Coding Language</label>
-                <Input type="questionInput" onChange={languageVal}/>
+                <select onChange={languageVal}>{languages.map( i => <option>{i}</option> )}</select>
                 <br />
                 <label htmlFor='codeBlock'>Code Block</label>
                 {codeError ? <textarea className={styles.questionError} name="codeBlock" ref={codeBlock} onChange={codePreview}></textarea> : <textarea className={styles.questionText} name="codeBlock" ref={codeBlock} onChange={codePreview}></textarea>}
                 {codeError ? <p className={styles.error}><ion-icon name="warning-outline"></ion-icon> {codeError}</p> : ""}
                 <label htmlFor='dropdown'>Select Your Year</label>
-                <Dropdown ref={yearSelection} onChange={yearPreview}/>
+                <select ref={yearSelection} onChange={yearPreview}>{levels.map( i => <option>{i}</option> )}</select>
                 <label className={styles.upload} for="upload" >Upload Screenshot(s)
                     <Input name="upload" type="imgUpload" inputType="file" ref={img} onChange={imageVal}/>
                 </label>

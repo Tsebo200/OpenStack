@@ -22,7 +22,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />}>
         <Route path="/questions" element={<QuestionsLanding />}></Route>
-        <Route path="/questions/portal" element={<QuestionPortal />} />
+        <Route path="/question-portal" element={<QuestionPortal />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/resultsPage" element={<ResultsPage />} />
