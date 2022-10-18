@@ -34,7 +34,7 @@ export const Header = () => {
           <img className={`${styles.logo}`} src={openStackLogo} />
         </Link>
 
-        <Link to="/question-landing">Questions</Link>
+        <Link to="/questions">Questions</Link>
         <SearchForm />
         <a className={styles.login} onClick={showLoginHandler}>
           Login

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './IndividualQuestion.module.scss';
 // import Button from '@mui/material/Button';
-import Button from '../../Button/Button';
+import Button from '../../../Button/Button';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/prism';
 
 export default function IndividualQuestion() {
