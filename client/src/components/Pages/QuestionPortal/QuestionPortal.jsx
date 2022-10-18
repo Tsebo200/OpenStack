@@ -176,7 +176,11 @@ function QuestionPortal() {
                 <h1>Ask a question</h1>
 
                 <div className={styles.pageContent__flexCenter}>
-                    <img src={questionImg} width={200} alt="question_img"/>
+                    <img
+                        src={questionImg} 
+                        width={200} 
+                        alt="question_img"
+                    />
                     <p><i>Please enter the fields below and be as specific as possible for the best feedback</i></p>
                     <br />
                 </div>

@@ -20,6 +20,7 @@ const Input =  forwardRef((props, ref) => {
           onChange={props.onChange}
           ref={ref}
           onKeyPress={props.onKeyPress}
+          onKeyDown={props.onKeyDown}
           min={props.min}
           max={props.max}
           value={props.value}
