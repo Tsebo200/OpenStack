@@ -1,0 +1,32 @@
+@import '../../../index.scss';
+
+.user_settings_background{
+    background-position: center;
+    background-size: cover;
+    height: calc(100vh);
+    opacity: 0.8;
+    background-color: #e5e5f7;
+    opacity: 0.8;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 7px ), repeating-linear-gradient($secondary-shadow, $primary); //wavy but customizzed
+    position: relative;
+  } 
+
+.user_form_container{
+    position: relative;
+    width: 600px;
+    height: 60vh;
+    margin: auto;
+    top: 25vh;
+}
+
+.user_settings_box{
+    display: inline-block;
+    height: 100%;
+    background-color: white;
+}
+
+.inputs_container{
+    overflow: hidden;
+    padding: 30px;
+    width: 100%;
+  }
