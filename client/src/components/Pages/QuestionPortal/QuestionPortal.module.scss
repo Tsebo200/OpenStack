@@ -12,6 +12,10 @@
         flex-flow: column;
         justify-content: center;
 
+        label{
+            margin-top: 3%;
+        }
+
         img{
             margin-bottom: 3%;
         }
@@ -76,6 +80,13 @@
             height: auto;
             object-fit: contain;
             background-size: contain;
+        }
+
+        select{
+            border-radius: 5px;
+            border: 1px solid rgb(199, 199, 199);
+            color: $black;
+            padding: 20px;
         }
     }
 }
