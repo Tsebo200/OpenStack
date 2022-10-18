@@ -14,6 +14,9 @@ const Register = () => {
   //     console.log("User Selected Value - ", event.target.value)
   // }
 
+// create axios request
+  Axios.get()
+
 
   // const Register = () => {
     const [FormDetails, setFormDetails] = useState({
