@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "../../UI/Button/Button";
+import { Button } from "../../../UI/Button/Button";
 
 import styles from "./QuestionsLanding.module.scss";
 
-import userprofilePicture from "../../../assets/profilePicture.jpg";
+import userprofilePicture from "../../../../assets/profilePicture.jpg";
 import { QuestionCard } from "./UI/QuestionCard/QuestionCard";
 
 export const QuestionsLanding = () => {
@@ -26,7 +26,6 @@ export const QuestionsLanding = () => {
   //   .catch(function (error) {
   //     console.error(error);
   //   });
-
   const [QuestionList, setQuestionList] = useState([
     {
       _id: "20323123",
@@ -107,7 +106,7 @@ export const QuestionsLanding = () => {
         <div className={styles.questions_list}>
           <header>
             <h2>All Questions</h2>
-            <Link to="/question-portal">Ask Question</Link>
+            <Link to="/questions/portal">Ask Question</Link>
           </header>
           <div className={styles.questions_filter_header}>
             <h4>20,003,103 questions</h4>

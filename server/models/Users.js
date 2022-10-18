@@ -41,22 +41,16 @@ const userSchema = mongoose.Schema({
 
 });
 
-// userSchema.pre('save', async function(next){
-//     try{
-//         const salt = await bcrypt.genSalt(12);
-//         const hashPass = await bcrypt.hash(this.password, salt);
-//         this.password = hashPass;
-
-//         let tokenPayload = {username: this.username, email: this.email}
-
-//         const token = await jwt.sign(tokenPayload, process.env.ACCESS_TOKEN_SECRET);
-//         this.token = token;
-
-//         next();
-//     } catch (err) {
-//         next(err);
-//     }
-// });
+userSchema.pre('save', async function(next){
+    try{
+        let tokenPayload = {username: this.username, email: this.email}
+        const token = await jwt.sign(tokenPayload, process.env.ACCESS_TOKEN_SECRET);
+        this.token = token;
+        next();
+    } catch (err) {
+        next(err);
+    }
+});
 
 
 
