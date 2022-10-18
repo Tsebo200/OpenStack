@@ -1,6 +1,6 @@
 .group {
   position: relative;
-  margin-top: 15px;
+  margin-top: 26px;
 }
 .group input {
   font-size: 18px;
@@ -9,7 +9,7 @@
   width: 100%;
   background-color: transparent;
   border: none;
-  /* margin-top: 10px; */
+  // margin-top: 10px;
   color: rgb(0, 0, 0);
   border-bottom: 1px solid #757575;
 }
@@ -19,8 +19,8 @@
 
 /* LABEL ======================================= */
 .group label {
-  color: #999;
-  font-size: 15px;
+  color: rgb(121, 121, 121);
+  font-size: 20px;
   font-weight: normal;
   position: absolute;
   pointer-events: none;
@@ -34,14 +34,14 @@
 /* active state */
 .group input:focus ~ label,
 .group input:valid ~ label {
-  top: -8px;
+  top: -18px;
   font-size: 13.5px;
   color: #FCA62B;
 }
 
-.group input:valid ~ label{
-  color: #757575;
-}
+// .group input:valid ~ label{
+//   color: #7a7a7a;
+// }
 
 /* BOTTOM BARS ================================= */
 .bar {
@@ -125,3 +125,5 @@
   margin-top: 3px;
   color: red;
 }
+
+

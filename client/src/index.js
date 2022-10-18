@@ -13,6 +13,7 @@ import Playground from "./components/Pages/Register Redo/Playground";
 import IndividualQuestion from "./components/Pages/IndividualQuestion/IndividualQuestion";
 import UserSettings from "./components/Pages/UserSettings/UserSettings";
 import AdminPage from "./components/Pages/AdminPage/AdminPage";
+import { QuestionsLanding } from "./components/Pages/QuestionsLanding/QuestionsLanding";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,6 +23,7 @@ root.render(
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/question-landing" element={<QuestionsLanding />} />
         <Route path="/question-portal" element={<QuestionPortal />} />
         <Route path="/resultsPage" element={<ResultsPage />} />
         <Route path="/playground" element={<Playground />} />

@@ -9,7 +9,6 @@ export const Input = ({
   onBlur,
   onChange,
   value,
-  errorMessage,
   name,
   ref
 }) => {
@@ -21,10 +20,10 @@ export const Input = ({
         name={name}
         onClick={onClick}
         type={type}
-        required
         id={id}
         onChange={onChange}
         ref={ref}
+        required
       />
       <span className={classes.highlight}></span>
       <span className={classes.bar}></span>
