@@ -4,6 +4,7 @@ import formLogo from "../../../assets/OpenStackLogo.png";
 import profileIcon from "../../../assets/profilePicture.jpg"
 import { Input } from "../../UI/Input/Input";
 import { Button } from "../../UI/Button/Button";
+// import Button from "../../Button/Button"
 import Axios from "axios";
 
 const UserSettings = () => {
@@ -34,11 +35,12 @@ const UserSettings = () => {
               <Input label="200100@virtualwindow.co.za" name="new_email" type="email" />
               </div>
               </div>
-              <div className={styles.achieve_container}></div>
-            {/* // onSubmit={handleUserRegistration} */}
-             {/* <div className={styles.profile_icon}></div> */}
-             <br/>
-             {/* <Button>Save Changes</Button> */}
+              <div className={styles.achieve_container}>
+                {/* <p>Hi user here are your achievements</p> */}
+                <div className={styles.achievement}></div>
+                {/* <Button>Save Changes</Button> */}
+              </div>
+            <Button>Save Changes</Button>
             </form>
         </div>
       </div>
