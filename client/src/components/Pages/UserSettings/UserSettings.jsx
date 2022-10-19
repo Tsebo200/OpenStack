@@ -30,7 +30,7 @@ const UserSettings = () => {
              <Input label="New Username" name="new_username" type="username" />
              <Input label="New Email" name="new_email" type="email" />
              <br/>
-             <Button>Create Account</Button>
+             <Button>Save Changes</Button>
             </form>
             </div>
       </div>
