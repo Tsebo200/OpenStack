@@ -10,9 +10,18 @@ const UserSettings = () => {
 
         <div className={styles.settings_background}>
         <div className={styles.settings_form_container}>
+
           <form
-            // onSubmit={handleUserRegistration}
-             className={`${styles.settings_box} ${styles.inputs_container}`}>
+          className={`${styles.settings_box} ${styles.inputs_container}`}>
+              <img className={styles.form_logo} src={formLogo} />
+              {/* <br />
+              <br/> */}
+                <center><h2>User Settings</h2></center>
+              <hr></hr>
+              <br/>
+              <center><h5>Hi user please edit your profile info here</h5></center>
+            {/* // onSubmit={handleUserRegistration} */}
+             
             </form>
             </div>
       </div>

@@ -15,8 +15,9 @@
     position: relative;
     width: 600px;
     height: 60vh;
-    margin: auto;
-  
+    margin: 0 auto;
+    // border-radius: 20px;
+    // margin-top: 90px;
     // top: 25vh;
     top: 25vh;
 }
@@ -24,11 +25,18 @@
 .settings_box{
     display: inline-block;
     height: 100%;
+    border-radius: 20px;
     background-color: white;
 }
 
 .inputs_container{
     overflow: hidden;
     padding: 30px;
+    // background: red;
     width: 100%;
+  }
+
+  .form_logo{
+    width: 150px;
+    height: auto;
   }

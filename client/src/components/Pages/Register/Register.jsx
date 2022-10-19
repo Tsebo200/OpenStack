@@ -157,7 +157,7 @@ const Register = () => {
 
 
             {/* This is part of the DropDown */}
-            {/* <select onChange={handleInputChange}>
+            {/* <select onChange={handle_Change}>
             <option>Please Choose Your Current Level</option>
             {options.map((option, index) => {
                 return <option key={index} >
