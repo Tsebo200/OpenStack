@@ -13,13 +13,13 @@
 
 .settings_form_container{
     position: relative;
-    width: 600px;
-    height: 60vh;
+    width: 550px;
+    height: 67vh;
     margin: 0 auto;
     // border-radius: 20px;
     // margin-top: 90px;
     // top: 25vh;
-    top: 25vh;
+    top: 21vh;
 }
 
 .settings_box{
@@ -27,6 +27,7 @@
     height: 100%;
     border-radius: 20px;
     background-color: white;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 18px 100px 0px;
 }
 
 .inputs_container{
@@ -35,8 +36,23 @@
     // background: red;
     width: 100%;
   }
+  
+  .inputs_container h4{
+    text-align: center;
+    font-size: 10px;
+  }
 
   .form_logo{
     width: 150px;
     height: auto;
   }
+
+.profile_icon{
+    width: 130px;
+    height: 130px;
+    border-radius: 130px;
+    background-color: red;
+    // background-image: url('/client/src/assets/profilePicture.jpg');
+    margin-top: 17px;
+}
+

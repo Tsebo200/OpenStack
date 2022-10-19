@@ -1,6 +1,9 @@
 import React, { useState, useRef } from "react";
 import styles from "./UserSettings.module.scss";
 import formLogo from "../../../assets/OpenStackLogo.png";
+import profileIcon from "../../../assets/profilePicture.jpg"
+import { Input } from "../../UI/Input/Input";
+import { Button } from "../../UI/Button/Button";
 import Axios from "axios";
 
 const UserSettings = () => {
@@ -13,6 +16,7 @@ const UserSettings = () => {
 
           <form
           className={`${styles.settings_box} ${styles.inputs_container}`}>
+      
               <img className={styles.form_logo} src={formLogo} />
               {/* <br />
               <br/> */}
@@ -20,8 +24,13 @@ const UserSettings = () => {
               <hr></hr>
               <br/>
               <center><h5>Hi user please edit your profile info here</h5></center>
+              <img className={styles.profile_icon} src={profileIcon} />
             {/* // onSubmit={handleUserRegistration} */}
-             
+             {/* <div className={styles.profile_icon}></div> */}
+             <Input label="New Username" name="new_username" type="username" />
+             <Input label="New Email" name="new_email" type="email" />
+             <br/>
+             <Button>Create Account</Button>
             </form>
             </div>
       </div>
