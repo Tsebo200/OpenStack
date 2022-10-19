@@ -6,7 +6,7 @@ import { Button } from "../../../UI/Button/Button";
 import styles from "./QuestionsLanding.module.scss";
 
 import userprofilePicture from "../../../../assets/profilePicture.jpg";
-import { QuestionCard } from "./UI/QuestionCard/QuestionCard";
+// import { QuestionCard } from "./UI/QuestionCard/QuestionCard";
 
 export const QuestionsLanding = () => {
   // get all questions
@@ -120,11 +120,11 @@ export const QuestionsLanding = () => {
           </thead>
         </table>
       </div>
-      {QuestionList.map((question) => {
+      {/* {QuestionList.map((question) => {
             return (
               <QuestionCard key={question._id} questionDetails={question} />
             );
-          })}
+          })} */}
     </div>
   );
 };

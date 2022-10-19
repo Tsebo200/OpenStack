@@ -7,15 +7,21 @@ import Button from '../../../Button/Button';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/prism';
 import axios from 'axios';
+import SuccessModal from '../../../SuccessModal/SuccessModal';
 
 function QuestionPortal() {
 
     // useState's and Ref's
     const defValues = ["title", "body", "codeBlock", "selectedYear", "image", "tag"];
 
+    const navigate = useNavigate();
+
     const [questionImage, setQuestionImage] = useState();
+
+    const [modal, setModal] = useState(false);
 
     const [values, setValues] = useState(defValues);
     const title = useRef();
@@ -119,6 +125,10 @@ function QuestionPortal() {
     let languages = ["-- Please Select --", "cpp", "csharp", "css", "html", "javascript", "json", "kotlin", "markdown", "php", "python", "sass", "scss", "swift", "typescript"];
     let levels = ["-- Please Select --", "First Year", "Second Year", "Third Year", "Honours", "Creative Computing", "Lecturer"];
 
+    const closeModal = () => {
+        navigate("/");
+    }
+
     const formHandle = e => {
         e.preventDefault();
 
@@ -178,12 +188,14 @@ function QuestionPortal() {
 
         console.log(payloadData);
 
-        axios.post('http://localhost:5001/api/add-question', payloadData)
+        axios.post('http://localhost:5001/api/add-question/', payloadData)
         .then(res => {
             console.log("Question Added!");
+            setModal(true);
         })
         .catch(err => {
             console.log(err);
+            setModal(false);
         })
 
     }
@@ -237,6 +249,7 @@ function QuestionPortal() {
                 </SyntaxHighlighter>
                 <div id="screenshot" className={styles.screenshot}></div>
                 <Button text="Submit" type="questionSubmit" onClick={formHandle}/>
+                {modal ? <SuccessModal onClick={closeModal}/> : ""}
             </div>
 
         </div>
