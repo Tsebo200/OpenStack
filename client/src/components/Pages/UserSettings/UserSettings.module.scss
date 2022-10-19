@@ -1,6 +1,6 @@
 @import '../../../index.scss';
 
-.user_settings_background{
+.settings_background{
     background-position: center;
     background-size: cover;
     height: calc(100vh);
@@ -11,15 +11,17 @@
     position: relative;
   } 
 
-.user_form_container{
+.settings_form_container{
     position: relative;
     width: 600px;
     height: 60vh;
     margin: auto;
+  
+    // top: 25vh;
     top: 25vh;
 }
 
-.user_settings_box{
+.settings_box{
     display: inline-block;
     height: 100%;
     background-color: white;

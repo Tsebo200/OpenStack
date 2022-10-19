@@ -7,12 +7,15 @@ const UserSettings = () => {
     
     return (
         //Add a margin top of 70px to accommodate for nav bar
-        <h1>Hi</h1>
-        // <div className={styles.register_background}>
-     
 
-        // Add data schema with useSate the way Caidyn advised
-        // </div>
+        <div className={styles.settings_background}>
+        <div className={styles.settings_form_container}>
+          <form
+            // onSubmit={handleUserRegistration}
+             className={`${styles.settings_box} ${styles.inputs_container}`}>
+            </form>
+            </div>
+      </div>
     );
 };
 export default UserSettings
