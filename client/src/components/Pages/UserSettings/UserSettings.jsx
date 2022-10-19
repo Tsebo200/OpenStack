@@ -11,7 +11,7 @@ const UserSettings = () => {
     return (
         //Add a margin top of 70px to accommodate for nav bar
 
-        <div className={styles.settings_background}>
+      <div className={styles.settings_background}>
         <div className={styles.settings_form_container}>
 
           <form
@@ -21,18 +21,26 @@ const UserSettings = () => {
               {/* <br />
               <br/> */}
                 <center><h2>User Settings</h2></center>
-              <hr></hr>
+              <hr/>
               <br/>
               <center><h5>Hi user please edit your profile info here</h5></center>
               <img className={styles.profile_icon} src={profileIcon} />
+              <div className={styles.labels_container}>
+              <h3 className={styles.username_label}>Your Current UserName:</h3>
+              <div className={styles.input_container}>
+              <Input label="Trevor100" name="new_username" type="username" />
+              <br/>
+              <h3 className={styles.email_label}>Your Current Email:</h3>
+              <Input label="200100@virtualwindow.co.za" name="new_email" type="email" />
+              </div>
+              </div>
+              <div className={styles.achieve_container}></div>
             {/* // onSubmit={handleUserRegistration} */}
              {/* <div className={styles.profile_icon}></div> */}
-             <Input label="New Username" name="new_username" type="username" />
-             <Input label="New Email" name="new_email" type="email" />
              <br/>
-             <Button>Save Changes</Button>
+             {/* <Button>Save Changes</Button> */}
             </form>
-            </div>
+        </div>
       </div>
     );
 };

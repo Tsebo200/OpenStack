@@ -13,12 +13,9 @@
 
 .settings_form_container{
     position: relative;
-    width: 550px;
+    width: 650px;
     height: 67vh;
     margin: 0 auto;
-    // border-radius: 20px;
-    // margin-top: 90px;
-    // top: 25vh;
     top: 21vh;
 }
 
@@ -31,9 +28,8 @@
 }
 
 .inputs_container{
-    overflow: hidden;
+    // overflow: hidden;
     padding: 30px;
-    // background: red;
     width: 100%;
   }
   
@@ -51,12 +47,45 @@
     width: 130px;
     height: 130px;
     // margin: 0 auto;
-    margin-left: 170px;
+    // margin-left: 170px;
     margin-top: 23px;
     border-radius: 130px;
-    background-color: red;
-    // background-image: url('/client/src/assets/profilePicture.jpg');
-
-
 }
 
+// h4{
+//   font-size: 50px;
+// }
+
+.labels_container{
+  position: relative;
+  width: 20vw;
+  height: 20vh;
+
+  margin: auto;
+  top: -130px;
+}
+
+
+.username_label{
+  position: absolute;
+}
+
+.email_label{
+  top: 40%;
+  width: 100%;
+}
+
+.achieve_container{
+  position: relative;
+  width: 130px;
+  height: 130px; 
+  margin: auto;
+  left: 16vw;
+  top:-30vh;
+  background: #2b2b2b;
+}
+
+.input_container{
+  position: absolute;
+  top: 15%;
+}
