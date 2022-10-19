@@ -106,7 +106,7 @@ export const QuestionsLanding = () => {
         <div className={styles.questions_list}>
           <header>
             <h2>All Questions</h2>
-            <Link to="/questions/portal">Ask Question</Link>
+            <Link to="/question-portal">Ask Question</Link>
           </header>
           <div className={styles.questions_filter_header}>
             <h4>20,003,103 questions</h4>

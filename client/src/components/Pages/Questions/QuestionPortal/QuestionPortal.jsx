@@ -162,7 +162,6 @@ function QuestionPortal() {
             body: bodyString,
             code: code,
             selectedYear: year,
-            img: imgSubStr,
             tagSelected: tags,
             user: "Wiaan",
             answers: 0,

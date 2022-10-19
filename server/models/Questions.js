@@ -14,7 +14,7 @@ const questionSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    screenshot: String,
+    image: String,
     tags: {
         type: Array,
         required: true
