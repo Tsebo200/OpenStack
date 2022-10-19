@@ -1,0 +1,11 @@
+@import "../../../index.scss";
+
+.main {
+  margin-top: 58px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: flex-start;
+}

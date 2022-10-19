@@ -1,0 +1,26 @@
+@import "../../../../index.scss";
+
+.sub_nav {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-right: 40px;
+}
+
+.sub_nav p{
+    margin-left: 4px;
+}
+
+.sub_nav a{
+    padding: 4px;
+    color: black;
+    margin: 4px 0;
+}
+
+.sub_nav a:hover{
+    background-color: rgb(219, 219, 219);
+}

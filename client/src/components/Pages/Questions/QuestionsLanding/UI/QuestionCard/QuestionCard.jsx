@@ -6,6 +6,7 @@ import styles from "./QuestionCard.module.scss";
 
 export const QuestionCard = (props) => {
   const question = props.questionDetails;
+  console.log(question);
   const formattedSentence = (sentence) => {
     let newSentence = sentence
       .split(" ")
@@ -68,34 +69,34 @@ export const QuestionCard = (props) => {
     );
   }
 
-  return (
-    <div className={styles.question}>
-      <div className={styles.question_interaction}>
-        {answerState}
-        <div className={styles.question_interaction_child}>
-          <p>{question.questionInteraction?.votes | 0} votes</p>
-        </div>
-      </div>
-      <div className={styles.question_details}>
-        <Link>
-          <h4>{formattedSentence(question.questionTitle)}</h4>
-        </Link>
-        <p>{formateQuestionText(question.questionText)}</p>
-        <div className={styles.tag_list}>
-          {question.questionTags.map((tag) => {
-            return <Link key={tag.id}>{tag.title}</Link>;
-          })}
-        </div>
-      </div>
+  // return (
+  //   <div className={styles.question}>
+  //     <div className={styles.question_interaction}>
+  //       {answerState}
+  //       <div className={styles.question_interaction_child}>
+  //         <p>{question.questionInteraction?.votes | 0} votes</p>
+  //       </div>
+  //     </div>
+  //     <div className={styles.question_details}>
+  //       <Link>
+  //         <h4>{formattedSentence(question.questionTitle)}</h4>
+  //       </Link>
+  //       <p>{formateQuestionText(question.questionText)}</p>
+  //       <div className={styles.tag_list}>
+  //         {question.questionTags.map((tag) => {
+  //           return <Link key={tag.id}>{tag.title}</Link>;
+  //         })}
+  //       </div>
+  //     </div>
 
-      <div className={styles.user_details}>
-        <img src={question.userDetails.userprofilePicture} />
-        <Link>{question.userDetails.userName}</Link>
-        <p className={styles.user_details_score}>
-          {question.userDetails.userScore}
-        </p>
-        <p>{convertTimeCreated()}</p>
-      </div>
-    </div>
-  );
+  //     <div className={styles.user_details}>
+  //       <img src={question.userDetails.userprofilePicture} />
+  //       <Link>{question.userDetails.userName}</Link>
+  //       <p className={styles.user_details_score}>
+  //         {question.userDetails.userScore}
+  //       </p>
+  //       <p>{convertTimeCreated()}</p>
+  //     </div>
+  //   </div>
+  // );
 };

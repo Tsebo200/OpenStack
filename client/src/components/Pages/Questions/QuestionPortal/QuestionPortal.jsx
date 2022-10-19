@@ -190,7 +190,6 @@ function QuestionPortal() {
 
     return (
         <div className={styles.container}>
-            <Header/>
             <div className={styles.pageContent}>
                 <h1>Ask a question</h1>
 
