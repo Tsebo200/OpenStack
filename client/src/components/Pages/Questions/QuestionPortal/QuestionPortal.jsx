@@ -174,11 +174,12 @@ function QuestionPortal() {
             selectedYear: year,
             tagSelected: tags,
             user: "Wiaan",
-            answers: 0,
-            views: 0,
-            upVotes: 0,
-            downVotes: 0,
-            reports: 0
+            userDetails: {
+                userProfilePicture: "nopfp",
+                username: "visitor",
+                userScore: 0
+            },
+            tags: null
         }
 
         console.log(payload);

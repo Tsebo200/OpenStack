@@ -30,14 +30,13 @@ questionsRouter.post('/api/add-question', uploadQuestionImage.single('image') ,(
         title: data.title,
         body: data.body,
         code: data.code,
-        tags: data.tags,
+        userDetails: {
+            userProfilePicture: data.userDetails.userProfilePicture,
+            username: data.userDetails.username,
+            userScore: data.userDetails.userScore
+        },
         image: req.file.filename,
-        user: req.body.user,
-        answers: +data.answers,
-        views: +data.views,
-        upVotes: +data.upVotes,
-        downVotes: +data.downVotes,
-        reports: +data.reports
+        tags: data.tags
     });
 
     newQuestion.save()
