@@ -1,14 +1,36 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./UserSettings.module.scss";
 import formLogo from "../../../assets/OpenStackLogo.png";
 import profileIcon from "../../../assets/profilePicture.jpg"
 import { Input } from "../../UI/Input/Input";
 import { Button } from "../../UI/Button/Button";
+
+import StockCards from "../Achievements/Achievements";
 // import Button from "../../Button/Button"
 import Axios from "axios";
 
 const UserSettings = () => {
     
+     // Read all the DB Items 
+     const [readProducts, setReadProducts] = useState();
+     const [renderProducts, setRenderProducts] = useState(false);
+ 
+     useEffect(()=>{
+         Axios.get('http://localhost:5001/api/userSetting')
+         .then(res =>{
+          
+             let data = res.data;
+             console.log(data);
+             const productItem = data.map((item)=> <StockCards key={item._id} productId={item._id} 
+             
+             username={item.username}  achievement1={item.achievement1} achievement2={item.achievement2}  achievement3={item.achievement3}                  
+ 
+             editRender={setRenderProducts}/>);
+             setReadProducts(productItem);
+             setRenderProducts(false);
+         });
+     }, [renderProducts]);
+ 
     return (
         //Add a margin top of 70px to accommodate for nav bar
 
@@ -37,12 +59,14 @@ const UserSettings = () => {
               </div>
               <div className={styles.achieve_container}>
                 {/* <p>Hi user here are your achievements</p> */}
+                {readProducts}
                 <div className={styles.achievement}></div>
                 {/* <Button>Save Changes</Button> */}
               </div>
             <Button>Save Changes</Button>
             </form>
         </div>
+        
       </div>
     );
 };

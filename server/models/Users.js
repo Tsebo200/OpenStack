@@ -30,9 +30,24 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    achievements: {
-        type: Array
-        //get id and push to arr
+    // achievements: {
+    //     type: Array
+    //     //get id and push to arr
+    // },
+    achievement1: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    achievement2: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    achievement3: {
+        type: Boolean,
+        required: true,
+        default: false
     },
     userScore: {
         type: Number
