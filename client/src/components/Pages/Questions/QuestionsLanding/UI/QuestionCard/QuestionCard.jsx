@@ -79,18 +79,18 @@ export const QuestionCard = (props) => {
       </div>
       <div className={styles.question_details}>
         <Link>
-          <h4>{formattedSentence(question.questionTitle)}</h4>
+          <h4>{formattedSentence(question.title)}</h4>
         </Link>
-        <p>{formateQuestionText(question.questionText)}</p>
-        <div className={styles.tag_list}>
+        <p>{formateQuestionText(question.body)}</p>
+        {/* <div className={styles.tag_list}>
           {question.questionTags.map((tag) => {
             return <Link key={tag.id}>{tag.title}</Link>;
           })}
-        </div>
+        </div> */}
       </div>
 
       <div className={styles.user_details}>
-        <img src={question.userDetails.userprofilePicture} />
+        {/* <img src={question.userDetails.userprofilePicture} /> */}
         <Link>{question.userDetails.userName}</Link>
         <p className={styles.user_details_score}>
           {question.userDetails.userScore}

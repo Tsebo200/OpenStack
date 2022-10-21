@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import styles from "./Header.module.scss";
 import openStackLogo from "../../assets/OpenStackLogo.png";
@@ -7,7 +7,8 @@ import { useState } from "react";
 import { SearchForm } from "./UI/SearchForm";
 import { Login } from "../Pages/Login/Login";
 
-export const Header = () => {
+export const Header = (props) => {
+  console.log(props.action === "login");
   const [LoginContainerCss, setLoginContainerCss] = useState(
     `${styles.login_container}`
   );
@@ -27,10 +28,15 @@ export const Header = () => {
       );
     }
   };
+  useEffect(() => {
+    if (props.action === "login") {
+      showLoginHandler();
+    }
+  }, []);
   return (
     <header className={styles.header}>
       <nav className={styles.header_nav}>
-        <Link to='/'>
+        <Link to="/">
           <img className={`${styles.logo}`} src={openStackLogo} />
         </Link>
 

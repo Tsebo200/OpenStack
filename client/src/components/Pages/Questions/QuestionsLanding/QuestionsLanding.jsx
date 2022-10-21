@@ -21,6 +21,7 @@ export const QuestionsLanding = () => {
     axios
       .request(options)
       .then(function (response) {
+        console.log(response.data);
         setQuestionList(response.data);
       })
       .catch(function (error) {
@@ -31,8 +32,8 @@ export const QuestionsLanding = () => {
   // const [QuestionList, setQuestionList] = useState([
   //   {
   //     _id: "20323123",
-  //     title: "please Help html error",
-  //     body:
+  //     questionTitle: "please Help html error",
+  //     questionText:
   //       "Lorem Ipsum is simply dummy text of the printing QWSOH;qnsawedo;jawldaw;bjd and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   //     userDetails: {
   //       userprofilePicture: userprofilePicture,
@@ -120,11 +121,11 @@ export const QuestionsLanding = () => {
           </thead>
         </table>
       </div>
-      {QuestionList.map((question) => {
+      {/* {QuestionList.map((question) => {
             return (
               <QuestionCard key={question._id} questionDetails={question} />
             );
-          })}
+          })} */}
     </div>
   );
 };

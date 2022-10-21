@@ -1,111 +1,106 @@
-@import '../../../index.scss';
+@import "../../../index.scss";
 
-.register_background{
-    background-position: center;
-    background-size: cover;
-    height: calc(100vh);
-    opacity: 0.8;
-    background-color: #e5e5f7;
-// background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 10px ), repeating-linear-gradient( #444cf755, #444cf7 );
-    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 7px ), repeating-linear-gradient($secondary-shadow, $primary); //wavy but customizzed
-    position: relative;
-  } 
-  
-  .register_container{
-    background-color: white;
-    // box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-    // box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-    // box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; 
-    // box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; //#13
-    box-shadow: rgba(17, 12, 46, 0.15) 0px 18px 100px 0px; //#13 but customizzed
-
-    width: 30vw;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 10px;
-    transform: translate(-50%, -50%);
-  }
-  
-  .register_box{
-    display: inline-block;
-    height: 100%;
-  }
-  
-  .inputs_container{
-    overflow: hidden;
-    padding: 30px;
-    width: 100%;
-  }
-  
-  .inputs_container h4{
-    text-align: center;
-    font-size: 10px;
-  }
-  
-  .form_logo{
-    width: 150px;
-    height: auto;
-  }
-  
-  .inputs_container hr{
-    margin-top: 10px;
-  }
-  
-.invisible-breaker{
-    margin-top: 150px;
-    stroke: transparent;
+.register_background {
+  background-position: center;
+  background-size: cover;
+  height: calc(100vh);
+  opacity: 0.8;
+  background-color: #e5e5f7;
+  // background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 10px ), repeating-linear-gradient( #444cf755, #444cf7 );
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #e5e5f7 7px
+    ),
+    repeating-linear-gradient($secondary-shadow, $primary); //wavy but customizzed
+  position: relative;
 }
 
-  .other{
-    border-left: 1px solid black;
-    background-color: #e5e5f7;
-    // opacity: 0.8;
-    // background: linear-gradient(135deg, #444cf755 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(225deg, $primary 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(315deg, $secondary 25%, transparent 25%) 0px 0/ 20px 20px, linear-gradient(45deg, $primary 25%, #e5e5f7 25%) 0px 0/ 20px 20px;
-    border-radius: 10px;
-    width: 50%;
+.register_container {
+  background-color: white;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 18px 100px 0px; //#13 but customizzed
+  width: 45vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+}
 
-  }
+.register_container img {
+  width: 250px;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+.register_container hr {
+  margin: 20px 0;
+}
 
-  .error{
-    color: $error;
-    font-weight: 600;
-    margin-top: 4px;
-    margin-left: 5px;
-  }
+.register_container h2 {
+  text-align: center;
+}
 
-  select{
-    width: 100%;  
-    font-size: 14px;
-    padding: 10px 10px 10px 5px;
-    color: #999;
-    font-weight: normal;
-    border: 1px solid #757575;
-    border-radius: 3px;
-  }
+.helper_text {
+  // border: 1px solid $error;
+  margin-top: 4px;
+  padding: 4px;
+  background-color: rgba(255, 0, 0, 0.05);
+  color: rgb(216, 1, 1);
+}
 
-  select:hover{
-    cursor: pointer;
-    border: 1px solid #FCA62B;
-  }
+.button_container {
+  width: 60%;
+  margin: auto;
+  margin-top: 30px;
+}
 
-  //Trying to change the color of the selected item to yellow 
-  .select-items{
-    color: #FCA62B
-  }
+.line a {
+  color: black;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 
-  //Trying to change the arrow to flip up when dropdown is selected/active
-  .select:after {
-    border-color: #fff transparent transparent transparent;
-    color: red;
-  }
-  .select-selected.select-arrow-active:after {
-    border-color: transparent transparent #fff transparent;
-    margin-top: 7px;
-  }
+.error_message {
+  background-color: rgba(255, 0, 0, 0.05);
+  color: rgb(216, 1, 1);
+  font-weight: 400;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  text-align: center;
+  font-size: 24px;
+}
 
-//   .styled-select select {
-//     -moz-appearance:none; /* Firefox */
-//     -webkit-appearance:none; /* Safari and Chrome */
-//     appearance:none;
-// }
+
+.success_p{
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.success_p span{
+  border: 2px solid $primary;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.success_p a{
+  display: block;
+}
+
+.after_links{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+.after_links a{
+  font-size: 18px;
+  color: black;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+
+}
