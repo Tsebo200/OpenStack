@@ -17,9 +17,17 @@ const UserSettings = () => {
         <h1>username</h1>
         <ion-icon name="pencil-outline"></ion-icon>
       </header>
+
       <div className={styles.user_questions_container}>
           <header>
             <h3>Questions</h3>
+            <div className={styles.questions_nav}>
+              <div className={styles.score}><p className={styles.score_text}>Score</p>
+              </div>
+              <div className={styles.activity}></div>
+              <div className={styles.newest}></div>
+              <div className={styles.views}></div>
+            </div>
           </header>
         </div>
 

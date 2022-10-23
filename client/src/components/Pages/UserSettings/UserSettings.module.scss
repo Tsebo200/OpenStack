@@ -25,9 +25,16 @@
   margin-right: 20px;
 }
 
+
+.user_questions_container h3{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
 .user_settings_container h1{
   align-self: center;
 }
+
 
 .user_settings_container ion-icon{
   align-self: center;
@@ -71,12 +78,27 @@
 
 .user_answers_container header{
   background: none;
-
 }
 
 
+.questions_nav{
+    width: 60%;
+    height: 3vh;
+    background: white;
+    border-radius: 5px;
+    border: solid 1px grey;
+    margin-top: 5px;
 
-
+    .score{
+      width: 30%;
+      height: 100%;
+      background: red;
+      
+      .score_text{
+        text-align: center;
+        } 
+    }
+}
 
 
 
