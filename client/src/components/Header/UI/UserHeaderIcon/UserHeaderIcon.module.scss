@@ -1,0 +1,30 @@
+.user_buttons{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+.notification_badge{
+    position: relative;
+}
+
+.notification_badge ion-icon{
+    font-size: 22px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.notification_badge p{
+    background-color: aqua;
+    padding: 2px;
+    position: absolute;
+    top: 0;
+    right: -10px;
+    font-size: 14px;
+    border-radius: 100px;
+}

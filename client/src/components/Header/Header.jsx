@@ -2,13 +2,23 @@ import React, { useEffect } from "react";
 
 import styles from "./Header.module.scss";
 import openStackLogo from "../../assets/OpenStackLogo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { SearchForm } from "./UI/SearchForm";
+import { SearchForm } from "./UI/SearchForm/SearchForm";
 import { Login } from "../Pages/Login/Login";
+import { useAuth } from "../../Hooks/useAuth";
+import { UserHeaderIcon } from "./UI/UserHeaderIcon/UserHeaderIcon";
 
-export const Header = (props) => {
-  console.log(props.action === "login");
+function useQuery() {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
+export const Header = () => {
+  let query = useQuery();
+  const { Auth } = useAuth();
+
   const [LoginContainerCss, setLoginContainerCss] = useState(
     `${styles.login_container}`
   );
@@ -29,10 +39,11 @@ export const Header = (props) => {
     }
   };
   useEffect(() => {
-    if (props.action === "login") {
+    if (query.get('action') === "login") {
       showLoginHandler();
     }
   }, []);
+
   return (
     <header className={styles.header}>
       <nav className={styles.header_nav}>
@@ -42,9 +53,13 @@ export const Header = (props) => {
 
         <Link to="/questions">Questions</Link>
         <SearchForm />
-        <a className={styles.login} onClick={showLoginHandler}>
-          Login
-        </a>
+        {Auth?.userData?.UserInfo?.username ? (
+          <UserHeaderIcon/>
+        ) : (
+          <a className={styles.login} onClick={showLoginHandler}>
+            Login
+          </a>
+        )}
       </nav>
       <div
         onClick={showLoginHandler}

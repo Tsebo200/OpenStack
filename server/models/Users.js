@@ -17,10 +17,10 @@ const userSchema = mongoose.Schema({
         required: true
     },
     userLevel: String,
-    admin: {
-        type: Boolean,
+    roles: {
+        type: Array,
         required: true,
-        default: false
+        default: [2001]
     },
     date:{
         type: Date,
@@ -52,7 +52,7 @@ const userSchema = mongoose.Schema({
     userScore: {
         type: Number
     },
-    token: String
+    token: String,
 
 });
 

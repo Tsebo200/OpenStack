@@ -11,9 +11,12 @@ const jwt = require('jsonwebtoken');
 
 const questionsRouter = require('./Routes/Questions.routes')
 const usersRouter = require('./Routes/users/User.routes')
+const authRouter = require('./Routes/auth.routes')
 
 router.use(questionsRouter);
 router.use(usersRouter);
+router.use(authRouter);
+
 
 //Adding a question post route
 // router.post('/api/addQuestion', (req, res) => {

@@ -13,7 +13,6 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = "/api/register";
 
 const Register = () => {
-  const setAuth = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
 
@@ -21,22 +20,21 @@ const Register = () => {
   const [validName, setValidName] = useState(true);
   const [userFocus, setUserFocus] = useState(false);
 
-  const [Email, setEmail] = useState("21100204@virtual.window.co.za");
+  const [Email, setEmail] = useState("21100204@virtualwindow.co.za");
   const [ValidEmail, setValidEmail] = useState(true);
   const [EmailFocus, setEmailFocus] = useState(false);
 
   const [pwd, setPwd] = useState("Margincd1!");
   const [validPwd, setValidPwd] = useState(true);
   const [pwdFocus, setPwdFocus] = useState(false);
-  const [ShowPassword, setShowPassword] = useState(true);
+  const [ShowPassword, setShowPassword] = useState(false);
 
   const [matchPwd, setMatchPwd] = useState("Margincd1!");
   const [validMatch, setValidMatch] = useState(true);
   const [matchFocus, setMatchFocus] = useState(false);
-  const [ShowMatchPassword, setShowMatchPassword] = useState(true);
 
   const [errMsg, setErrMsg] = useState(null);
-  const [success, setSuccess] = useState(true);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     if (!success) {
@@ -85,46 +83,45 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSuccess(true);
     // if button enabled with JS hack
-    // const v1 = USER_REGEX.test(user);
-    // const v2 = PWD_REGEX.test(pwd);
-    // const v3 = !Email.includes("@virtualwindow.co.za")
-    // console.log(!USER_REGEX.test(user));
-    // console.log(!PWD_REGEX.test(pwd));
-    // if (!v1 || !v2 || !v3) {
-    //   setErrMsg("Invalid Entry");
-    //   return;
-    // }
-    // try {
-    //   const response = await Axios.request({
-    //     method: 'POST',
-    //     url: 'http://localhost:5001/api/register',
-    //     headers: {'Content-Type': 'application/json'},
-    //     data: { user, pwd, Email }
-    //   });
-    //   console.log(response?.data);
-    //   console.log(response?.accessToken);
-    //   console.log(JSON.stringify(response));
-    //   setSuccess(true);
-    //   //clear state and controlled inputs
-    //   //need value attrib on inputs for this
-    //   // setUser("");
-    //   // setPwd("");
-    //   // setEmail("");
-    //   // setMatchPwd("");
-    // } catch (err) {
-    //   if (!err?.response) {
-    //     setErrMsg("No Server Response");
-    //   } else if (err.response?.status === 409) {
-    //     setErrMsg("Username Taken");
-    //   } else if (err.response?.status === 410) {
-    //     setErrMsg("Email is in use");
-    //   } else {
-    //     setErrMsg("Registration Failed");
-    //   }
-    //   errRef.current.focus();
-    // }
+    const v1 = USER_REGEX.test(user);
+    const v2 = PWD_REGEX.test(pwd);
+    const v3 = Email.includes("@virtualwindow.co.za")
+    console.log(!USER_REGEX.test(user));
+    console.log(!PWD_REGEX.test(pwd));
+    if (!v1 || !v2 || !v3) {
+      setErrMsg("Invalid Entry");
+      return;
+    }
+    try {
+      const response = await Axios.request({
+        method: 'POST',
+        url: 'http://localhost:5001/api/register',
+        headers: {'Content-Type': 'application/json'},
+        data: { user, pwd, Email }
+      });
+      console.log(response?.data);
+      console.log(response?.accessToken);
+      console.log(JSON.stringify(response));
+      setSuccess(true);
+      //clear state and controlled inputs
+      //need value attrib on inputs for this
+      // setUser("");
+      // setPwd("");
+      // setEmail("");
+      // setMatchPwd("");
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 409) {
+        setErrMsg("Username Taken");
+      } else if (err.response?.status === 410) {
+        setErrMsg("Email is in use");
+      } else {
+        setErrMsg("Registration Failed");
+      }
+      errRef.current.focus();
+    }
   };
 
   return (
@@ -141,7 +138,7 @@ const Register = () => {
             </p>
             <div className={styles.after_links}>
             <a target="blank" href="https://mail.google.com/">Go to your email</a>
-            <Link to="/home?action=login">Sign In</Link>
+            <Link to="/?action=login">Sign In</Link>
             </div>
             
           </div>
@@ -251,9 +248,6 @@ const Register = () => {
                 onFocus={() => setMatchFocus(true)}
                 onBlur={() => setMatchFocus(false)}
                 valid={validMatch}
-                showHidePasswordHandler={setShowMatchPassword}
-                showHidePassword={ShowMatchPassword}
-                ShowHide={true}
               />
               {!validMatch && (
                 <p id="confirmnote" className={styles.helper_text}>
@@ -277,7 +271,7 @@ const Register = () => {
               Already registered?
               <br />
               <span className={styles.line}>
-                <Link to="/home?action=login">Sign In</Link>
+                <Link to="/?action=login">Sign In</Link>
               </span>
             </p>
           </div>

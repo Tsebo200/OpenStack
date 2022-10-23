@@ -17,31 +17,49 @@ import { QuestionsLanding } from "./components/Pages/Questions/QuestionsLanding/
 import { QuestionsHome } from "./components/Pages/Questions/QuestionsHome";
 import { AuthProvider } from "./Store/AuthProvider/AuthProvider";
 import { Main } from "./components/Main/Main";
+import { Missing } from "./components/Pages/Missing/Missing";
+import { RequireAuth } from "./components/Security/RequireAuth";
 
-// const root = ReactDOM.createRoot(document.getElementById("root"));
+const ROLES = {
+  'user': 2001,
+  'admin': 5150
+}
+
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <AuthProvider>
-    <BrowserRouter>
+  <BrowserRouter>
+    <AuthProvider>
       <Routes>
+        {/* public routes */}
         <Route path="/" element={<App />}>
+          <Route path="/register" element={<Register />} />
+
           <Route path="/" element={<Main />}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/questions" element={<QuestionsHome />}>
-              <Route path="/questions" element={<QuestionsLanding />}></Route>
-              <Route path="/questions/portal" element={<QuestionPortal />} />
+              <Route path="/questions" element={<QuestionsLanding />} />
+              <Route path="/questions/resultsPage" element={<ResultsPage />} />
+              <Route
+                path="/questions/individual"
+                element={<IndividualQuestion />}
+              />
             </Route>
-            <Route path="/home/resultsPage" element={<ResultsPage />} />
-            <Route
-              path="/home/individual-question"
-              element={<IndividualQuestion />}
-            />
-            <Route path="/home/UserSettings" element={<UserSettings />} />
-            <Route path="/home/admin" element={<AdminPage />} />
+          {/* protected routes */}
+            <Route element={<RequireAuth allowedRoles={ROLES}/>}>
+              <Route path="/questions-portal" element={<QuestionPortal />} />
+              <Route path="/UserSettings" element={<UserSettings />} />
+            </Route>
+            <Route element={<RequireAuth allowedRoles={[ROLES.admin]}/>}>
+              <Route path="/admin" element={<AdminPage />} />
+            </Route>
           </Route>
 
-          <Route path="/register" element={<Register />} />
+          {/* catch all */}
+          <Route path="/*" element={<Missing />} />
         </Route>
       </Routes>
-    </BrowserRouter>
-  </AuthProvider>
+    </AuthProvider>
+  </BrowserRouter>
 );
+
+// https://www.youtube.com/watch?v=brcHK3P6ChQ&list=PL0Zuz27SZ-6PRCpm9clX0WiBEMB70FWwd&index=1
