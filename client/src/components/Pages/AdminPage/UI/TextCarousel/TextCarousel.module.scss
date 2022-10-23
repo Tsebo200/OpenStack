@@ -13,7 +13,6 @@
   }
 
   nav a{
-    background-color: rgb(226, 226, 226);
     border-radius: 10px 10px 0px 0px;
     padding: 10px;
     cursor: pointer;
@@ -21,18 +20,7 @@
 
   .selected {
     transition: 0.1s linear;
-    color: $primary;
-    text-decoration: underline;
-  }
-
-  h5 {
-    transition: 0.1s linear;
-    margin-right: 40px;
-
-    &:hover {
-      cursor: pointer;
-      color: $primary;
-      // transform: scale(1.1);
-    }
+    background-color: $primary;
+    color: white;
   }
 }

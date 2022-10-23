@@ -3,6 +3,8 @@ import { useAxiosPrivate } from "../../../../../Hooks/useAxiosPrivate";
 import { useRefreshToken } from "../../../../../Hooks/useRefreshToken";
 import { Button } from "../../../../UI/Button/Button";
 
+import styles from './UserList.module.scss'
+
 export const UsersList = () => {
   const [users, setUsers] = useState();
 
@@ -34,7 +36,7 @@ export const UsersList = () => {
   }, []);
 
   return (
-    <section>
+    <section className={styles.row}>
       <nav>
         <p>Students</p>
         <p>Editors</p>

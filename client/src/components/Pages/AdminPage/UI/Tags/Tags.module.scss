@@ -1,0 +1,43 @@
+@import "../../../../../index.scss";
+
+
+.tags_container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+.tags_container ul{
+    width: 20%;
+    display: block;
+    max-height: 800px;
+    overflow: auto;
+}
+
+.tags_container ul li{
+    display: block;
+    // background-color: $primary;
+    border-bottom: 1px $primary solid;
+    // border-radius: 100px;
+    padding: 5px 15px;
+    margin-bottom: 10px;
+}
+
+.tags_container ul li a{
+    float: right;
+    cursor: pointer;
+}
+
+.tags_container ul li a:hover{
+    color: $error;
+}
+
+
+.tags_container form{
+    width: 60%;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
