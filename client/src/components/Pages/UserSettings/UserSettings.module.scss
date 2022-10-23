@@ -85,7 +85,6 @@
 
     .score_text {
       text-align: center;
-
     }
     .vert_line {
       border-left: 1px solid grey;
@@ -103,7 +102,7 @@
   // background: red;
   float: left;
 
-    .activity_text {
+  .activity_text {
     text-align: center;
   }
   .vert_line {
@@ -121,7 +120,7 @@
   // background: red;
   float: left;
 
-    .newest_text {
+  .newest_text {
     text-align: center;
   }
   .vert_line {
@@ -132,7 +131,6 @@
   }
 }
 
-
 .views_container {
   width: 22.2%;
   height: 100%;
@@ -141,12 +139,10 @@
   border-radius: 0px 4px 4px 0px;
   float: left;
 
-    .views_text {
+  .views_text {
     text-align: center;
   }
 }
-
-
 
 // Answers section
 .user_answers_container {
@@ -159,8 +155,7 @@
   margin-left: 20px;
   float: left;
 }
-.answers_heading{
-
+.answers_heading {
 }
 .user_answers_container header {
   background: none;

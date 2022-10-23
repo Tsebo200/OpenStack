@@ -1,33 +1,37 @@
 @import '../../../index.scss';
 
 .container{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-
-    .pageContent{
-        width: 100%;
-        padding: 10% 5% 5% 5%;
-
-        table{
-            
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-
-            th{
-                text-align: left;
-                width: fit-content;
-                font-weight: bold;
-                background-color: rgb(199, 199, 199);
-                padding: 20px;
-            }
-
-
-            td{
-                border-right: 1px solid rgb(199, 199, 199);
-                padding: 10px;
-            }
-        }
-    }
+    margin-top: 76px;
 }
+
+// .container{
+//     width: 100%;
+//     height: 100vh;
+//     display: flex;
+
+//     .pageContent{
+//         width: 100%;
+//         padding: 10% 5% 5% 5%;
+
+//         table{
+            
+//             width: 100%;
+//             border-collapse: collapse;
+//             text-align: left;
+
+//             th{
+//                 text-align: left;
+//                 width: fit-content;
+//                 font-weight: bold;
+//                 background-color: rgb(199, 199, 199);
+//                 padding: 20px;
+//             }
+
+
+//             td{
+//                 border-right: 1px solid rgb(199, 199, 199);
+//                 padding: 10px;
+//             }
+//         }
+//     }
+// }

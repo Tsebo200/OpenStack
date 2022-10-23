@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../../../api/axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../../../UI/Button/Button";
@@ -12,22 +12,48 @@ export const QuestionsLanding = () => {
   // get all questions
   const [QuestionList, setQuestionList] = useState([]);
 
-  const options = {
-    method: "GET",
-    url: "http://localhost:5001/api/all-questions",
-  };
 
   useEffect(() => {
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        setQuestionList(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  }, []);
+    let isMounted = true
+    const controller = new AbortController()
+    const getUsers = async () => {
+      try{
+        const response = await axios.get('/api/all-questions', {
+          signal: controller.signal
+        });
+        console.log(response.data)
+        isMounted && setQuestionList(response.data)
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    getUsers()
+
+    return () => {
+      isMounted = false
+      controller.abort()
+    }
+  }, [])
+  
+
+
+  // const options = {
+  //   method: "GET",
+  //   url: "http://localhost:5001/api/all-questions",
+  // };
+
+  // useEffect(() => {
+  //   axios
+  //     .request(options)
+  //     .then(function (response) {
+  //       console.log(response.data);
+  //       setQuestionList(response.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   // const [QuestionList, setQuestionList] = useState([
   //   {
@@ -121,11 +147,11 @@ export const QuestionsLanding = () => {
           </thead>
         </table>
       </div>
-      {/* {QuestionList.map((question) => {
+      {QuestionList.map((question) => {
             return (
               <QuestionCard key={question._id} questionDetails={question} />
             );
-          })} */}
+          })}
     </div>
   );
 };

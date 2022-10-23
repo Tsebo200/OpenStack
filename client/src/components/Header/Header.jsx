@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import styles from "./Header.module.scss";
 import openStackLogo from "../../assets/OpenStackLogo.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { SearchForm } from "./UI/SearchForm/SearchForm";
 import { Login } from "../Pages/Login/Login";
@@ -15,9 +15,13 @@ function useQuery() {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
+
+
 export const Header = () => {
   let query = useQuery();
-  const { Auth } = useAuth();
+
+  const { Auth, setAuth } = useAuth();
+  const navigate = useNavigate();
 
   const [LoginContainerCss, setLoginContainerCss] = useState(
     `${styles.login_container}`
@@ -39,10 +43,18 @@ export const Header = () => {
     }
   };
   useEffect(() => {
-    if (query.get('action') === "login") {
+    if (query.get("action") === "login") {
       showLoginHandler();
     }
   }, []);
+
+  const LogoutHandler = async () => {
+    // if used in more components, this should be in context
+    // axios to /logout endpoint
+    console.log("logout");
+    setAuth({});
+    navigate("/");
+  };
 
   return (
     <header className={styles.header}>
@@ -54,7 +66,9 @@ export const Header = () => {
         <Link to="/questions">Questions</Link>
         <SearchForm />
         {Auth?.userData?.UserInfo?.username ? (
-          <UserHeaderIcon/>
+          <>
+            <UserHeaderIcon onClick={LogoutHandler}/>
+          </>
         ) : (
           <a className={styles.login} onClick={showLoginHandler}>
             Login

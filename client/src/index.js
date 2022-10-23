@@ -20,10 +20,10 @@ import { Main } from "./components/Main/Main";
 import { Missing } from "./components/Pages/Missing/Missing";
 import { RequireAuth } from "./components/Security/RequireAuth";
 
-const ROLES = {
-  'user': 2001,
-  'admin': 5150
-}
+const ROLES = [
+  2001,
+  5150
+]
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -50,7 +50,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <Route path="/questions-portal" element={<QuestionPortal />} />
               
             </Route>
-            <Route element={<RequireAuth allowedRoles={[ROLES.admin]}/>}>
+            <Route element={<RequireAuth allowedRoles={[ROLES[1]]}/>}>
               <Route path="/admin" element={<AdminPage />} />
             </Route>
           </Route>

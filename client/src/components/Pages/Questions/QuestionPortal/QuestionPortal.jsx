@@ -11,11 +11,14 @@ import { useNavigate } from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/prism';
 import axios from 'axios';
 import SuccessModal from '../../../SuccessModal/SuccessModal';
+import { useAuth } from '../../../../Hooks/useAuth';
 
 function QuestionPortal() {
 
     // useState's and Ref's
     const defValues = ["title", "body", "codeBlock", "selectedYear", "image", "tag"];
+
+    const { Auth } = useAuth()
 
     const navigate = useNavigate();
 
@@ -126,7 +129,7 @@ function QuestionPortal() {
     let levels = ["-- Please Select --", "First Year", "Second Year", "Third Year", "Honours", "Creative Computing", "Lecturer"];
 
     const closeModal = () => {
-        navigate("/");
+        // navigate("/");
     }
 
     const formHandle = e => {
@@ -167,19 +170,15 @@ function QuestionPortal() {
             setTagError();
         }
 
+        console.log(Auth);
+
         let payload = {
             title: titleString,
             body: bodyString,
             code: code,
             selectedYear: year,
-            tagSelected: tags,
-            user: "Wiaan",
-            userDetails: {
-                userProfilePicture: "nopfp",
-                username: "visitor",
-                userScore: 0
-            },
-            tags: null
+            // tagSelected: tags,
+            // tags: null
         }
 
         console.log(payload);
@@ -189,15 +188,15 @@ function QuestionPortal() {
 
         console.log(payloadData);
 
-        axios.post('http://localhost:5001/api/add-question/', payloadData)
-        .then(res => {
-            console.log("Question Added!");
-            setModal(true);
-        })
-        .catch(err => {
-            console.log(err);
-            setModal(false);
-        })
+        // axios.post('http://localhost:5001/api/add-question/', payloadData)
+        // .then(res => {
+        //     console.log("Question Added!");
+        //     setModal(true);
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        //     setModal(false);
+        // })
 
     }
 

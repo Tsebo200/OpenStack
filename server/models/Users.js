@@ -52,20 +52,20 @@ const userSchema = mongoose.Schema({
     userScore: {
         type: Number
     },
-    token: String,
+    refreshToken: String
 
 });
 
-userSchema.pre('save', async function(next){
-    try{
-        let tokenPayload = {username: this.username, email: this.email}
-        const token = await jwt.sign(tokenPayload, process.env.ACCESS_TOKEN_SECRET);
-        this.token = token;
-        next();
-    } catch (err) {
-        next(err);
-    }
-});
+// userSchema.pre('save', async function(next){
+//     try{
+//         let tokenPayload = {username: this.username, email: this.email}
+//         const token = await jwt.sign(tokenPayload, process.env.ACCESS_TOKEN_SECRET);
+//         this.token = token;
+//         next();
+//     } catch (err) {
+//         next(err);
+//     }
+// });
 
 
 

@@ -43,10 +43,18 @@ export const Login = (props) => {
     try {
       const response = await Axios.request(options);
       const accessToken = response?.data?.accessToken;
+      const refreshToken = response?.data?.refreshToken;
       const roles = response?.data?.roles;
-      console.log(response.data)
-      console.log(accessToken)
-      console.log(roles)
+      // console.log(response.data)
+      // console.log(refreshToken)
+
+      // add refresh to local
+
+      localStorage.setItem("refreshToken", refreshToken)
+
+
+      // console.log(accessToken)
+      // console.log(roles)
       setAuth({ roles: response.data.roles, accessToken: accessToken})
       // setEmail('')
       // setPwd('')

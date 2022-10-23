@@ -23,6 +23,7 @@ authRouter.post("/auth", async (req, res) => {
       {
         UserInfo: {
           username: foundUser.username,
+          email: foundUser.email,
           roles: roles,
         },
       },
@@ -38,19 +39,21 @@ authRouter.post("/auth", async (req, res) => {
     foundUser.refreshToken = refreshToken;
     const result = await foundUser.save();
     console.log(result);
-    console.log(roles);
+    // console.log(roles);
+    console.log(refreshToken);
 
     // Creates Secure Cookie with refresh token
+    // res.json("save cookie");
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
-      secure: true,
+      // secure: true,
       sameSite: "None",
       maxAge: 24 * 60 * 60 * 1000,
     });
 
     // Send authorization roles and access token to user
-    console.log(accessToken);
-    res.json({ roles, accessToken });
+    // console.log(accessToken);
+    res.json({ roles, accessToken, refreshToken });
   } else {
     res.sendStatus(401);
   }

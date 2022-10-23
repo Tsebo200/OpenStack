@@ -5,7 +5,7 @@ const userRouter = express();
 var bcrypt = require("bcrypt");
 const emailService = require("./userAuthenticationEmail.service");
 
-userRouter.get("/api/all-users", async (req, res) => {
+userRouter.get("/all-users", async (req, res) => {
   const findUsers = await userSchema.find();
   res.json(findUsers);
 });
