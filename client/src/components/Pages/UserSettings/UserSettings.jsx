@@ -12,12 +12,12 @@ import Axios from "axios";
 const UserSettings = () => {
   return (
     <div className={styles.user_settings_container}>
-      {/* add code here */}
       <header>
         <img src={profileIcon}/>
-        <div>
-          <h1>username</h1>
-          <ion-icon name="pencil-outline"></ion-icon>
+        <h1>username</h1>
+        <ion-icon name="pencil-outline"></ion-icon>
+        <div className={styles.user_questions_container}>
+          
         </div>
       </header>
     </div>
