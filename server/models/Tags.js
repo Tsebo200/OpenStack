@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const questionSchema = mongoose.Schema({
+const tagSchema = mongoose.Schema({
 
     tagName: {
         type: String,
@@ -9,4 +9,4 @@ const questionSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('tags', questionSchema);
+module.exports = mongoose.model('tags', tagSchema);
