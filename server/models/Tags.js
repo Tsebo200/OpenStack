@@ -6,7 +6,7 @@ const questionSchema = mongoose.Schema({
         type: String,
         required: true
     }
-    
+
 });
 
-module.exports = mongoose.model('questions', questionSchema);
+module.exports = mongoose.model('tags', questionSchema);
