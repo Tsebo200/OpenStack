@@ -35,7 +35,7 @@ const UserSettings = () => {
                 <div className={styles.vert_line}></div>
               </div>
               <div className={styles.views_container}>
-              <p className={styles.newest_text}>Views</p>
+              <p className={styles.views_text}>Views</p>
               <div className={styles.views}></div>
               </div>
             </header>
