@@ -4,6 +4,7 @@ const questionSchema = require('../models/Questions')
 const questionsRouter = express();
 const multer = require('multer');
 const path = require('path');
+const tagSchema = require('../models/Tags');
 
 // Multer Middleware
 
@@ -52,6 +53,22 @@ questionsRouter.post('/api/add-question', uploadQuestionImage.single('image') ,(
 questionsRouter.get('/api/all-questions', async (req, res) => {
     const findQuestions = await questionSchema.find();
     res.json(findQuestions)
+})
+
+questionsRouter.post('/api/add-tag', async (req, res) => {
+    let data = req.body;
+
+    const newTag = new tagSchema({
+        tagName: data.tagName
+    })
+
+    newTag.save()
+    .then(i => {
+        res.json(i)
+    })
+    .catch(err => {
+        res.status(400).json({msg: "Tag could not be added!", err});
+    })
 })
 
 
