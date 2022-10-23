@@ -5,6 +5,10 @@ const tagSchema = mongoose.Schema({
     tagName: {
         type: String,
         required: true
+    },
+    tombstone: {
+        type: Boolean,
+        default: false
     }
 
 });
