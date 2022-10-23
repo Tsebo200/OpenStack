@@ -20,9 +20,10 @@ const UserSettings = () => {
 
       <div className={styles.user_questions_container}>
           <header>
-            <h3>Questions</h3>
+            <h3 className={styles.question_text}>Questions</h3>
             <div className={styles.questions_nav}>
-              <div className={styles.score}><p className={styles.score_text}>Score</p>
+              <div className={styles.score}>
+                <p className={styles.score_text}>Score</p>
               </div>
               <div className={styles.activity}></div>
               <div className={styles.newest}></div>
