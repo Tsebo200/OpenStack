@@ -16,10 +16,12 @@ const UserSettings = () => {
         <img src={profileIcon}/>
         <h1>username</h1>
         <ion-icon name="pencil-outline"></ion-icon>
-        <div className={styles.user_questions_container}>
-          
-        </div>
       </header>
+      <div className={styles.user_questions_container}>
+          <header>
+            <h3>Questions</h3>
+          </header>
+        </div>
     </div>
   );
 
