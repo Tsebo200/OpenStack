@@ -71,5 +71,12 @@ questionsRouter.post('/api/add-tag', async (req, res) => {
     })
 })
 
+questionsRouter.get('/api/all-tags', async (req, res) => {
+    const findTags = await questionSchema.find();
+    res.json(findTags);
+})
+
+
+
 
 module.exports = questionsRouter;
