@@ -22,6 +22,12 @@ const UserSettings = () => {
             <h3>Questions</h3>
           </header>
         </div>
+
+        <div className={styles.user_answers_container}>
+          <header>
+            <h3>Answers</h3>
+          </header>
+        </div>
     </div>
   );
 
