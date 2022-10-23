@@ -51,8 +51,8 @@
   // align-content: stretch;
   // align-items: flex-start;
 
-  .question_text {
-    margin-left: 20px;
+  .questions_heading {
+    margin-left: 10px;
     margin-top: 10px;
   }
   .user_questions_container header {
@@ -61,12 +61,12 @@
 }
 
 .questions_nav {
-  width: 60%;
+  width: 65%;
   height: 3vh;
   background: white;
   border-radius: 5px;
   border: solid 1px grey;
-  margin-left: 20px;
+  margin-left: 10px;
   margin-top: 15px;
   display: flex;
   flex-direction: row;
@@ -76,24 +76,30 @@
   align-items: flex-start;
 
   .score_container {
-    width: 30%;
+    width: 22%;
     height: 100%;
-    // background: red;
+    background: red;
+    margin-left: px;
+    border-radius: 4px 0px 0px 4px;
+    float: left;
 
     .score_text {
       text-align: center;
+
     }
     .vert_line {
       border-left: 1px solid grey;
       height: 100%;
-      margin-left: 72px;
+      margin-left: 57px;
       margin-top: -2.8vh;
+      float: left;
     }
   }
 }
 .activity_container {
-  width: 30%;
+  width: 25%;
   height: 100%;
+  // background: red;
   float: left;
 
     .activity_text {
@@ -102,14 +108,16 @@
   .vert_line {
     border-left: 1px solid grey;
     height: 100%;
-    margin-left: 72px;
+    margin-left: 65px;
     margin-top: -2.8vh;
   }
 }
 
 .newest_container {
-  width: 30%;
+  width: 26%;
   height: 100%;
+  margin-left: 2px;
+  background: red;
   float: left;
 
     .newest_text {
@@ -135,7 +143,9 @@
   margin-left: 20px;
   float: left;
 }
+.answers_heading{
 
+}
 .user_answers_container header {
   background: none;
 }

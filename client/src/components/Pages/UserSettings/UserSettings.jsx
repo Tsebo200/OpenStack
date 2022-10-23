@@ -20,7 +20,7 @@ const UserSettings = () => {
 
       <div className={styles.user_questions_container}>
           <header>
-            <h3 className={styles.question_text}>Questions</h3>
+            <h3 className={styles.questions_heading}>Questions</h3>
             <header className={styles.questions_nav}>
               <div className={styles.score_container}>
                 <p className={styles.score_text}>Score</p>
@@ -41,7 +41,7 @@ const UserSettings = () => {
 
         <div className={styles.user_answers_container}>
           <header>
-            <h3>Answers</h3>
+            <h3 className={styles.answers_heading}>Answers</h3>
           </header>
         </div>
     </div>
