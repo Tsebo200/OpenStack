@@ -62,19 +62,48 @@ questionsRouter.post('/api/add-tag', async (req, res) => {
         tagName: data.tagName
     })
 
-    newTag.save()
-    .then(i => {
-        res.json(i)
-    })
-    .catch(err => {
-        res.status(400).json({msg: "Tag could not be added!", err});
-    })
+    const tagDuplicate = await tagSchema.findOne({ tagName: tagName }).exec();
+    if(tagDuplicate){
+        return res.sendStatus(409);
+    }
+
+    try{
+        const response = newTag.save()
+        console.log(response);
+        res.status(201).json({"success": `new tag: ${data.tagName} created!`});
+    }
+
+    catch(err){
+        res.json(500).json({"msg": err.message});
+    }
+
+
+    // .then(i => {
+    //     res.json(i)
+    // })
+    // .catch(err => {
+    //     res.status(400).json({msg: "Tag could not be added!", err});
+    // })
 })
 
 questionsRouter.get('/api/all-tags', async (req, res) => {
     const findTags = await tagSchema.find();
     res.json(findTags);
-})
+});
+
+questionsRouter.patch('/api/delete-tag/', async (req, res) => {
+    const tag = await tagSchema.findOne({_id: req.body.id}).exec();
+    if(!tag){
+        res.status(204).json({"message" : "No Tag Exists!"});
+    }
+    const response = await tag.updateOne(
+        
+    );
+    
+    const tagUpdate = {...tag, tombstone: true}
+
+    res.json(response);
+});
 
 
 
