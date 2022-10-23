@@ -22,16 +22,18 @@ const UserSettings = () => {
           <header>
             <h3 className={styles.question_text}>Questions</h3>
             <header className={styles.questions_nav}>
-
               <div className={styles.score_container}>
                 <p className={styles.score_text}>Score</p>
               <div className={styles.vert_line}></div>
               </div>
               <div className={styles.activity_container}>
                 <p className={styles.activity_text}>Activity</p>
-                <div className={styles.vert_line_two}></div>
+                <div className={styles.vert_line}></div>
               </div>
-              <div className={styles.newest}></div>
+              <div className={styles.newest_container}>
+                <p className={styles.newest_text}>Newest</p>
+                <div className={styles.vert_line}></div>
+              </div>
               <div className={styles.views}></div>
             </header>
           </header>

@@ -68,6 +68,12 @@
   border: solid 1px grey;
   margin-left: 20px;
   margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
 
   .score_container {
     width: 30%;
@@ -88,25 +94,37 @@
 .activity_container {
   width: 30%;
   height: 100%;
-  margin-top: 20px;
-  background: red;
   float: left;
-
 
     .activity_text {
     text-align: center;
   }
+  .vert_line {
+    border-left: 1px solid grey;
+    height: 100%;
+    margin-left: 72px;
+    margin-top: -2.8vh;
+  }
 }
 
-// .vert_line_two{
-//   border-left: 1px solid grey;
-//   height: 100%;
-//   margin-left: 75px;
-//   margin-top: -2.8vh;
-// }
+.newest_container {
+  width: 30%;
+  height: 100%;
+  float: left;
+
+    .newest_text {
+    text-align: center;
+  }
+  .vert_line {
+    border-left: 1px solid grey;
+    height: 100%;
+    margin-left: 72px;
+    margin-top: -2.8vh;
+  }
+}
+
 
 // Answers section
-
 .user_answers_container {
   width: 47%;
   height: 25vh;
