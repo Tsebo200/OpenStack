@@ -1,0 +1,256 @@
+@import "../../../index.scss";
+
+.user_settings_container header{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+  }
+  
+  .user_settings_container img {
+    border-radius: 10px;
+    width: 200px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .user_settings_container h1{
+    // align-self: center;
+  }
+  
+  .user_settings_container ion-icon{
+    // align-self: center;
+    margin-top: -20px;
+    margin-left: 5px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .user_settings_container {
+//   width: 60%;
+//   height: 100vh;
+//   margin-top: 30px;
+//   background: #2b2b2b;
+// }
+
+// .user_settings_container header{
+//   background: #e5e5f7;
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+//   justify-content: flex-start;
+//   align-content: stretch;
+//   align-items: flex-start;
+// }
+
+// .user_settings_container img{
+//   border-radius: 10px;
+//   width: 200px;
+//   aspect-ratio: 1/1;
+//   object-fit: cover;
+//   margin-right: 20px;
+// }
+
+// .user_settings_container h1{
+//   align-self: center;
+// }
+
+// .user_settings_container ion-icon{
+//   align-self: center;
+//   margin-top: -20px;
+//   margin-left: 5px;
+// }
+
+// .user_questions_container{
+//   width: 40%;
+//   height: 25vh;
+//   border-radius: 10px;
+//   background: #e5e5f7;
+//   margin: auto;
+//   margin-top: 50px;
+//   margin-left: 100px;
+//   float: left;
+//   // display: flex;
+//   // flex-direction: row;
+//   // flex-wrap: wrap;
+//   // justify-content: flex-start;
+//   // align-content: stretch;
+//   // align-items: flex-start;
+// }
+
+
+// .user_questions_container header{
+//   background: none;
+
+// }
+
+// .user_answers_container{
+//   width: 40%;
+//   height: 25vh;
+//   border-radius: 10px;
+//   background: #e5e5f7;
+//   margin: auto;
+//   margin-top: 50px;
+//   margin-left: 30px;
+//   float: left;
+// }
+
+// .user_answers_container header{
+//   background: none;
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .user_settings_container header{
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: nowrap;
+//   justify-content: flex-start;
+//   align-content: flex-start;
+//   align-items: flex-start;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Old Styling
+.settings_background {
+  background-position: center;
+  background-size: cover;
+  height: calc(100vh);
+  opacity: 0.8;
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #e5e5f7 7px
+    ),
+    repeating-linear-gradient($secondary-shadow, $primary); //wavy but customizzed
+  position: relative;
+}
+
+.settings_form_container {
+  position: relative;
+  width: 650px;
+  margin: 0 auto;
+  top: 21vh;
+}
+
+.settings_box {
+  display: inline-block;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 18px 100px 0px;
+}
+
+.inputs_container {
+  // overflow: hidden;
+  padding: 30px;
+  width: 100%;
+}
+
+.form_logo {
+  width: 150px;
+  height: auto;
+}
+
+.profile_icon {
+  width: 130px;
+  height: 130px;
+  margin-top: 23px;
+  border-radius: 130px;
+}
+
+.labels_container {
+  position: relative;
+  width: 20vw;
+  height: 20vh;
+  margin: auto;
+  top: -130px;
+
+  .username_label {
+    position: absolute;
+  }
+
+  .email_label {
+    top: 40%;
+    width: 100%;
+  }
+
+  .input_container {
+    position: absolute;
+    top: 15%;
+  }
+}
+
+.achieve_container {
+  position: relative;
+  width: 15%;
+  height: 60%;
+  margin: auto;
+  left: 16.3vw;
+  top: -40vh;
+  border-radius: 60px;
+  background: #2b2b2b;
+}
+
+.achievement {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: auto auto;
+  left: 25%;
+  // margin: 0 auto;
+  border-radius: 60px;
+  background: yellow;
+}
