@@ -1,1 +1,52 @@
 @import '../../../../../index.scss';
+
+.container{
+    width: 100%;
+    padding: 5% 20%;
+
+    table{
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+      
+      
+        
+        thead{
+            display: flex;
+            width: 100%;
+            padding: 20px;
+            text-align: left;
+            color: rgb(199, 199, 199);
+            font-size: $headingp;
+        }
+
+        th{
+            width: 100%;
+        }
+
+        td{
+            width: 100%;
+            text-align: left;
+            color: $black;
+            white-space: nowrap;
+        }
+
+        tr{
+            width: 100%;
+            text-align: left;
+            display: flex;
+            padding: 20px;
+            border-bottom: 1px solid rgb(199, 199, 199);
+
+            .changeRole:hover{
+                text-decoration: underline;
+                color: $primary;
+                cursor: pointer;
+            }
+        }
+
+        thead{
+            border-bottom: 1px solid rgb(199, 199, 199);
+        }
+    }
+}
