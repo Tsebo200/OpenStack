@@ -37,6 +37,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/" element={<Main />}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/questions" element={<QuestionsHome />}>
+            <Route path="/questions/UserSettings" element={<UserSettings />} />
               <Route path="/questions" element={<QuestionsLanding />} />
               <Route path="/questions/resultsPage" element={<ResultsPage />} />
               <Route
@@ -47,7 +48,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           {/* protected routes */}
             <Route element={<RequireAuth allowedRoles={ROLES}/>}>
               <Route path="/questions-portal" element={<QuestionPortal />} />
-              <Route path="/UserSettings" element={<UserSettings />} />
+              
             </Route>
             <Route element={<RequireAuth allowedRoles={[ROLES.admin]}/>}>
               <Route path="/admin" element={<AdminPage />} />
