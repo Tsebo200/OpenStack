@@ -61,7 +61,7 @@
 }
 
 .questions_nav {
-  width: 65%;
+  width: 60%;
   height: 3vh;
   background: white;
   border-radius: 5px;
@@ -76,7 +76,7 @@
   align-items: flex-start;
 
   .score_container {
-    width: 22%;
+    width: 23%;
     height: 100%;
     background: red;
     margin-left: px;
@@ -90,14 +90,14 @@
     .vert_line {
       border-left: 1px solid grey;
       height: 100%;
-      margin-left: 57px;
+      margin-left: 54px;
       margin-top: -2.8vh;
       float: left;
     }
   }
 }
 .activity_container {
-  width: 25%;
+  width: 28%;
   height: 100%;
   // background: red;
   float: left;
@@ -108,15 +108,15 @@
   .vert_line {
     border-left: 1px solid grey;
     height: 100%;
-    margin-left: 65px;
+    margin-left: 67px;
     margin-top: -2.8vh;
   }
 }
 
 .newest_container {
-  width: 26%;
+  width: 28.5%;
   height: 100%;
-  margin-left: 2px;
+  margin-left: 0.5px;
   background: red;
   float: left;
 
@@ -126,10 +126,25 @@
   .vert_line {
     border-left: 1px solid grey;
     height: 100%;
-    margin-left: 72px;
+    margin-left: 68px;
     margin-top: -2.8vh;
   }
 }
+
+
+.views_container {
+  width: 21%;
+  height: 100%;
+  margin-left: 1px;
+  background: red;
+  border-radius: 0px 4px 4px 0px;
+  float: left;
+
+    .views_text {
+    text-align: center;
+  }
+}
+
 
 
 // Answers section
