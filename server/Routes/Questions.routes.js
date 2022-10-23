@@ -56,7 +56,7 @@ questionsRouter.get('/api/all-questions', async (req, res) => {
 })
 
 questionsRouter.post('/api/add-tag', async (req, res) => {
-    let data = req.body;
+    let data = req.body.data;
 
     const newTag = new tagSchema({
         tagName: data.tagName
