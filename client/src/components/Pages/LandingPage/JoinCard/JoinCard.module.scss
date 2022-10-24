@@ -1,0 +1,75 @@
+.joinCon{
+    width: 70vw;
+    height: 45vh;
+    margin-left: 7vw;
+    margin-top: 14vh;
+    background-color: #F7F7F7;
+    border-radius: 10px;
+    float: left;
+}
+
+.textCon{
+    width: 40%;
+    margin-left: 5%;
+    height: 10vh;
+    margin-top: 3%;
+    float: left;
+}
+
+.joinBTN {
+    padding: 0.5rem 20px;
+    float: left;
+    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%), 0 1px 5px rgb(0 0 0 / 12%);
+    box-sizing: border-box;
+    border: none;
+    color: white;
+    background-color: #fca62b;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-top: 3vh;
+    margin-left: 5%;
+}
+
+.imgCon{
+    width:30%;
+    margin-right: 5%;
+    float: right;
+}
+
+.optionsCon{
+    width: 100%;
+    float: left;
+    margin-left: 4vh;
+}
+
+.optionBTN{
+    padding: 0.5rem 20px;
+    float: left;
+    // box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%), 0 1px 5px rgb(0 0 0 / 12%);
+    box-sizing: border-box;
+    border: 1px solid black;
+    color: black;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-top: 3vh;
+    margin-left: 1%;
+}
+
+.optionBTN:hover{
+    padding: 0.5rem 20px;
+    float: left;
+    // box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%), 0 1px 5px rgb(0 0 0 / 12%);
+    box-sizing: border-box;
+    border: none;
+    color: white;
+    background-color: #fca62b;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-top: 3vh;
+    margin-left: 1%;
+}
+
+
