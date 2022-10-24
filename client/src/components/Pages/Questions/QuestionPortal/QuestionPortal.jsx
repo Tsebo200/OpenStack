@@ -12,6 +12,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/prism';
 import axios from 'axios';
 import SuccessModal from '../../../SuccessModal/SuccessModal';
 import { useAuth } from '../../../../Hooks/useAuth';
+import SuggestedTags from './SuggestedTags/SuggestedTags';
 
 function QuestionPortal() {
 
@@ -236,6 +237,7 @@ function QuestionPortal() {
                 </label>
                 <label htmlFor='enteredTags'>Enter Tags related to questions</label>
                 {tagError ? <Input name="enteredTags" type="questionError" inputType="text" ref={tag} value={values["tag"]}/> : <Input type="questionInput" name="enteredTags" inputType="text" ref={tag} value={values["tag"]}/>}
+                <SuggestedTags tagName={"JavaScript"}/>
                 <hr />
                 <h2>Review your question</h2>
                 <hr />
