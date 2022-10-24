@@ -15,7 +15,6 @@ const answerSchema = mongoose.Schema({
         default: Date.now
     },
     user: String,
-    answers: Number,
     upVotes: Number,
     downVotes: Number,
     reports: Number
