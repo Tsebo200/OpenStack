@@ -10,6 +10,17 @@ userRouter.get("/all-users", async (req, res) => {
   res.json(findUsers);
 });
 
+userRouter.patch("/update-user-roles", async (req, res) => {
+  // res.json("update")
+
+  const { UserRoles, userId } = req.body;
+  // console.log(req);
+  const update = await userSchema
+    .findByIdAndUpdate(userId, { roles: UserRoles })
+    .exec();
+  res.json("roles have been updates");
+});
+
 userRouter.post("/api/register", async (req, res) => {
   const { user, pwd, Email } = req.body;
   console.log(user);
@@ -39,14 +50,14 @@ userRouter.post("/api/register", async (req, res) => {
     const result = await userSchema.create({
       username: user,
       password: hashedPwd,
-      email: Email
+      email: Email,
     });
 
     console.log(result);
 
-    res.status(201).json({ 'success': `New user ${user} created!` });
+    res.status(201).json({ success: `New user ${user} created!` });
   } catch (err) {
-    res.status(500).json({ 'message': err.message });
+    res.status(500).json({ message: err.message });
   }
 
   // emailService({

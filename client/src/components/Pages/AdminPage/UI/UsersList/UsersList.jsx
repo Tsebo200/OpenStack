@@ -40,7 +40,7 @@ export const UsersList = () => {
       isMounted = false;
       controller.abort();
     };
-  }, []);
+  }, [ModalSettings]);
 
   const changeRoleModalHandler = (e) => {
     // console.log(e.target.id);

@@ -9,57 +9,89 @@ export const Tags = () => {
   const [TagList, setTagList] = useState([]);
 
   const [TagName, setTagName] = useState("");
+  const [ErrMsg, setErrMsg] = useState("");
 
   const tagInputRef = useRef();
+  const errRef = useRef();
 
   const getTags = async () => {
     const response = await axios.get("/api/all-tags");
-    // console.log(response);
-    setTagList(response.data)
-  }
-
-  useEffect(() => {
-    getTags()
-  }, [])
-  
-
-  const addTagHandler = async (e) => {
-    e.preventDefault()
-    const response = await axios.post("/api/add-tag", {
-      data: { tagName: TagName },
-    });
-    setTagName('')
     console.log(response);
-    getTags()
+    setTagList(response.data);
   };
 
-  const removeTagHandler = async () =>{
-    const response = await axios.post("/api/add-tag", {
-        data: { tagName: TagName },
+  useEffect(() => {
+    getTags();
+  }, []);
+
+  const addTagHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/add-tag", {
+        tagName: TagName,
       });
+      setTagName("");
       console.log(response);
-      getTags()
-  }
+      getTags();
+      setErrMsg("");
+    } catch (err) {
+      if (!err.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 409) {
+        setErrMsg("Tag already exists");
+      }
+      errRef.current.focus();
+    }
+  };
+
+  const removeTagHandler = async (id) => {
+    // console.log(id);
+    const response = await axios.patch("/delete-tag", {
+      tagId: id,
+    });
+    console.log(response);
+    getTags();
+  };
 
   return (
     <div className={styles.tags_container}>
       <ul>
-      {TagList.map(tag => {
-        return (<li key={tag._id}>{tag.tagName} <a onClick={removeTagHandler}>Remove</a></li>)
-      })}
+        {TagList.map((tag) => {
+          return (
+            <li key={tag._id}>
+              {tag.tagName}{" "}
+              <a
+                onClick={() => {
+                  removeTagHandler(tag._id);
+                }}
+              >
+                Remove
+              </a>
+            </li>
+          );
+        })}
       </ul>
       <form autoComplete="off" onSubmit={addTagHandler}>
         <h3>Add new tag</h3>
+        {ErrMsg && (
+          <p
+            ref={errRef}
+            className={styles.error_message}
+            aria-live="assertive"
+          >
+            {ErrMsg}
+          </p>
+        )}
         <Input
-        label="Tag name"
-        type="text"
-        id="tag-name"
-        ref={tagInputRef}
-        onChange={(e) => setTagName(e.target.value)}
-        value={TagName}
-        required={true}
-        valid={true}
-      />
+          label="Tag name"
+          type="text"
+          id="tag-name"
+          ref={tagInputRef}
+          onChange={(e) => setTagName(e.target.value.toUpperCase())}
+          value={TagName}
+          required={true}
+          valid={true}
+        />
         <br></br>
         <Button>Add Tag</Button>
       </form>
