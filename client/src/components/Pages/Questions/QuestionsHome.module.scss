@@ -2,10 +2,18 @@
 
 .main {
   margin-top: 58px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-content: flex-start;
-  align-items: flex-start;
+  position: relative;
+  max-width: 1000px;
+}
+.outlet{
+  width: 88%;
+  display: inline-block;
+  border-left: 1px solid gray;
+  min-height: calc(100vh - 58px);
+}
+
+.subheader_container{
+  width: 12%;
+  position: relative;
+  display: inline-block;
 }

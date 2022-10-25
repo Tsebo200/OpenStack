@@ -81,7 +81,6 @@ export const QuestionCard = (props) => {
     const user = UserDetailsReferenceList.filter((i) => {
       return i.userId === question.userId;
     });
-    console.log(user);
   }, []);
 
   return (
@@ -126,10 +125,6 @@ export const QuestionCard = (props) => {
             </>
           );
         })}
-        {/* <Link>{question?.userDetails?.userName}</Link>
-        <p className={styles?.user_details_score}>
-          {question?.userDetails?.userScore}
-        </p> */}
         <p>{convertTimeCreated()}</p>
       </div>
     </div>

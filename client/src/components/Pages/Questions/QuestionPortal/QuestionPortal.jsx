@@ -27,6 +27,8 @@ function QuestionPortal() {
 
   const { Auth } = useAuth();
 
+  console.log(Auth);
+
   const navigate = useNavigate();
 
   const [questionImage, setQuestionImage] = useState();
@@ -194,7 +196,7 @@ function QuestionPortal() {
       setTagError();
     }
 
-    console.log(Auth);
+    
 
     let payload = {
       title: titleString,
