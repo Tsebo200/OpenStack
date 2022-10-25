@@ -144,6 +144,41 @@
   }
 }
 
+.questions_container_content_box{
+  width: 90%;
+  height: 17vh;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 7px;
+  border: solid 1px grey;
+}
+
+
+.question_notification_container{
+  width: 8%;
+  height: 15%;
+  border-radius: 5px;
+  margin-top: 10px;
+  background: red;
+}
+
+.question_notification_counter_text{
+  text-align: center;
+  justify-content: center;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 // Answers section
 .user_answers_container {
   width: 47%;
@@ -169,6 +204,42 @@
 //   align-content: flex-start;
 //   align-items: flex-start;
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Old Styling
 .settings_background {

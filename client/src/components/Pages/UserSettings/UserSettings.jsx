@@ -40,7 +40,14 @@ const UserSettings = () => {
               </div>
             </header>
           </header>
-        </div>
+
+          {/* Inside the Question Container */}
+          <div className={styles.questions_container_content_box}>
+          <div className={styles.question_notification_container}>
+            <h4 className={styles.question_notification_counter_text}>0</h4>
+          </div>    
+          </div>
+        </div> {/* End of Questions container */}
 
         <div className={styles.user_answers_container}>
           <header>
