@@ -89,6 +89,13 @@ questionsRouter.get("/api/all-questions", async (req, res) => {
   res.json(findQuestions);
 });
 
+questionsRouter.post("/get-question", async (req, res) => {
+  const {questionId } = req.body
+  
+  const findQuestion = await questionSchema.find({_id: questionId});
+  res.json(findQuestion);
+});
+
 questionsRouter.get("/api/all-tags", async (req, res) => {
   try {
     const findTags = await tagSchema.find();

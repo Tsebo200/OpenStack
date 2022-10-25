@@ -44,7 +44,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 path="/questions/individual"
                 element={<IndividualQuestion />}
               >
-                <Route path=":invoiceId" element={<IndividualQuestion />} />
+                <Route path=":questionId" element={<IndividualQuestion />} />
               </Route>
             </Route>
             {/* protected routes */}

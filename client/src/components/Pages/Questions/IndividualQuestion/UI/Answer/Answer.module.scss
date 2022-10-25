@@ -1,13 +1,11 @@
-@import "../../../../index.scss";
+@import "../../../../../../index.scss";
 
 .container {
   width: 100%;
-  margin-left: 40px;
-  margin-top: 50px;
   // display: flex;
   // flex-flow: column;
 
-  .question_activity_header {
+  header {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -17,28 +15,6 @@
     margin-top: 12px;
     p {
       margin-right: 20px;
-    }
-  }
-
-  .header_main {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: flex-start;
-    align-items: center;
-
-    a {
-      margin-left: auto;
-      box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f;
-      box-sizing: border-box;
-      padding: 0.5rem 20px;
-      border: none;
-      color: white;
-      background-color: $primary;
-      cursor: pointer;
-      font-size: 15px;
-      border-radius: 8px;
     }
   }
 
@@ -69,7 +45,6 @@
 
     .question_content {
       margin-left: 20px;
-      width: 100%;
     }
     .tag_list {
       display: flex;
