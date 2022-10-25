@@ -154,14 +154,19 @@
 }
 
 
+.question_notification_container{
+  width: 8%;
+  height: 15%;
+  border-radius: 5px;
+  margin-top: 10px;
+  background: red;
+}
 
-// .question_notification_container{
-//   margin-top: 20px;
-//   width: 12%;
-//   height: 10%;
-//   background: red;
-//   border-radius: 10px;
-// }
+.question_notification_counter_text{
+  text-align: center;
+  justify-content: center;
+
+}
 
 
 
