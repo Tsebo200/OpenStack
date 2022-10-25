@@ -23,33 +23,64 @@ const uploadQuestionImage = multer({ storage: questionImageStore });
 
 questionsRouter.post(
   "/api/add-question",
-  uploadQuestionImage.single("image"),
-  (req, res) => {
-    let data = JSON.parse(req.body.information);
+  // uploadQuestionImage.single("image"),
+  async (req, res) => {
+    // let data = JSON.parse(req.body.information);
 
-    console.log(req.file.filename);
-
+    // console.log(req.file.filename);
+    const { title, body, codeBody, codeLanguage, user_id, tags } = req.body;
     const newQuestion = new questionSchema({
-      title: data.title,
-      body: data.body,
-      code: data.code,
-      userDetails: {
-        userProfilePicture: data.userDetails.userProfilePicture,
-        username: data.userDetails.username,
-        userScore: data.userDetails.userScore,
+      title: title,
+      body: body,
+      code: {
+        codeBody:codeBody,
+        codeLanguage: codeLanguage
       },
-      image: req.file.filename,
-      tags: data.tags,
+      // image: req.file.filename,
+      tags: tags,
+      userId: user_id
     });
 
-    newQuestion
-      .save()
-      .then((i) => {
-        res.json(i);
-      })
-      .catch((err) => {
-        res.status(400).json({ msg: "Question could not be added!", err });
-      });
+    try {
+      const response = await newQuestion.save();
+      res.status(201).json({ success: `new question: ${title} created!` });
+      // res.json(newQuestion);
+    } catch (err) {
+      console.log(err);
+    }
+
+    // const userDetails = {
+    //   // userProfilePicture: String,
+    //     userName: String,
+    //     userScore: Number
+    // }
+    
+    // const tagList = await tags.map(async (tag_id) => {
+    //   console.log(tag_id);
+    //   const tag = await tagSchema.findById(tag_id).exec();
+    //   console.log(tag);
+    //   // return tag;
+    // });
+    // try {
+    //   console.log(tagList);
+    //   res.json(tagList);
+    // } catch (err) {
+    //   res.json(err);
+    // }
+    // const findTags = await tagSchema.find();
+
+   
+
+    // return tagName
+
+    // newQuestion
+    //   .save()
+    //   .then((i) => {
+    //     res.json(i);
+    //   })
+    //   .catch((err) => {
+    //     res.status(400).json({ msg: "Question could not be added!", err });
+    //   });
   }
 );
 
@@ -65,6 +96,16 @@ questionsRouter.get("/api/all-tags", async (req, res) => {
       return tag.tombstone === false;
     });
     res.json(availableTags);
+  } catch (err) {
+    res.json(500).json({ msg: err.message });
+  }
+});
+
+questionsRouter.post("/unique-tags", async (req, res) => {
+    const { UniqueTagsList } = req.body
+  try {
+    const findTags = await tagSchema.find({_id : UniqueTagsList});
+    res.json(findTags)
   } catch (err) {
     res.json(500).json({ msg: err.message });
   }

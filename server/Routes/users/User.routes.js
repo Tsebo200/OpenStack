@@ -128,4 +128,23 @@ userRouter.post("/api/create-user", async (req, res) => {
     });
   });
 });
+
+userRouter.post("/unique-users", async (req, res) => {
+  const { UniqueUsersList } = req.body;
+
+  try {
+    const findUsers = await userSchema.find({ _id: UniqueUsersList }).exec();
+    const response = findUsers.map(user => {
+      return {
+        userId: user._id,
+        username: user.username,
+        userScore: user.userScore
+      }
+    })
+    res.json(response);
+  } catch (err) {
+    res.json(500).json({ msg: err.message });
+  }
+});
+
 module.exports = userRouter;

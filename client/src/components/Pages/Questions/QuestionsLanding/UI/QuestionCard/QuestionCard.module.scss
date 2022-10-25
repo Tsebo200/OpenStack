@@ -10,10 +10,11 @@
   align-items: flex-start;
   padding: 10px 20px;
   position: relative;
+  height: 150px;
 }
 
 .question a {
-    color: rgb(75, 73, 216);
+  color: rgb(75, 73, 216);
 }
 
 .question_interaction {
@@ -31,7 +32,7 @@
   font-weight: 400;
 }
 
-.question_interaction_child{
+.question_interaction_child {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -42,15 +43,16 @@
   height: 30px;
 }
 
-.question_interaction_child ion-icon{
+
+
+.question_interaction_child ion-icon {
   font-size: 18px;
   margin-right: 3px;
 }
 
-.answer_true{
+.answer_true {
   background-color: $success;
   border-radius: 5px;
- 
 }
 
 .answer_true p {
@@ -63,6 +65,13 @@
 
 .question_details p {
   font-size: 14px;
+}
+.question_details{
+  height: 90%;
+}
+
+.question_details p{
+  height: 40%;
 }
 
 .tag_list {
@@ -98,16 +107,27 @@
   align-items: center;
 }
 
-.user_details *{
-    margin-left: 5px;
+.user_details * {
+  margin-left: 5px;
 }
 
-.user_details img{
-    aspect-ratio: 1/1;
-    width: 25px;
-    border-radius: 5px;
+.user_details img {
+  aspect-ratio: 1/1;
+  width: 25px;
+  border-radius: 5px;
 }
 
-.user_details_score{
-    font-weight: 500;
+.user_details_score {
+  font-weight: 500;
+}
+
+.tag_tombstone {
+  padding: 5px;
+  font-size: 13px;
+  background-color: rgb(182, 182, 182);
+  margin: 4px;
+  color: rgb(255, 255, 255);
+  border-radius: 4px;
+  cursor: not-allowed;
+  box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f;
 }

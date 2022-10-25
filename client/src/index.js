@@ -21,11 +21,7 @@ import { Missing } from "./components/Pages/Missing/Missing";
 import { RequireAuth } from "./components/Security/RequireAuth";
 import { UsersList } from "./components/Pages/AdminPage/UI/UsersList/UsersList";
 
-const ROLES = [
-  2001,
-  5150
-]
-
+const ROLES = [2001, 5150];
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -38,20 +34,24 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/" element={<Main />}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/questions" element={<QuestionsHome />}>
-            <Route path="/questions/UserSettings" element={<UserSettings />} />
+              <Route
+                path="/questions/UserSettings"
+                element={<UserSettings />}
+              />
               <Route path="/questions" element={<QuestionsLanding />} />
               <Route path="/questions/resultsPage" element={<ResultsPage />} />
               <Route
                 path="/questions/individual"
                 element={<IndividualQuestion />}
-              />
+              >
+                <Route path=":invoiceId" element={<IndividualQuestion />} />
+              </Route>
             </Route>
-          {/* protected routes */}
-            <Route element={<RequireAuth allowedRoles={ROLES}/>}>
+            {/* protected routes */}
+            <Route element={<RequireAuth allowedRoles={ROLES} />}>
               <Route path="/questions-portal" element={<QuestionPortal />} />
-              
             </Route>
-            <Route element={<RequireAuth allowedRoles={[ROLES[1]]}/>}>
+            <Route element={<RequireAuth allowedRoles={[ROLES[1]]} />}>
               <Route path="/admin" element={<AdminPage />} />
             </Route>
           </Route>

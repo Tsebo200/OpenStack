@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
@@ -6,7 +6,9 @@ import styles from "./QuestionCard.module.scss";
 
 export const QuestionCard = (props) => {
   const question = props.questionDetails;
-  // console.log(question);
+  const tagReferenceList = props.TagDetailsList;
+
+  const UserDetailsReferenceList = props.UserDetailsList;
   const formattedSentence = (sentence) => {
     let newSentence = sentence
       .split(" ")
@@ -54,7 +56,6 @@ export const QuestionCard = (props) => {
   };
   let answerState = (
     <div className={`${styles.question_interaction_child}`}>
-      <ion-icon name="checkmark-done-outline"></ion-icon>
       <p>{question.questionInteraction?.answers | 0} answers</p>
     </div>
   );
@@ -67,36 +68,70 @@ export const QuestionCard = (props) => {
         <p>{question.questionInteraction?.answers | 0} answers</p>
       </div>
     );
+  } else if (question.questionInteraction.answers > 0) {
+    answerState = (
+      <div className={`${styles.question_interaction_child}`}>
+        <ion-icon name="checkmark-done-outline"></ion-icon>
+        <p>{question.questionInteraction?.answers | 0} answers</p>
+      </div>
+    );
   }
 
-  // return (
-  //   <div className={styles.question}>
-  //     <div className={styles.question_interaction}>
-  //       {answerState}
-  //       <div className={styles.question_interaction_child}>
-  //         <p>{question.questionInteraction?.votes | 0} votes</p>
-  //       </div>
-  //     </div>
-  //     <div className={styles.question_details}>
-  //       <Link>
-  //         <h4>{formattedSentence(question.title)}</h4>
-  //       </Link>
-  //       <p>{formateQuestionText(question.body)}</p>
-  //       {/* <div className={styles.tag_list}>
-  //         {question.questionTags.map((tag) => {
-  //           return <Link key={tag.id}>{tag.title}</Link>;
-  //         })}
-  //       </div> */}
-  //     </div>
+  useEffect(() => {
+    const user = UserDetailsReferenceList.filter((i) => {
+      return i.userId === question.userId;
+    });
+    console.log(user);
+  }, []);
 
-  //     <div className={styles.user_details}>
-  //       {/* <img src={question.userDetails.userprofilePicture} /> */}
-  //       <Link>{question.userDetails.userName}</Link>
-  //       <p className={styles.user_details_score}>
-  //         {question.userDetails.userScore}
-  //       </p>
-  //       <p>{convertTimeCreated()}</p>
-  //     </div>
-  //   </div>
-  // );
+  return (
+    <div className={styles.question}>
+      <div className={styles.question_interaction}>
+        {answerState}
+        <div className={styles.question_interaction_child}>
+          <p>{question.questionInteraction?.votes | 0} votes</p>
+        </div>
+      </div>
+      <div className={styles.question_details}>
+        <Link to={`/questions/individual/${question._id}`}>
+          <h4>{formattedSentence(question.title)}</h4>
+        </Link>
+        <p>{formateQuestionText(question.body)}</p>
+        <div className={styles.tag_list}>
+          {question.tags.map((tag) => {
+            const tagDetails = tagReferenceList.filter((i) => {
+              return i._id === tag;
+            });
+            if (!tagDetails[0]?.tombstone) {
+              return <Link>{tagDetails[0]?.tagName}</Link>;
+            }
+            return (
+              <p className={styles.tag_tombstone}>{tagDetails[0]?.tagName}</p>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className={styles.user_details}>
+        {/* <img src={question.userDetails.userprofilePicture} /> */}
+        {UserDetailsReferenceList.filter((i) => {
+          return i.userId === question.userId;
+        }).map((userDetails) => {
+          return (
+            <>
+              <Link>{userDetails?.username}</Link>
+              <p className={styles.user_details_score}>
+                {userDetails?.userScore}
+              </p>
+            </>
+          );
+        })}
+        {/* <Link>{question?.userDetails?.userName}</Link>
+        <p className={styles?.user_details_score}>
+          {question?.userDetails?.userScore}
+        </p> */}
+        <p>{convertTimeCreated()}</p>
+      </div>
+    </div>
+  );
 };

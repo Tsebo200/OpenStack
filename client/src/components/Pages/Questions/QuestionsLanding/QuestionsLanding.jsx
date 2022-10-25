@@ -12,114 +12,95 @@ export const QuestionsLanding = () => {
   // get all questions
   const [QuestionList, setQuestionList] = useState([]);
 
+  const [UniqueTagsList, setUniqueTagsList] = useState([]);
+  const [TagDetailsList, setTagDetailsList] = useState([]);
+
+  const [UniqueUsersList, setUniqueUsersList] = useState([]);
+  const [UserDetailsList, setUserDetailsList] = useState([]);
+
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
 
   useEffect(() => {
-    let isMounted = true
-    const controller = new AbortController()
-    const getUsers = async () => {
-      try{
-        const response = await axios.get('/api/all-questions', {
-          signal: controller.signal
+    let isMounted = true;
+    const controller = new AbortController();
+    const getAllQuestions = async () => {
+      try {
+        const response = await axios.get("/api/all-questions", {
+          signal: controller.signal,
         });
-        console.log(response.data)
-        isMounted && setQuestionList(response.data)
+        // console.log(response.data);
+        isMounted && setQuestionList(response.data);
+
+        // create unique requests
+        // create unique tags
+        // https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
+        let allTags = [];
+        response.data.map((question) => {
+          question.tags.map((tag) => {
+            allTags.push(tag);
+          });
+        });
+        setUniqueTagsList(allTags.filter(onlyUnique));
+
+        let allUsers = response.data.map((question) => {
+          return question.userId;
+        });
+        setUniqueUsersList(allUsers.filter(onlyUnique));
       } catch (err) {
         console.log(err);
       }
-    }
+    };
 
-    getUsers()
-
+    getAllQuestions();
     return () => {
-      isMounted = false
-      controller.abort()
-    }
-  }, [])
-  
+      isMounted = false;
+      controller.abort();
+    };
+  }, []);
 
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+    const getAllTags = async () => {
+      try {
+        const response = await axios.post("/unique-tags", {
+          signal: controller.signal,
+          UniqueTagsList: UniqueTagsList,
+        });
+        isMounted && setTagDetailsList(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getAllTags();
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [UniqueTagsList]);
 
-  // const options = {
-  //   method: "GET",
-  //   url: "http://localhost:5001/api/all-questions",
-  // };
-
-  // useEffect(() => {
-  //   axios
-  //     .request(options)
-  //     .then(function (response) {
-  //       console.log(response.data);
-  //       setQuestionList(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error);
-  //     });
-  // }, []);
-
-  // const [QuestionList, setQuestionList] = useState([
-  //   {
-  //     _id: "20323123",
-  //     questionTitle: "please Help html error",
-  //     questionText:
-  //       "Lorem Ipsum is simply dummy text of the printing QWSOH;qnsawedo;jawldaw;bjd and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  //     userDetails: {
-  //       userprofilePicture: userprofilePicture,
-  //       userName: "Caveman822",
-  //       userScore: 20009,
-  //     },
-  //     questionCreated: "2022-10-11T00:19:38+02:00",
-  //     questionInteraction: {
-  //       answers: 3,
-  //       votes: 2,
-  //       correctAnswer: true,
-  //     },
-  //     questionTags: [
-  //       { id: 1, title: "CSS" },
-  //       { id: 2, title: "HTML" },
-  //     ],
-  //   },
-  //   {
-  //     _id: "20323123",
-  //     questionTitle: "please Help html error",
-  //     questionText:
-  //       "Lorem Ipsum is simply dummy text of the printing QWSOH;qnsawedo;jawldaw;bjd and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  //     userDetails: {
-  //       userprofilePicture: userprofilePicture,
-  //       userName: "Caveman822",
-  //       userScore: 20009,
-  //     },
-  //     questionCreated: "2022-10-18T15:19:38+02:00",
-  //     questionInteraction: {
-  //       answers: 0,
-  //       votes: 2,
-  //       correctAnswer: false,
-  //     },
-  //     questionTags: [
-  //       { id: 1, title: "CSS" },
-  //       { id: 2, title: "HTML" },
-  //     ],
-  //   },
-  //   {
-  //     _id: "20323123",
-  //     questionTitle: "please Hawdawdawdawdawdaml error",
-  //     questionText:
-  //       "Lorem Ipsum is simply dummy text of the printing QWSOH;qnsawedo;jawldaw;bjd and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  //     userDetails: {
-  //       userprofilePicture: userprofilePicture,
-  //       userName: "coovman",
-  //       userScore: 43,
-  //     },
-  //     questionCreated: "2022-10-11T00:19:38+02:00",
-  //     questionInteraction: {
-  //       answers: 3,
-  //       votes: 2,
-  //       correctAnswer: false,
-  //     },
-  //     questionTags: [
-  //       { id: 1, title: "CSS" },
-  //       { id: 2, title: "HTML" },
-  //     ],
-  //   },
-  // ]);
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+    const getAllTags = async () => {
+      try {
+        const response = await axios.post("/unique-users", {
+          signal: controller.signal,
+          UniqueUsersList: UniqueUsersList
+        });
+        isMounted && setUserDetailsList(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getAllTags();
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [UniqueUsersList]);
 
   // sorting will need to be done server side
 
@@ -148,10 +129,15 @@ export const QuestionsLanding = () => {
         </table>
       </div>
       {QuestionList.map((question) => {
-            return (
-              <QuestionCard key={question._id} questionDetails={question} />
-            );
-          })}
+        return (
+          <QuestionCard
+            key={question._id}
+            TagDetailsList={TagDetailsList}
+            UserDetailsList={UserDetailsList}
+            questionDetails={question}
+          />
+        );
+      })}
     </div>
   );
 };
