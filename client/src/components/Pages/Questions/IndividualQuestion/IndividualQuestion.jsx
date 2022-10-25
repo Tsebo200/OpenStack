@@ -13,7 +13,7 @@ export default function IndividualQuestion() {
   let params = useParams();
 
   const [QuestionDetails, setQuestionDetails] = useState(null);
-  const [QuestionTags, setQuestionTags] = useState(null);
+  const [QuestionTags, setQuestionTags] = useState([]);
 
   const getQuestions = async () => {
     const response = await axios.post("/get-question", {
@@ -111,7 +111,7 @@ export default function IndividualQuestion() {
               {/* <CommentList/> */}
             </div>
           </div>
-          {/* <Answer /> */}
+          <Answer />
           <AnswerPortal />
           <br></br>
           <br></br>
