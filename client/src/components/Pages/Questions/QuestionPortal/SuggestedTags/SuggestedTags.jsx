@@ -19,9 +19,13 @@ export default function SuggestedTags(props) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.tagCon}>
-        <p className={styles.tagName}>{props.tagName}</p>
-      </div>
+      {tagList.filter((i) =>{
+        if(props.searchTag == ""){
+          return i.tagName
+        } else if (i.tagName.includes(props.searchTag.toUpperCase())){
+          return i.tagName
+        }
+      }).map((i, index)=> <p className={styles.tagName} key={i._id}>{i.tagName}</p>)}
     </div>
   )
 }

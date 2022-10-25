@@ -1,22 +1,22 @@
 @import '../../../../../index.scss';
 
 .container{
-    width: 50%;
+    max-width: 50%;
     display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    background-color: $primary;
+    flex-direction: column;
+    background-color: $black;
     border-radius: 0px 0px 10px 10px;
-    color: $black;
+    color: $primary;
     padding: 2% 0% 2% 2%;
 
     .tagName{
+        display: flex;
+        justify-content: space-between;
+        width: fit-content;
+        align-items: center;
         border: 1px solid $primary;
         border-radius: 5px;
         padding: 5px;
-    }
-
-    .tagCon{
-        display: flex;
+        margin: 5px;
     }
 }

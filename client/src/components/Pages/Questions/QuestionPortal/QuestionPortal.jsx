@@ -58,6 +58,8 @@ function QuestionPortal() {
   const [codeError, setCodeError] = useState();
   const [tagError, setTagError] = useState();
 
+  const [searchTag, setSearchTag] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -337,7 +339,7 @@ function QuestionPortal() {
             onChange={imageVal}
           />
         </label>
-        <label htmlFor="enteredTags">Enter Tags related to questions</label>
+        <label htmlFor="enteredTags">Search Tags</label>
         {tagError ? (
           <Input
             name="enteredTags"
@@ -345,6 +347,8 @@ function QuestionPortal() {
             inputType="text"
             ref={tag}
             value={values["tag"]}
+            onChange={(e) => {setSearchTag(e.target.value);
+            }}
           />
         ) : (
           <Input
@@ -353,9 +357,10 @@ function QuestionPortal() {
             inputType="text"
             ref={tag}
             value={values["tag"]}
+            onChange={(e) => {setSearchTag(e.target.value.toUpperCase());}}
           />
         )}
-        <SuggestedTags tagName={"JavaScript"} />
+        <SuggestedTags searchTag={searchTag}/>
         <hr />
         <h2>Review your question</h2>
         <hr />
