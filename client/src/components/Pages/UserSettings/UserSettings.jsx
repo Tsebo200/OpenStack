@@ -80,9 +80,9 @@ const UserSettings = () => {
         {/* <header> */}
       
         <div className={styles.user_questions_container}>
-        <header className={styles.questions_heading}>
+        <header className={styles.answers_heading}>
             <h3 className={styles.questions_heading}>Answers</h3>
-            <header className={styles.questions_nav}>
+            <header className={styles.answers_nav}>
             <table>
             <tr>
             <td>
