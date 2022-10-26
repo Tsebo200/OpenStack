@@ -24,7 +24,7 @@ const UserSettings = () => {
             <header className={styles.questions_nav}>
 
             <table>
-            <tr className={styles.table_row}>
+            <tr>
             <td>
             <div className={styles.score_container}>
             <p className={styles.score_text}>Score</p>
@@ -39,11 +39,13 @@ const UserSettings = () => {
             <p className={styles.activity_text}>Activity</p>
             </div>
             </td>
+
             <td>
             <div className={styles.newest_container}>
             <p className={styles.newest_text}>Newest</p>
             </div>
             </td>
+
             <td>
             <div className={styles.views_container}>
             <p className={styles.views_text}>Views</p>
