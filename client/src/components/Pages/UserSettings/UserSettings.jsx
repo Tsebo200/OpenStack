@@ -66,7 +66,8 @@ const UserSettings = () => {
           <div className={styles.questions_container_content_box}>
           <div className={styles.questions_row}>
           <div className={styles.question_notification_container}>
-            <h4 className={styles.question_notification_counter_text}>0</h4></div> 
+            <h4 className={styles.question_notification_counter_text}>0</h4>
+            </div> 
           <p className={styles.question_text}>Adding custom SVGs to ion icons</p>
           <p className={styles.date_text}>Oct 31</p>
           </div>
@@ -105,13 +106,22 @@ const UserSettings = () => {
             </td>
             </tr>
             </table>
-          </header>
+          </header> {/* End of Answers Nav */}
+         
 
-          <div className={styles.answers_container_content_box}>
+          {/* inside the answers container */}
+          <div className={styles.questions_container_content_box}>
+          <div className={styles.questions_row}>
+          <div className={styles.question_notification_container}>
+            <h4 className={styles.question_notification_counter_text}>0</h4></div> 
+          <p className={styles.question_text}>Adding custom SVGs to ion icons</p>
+          <p className={styles.date_text}>Oct 31</p>
+          </div>
         </div>
-        </div>
-        {/* </header> */}
-    </div>
+      </div>{/* End of answers_container */}
+
+
+  </div>
   );
 
 
