@@ -247,6 +247,10 @@ header{
 
 
 // Answers section
+.answers_container_content_box{
+  
+}
+
 .user_answers_container {
   width: 47%;
   height: 25vh;
@@ -310,94 +314,94 @@ header{
 
 
 // Old Styling
-.settings_background {
-  background-position: center;
-  background-size: cover;
-  height: calc(100vh);
-  opacity: 0.8;
-  background-color: #e5e5f7;
-  opacity: 0.8;
-  background-image: repeating-radial-gradient(
-      circle at 0 0,
-      transparent 0,
-      #e5e5f7 7px
-    ),
-    repeating-linear-gradient($secondary-shadow, $primary); //wavy but customizzed
-  position: relative;
-}
+// .settings_background {
+//   background-position: center;
+//   background-size: cover;
+//   height: calc(100vh);
+//   opacity: 0.8;
+//   background-color: #e5e5f7;
+//   opacity: 0.8;
+//   background-image: repeating-radial-gradient(
+//       circle at 0 0,
+//       transparent 0,
+//       #e5e5f7 7px
+//     ),
+//     repeating-linear-gradient($secondary-shadow, $primary); //wavy but customizzed
+//   position: relative;
+// }
 
-.settings_form_container {
-  position: relative;
-  width: 650px;
-  margin: 0 auto;
-  top: 21vh;
-}
+// .settings_form_container {
+//   position: relative;
+//   width: 650px;
+//   margin: 0 auto;
+//   top: 21vh;
+// }
 
-.settings_box {
-  display: inline-block;
-  border-radius: 20px;
-  background-color: white;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 18px 100px 0px;
-}
+// .settings_box {
+//   display: inline-block;
+//   border-radius: 20px;
+//   background-color: white;
+//   box-shadow: rgba(17, 12, 46, 0.15) 0px 18px 100px 0px;
+// }
 
-.inputs_container {
-  // overflow: hidden;
-  padding: 30px;
-  width: 100%;
-}
+// .inputs_container {
+//   // overflow: hidden;
+//   padding: 30px;
+//   width: 100%;
+// }
 
-.form_logo {
-  width: 150px;
-  height: auto;
-}
+// .form_logo {
+//   width: 150px;
+//   height: auto;
+// }
 
-.profile_icon {
-  width: 130px;
-  height: 130px;
-  margin-top: 23px;
-  border-radius: 130px;
-}
+// .profile_icon {
+//   width: 130px;
+//   height: 130px;
+//   margin-top: 23px;
+//   border-radius: 130px;
+// }
 
-.labels_container {
-  position: relative;
-  width: 20vw;
-  height: 20vh;
-  margin: auto;
-  top: -130px;
+// .labels_container {
+//   position: relative;
+//   width: 20vw;
+//   height: 20vh;
+//   margin: auto;
+//   top: -130px;
 
-  .username_label {
-    position: absolute;
-  }
+//   .username_label {
+//     position: absolute;
+//   }
 
-  .email_label {
-    top: 40%;
-    width: 100%;
-  }
+//   .email_label {
+//     top: 40%;
+//     width: 100%;
+//   }
 
-  .input_container {
-    position: absolute;
-    top: 15%;
-  }
-}
+//   .input_container {
+//     position: absolute;
+//     top: 15%;
+//   }
+// }
 
-.achieve_container {
-  position: relative;
-  width: 15%;
-  height: 60%;
-  margin: auto;
-  left: 16.3vw;
-  top: -40vh;
-  border-radius: 60px;
-  background: #2b2b2b;
-}
+// .achieve_container {
+//   position: relative;
+//   width: 15%;
+//   height: 60%;
+//   margin: auto;
+//   left: 16.3vw;
+//   top: -40vh;
+//   border-radius: 60px;
+//   background: #2b2b2b;
+// }
 
-.achievement {
-  width: 60px;
-  height: 60px;
-  position: absolute;
-  top: auto auto;
-  left: 25%;
-  // margin: 0 auto;
-  border-radius: 60px;
-  background: yellow;
-}
+// .achievement {
+//   width: 60px;
+//   height: 60px;
+//   position: absolute;
+//   top: auto auto;
+//   left: 25%;
+//   // margin: 0 auto;
+//   border-radius: 60px;
+//   background: yellow;
+// }

@@ -80,14 +80,23 @@ const UserSettings = () => {
           </div>
         </div> {/* End of Questions container */}
 
+        <div className={styles.answers_container_content_box}>
         <div className={styles.user_answers_container}>
           <header>
             <h3 className={styles.answers_heading}>Answers</h3>
           </header>
         </div>
+        </div>
     </div>
   );
 
+
+
+
+
+
+
+  
   //  // Read all the DB Items
   //  const [readProducts, setReadProducts] = useState();
   //  const [renderProducts, setRenderProducts] = useState(false);
