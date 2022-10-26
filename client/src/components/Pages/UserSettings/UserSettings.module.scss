@@ -98,34 +98,40 @@
       text-align: center;
     }
 
-
+    .score_container {
+      width: 50px;
+      height: 3vh;
+      border-radius: 4px 0px 0px 4px;
+      float: left;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: center;
+      align-items: flex-start;
+      
+    
+      
+      .score_text {
+      }
+    }
+    .score_container:hover{
+      background: $primary;
+    }
 
 }
 
 
-.score_container {
-  width: 50px;
-  height: 3vh;
-
-  border-radius: 4px 0px 0px 4px;
+.newest_container {
+  width: 28%;
+  height: 100%;
+  margin-left: 1px;
+  // background: red;
   float: left;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  align-items: flex-start;
-  
-
-  
-  .score_text {
-  }
-
-
 }
-.score_container:hover{
-  background: $primary;
-}
+
+
+
 
 
 

@@ -35,13 +35,19 @@ const UserSettings = () => {
             {/* <div className={styles.test}></div> */}
             {/* <div className={styles.vert_line}></div> */}
             <td>
+            <div className={styles.activity_container}>
             <p className={styles.activity_text}>Activity</p>
+            </div>
             </td>
             <td>
+            <div className={styles.newest_container}>
             <p className={styles.newest_text}>Newest</p>
+            </div>
             </td>
             <td>
+            <div className={styles.views_container}>
             <p className={styles.views_text}>Views</p>
+            </div>
             </td>
             </tr>
             </table>
