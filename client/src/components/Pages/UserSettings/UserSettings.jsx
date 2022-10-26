@@ -22,7 +22,6 @@ const UserSettings = () => {
           <header>
             <h3 className={styles.questions_heading}>Questions</h3>
             <header className={styles.questions_nav}>
-
             <table>
             <tr>
             <td>
@@ -54,20 +53,14 @@ const UserSettings = () => {
             </tr>
             </table>
             </header>
-                
-  
-
-
-                
-
-            
-
               {/* <div className={styles.views_container}>
    
               <div className={styles.views}></div> */}
               {/* </div> */}
             </header>
           {/* </header> */}
+
+
 
           {/* Inside the Question Container */}
           <div className={styles.questions_container_content_box}>
@@ -80,13 +73,46 @@ const UserSettings = () => {
           </div>
         </div> {/* End of Questions container */}
 
+        {/* <header> */}
         <div className={styles.answers_container_content_box}>
         <div className={styles.user_answers_container}>
-          <header>
+        <header className={styles.answers_nav}>
             <h3 className={styles.answers_heading}>Answers</h3>
+
+            <table>
+            <tr>
+            <td>
+            <div className={styles.score_container}>
+            <p className={styles.score_text}>Score</p>
+            </div>
+            {/* <div className={styles.vert_line}></div> */}
+
+            </td>
+            {/* <div className={styles.test}></div> */}
+            {/* <div className={styles.vert_line}></div> */}
+            <td>
+            <div className={styles.activity_container}>
+            <p className={styles.activity_text}>Activity</p>
+            </div>
+            </td>
+
+            <td>
+            <div className={styles.newest_container}>
+            <p className={styles.newest_text}>Newest</p>
+            </div>
+            </td>
+
+            <td>
+            <div className={styles.views_container}>
+            <p className={styles.views_text}>Views</p>
+            </div>
+            </td>
+            </tr>
+            </table>
           </header>
         </div>
         </div>
+        {/* </header> */}
     </div>
   );
 
