@@ -79,9 +79,10 @@ const UserSettings = () => {
 
         {/* <header> */}
       
-        <div className={styles.user_answers_container}>
-        <header className={styles.answers_nav}>
-            <h3 className={styles.answers_heading}>Answers</h3>
+        <div className={styles.user_questions_container}>
+        <header className={styles.questions_heading}>
+            <h3 className={styles.questions_heading}>Answers</h3>
+            <header className={styles.questions_nav}>
             <table>
             <tr>
             <td>
@@ -107,7 +108,7 @@ const UserSettings = () => {
             </tr>
             </table>
           </header> {/* End of Answers Nav */}
-         
+          </header>
 
           {/* inside the answers container */}
           <div className={styles.questions_container_content_box}>
