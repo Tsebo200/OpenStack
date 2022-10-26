@@ -43,9 +43,12 @@ const UserSettings = () => {
 
           {/* Inside the Question Container */}
           <div className={styles.questions_container_content_box}>
+          <div className={styles.questions_row}>
           <div className={styles.question_notification_container}>
-            <h4 className={styles.question_notification_counter_text}>0</h4>
-          </div>    
+            <h4 className={styles.question_notification_counter_text}>0</h4></div> 
+          <p className={styles.question_text}>Adding custom SVGs to ion icons</p>
+          <p className={styles.date_text}>Oct 31</p>
+          </div>
           </div>
         </div> {/* End of Questions container */}
 
