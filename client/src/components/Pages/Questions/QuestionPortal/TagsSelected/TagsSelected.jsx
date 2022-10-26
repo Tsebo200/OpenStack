@@ -6,7 +6,9 @@ export default function TagsSelected(props) {
 
   return (
     <div className={styles.container}>
-        <p className={styles.tag}>{props.tag}</p>
+      {props.tag.map((i, index) => 
+        <p className={styles.tag}>{i}</p>
+      )}
     </div>
   )
 }

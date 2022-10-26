@@ -9,13 +9,25 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
-import axios from "axios";
+import axios from '../../../../api/axios';
 import SuccessModal from "../../../SuccessModal/SuccessModal";
 import { useAuth } from "../../../../Hooks/useAuth";
-import SuggestedTags from "./SuggestedTags/SuggestedTags";
 import TagsSelected from "./TagsSelected/TagsSelected";
 
 function QuestionPortal() {
+  const [tagList, setTagList] = useState([]);
+
+  const getTags = async () => {
+    const response = await axios.get("/api/all-tags");
+    console.log(response);
+    setTagList(response.data);
+  };
+
+  useEffect(() => {
+    getTags();
+  }, []);
+
+
   // useState's and Ref's
   const defValues = [
     "title",
@@ -63,6 +75,7 @@ function QuestionPortal() {
 
   const [searchTag, setSearchTag] = useState("");
   const [tagsSelected, setTagsSelected] = useState([]);
+
 
   const titlePreview = (e) => {
     const value = e.target.value;
@@ -151,16 +164,29 @@ function QuestionPortal() {
     // navigate("/");
   };
 
-  const addTagHandler = (e) => {
-    e.preventDefault();
-    const arr = [];
-    console.log(e.target._id);
+
+  const addTagHandler = (e, key) => {
+    console.log(e)
+    console.log(key)
+    const arr = tagsSelected;
+    // console.log(key)
+    // // console.log(e.target.__reactFiber$3393ywe519t.key);
     const tags = e.target.innerText;
 
-    arr.push(tags);
-    setTagsSelected([...arr]);
-    console.log(tagsSelected);
+    if(!arr.includes(tags)){
+      arr.push(tags);
+      setTagsSelected(arr);
+      // console.log(tagsSelected);
+      setRerender(true);
+
+    }
+
   }
+
+  const [rerender, setRerender] = useState(false);
+  useEffect(() => {
+    setRerender(false);
+  }, [rerender])
 
   const formHandle = (e) => {
     e.preventDefault();
@@ -362,7 +388,16 @@ function QuestionPortal() {
             onChange={(e) => {setSearchTag(e.target.value.toUpperCase());}}
           />
         )}
-        <SuggestedTags searchTag={searchTag} onClick={(e) => addTagHandler(e)}/>
+        {/* <SuggestedTags searchTag={searchTag} test={value => setTestState(value)} onClick={addTagHandler}/> */}
+        <div className={styles.tagCon}>
+            {tagList.filter((i) =>{
+            if(searchTag == ""){
+              return i.tagName
+            } else if (i.tagName.includes(searchTag.toUpperCase())){
+              return i.tagName
+            }
+          }).map((i, index)=> <p className={styles.tagName} key={i._id} onClick={(e, key) => addTagHandler(e, i._id)}>{i.tagName}</p>)}  
+        </div>
         <TagsSelected tag={tagsSelected}/>
         <hr />
         <h2>Review your question</h2>

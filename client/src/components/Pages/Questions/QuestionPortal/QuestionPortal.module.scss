@@ -87,6 +87,33 @@
       color: $black;
       padding: 20px;
     }
+    .tagCon{
+      max-width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      border-radius: 0px 0px 10px 10px;
+      color: $primary;
+      padding: 2% 0% 2% 2%;
+      transition: 0.2s ease-in-out;
+      
+      .tagName{
+        display: flex;
+        justify-content: space-between;
+        width: fit-content;
+        align-items: center;
+        border: 1px solid $primary;
+        border-radius: 5px;
+        padding: 5px;
+        margin: 5px;
+        transition: 0.1s linear;
+  
+        &:hover{
+            background-color: $primary;
+            color: $black;
+            cursor: pointer;
+        }
+      }
+    }
   }
 }
 
