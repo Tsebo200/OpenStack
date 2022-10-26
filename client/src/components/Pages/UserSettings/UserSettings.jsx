@@ -80,9 +80,9 @@ const UserSettings = () => {
         {/* <header> */}
       
         <div className={styles.user_questions_container}>
-        <header className={styles.questions_heading}>
+        <header className={styles.answers_heading}>
             <h3 className={styles.questions_heading}>Answers</h3>
-            <header className={styles.questions_nav}>
+            <header className={styles.answers_nav}>
             <table>
             <tr>
             <td>
@@ -114,8 +114,8 @@ const UserSettings = () => {
           <div className={styles.questions_container_content_box}>
           <div className={styles.questions_row}>
           <div className={styles.question_notification_container}>
-            <h4 className={styles.question_notification_counter_text}>0</h4></div> 
-          <p className={styles.question_text}>Adding custom SVGs to ion icons</p>
+            <h4 className={styles.question_notification_counter_text}>1</h4></div> 
+          <p className={styles.question_text}>Change link colour with main div</p>
           <p className={styles.date_text}>Oct 31</p>
           </div>
         </div>
