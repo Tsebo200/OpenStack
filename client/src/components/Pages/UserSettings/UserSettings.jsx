@@ -26,7 +26,9 @@ const UserSettings = () => {
             <table>
             <tr className={styles.table_row}>
             <td>
+            <div className={styles.score_container}>
             <p className={styles.score_text}>Score</p>
+            </div>
             {/* <div className={styles.vert_line}></div> */}
 
             </td>
