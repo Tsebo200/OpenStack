@@ -52,3 +52,4 @@ export const ResultsQuestions = () => {
     </resultsquestions>
   )
 }
+export default ResultsQuestions;

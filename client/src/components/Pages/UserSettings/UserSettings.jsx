@@ -22,41 +22,116 @@ const UserSettings = () => {
           <header>
             <h3 className={styles.questions_heading}>Questions</h3>
             <header className={styles.questions_nav}>
-              <div className={styles.score_container}>
-                <p className={styles.score_text}>Score</p>
-              <div className={styles.vert_line}></div>
-              </div>
-              <div className={styles.activity_container}>
-                <p className={styles.activity_text}>Activity</p>
-                <div className={styles.vert_line}></div>
-              </div>
-              <div className={styles.newest_container}>
-                <p className={styles.newest_text}>Newest</p>
-                <div className={styles.vert_line}></div>
-              </div>
-              <div className={styles.views_container}>
-              <p className={styles.views_text}>Views</p>
-              <div className={styles.views}></div>
-              </div>
+            <table>
+            <tr>
+            <td>
+            <div className={styles.score_container}>
+            <p className={styles.score_text}>Score</p>
+            </div>
+            {/* <div className={styles.vert_line}></div> */}
+
+            </td>
+            {/* <div className={styles.test}></div> */}
+            {/* <div className={styles.vert_line}></div> */}
+            <td>
+            <div className={styles.activity_container}>
+            <p className={styles.activity_text}>Activity</p>
+            </div>
+            </td>
+
+            <td>
+            <div className={styles.newest_container}>
+            <p className={styles.newest_text}>Newest</p>
+            </div>
+            </td>
+
+            <td>
+            <div className={styles.views_container}>
+            <p className={styles.views_text}>Views</p>
+            </div>
+            </td>
+            </tr>
+            </table>
             </header>
-          </header>
+              {/* <div className={styles.views_container}>
+   
+              <div className={styles.views}></div> */}
+              {/* </div> */}
+            </header>
+          {/* </header> */}
+
+
 
           {/* Inside the Question Container */}
           <div className={styles.questions_container_content_box}>
+          <div className={styles.questions_row}>
           <div className={styles.question_notification_container}>
             <h4 className={styles.question_notification_counter_text}>0</h4>
-          </div>    
+            </div> 
+          <p className={styles.question_text}>Adding custom SVGs to ion icons</p>
+          <p className={styles.date_text}>Oct 31</p>
+          </div>
           </div>
         </div> {/* End of Questions container */}
 
-        <div className={styles.user_answers_container}>
-          <header>
-            <h3 className={styles.answers_heading}>Answers</h3>
+
+
+
+        {/* <header> */}
+      
+        <div className={styles.user_questions_container}>
+        <header className={styles.questions_heading}>
+            <h3 className={styles.questions_heading}>Answers</h3>
+            <header className={styles.questions_nav}>
+            <table>
+            <tr>
+            <td>
+            <div className={styles.score_container}>
+            <p className={styles.score_text}>Score</p>
+            </div>
+            {/* <div className={styles.vert_line}></div> */}
+
+            </td>
+            {/* <div className={styles.test}></div> */}
+            {/* <div className={styles.vert_line}></div> */}
+            <td>
+            <div className={styles.activity_container}>
+            <p className={styles.activity_text}>Activity</p>
+            </div>
+            </td>
+
+            <td>
+            <div className={styles.newest_container}>
+            <p className={styles.newest_text}>Newest</p>
+            </div>
+            </td>
+            </tr>
+            </table>
+          </header> {/* End of Answers Nav */}
           </header>
+
+          {/* inside the answers container */}
+          <div className={styles.questions_container_content_box}>
+          <div className={styles.questions_row}>
+          <div className={styles.question_notification_container}>
+            <h4 className={styles.question_notification_counter_text}>0</h4></div> 
+          <p className={styles.question_text}>Adding custom SVGs to ion icons</p>
+          <p className={styles.date_text}>Oct 31</p>
+          </div>
         </div>
-    </div>
+      </div>{/* End of answers_container */}
+
+
+  </div>
   );
 
+
+
+
+
+
+
+  
   //  // Read all the DB Items
   //  const [readProducts, setReadProducts] = useState();
   //  const [renderProducts, setRenderProducts] = useState(false);
