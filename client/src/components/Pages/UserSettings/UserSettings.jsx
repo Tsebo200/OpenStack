@@ -21,25 +21,33 @@ const UserSettings = () => {
       <div className={styles.user_questions_container}>
           <header>
             <h3 className={styles.questions_heading}>Questions</h3>
-            <header className={styles.questions_nav}>
-              <div className={styles.score_container}>
-                <p className={styles.score_text}>Score</p>
-              <div className={styles.vert_line}></div>
-              </div>
-              <div className={styles.activity_container}>
+            {/* <header className={styles.questions_nav}> */}
+
+            <table>
+              <tr>
+            <td>
+            <p className={styles.score_text}>Score</p>
+            </td>
+            <td>
+            <p className={styles.score_text}>Score</p>
+            </td>
+            </tr>
+            </table>
+               
+                
+  
+
+
                 <p className={styles.activity_text}>Activity</p>
-                <div className={styles.vert_line}></div>
-              </div>
-              <div className={styles.newest_container}>
+
                 <p className={styles.newest_text}>Newest</p>
-                <div className={styles.vert_line}></div>
-              </div>
+
               <div className={styles.views_container}>
               <p className={styles.views_text}>Views</p>
               <div className={styles.views}></div>
               </div>
             </header>
-          </header>
+          {/* </header> */}
 
           {/* Inside the Question Container */}
           <div className={styles.questions_container_content_box}>
