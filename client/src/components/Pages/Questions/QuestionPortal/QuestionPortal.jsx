@@ -13,6 +13,7 @@ import axios from "axios";
 import SuccessModal from "../../../SuccessModal/SuccessModal";
 import { useAuth } from "../../../../Hooks/useAuth";
 import SuggestedTags from "./SuggestedTags/SuggestedTags";
+import TagsSelected from "./TagsSelected/TagsSelected";
 
 function QuestionPortal() {
   // useState's and Ref's
@@ -61,17 +62,7 @@ function QuestionPortal() {
   const [tagError, setTagError] = useState();
 
   const [searchTag, setSearchTag] = useState("");
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setValues({
-      ...values,
-      [name]: value,
-    });
-  };
-
-  const exampleCode = `const hello = "written code will go here";`;
+  const [tagsSelected, setTagsSelected] = useState([]);
 
   const titlePreview = (e) => {
     const value = e.target.value;
@@ -160,6 +151,17 @@ function QuestionPortal() {
     // navigate("/");
   };
 
+  const addTagHandler = (e) => {
+    e.preventDefault();
+    const arr = [];
+    console.log(e.target._id);
+    const tags = e.target.innerText;
+
+    arr.push(tags);
+    setTagsSelected([...arr]);
+    console.log(tagsSelected);
+  }
+
   const formHandle = (e) => {
     e.preventDefault();
 
@@ -197,8 +199,6 @@ function QuestionPortal() {
     } else {
       setTagError();
     }
-
-    
 
     let payload = {
       title: titleString,
@@ -362,7 +362,8 @@ function QuestionPortal() {
             onChange={(e) => {setSearchTag(e.target.value.toUpperCase());}}
           />
         )}
-        <SuggestedTags searchTag={searchTag}/>
+        <SuggestedTags searchTag={searchTag} onClick={(e) => addTagHandler(e)}/>
+        <TagsSelected tag={tagsSelected}/>
         <hr />
         <h2>Review your question</h2>
         <hr />

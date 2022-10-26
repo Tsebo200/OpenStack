@@ -8,6 +8,7 @@
     border-radius: 0px 0px 10px 10px;
     color: $primary;
     padding: 2% 0% 2% 2%;
+    transition: 0.2s ease-in-out;
 
     .tagName{
         display: flex;
@@ -18,5 +19,12 @@
         border-radius: 5px;
         padding: 5px;
         margin: 5px;
+        transition: 0.1s linear;
+
+        &:hover{
+            background-color: $primary;
+            color: $black;
+            cursor: pointer;
+        }
     }
 }

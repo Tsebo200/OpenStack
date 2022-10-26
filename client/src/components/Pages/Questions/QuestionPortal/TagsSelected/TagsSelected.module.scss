@@ -1,0 +1,18 @@
+@import "../../../../../index.scss";
+
+.container{
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0px 0px 10px 10px;
+    color: $primary;
+    padding: 2% 0% 2% 2%;
+    transition: 0.2s ease-in-out;
+
+    .tag{
+        padding: 5px;
+        border-radius: 5px;
+        background-color: $secondary;
+        color: $white;
+    }
+}

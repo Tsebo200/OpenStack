@@ -25,7 +25,7 @@ export default function SuggestedTags(props) {
         } else if (i.tagName.includes(props.searchTag.toUpperCase())){
           return i.tagName
         }
-      }).map((i, index)=> <p className={styles.tagName} key={i._id}>{i.tagName}</p>)}
+      }).map((i, index)=> <p className={styles.tagName} key={i._id} onClick={props.onClick}>{i.tagName}</p>)}
     </div>
   )
 }
