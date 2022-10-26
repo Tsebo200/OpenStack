@@ -73,12 +73,14 @@ const UserSettings = () => {
           </div>
         </div> {/* End of Questions container */}
 
+
+
+
         {/* <header> */}
-        <div className={styles.answers_container_content_box}>
+      
         <div className={styles.user_answers_container}>
         <header className={styles.answers_nav}>
             <h3 className={styles.answers_heading}>Answers</h3>
-
             <table>
             <tr>
             <td>
@@ -101,15 +103,11 @@ const UserSettings = () => {
             <p className={styles.newest_text}>Newest</p>
             </div>
             </td>
-
-            <td>
-            <div className={styles.views_container}>
-            <p className={styles.views_text}>Views</p>
-            </div>
-            </td>
             </tr>
             </table>
           </header>
+
+          <div className={styles.answers_container_content_box}>
         </div>
         </div>
         {/* </header> */}

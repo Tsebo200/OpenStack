@@ -248,7 +248,12 @@ header{
 
 // Answers section
 .answers_container_content_box{
-
+  width: 90%;
+  height: 17vh;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 7px;
+  border: solid 1px grey;
 }
 
 .answers_nav table{
@@ -256,8 +261,8 @@ header{
   height: 3vh;
   // background: white;
   border-collapse:collapse;
-  margin-left: 45px;
-  margin-top: 15px;
+  margin-left: 205px;
+  margin-top: -25px;
 
   tr{
     // width: 100%;
