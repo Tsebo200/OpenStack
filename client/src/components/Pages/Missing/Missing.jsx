@@ -1,7 +1,19 @@
 import React from 'react'
+import { Header } from '../../Header/Header'
+
+import styles from './Missing.module.scss'
 
 export const Missing = () => {
   return (
-    <div>404</div>
+    <>
+  <Header/>
+  <div className={styles.row}>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h1>awibdawdbi</h1>
+  </div>
+    </>
   )
 }

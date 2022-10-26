@@ -58,7 +58,6 @@ export const Login = (props) => {
       setAuth({ roles: response.data.roles, accessToken: accessToken})
       // setEmail('')
       // setPwd('')
-      navigate(from ,{replace: true});
       props.onClick()
     } catch (err) {
       console.log(err);

@@ -8,54 +8,74 @@ import userProfileImage from "../../../../assets/profilePicture.jpg";
 import { CommentList } from "./UI/ComentList/CommentList";
 import { AnswerPortal } from "./UI/AnswerPortal/AnswerPortal";
 import axios from "../../../../api/axios";
+import moment from "moment";
 
 export default function IndividualQuestion() {
   let params = useParams();
 
   const [QuestionDetails, setQuestionDetails] = useState(null);
+  const [QuestionUserDetails, setQuestionUserDetails] = useState(null);
   const [QuestionTags, setQuestionTags] = useState([]);
+  const [AnswersList, setAnswersList] = useState([]);
 
   const getQuestions = async () => {
-    const response = await axios.post("/get-question", {
-      questionId: params.questionId,
+    const response = await axios.get("/question", {
+      params: { questionId: params.questionId },
     });
-    setQuestionDetails(response.data[0]);
+    setQuestionDetails(response.data.findQuestion);
+    setQuestionUserDetails(response.data.userData);
+  };
+
+  const getAnswers = async () => {
+    const response = await axios.get("/get-answers", {
+      params: { questionId: params.questionId },
+    });
+    setAnswersList(response.data);
   };
 
   const getTags = async (tags) => {
     const response = await axios.post("/unique-tags", {
       UniqueTagsList: tags,
     });
-    setQuestionTags(response.data)
-  }
+    setQuestionTags(response.data);
+  };
 
   useEffect(() => {
     getQuestions();
-    getTags(QuestionDetails?.tags)
+    getAnswers();
+    getTags(QuestionDetails?.tags);
   }, []);
 
+  const convertTimeCreated = (timeCreated) => {
+    // https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/07-difference/#:~:text=To%20get%20the%20difference%20in,you%20would%20use%20moment%23from%20.&text=To%20get%20the%20difference%20in%20another%20unit%20of%20measurement%2C%20pass,measurement%20as%20the%20second%20argument.&text=To%20get%20the%20duration%20of,an%20argument%20into%20moment%23duration%20.
 
-  console.log(QuestionDetails);
-  console.log(QuestionTags);
-
-  const exampleCode = `string target = "qa_data/hamlet.xml";
-    string symlink = "qa_output/symlink_hamlet.xml";
-    bool success = fac.SymlinkCreate(target,symlink);
-    if (success != true) {
-        Debug.WriteLine(fac.LastErrorText);
-        return;
+    let displayTime = moment()
+      .subtract(2, "h")
+      .diff(moment(timeCreated), "seconds");
+    let displayTimeMessage = "Asked " + displayTime + " seconds ago";
+    if (displayTime > 604800) {
+      displayTimeMessage = moment(timeCreated).format("lll");
+    } else if (displayTime / (3600 * 24) > 2) {
+      displayTimeMessage =
+        "Asked " + Math.floor(displayTime / (3600 * 24)) + " days ago";
+    } else if (displayTime / (3600 * 24) > 1) {
+      displayTimeMessage =
+        "Asked " + Math.floor(displayTime / (3600 * 24)) + " day ago";
+    } else if (displayTime / 3600 > 2) {
+      displayTimeMessage =
+        "Asked " + Math.round(displayTime / 3600) + " hours ago";
+    } else if (displayTime / 3600 > 1) {
+      displayTimeMessage =
+        "Asked " + Math.round(displayTime / 3600) + " hour ago";
+    } else if (displayTime / 60 > 2) {
+      displayTimeMessage =
+        "Asked " + Math.round(displayTime / 60) + " minuets ago";
+    } else if (displayTime / 60 > 1) {
+      displayTimeMessage =
+        "Asked " + Math.round(displayTime / 60) + " minuet ago";
     }
-    
-    // Here we create a directory symbolic link.  The target is a directory (not a regular file)
-    target = "qa_data/xml/";
-    symlink = "qa_output/xml_dir";
-    success = fac.SymlinkCreate(target,symlink);
-    if (success != true) {
-        Debug.WriteLine(fac.LastErrorText);
-        return;
-    }
-    
-    Debug.WriteLine("Success.");`;
+    return displayTimeMessage;
+  };
 
   return (
     <div className={styles.container}>
@@ -67,43 +87,44 @@ export default function IndividualQuestion() {
               <Link to="/questions-portal">Ask Question</Link>
             </div>
             <div className={styles.question_activity_header}>
-              <p>Asked 7 years, 7 months ago </p>
-              <p>Modified 1 month ago</p>
+              <p>{convertTimeCreated(QuestionDetails?.questionCreated)}</p>
+              {/* <p>Modified 1 month ago</p> */}
             </div>
           </header>
           <div className={styles.question_container}>
             <div className={styles.voting}>
               <ion-icon name="chevron-up-outline"></ion-icon>
-              <h3>{QuestionDetails.questionInteraction.votes}</h3>
+              <h3>{QuestionDetails?.questionInteraction?.votes}</h3>
               <ion-icon name="chevron-down-outline"></ion-icon>
             </div>
             <div className={styles.question_content}>
-              <h5>
-                {QuestionDetails.body}
-              </h5>
+              <h5>{QuestionDetails.body}</h5>
               <SyntaxHighlighter
-                language={QuestionDetails.code.codeLanguage}
+                language={QuestionDetails?.code?.codeLanguage}
                 children={true}
                 wrapLines={true}
                 // style={a11yLight}
                 showLineNumbers={true}
               >
-                {QuestionDetails.code.codeBody}
+                {QuestionDetails?.code?.codeBody}
               </SyntaxHighlighter>
               <div className={styles.tag_list}>
-                {QuestionTags.map(tag => {
-                  return <Link key={tag._id}>{tag.tagName}</Link>
+                {QuestionTags.map((tag) => {
+                  return <Link key={tag._id}>{tag.tagName}</Link>;
                 })}
               </div>
               <div className={styles.question_user_details_container}>
                 <p className={styles.report_question}>report question</p>
                 <div className={styles.user_details}>
-                  <h6>asked Mar 13 2015 at 13:31</h6>
+                  <h6>
+                    Asked{" "}
+                    {moment(QuestionDetails?.questionCreated).format("lll")}
+                  </h6>
                   <div className={styles.user_card}>
                     <img src={userProfileImage} />
                     <div>
-                      <p>Username</p>
-                      <h6>user score 11.1k </h6>
+                      <p>{QuestionUserDetails.username}</p>
+                      <h6>user score {QuestionUserDetails.userScore} </h6>
                     </div>
                   </div>
                 </div>
@@ -111,8 +132,24 @@ export default function IndividualQuestion() {
               {/* <CommentList/> */}
             </div>
           </div>
-          <Answer />
-          <AnswerPortal />
+          <br></br>
+          <div>
+            <h3>
+              {AnswersList?.findAnswers.length}{" "}
+              {AnswersList?.findAnswers.length === 1 ? <>Answer</> : <>Answers</>}{" "}
+            </h3>
+            {/* <p>Sorted by:</p> */}
+          </div>
+          {AnswersList?.findAnswers.length > 0 &&
+            AnswersList?.findAnswers.map((answer) => {
+              return <Answer userRefList={AnswersList?.userDataCompressed} key={answer._id} answer={answer} />;
+            })}
+
+          <AnswerPortal
+            tag={QuestionDetails?.code.codeLanguage}
+            questionId={params.questionId}
+            getAnswers={getAnswers}
+          />
           <br></br>
           <br></br>
           <br></br>

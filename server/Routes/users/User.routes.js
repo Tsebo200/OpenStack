@@ -18,7 +18,7 @@ userRouter.patch("/update-user-roles", async (req, res) => {
   const update = await userSchema
     .findByIdAndUpdate(userId, { roles: UserRoles })
     .exec();
-  res.json("roles have been updates");
+  res.json("roles have been update");
 });
 
 userRouter.post("/api/register", async (req, res) => {

@@ -1,6 +1,7 @@
 const express = require("express");
 
 const questionSchema = require("../models/Questions");
+const userSchema = require("../models/Users");
 const questionsRouter = express();
 const multer = require("multer");
 const path = require("path");
@@ -33,12 +34,12 @@ questionsRouter.post(
       title: title,
       body: body,
       code: {
-        codeBody:codeBody,
-        codeLanguage: codeLanguage
+        codeBody: codeBody,
+        codeLanguage: codeLanguage,
       },
       // image: req.file.filename,
       tags: tags,
-      userId: user_id
+      userId: user_id,
     });
 
     try {
@@ -54,7 +55,7 @@ questionsRouter.post(
     //     userName: String,
     //     userScore: Number
     // }
-    
+
     // const tagList = await tags.map(async (tag_id) => {
     //   console.log(tag_id);
     //   const tag = await tagSchema.findById(tag_id).exec();
@@ -68,8 +69,6 @@ questionsRouter.post(
     //   res.json(err);
     // }
     // const findTags = await tagSchema.find();
-
-   
 
     // return tagName
 
@@ -89,11 +88,20 @@ questionsRouter.get("/api/all-questions", async (req, res) => {
   res.json(findQuestions);
 });
 
-questionsRouter.post("/get-question", async (req, res) => {
-  const {questionId } = req.body
-  
-  const findQuestion = await questionSchema.find({_id: questionId});
-  res.json(findQuestion);
+questionsRouter.get("/question", async (req, res) => {
+  const { questionId } = req.query;
+
+  const findQuestion = await questionSchema.findOne({ _id: questionId });
+  const userData = await userSchema.findOne({ _id: findQuestion.userId });
+  const { userScore, username } = userData;
+
+  res.json({
+    findQuestion: findQuestion,
+    userData: {
+      userScore: userScore,
+      username: username,
+    },
+  });
 });
 
 questionsRouter.get("/api/all-tags", async (req, res) => {
@@ -109,10 +117,10 @@ questionsRouter.get("/api/all-tags", async (req, res) => {
 });
 
 questionsRouter.post("/unique-tags", async (req, res) => {
-    const { UniqueTagsList } = req.body
+  const { UniqueTagsList } = req.body;
   try {
-    const findTags = await tagSchema.find({_id : UniqueTagsList});
-    res.json(findTags)
+    const findTags = await tagSchema.find({ _id: UniqueTagsList });
+    res.json(findTags);
   } catch (err) {
     res.json(500).json({ msg: err.message });
   }

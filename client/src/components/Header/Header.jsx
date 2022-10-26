@@ -53,7 +53,7 @@ export const Header = () => {
     // axios to /logout endpoint
     console.log("logout");
     setAuth({});
-    navigate("/");
+    // navigate("/");
   };
 
   return (

@@ -16,7 +16,7 @@ export const Textarea = (props) => {
         value={props.value}
         name={props.id}
       ></textarea>
-      <label for={props.id} className={styles.form__label}>
+      <label htmlFor={props.id} className={styles.form__label}>
         {props.placeHolder}
       </label>
     </div>
