@@ -21,31 +21,41 @@ const UserSettings = () => {
       <div className={styles.user_questions_container}>
           <header>
             <h3 className={styles.questions_heading}>Questions</h3>
-            {/* <header className={styles.questions_nav}> */}
+            <header className={styles.questions_nav}>
 
             <table>
-              <tr>
+            <tr className={styles.table_row}>
             <td>
             <p className={styles.score_text}>Score</p>
+            {/* <div className={styles.vert_line}></div> */}
+
+            </td>
+            {/* <div className={styles.test}></div> */}
+            {/* <div className={styles.vert_line}></div> */}
+            <td>
+            <p className={styles.activity_text}>Activity</p>
             </td>
             <td>
-            <p className={styles.score_text}>Score</p>
+            <p className={styles.newest_text}>Newest</p>
+            </td>
+            <td>
+            <p className={styles.views_text}>Views</p>
             </td>
             </tr>
             </table>
-               
+            </header>
                 
   
 
 
-                <p className={styles.activity_text}>Activity</p>
+                
 
-                <p className={styles.newest_text}>Newest</p>
+            
 
-              <div className={styles.views_container}>
-              <p className={styles.views_text}>Views</p>
-              <div className={styles.views}></div>
-              </div>
+              {/* <div className={styles.views_container}>
+   
+              <div className={styles.views}></div> */}
+              {/* </div> */}
             </header>
           {/* </header> */}
 
