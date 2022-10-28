@@ -1,9 +1,10 @@
 .joinCon{
-    width: 60vw;
-    height: 40vh;
-    margin-left: 7vw;
+    width: 80vw;
+    height: 50vh;
+    margin-left: 10vw;
     margin-top: 14vh;
-    background-color: #F7F7F7;
+    
+    background-color: white;
     border-radius: 10px;
     float: left;
     box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%), 0 1px 5px rgb(0 0 0 / 12%);
@@ -78,3 +79,12 @@
     margin-left: 1%;
 }
 
+.questionHolder{
+    width: 80vw;
+    margin-left: 10vw;
+    margin-top: 6vh;
+    padding-bottom: 3vh;
+    border-radius: 10px;
+    float: left;
+    // scroll-behavior: auto;
+}
