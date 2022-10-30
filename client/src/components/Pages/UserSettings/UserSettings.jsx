@@ -119,6 +119,17 @@ const UserSettings = () => {
           <p className={styles.date_text}>Oct 31</p>
           </div>
         </div>
+
+          {/* inside the Badges container */}
+          <div className={styles.questions_container_content_box}>
+          <div className={styles.questions_row}>
+          <div className={styles.question_notification_container}>
+            <h4 className={styles.question_notification_counter_text}>1</h4></div> 
+          <p className={styles.question_text}>Change link colour with main div</p>
+          <p className={styles.date_text}>Oct 31</p>
+          </div>
+          </div>
+        {/* <div className={styles.badges_container_}></di> */}
       </div>{/* End of answers_container */}
 
 
