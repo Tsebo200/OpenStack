@@ -121,6 +121,36 @@ const UserSettings = () => {
         </div>
 
           {/* inside the Badges container */}
+          <header className={styles.answers_heading}>
+            <h3 className={styles.questions_heading}>Answers</h3>
+            <header className={styles.answers_nav}>
+            <table>
+            <tr>
+            <td>
+            <div className={styles.score_container}>
+            <p className={styles.score_text}>Score</p>
+            </div>
+            {/* <div className={styles.vert_line}></div> */}
+
+            </td>
+            {/* <div className={styles.test}></div> */}
+            {/* <div className={styles.vert_line}></div> */}
+            <td>
+            <div className={styles.activity_container}>
+            <p className={styles.activity_text}>Activity</p>
+            </div>
+            </td>
+
+            <td>
+            <div className={styles.newest_container}>
+            <p className={styles.newest_text}>Newest</p>
+            </div>
+            </td>
+            </tr>
+            </table>
+          </header> {/* End of Answers Nav */}
+          </header>
+             {/* inside the Badges container */}
           <div className={styles.questions_container_content_box}>
           <div className={styles.questions_row}>
           <div className={styles.question_notification_container}>
