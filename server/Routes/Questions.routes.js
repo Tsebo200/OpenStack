@@ -6,6 +6,18 @@ const questionsRouter = express();
 const multer = require("multer");
 const path = require("path");
 const tagSchema = require("../models/Tags");
+const AWS = require('aws-sdk');
+
+
+//Setting up AWS S3 Buckets
+AWS.config.update({region: 'us-east-1'})
+
+s3 = new AWS.S3({
+    credentials: {
+        accessKeyId: process.env.ACCESS_KEY_ID,
+        secretAccessKey: process.env.SECRET_ACCESS_KEY
+    }
+})
 
 // Multer Middleware
 

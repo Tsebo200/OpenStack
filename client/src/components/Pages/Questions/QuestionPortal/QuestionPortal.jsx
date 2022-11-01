@@ -236,7 +236,6 @@ function QuestionPortal() {
       code: code,
       selectedYear: year,
       tagSelected: tagId,
-      // tags: null
     };
 
     console.log(payload);
@@ -246,15 +245,15 @@ function QuestionPortal() {
 
     console.log(payloadData);
 
-    // axios.post('http://localhost:5001/api/add-question/', payloadData)
-    // .then(res => {
-    //     console.log("Question Added!");
-    //     setModal(true);
-    // })
-    // .catch(err => {
-    //     console.log(err);
-    //     setModal(false);
-    // })
+    axios.post('http://localhost:5001/api/add-question/', payload)
+    .then(res => {
+        console.log("Question Added!");
+        setModal(true);
+    })
+    .catch(err => {
+        console.log(err);
+        setModal(false);
+    })
   };
 
   return (
