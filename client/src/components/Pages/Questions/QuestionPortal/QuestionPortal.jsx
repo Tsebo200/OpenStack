@@ -75,6 +75,7 @@ function QuestionPortal() {
 
   const [searchTag, setSearchTag] = useState("");
   const [tagsSelected, setTagsSelected] = useState([]);
+  const [tagId, setTagId] = useState([]);
 
 
   const titlePreview = (e) => {
@@ -169,14 +170,17 @@ function QuestionPortal() {
     console.log(e)
     console.log(key)
     const arr = tagsSelected;
+    const idArr = tagId;
     // console.log(key)
     // // console.log(e.target.__reactFiber$3393ywe519t.key);
     const tags = e.target.innerText;
 
     if(!arr.includes(tags)){
       arr.push(tags);
+      idArr.push(key);
       setTagsSelected(arr);
-      // console.log(tagsSelected);
+      setTagId(idArr);
+      console.log(tagId);
       setRerender(true);
 
     }
@@ -231,7 +235,7 @@ function QuestionPortal() {
       body: bodyString,
       code: code,
       selectedYear: year,
-      // tagSelected: tags,
+      tagSelected: tagId,
       // tags: null
     };
 
