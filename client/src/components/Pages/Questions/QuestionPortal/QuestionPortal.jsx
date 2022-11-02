@@ -188,6 +188,24 @@ function QuestionPortal() {
     setRerender(false);
   }, [rerender]);
 
+  const handleTagRemove = (index) => {
+    // const list = [...tagId];
+    // list.splice(index, 1);
+    // setTagId(list);
+    // console.log(list);
+    console.log('something in there');
+    setTagId(prevState => {
+      prevState.splice(index, 1)
+      return prevState;
+    })
+    setTagsSelected(prevState => {
+      prevState.splice(index, 1)
+      return prevState;
+    });
+  }
+  console.log(tagsSelected);
+  console.log(tagId);
+
   const formHandle = (e) => {
     e.preventDefault();
 
@@ -413,7 +431,7 @@ function QuestionPortal() {
               </p>
             ))}
         </div>
-        <TagsSelected tag={tagsSelected} />
+        <TagsSelected tag={tagsSelected} onClick={handleTagRemove}/>
         <hr />
         <h2>Review your question</h2>
         <hr />

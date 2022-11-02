@@ -35,18 +35,18 @@ const questionImageStore = multer.diskStorage({
 questionsRouter.post(
   "/api/add-question",
   async (req, res) => {
-    const uploadParams = {
-      Bucket: process.env.BUCKET,
-      Key: req.files.file.name,
-      Body: Buffer.from(req.files.file.data),
-      ContentType: req.files.file.mimeType,
-      ACL: 'public-read'
-    }
+    // const uploadParams = {
+    //   Bucket: process.env.BUCKET,
+    //   Key: req.files.file.name,
+    //   Body: Buffer.from(req.files.file.data),
+    //   ContentType: req.files.file.mimeType,
+    //   ACL: 'public-read'
+    // }
 
-    s3.upload(uploadParams, function (err, data){
-      err && console.log("Error", err)
-      data && console.log("Upload Success", data.location)
-    })
+    // s3.upload(uploadParams, function (err, data){
+    //   err && console.log("Error", err)
+    //   data && console.log("Upload Success", data.location)
+    // })
     
     // console.log(req.file.filename);
     const { title, body, codeBody, codeLanguage, user_id, tags } = req.body;
