@@ -33,9 +33,6 @@ export const Answer = (props) => {
     });
   }, [props.answer]);
 
-  console.log(Auth?.userData?.UserInfo?.userId);
-  console.log(props.questionUser);
-
   return (
     <div className={styles.container}>
       <div className={styles.question_container}>
@@ -84,7 +81,7 @@ export const Answer = (props) => {
           >
             <ion-icon
               onClick={() => {
-                props.answerVoteHandler(true, answer._id);
+                props.answerVoteHandler(false, answer._id);
               }}
               name="chevron-down-outline"
             ></ion-icon>

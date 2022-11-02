@@ -12,6 +12,7 @@ import moment from "moment";
 import { useAuth } from "../../../../Hooks/useAuth";
 import { LoadingScreen } from "../../../UI/LoadingScreen/LoadingScreen";
 import { Button } from "../../../UI/Button/Button";
+import { Textarea } from "../../../UI/Textarea/Textarea";
 
 const convertTimeCreated = (timeCreated) => {
   // https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/07-difference/#:~:text=To%20get%20the%20difference%20in,you%20would%20use%20moment%23from%20.&text=To%20get%20the%20difference%20in%20another%20unit%20of%20measurement%2C%20pass,measurement%20as%20the%20second%20argument.&text=To%20get%20the%20duration%20of,an%20argument%20into%20moment%23duration%20.
@@ -92,6 +93,7 @@ export default function IndividualQuestion() {
       });
       if (response.status === 209) {
         setModalOptions({
+          title: "Error",
           show: true,
           message: response.data,
           modal_box_css: `${styles.modal_box} ${styles.modal_box_show}`,
@@ -124,17 +126,18 @@ export default function IndividualQuestion() {
           params: { questionId: params.questionId },
         });
         console.log("removed question");
-        navigate("/questions")
+        navigate("/questions");
       } catch (error) {
         console.log(error);
       }
     };
     setModalOptions({
+      title: "Are You Sure",
       show: true,
       message: "Are you sure you want to remove this question",
       modal_box_css: `${styles.modal_box} ${styles.modal_box_show}`,
-      button: true,
-      buttonHtml: (
+      extra: true,
+      extraHtml: (
         <div className={styles.modal_buttons}>
           <Button onClick={deleteQuestion}>Yes</Button>
           <Button onClick={closeModalHandler}>No</Button>
@@ -172,6 +175,7 @@ export default function IndividualQuestion() {
       });
       if (response.status === 209) {
         setModalOptions({
+          title: "Error",
           show: true,
           message: response.data,
           modal_box_css: `${styles.modal_box} ${styles.modal_box_show}`,
@@ -209,31 +213,72 @@ export default function IndividualQuestion() {
   const isOwnedByUser =
     Auth?.userData?.UserInfo?.userId === QuestionData?.Question?.userId;
 
-  // reporting 
+  // reporting
 
+  const [ReportModalOptions, setReportModalOptions] = useState({
+    show: false,
+    modal_box_css: `${styles.report_form}`,
+  });
+
+  const closeReportModalHandler = () => {
+    setReportModalOptions({
+      show: false,
+      modal_box_css: `${styles.report_form}`,
+      error: false,
+    });
+  };
+
+  const [ReportBody, setReportBody] = useState("");
 
   const reportServiceHandler = () => {
-    
-  }
+    setReportModalOptions({
+      show: true,
+      modal_box_css: `${styles.report_form} ${styles.modal_box_show}`,
+      error: false,
+    });
+  };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  const submitReportHandler = async (event) => {
+    event.preventDefault();
+    if (ReportBody.length === 0) {
+      setReportModalOptions((prevState) => {
+        return {
+          ...prevState,
+          error: true,
+        };
+      });
+      return;
+    }
+    try {
+      const response = await axios.post("/report", {
+        questionId: params.questionId,
+        ReportBody: ReportBody,
+        userId: Auth?.userData?.UserInfo?.userId,
+      });
+      console.log(response);
+      if (response.status === 200) {
+        closeReportModalHandler();
+        setReportBody("")
+        setModalOptions({
+          title: "Report Submitted",
+          show: true,
+          message: response.data,
+          modal_box_css: `${styles.modal_box} ${styles.modal_box_show}`,
+          extra: true,
+          extraHtml: (
+            <div className={styles.modal_buttons}>
+              <Button onClick={closeModalHandler}>Okay</Button>
+            </div>
+          ),
+        });
+        return;
+      } else {
+        setGetQuestionData(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -247,17 +292,49 @@ export default function IndividualQuestion() {
           {ModalOptions.show && (
             <div onClick={closeModalHandler} className={styles.modal}></div>
           )}
+          {ReportModalOptions.show && (
+            <div
+              onClick={closeReportModalHandler}
+              className={styles.modal}
+            ></div>
+          )}
+
+          <form
+            className={ReportModalOptions.modal_box_css}
+            onSubmit={submitReportHandler}
+          >
+            <div className={styles.close_btn} onClick={closeReportModalHandler}>
+              <ion-icon name="close-outline"></ion-icon>
+            </div>
+            <h3>Your Report</h3>
+            <h5>tell us why you are reporting this question</h5>
+            {ReportModalOptions.error && (
+              <h5 className={styles.error_message}>
+                Your report needs to have a body
+              </h5>
+            )}
+            <Textarea
+              id="reportBody"
+              value={ReportBody}
+              placeHolder={"your report body goes here"}
+              rows="12"
+              onChange={(event) => {
+                setReportBody(event.target.value);
+              }}
+            />
+            <div className={styles.modal_buttons}>
+              <Button>Report Question</Button>
+            </div>
+          </form>
 
           <div className={ModalOptions.modal_box_css}>
             <div className={styles.close_btn} onClick={closeModalHandler}>
               <ion-icon name="close-outline"></ion-icon>
             </div>
-            <h3>Error</h3>
+            <h3>{ModalOptions.title}</h3>
             <br />
             <h4>{ModalOptions.message}</h4>
-            {ModalOptions.button && (
-              ModalOptions.buttonHtml
-            )}
+            {ModalOptions.extra && ModalOptions.extraHtml}
           </div>
           <header>
             <div className={styles.header_main}>
@@ -328,7 +405,12 @@ export default function IndividualQuestion() {
                 {Auth?.userData?.UserInfo?.userId ? (
                   <>
                     {!isOwnedByUser && (
-                      <p className={styles.report_question}>Report Question</p>
+                      <p
+                        onClick={reportServiceHandler}
+                        className={styles.report_question}
+                      >
+                        Report Question
+                      </p>
                     )}
                     {isOwnedByUser && (
                       <p
@@ -385,7 +467,7 @@ export default function IndividualQuestion() {
                   correctAnswer={
                     QuestionData?.Question?.questionInteraction?.correctAnswer
                   }
-                  questionUser={ QuestionData?.Question?.userId}
+                  questionUser={QuestionData?.Question?.userId}
                 />
               );
             })}
