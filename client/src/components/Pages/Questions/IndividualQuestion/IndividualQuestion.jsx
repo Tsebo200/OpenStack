@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./IndividualQuestion.module.scss";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Answer } from "./UI/Answer/Answer";
 
 import userProfileImage from "../../../../assets/profilePicture.jpg";
@@ -11,6 +11,7 @@ import axios from "../../../../api/axios";
 import moment from "moment";
 import { useAuth } from "../../../../Hooks/useAuth";
 import { LoadingScreen } from "../../../UI/LoadingScreen/LoadingScreen";
+import { Button } from "../../../UI/Button/Button";
 
 const convertTimeCreated = (timeCreated) => {
   // https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/07-difference/#:~:text=To%20get%20the%20difference%20in,you%20would%20use%20moment%23from%20.&text=To%20get%20the%20difference%20in%20another%20unit%20of%20measurement%2C%20pass,measurement%20as%20the%20second%20argument.&text=To%20get%20the%20duration%20of,an%20argument%20into%20moment%23duration%20.
@@ -46,6 +47,7 @@ const convertTimeCreated = (timeCreated) => {
 export default function IndividualQuestion() {
   let params = useParams();
   const { Auth } = useAuth();
+  const navigate = useNavigate();
 
   const [QuestionData, setQuestionData] = useState(null);
   const [GetQuestionData, setGetQuestionData] = useState(true);
@@ -115,6 +117,34 @@ export default function IndividualQuestion() {
     return;
   };
 
+  const removeQuestionHandler = async () => {
+    const deleteQuestion = async () => {
+      try {
+        const response = await axios.delete("/question", {
+          params: { questionId: params.questionId },
+        });
+        console.log("delete question");
+        navigate("/questions")
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    setModalOptions({
+      show: true,
+      message: "Are you sure you want to delete this question",
+      modal_box_css: `${styles.modal_box} ${styles.modal_box_show}`,
+      button: true,
+      buttonHtml: (
+        <div className={styles.modal_buttons}>
+          <Button onClick={deleteQuestion}>Yes</Button>
+          <Button onClick={closeModalHandler}>No</Button>
+        </div>
+      ),
+    });
+
+    return;
+  };
+
   useEffect(() => {
     if (QuestionData?.Question?.questionInteraction?.votes.length === 0) {
       setUserHasVoted({});
@@ -179,8 +209,6 @@ export default function IndividualQuestion() {
   const isOwnedByUser =
     Auth?.userData?.UserInfo?.userId === QuestionData?.Question?.userId;
 
-  console.log(isOwnedByUser);
-
   return (
     <div className={styles.container}>
       {GetQuestionData ? (
@@ -199,7 +227,11 @@ export default function IndividualQuestion() {
               <ion-icon name="close-outline"></ion-icon>
             </div>
             <h3>Error</h3>
+            <br />
             <h4>{ModalOptions.message}</h4>
+            {ModalOptions.button && (
+              ModalOptions.buttonHtml
+            )}
           </div>
           <header>
             <div className={styles.header_main}>
@@ -270,14 +302,14 @@ export default function IndividualQuestion() {
                 {Auth?.userData?.UserInfo?.userId ? (
                   <>
                     {!isOwnedByUser && (
-                      <p className={styles.report_question}>Report answer</p>
+                      <p className={styles.report_question}>Report Question</p>
                     )}
                     {isOwnedByUser && (
                       <p
-                        // onClick={removeAnswerHandlerChild}
+                        onClick={removeQuestionHandler}
                         className={styles.report_question}
                       >
-                        Delete answer
+                        Delete Question
                       </p>
                     )}
                   </>

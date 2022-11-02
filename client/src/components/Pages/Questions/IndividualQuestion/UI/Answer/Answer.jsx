@@ -102,14 +102,14 @@ export const Answer = (props) => {
             {Auth?.userData?.UserInfo?.userId ? (
               <>
                 {!isOwnedByUser && (
-                  <p className={styles.report_question}>Report answer</p>
+                  <p className={styles.report_question}>Report Answer</p>
                 )}
                 {isOwnedByUser && (
                   <p
                     onClick={removeAnswerHandlerChild}
                     className={styles.report_question}
                   >
-                    Delete answer
+                    Delete Answer
                   </p>
                 )}
               </>

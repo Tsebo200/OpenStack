@@ -132,20 +132,16 @@ answersRouter.patch("/answer-vote", async (req, res) => {
 answersRouter.patch("/answer-set-correct", async (req, res) => {
   const { answerId, questionId } = req.body;
 
-  
-  const question = await questionSchema.findById(questionId)
+  const question = await questionSchema.findById(questionId);
 
-  console.log(answerId);
-  console.log(question.questionInteraction.correctAnswer);
-
-
-  if ( question.questionInteraction.correctAnswer === answerId) {
-    res.status(209).json("Answer is already selected as correct");
-    return
+  if (question.questionInteraction.correctAnswer === answerId) {
+    question.questionInteraction.correctAnswer = null;
+    question.save();
+    res.status(200).json("Answer has been removed");
+    return;
   }
-  question.questionInteraction.correctAnswer = answerId
-  question.save()
-  // console.log(answerId, questionId);
+  question.questionInteraction.correctAnswer = answerId;
+  question.save();
   res.status(200).json("Answer has been set");
 });
 

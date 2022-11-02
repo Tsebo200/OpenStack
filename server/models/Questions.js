@@ -32,7 +32,11 @@ const questionSchema = mongoose.Schema({
     },
     image: String,
     tags: Array,
-        // $push for pushing tags as obj to array (inside of patch req)
+    private: {
+        type: Boolean,
+        default: false
+    }
+    // $push for pushing tags as obj to array (inside of patch req)
 
 });
 

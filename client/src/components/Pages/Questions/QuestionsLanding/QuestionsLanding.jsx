@@ -111,7 +111,7 @@ export const QuestionsLanding = () => {
         <Link to="/questions-portal">Ask Question</Link>
       </header>
       <div className={styles.questions_filter_header}>
-        <h4>20,003,103 questions</h4>
+        <h4>{QuestionList.length} Questions</h4>
         <table>
           <thead>
             <tr>

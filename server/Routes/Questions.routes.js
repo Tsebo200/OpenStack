@@ -65,7 +65,9 @@ questionsRouter.post(
 );
 
 questionsRouter.get("/api/all-questions", async (req, res) => {
-  const findQuestions = await questionSchema.find();
+  const findQuestions = (await questionSchema.find()).filter(question => {
+    return !question.private
+  });
   res.json(findQuestions);
 });
 
@@ -86,8 +88,6 @@ questionsRouter.get("/question", async (req, res) => {
       })
     )
   )
-
-  console.log(tagsList);
 
   // https://stackoverflow.com/questions/42964102/syntax-for-an-async-arrow-function
   const answersList = (
@@ -262,5 +262,22 @@ questionsRouter.patch("/question-vote", async (req, res) => {
   res.json("vote complete");
   return;
 });
+
+
+
+questionsRouter.delete("/question", async (req, res) => {
+  const { questionId } = req.query;
+  try {
+    const update = await questionSchema
+    .findByIdAndUpdate(questionId, { private: true })
+    .exec();
+    update.save()
+
+    res.json("question has been removed");
+  } catch (error) {
+    res.json("error there was an error");
+  }
+})
+
 
 module.exports = questionsRouter;

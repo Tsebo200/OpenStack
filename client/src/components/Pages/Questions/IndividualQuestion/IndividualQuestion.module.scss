@@ -185,9 +185,11 @@
     }
   }
 
-  //   .report_question {
-  //     text-align: right;
-  //   }
+  .report_question:hover {
+    color: $error;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 .modal{
@@ -199,6 +201,20 @@
   left: 0;
   z-index: 100;
 
+}
+.modal_buttons{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.modal_buttons button{
+  width: 200px;
+  margin: 0 50px;
 }
 
 .modal_box{
