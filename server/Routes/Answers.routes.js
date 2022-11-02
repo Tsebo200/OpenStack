@@ -20,9 +20,10 @@ answersRouter.post("/answer-post", async (req, res) => {
     response.save();
 
     // save question
-    const question = await questionSchema.findById(questionId)
-    question.questionInteraction.answers = question.questionInteraction.answers + 1
-    question.save()
+    const question = await questionSchema.findById(questionId);
+    question.questionInteraction.answers =
+      question.questionInteraction.answers + 1;
+    question.save();
     res.status(201).json({ success: `new Answer: created!` });
   } catch (err) {
     res.json(500).json({ msg: err.message });
@@ -67,58 +68,79 @@ answersRouter.get("/get-answers", async (req, res) => {
 });
 
 answersRouter.delete("/answer", async (req, res) => {
-  const { answerId, questionId } = req.query
-  
+  const { answerId, questionId } = req.query;
+
   try {
     const response = await answersSchema.deleteOne({ _id: answerId });
-    const question = await questionSchema.findById(questionId)
-    question.questionInteraction.answers = question.questionInteraction.answers - 1
-    question.save()
-    res.status(200).json("answer " + answerId + " was deleted")
+    const question = await questionSchema.findById(questionId);
+    question.questionInteraction.answers =
+      question.questionInteraction.answers - 1;
+    question.save();
+    res.status(200).json("answer " + answerId + " was deleted");
   } catch (error) {
-    res.json("error there was an error")
+    res.json("error there was an error");
   }
-})
+});
 
 answersRouter.patch("/answer-vote", async (req, res) => {
   const { userId, action, answerId } = req.body;
 
   // find if user id and user exists
   const userFound = await userSchema.findOne({ _id: userId }).exec();
-  const update = await questionSchema.findById(answerId).exec();
-  const voteDuplicate = update.questionInteraction.votes.filter((vote) => {
+  const update = await answersSchema.findById(answerId).exec();
+  const voteDuplicate = update.votes.filter((vote) => {
     return vote.userId === userId;
   });
   if (!userFound) {
-    res.status(209).json("You need to be logged in to vote on a question");
+    res.status(209).json("You need to be logged in to vote on a answer");
     return;
   }
   if (voteDuplicate.length > 0) {
     if (voteDuplicate[0].action === action) {
-      res.status(209).json("You cant vote twice on a question");
+      res.status(209).json("You cant vote twice on a answer");
     } else {
-      const index = update.questionInteraction.votes.findIndex((vote) => {
+      const index = update.votes.findIndex((vote) => {
         return vote === voteDuplicate[0];
       });
-      update.questionInteraction.votes.splice(index, 1);
-      update.questionInteraction.votes.push({
+      update.votes.splice(index, 1);
+      update.votes.push({
         userId: userId,
         action: action,
       });
       update.save();
       res.status(200).json("Vote updated");
-    } 
+    }
     return;
-  } else{
-    update.questionInteraction.votes.push({
+  } else {
+    update.votes.push({
       userId: userId,
       action: action,
-    })
+    });
     update.save();
   }
 
   res.json("vote complete");
   return;
+});
+
+answersRouter.patch("/answer-set-correct", async (req, res) => {
+  const { answerId, questionId } = req.body;
+
+  
+  const question = await questionSchema.findById(questionId)
+
+  console.log(answerId);
+  console.log(question.questionInteraction.correctAnswer);
+
+
+  if ( question.questionInteraction.correctAnswer === answerId) {
+    res.status(209).json("Answer is already selected as correct");
+    return
+  }
+  question.questionInteraction.correctAnswer = answerId
+  question.save()
+  // console.log(answerId, questionId);
+  res.status(200).json("Answer has been set");
 });
 
 module.exports = answersRouter;

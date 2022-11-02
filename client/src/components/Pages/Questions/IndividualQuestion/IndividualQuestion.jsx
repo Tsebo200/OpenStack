@@ -49,8 +49,7 @@ export default function IndividualQuestion() {
 
   const [QuestionData, setQuestionData] = useState(null);
   const [GetQuestionData, setGetQuestionData] = useState(true);
-  const [userHasVoted, setUserHasVoted] = useState({})
-
+  const [userHasVoted, setUserHasVoted] = useState({});
 
   const [ModalOptions, setModalOptions] = useState({
     show: false,
@@ -81,8 +80,6 @@ export default function IndividualQuestion() {
     }, 1000);
     return () => clearTimeout(timer);
   }, [GetQuestionData]);
-
-  console.log(QuestionData);
 
   const voteHandler = async (action) => {
     try {
@@ -116,24 +113,73 @@ export default function IndividualQuestion() {
       console.log(error);
     }
     return;
-  };  
+  };
 
   useEffect(() => {
-    QuestionData?.Question?.questionInteraction.votes.map(
-      
-      (vote) => {
-        if (vote.userId === Auth?.userData?.UserInfo?.userId) {
-          setUserHasVoted({
-            action: vote.action,
-            voted: true,
-          }) 
-        }
-        return null;
+    console.log(QuestionData?.Question?.questionInteraction?.votes);
+    if (QuestionData?.Question?.questionInteraction?.votes.length === 0) {
+      setUserHasVoted({});
+    }
+    QuestionData?.Question?.questionInteraction?.votes.map((vote) => {
+      if (vote.userId === Auth?.userData?.UserInfo?.userId) {
+        setUserHasVoted({
+          action: vote.action,
+          voted: true,
+        });
+        return
+      } else{
+        setUserHasVoted({});
+        return;
       }
-    ); 
-  }, [QuestionData])
-  
-  
+    });
+  }, [QuestionData, GetQuestionData]);
+
+  console.log(userHasVoted);
+
+  const answerVoteHandler = async (action, answerId) => {
+    console.log(answerId);
+    console.log(action);
+    try {
+      const response = await axios.patch("/answer-vote", {
+        userId: Auth?.userData?.UserInfo?.userId,
+        action: action,
+        answerId: answerId,
+      });
+      if (response.status === 209) {
+        setModalOptions({
+          show: true,
+          message: response.data,
+          modal_box_css: `${styles.modal_box} ${styles.modal_box_show}`,
+        });
+        return;
+      } else if (response.status === 200) {
+        setGetQuestionData(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const correctAnswerHandler = async (answerId) => {
+    try {
+      const response = await axios.patch("/answer-set-correct", {
+        answerId: answerId,
+        questionId: params.questionId,
+      });
+      if (response.status === 209) {
+        setModalOptions({
+          show: true,
+          message: response.data,
+          modal_box_css: `${styles.modal_box} ${styles.modal_box_show}`,
+        });
+        return;
+      } else if (response.status === 200) {
+        setGetQuestionData(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -168,7 +214,13 @@ export default function IndividualQuestion() {
           </header>
           <div className={styles.question_container}>
             <div className={styles.voting}>
-              <div className={userHasVoted?.action && userHasVoted?.voted ? styles.voted : undefined}>
+              <div
+                className={
+                  userHasVoted?.action && userHasVoted?.voted
+                    ? styles.voted
+                    : undefined
+                }
+              >
                 <ion-icon
                   onClick={() => {
                     voteHandler(true);
@@ -177,7 +229,13 @@ export default function IndividualQuestion() {
                 ></ion-icon>
               </div>
               <h3>{QuestionData?.Question?.questionInteraction.voteScore}</h3>
-              <div className={!userHasVoted?.action && userHasVoted?.voted ? styles.voted : undefined}>
+              <div
+                className={
+                  !userHasVoted?.action && userHasVoted?.voted
+                    ? styles.voted
+                    : undefined
+                }
+              >
                 <ion-icon
                   onClick={() => {
                     voteHandler(false);
@@ -241,6 +299,11 @@ export default function IndividualQuestion() {
                   key={answer._id}
                   language={QuestionData?.Question?.code?.codeLanguage}
                   answer={answer}
+                  answerVoteHandler={answerVoteHandler}
+                  correctAnswerHandler={correctAnswerHandler}
+                  correctAnswer={
+                    QuestionData?.Question?.questionInteraction?.correctAnswer
+                  }
                 />
               );
             })}

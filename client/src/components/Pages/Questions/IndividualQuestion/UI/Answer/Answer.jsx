@@ -1,5 +1,5 @@
 import moment from "moment";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
 import axios from "../../../../../../api/axios";
@@ -11,20 +11,83 @@ export const Answer = (props) => {
   const answer = props.answer;
 
   const { Auth } = useAuth();
-
+  const [AnswerScore, setAnswerScore] = useState(0);
+  const [userHasVoted, setUserHasVoted] = useState({});
   const isOwnedByUser = Auth?.userData?.UserInfo?.userId === answer.user.id;
 
   const removeAnswerHandlerChild = async () => {
     props.removeAnswerHandler(answer._id);
   };
 
+  useEffect(() => {
+    let answerScore = 0;
+    answer.votes.map((vote) => {
+      if (vote.action) {
+        answerScore = answerScore + 1;
+        return;
+      }
+      answerScore = answerScore - 1;
+      return;
+    });
+    setAnswerScore(answerScore);
+  }, [props.answer]);
+
+  useEffect(() => {
+    answer.votes.map((vote) => {
+      if (vote.userId === Auth?.userData?.UserInfo?.userId) {
+        setUserHasVoted({
+          action: vote.action,
+          voted: true,
+        });
+      }
+      return null;
+    });
+  }, [props.answer]);
+
   return (
     <div className={styles.container}>
       <div className={styles.question_container}>
         <div className={styles.voting}>
-          <ion-icon name="chevron-up-outline"></ion-icon>
-          <h3>{answer.votes}</h3>
-          <ion-icon name="chevron-down-outline"></ion-icon>
+          {Auth?.userData?.UserInfo?.userId === answer.user.id && (
+            <div className={`${styles.correct_button} ${ answer._id === props.correctAnswer ? styles.correct : undefined}`}>
+              <ion-icon
+                onClick={() => {
+                  props.correctAnswerHandler(answer._id);
+                }}
+                name="checkmark-outline"
+              ></ion-icon>
+            </div>
+          )}
+
+          <div
+            className={
+              userHasVoted?.action && userHasVoted?.voted
+                ? styles.voted
+                : undefined
+            }
+          >
+            <ion-icon
+              onClick={() => {
+                props.answerVoteHandler(true, answer._id);
+              }}
+              name="chevron-up-outline"
+            ></ion-icon>
+          </div>
+          <h3>{AnswerScore}</h3>
+          <div
+            className={
+              !userHasVoted?.action && userHasVoted?.voted
+                ? styles.voted
+                : undefined
+            }
+          >
+            <ion-icon
+              onClick={() => {
+                props.answerVoteHandler(true, answer._id);
+              }}
+              name="chevron-down-outline"
+            ></ion-icon>
+          </div>
         </div>
         <div className={styles.question_content}>
           <h5>{answer.body}</h5>

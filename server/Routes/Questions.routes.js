@@ -6,18 +6,17 @@ const questionsRouter = express();
 const multer = require("multer");
 const path = require("path");
 const tagSchema = require("../models/Tags");
-const AWS = require('aws-sdk');
-
+const AWS = require("aws-sdk");
 
 //Setting up AWS S3 Buckets
-AWS.config.update({region: 'us-east-1'})
+AWS.config.update({ region: "us-east-1" });
 
 s3 = new AWS.S3({
-    credentials: {
-        accessKeyId: process.env.ACCESS_KEY_ID,
-        secretAccessKey: process.env.SECRET_ACCESS_KEY
-    }
-})
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY_ID,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  },
+});
 const answersSchema = require("../models/Answers");
 
 // Multer Middleware
@@ -79,7 +78,6 @@ questionsRouter.get("/question", async (req, res) => {
   const answers = await answersSchema.find({ questionId: questionId });
 
   // https://stackoverflow.com/questions/42964102/syntax-for-an-async-arrow-function
-
   const answersList = await Promise.all(
     answers.map(async (answer) => {
       const answerUser = await userSchema.findOne({ _id: answer.user });
@@ -93,6 +91,22 @@ questionsRouter.get("/question", async (req, res) => {
       };
     })
   );
+  // put correct answer at the beginning
+  let correctAnswerIndex = answersList.findIndex((answer) => {
+    console.log(answer._id.toString());
+    console.log(Question.questionInteraction.correctAnswer);
+    return answer._id.toString() === Question.questionInteraction.correctAnswer;
+  });
+
+  if (correctAnswerIndex > -1) {
+    const correctAnswer = { ...answersList[correctAnswerIndex] };
+    answersList.splice(correctAnswerIndex, 1);
+    answersList.unshift(correctAnswer);
+  }
+
+
+  // sort based on votes
+
   const { userScore, username } = userData;
   let voteScore = 0;
 
@@ -195,7 +209,13 @@ questionsRouter.patch("/question-vote", async (req, res) => {
   }
   if (voteDuplicate.length > 0) {
     if (voteDuplicate[0].action === action) {
-      res.status(209).json("You cant vote twice on a question");
+      console.log("remove vote");
+      const index = update.questionInteraction.votes.findIndex((vote) => {
+        return vote === voteDuplicate[0];
+      });
+      update.questionInteraction.votes.splice(index, 1);
+      update.save();
+      res.status(200).json("vote removed");
     } else {
       const index = update.questionInteraction.votes.findIndex((vote) => {
         return vote === voteDuplicate[0];
@@ -207,13 +227,14 @@ questionsRouter.patch("/question-vote", async (req, res) => {
       });
       update.save();
       res.status(200).json("Vote updated");
-    } 
+    }
     return;
-  } else{
+  } else {
+    console.log("add vote");
     update.questionInteraction.votes.push({
       userId: userId,
       action: action,
-    })
+    });
     update.save();
   }
 
