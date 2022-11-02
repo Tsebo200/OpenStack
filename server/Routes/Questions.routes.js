@@ -77,33 +77,53 @@ questionsRouter.get("/question", async (req, res) => {
 
   const answers = await answersSchema.find({ questionId: questionId });
 
+
+  const tagsList = (
+    await Promise.all(
+      Question.tags.map(async (tagId) => {
+        const tag = await tagSchema.findById(tagId)
+        return tag
+      })
+    )
+  )
+
+  console.log(tagsList);
+
   // https://stackoverflow.com/questions/42964102/syntax-for-an-async-arrow-function
-  const answersList = await Promise.all(
-    answers.map(async (answer) => {
-      const answerUser = await userSchema.findOne({ _id: answer.user });
-      return {
-        ...answer._doc,
-        user: {
-          userScore: answerUser.userScore,
-          username: answerUser.username,
-          id: answerUser._id,
-        },
-      };
-    })
-  );
-  // put correct answer at the beginning
-  let correctAnswerIndex = answersList.findIndex((answer) => {
-    console.log(answer._id.toString());
-    console.log(Question.questionInteraction.correctAnswer);
-    return answer._id.toString() === Question.questionInteraction.correctAnswer;
-  });
-
-  if (correctAnswerIndex > -1) {
-    const correctAnswer = { ...answersList[correctAnswerIndex] };
-    answersList.splice(correctAnswerIndex, 1);
-    answersList.unshift(correctAnswer);
-  }
-
+  const answersList = (
+    await Promise.all(
+      answers.map(async (answer) => {
+        const answerUser = await userSchema.findOne({ _id: answer.user });
+        let answerScore = 0;
+        answer.votes.map((vote) => {
+          // vote action true add one
+          if (vote.action) {
+            answerScore = answerScore + 1;
+          }
+          // else vote action false subtract one
+          else {
+            answerScore = answerScore - 1;
+          }
+        });
+        // console.log(answer);
+        return {
+          ...answer._doc,
+          score: answerScore,
+          user: {
+            userScore: answerUser.userScore,
+            username: answerUser.username,
+            id: answerUser._id,
+          },
+        };
+      })
+    )
+  )
+    .sort((a, b) => (a.score > b.score ? -1 : 1))
+    .sort((a) =>
+      a._id.toString() === Question.questionInteraction.correctAnswer.toString()
+        ? -1
+        : 1
+    );
 
   // sort based on votes
 
@@ -129,6 +149,7 @@ questionsRouter.get("/question", async (req, res) => {
         ...Question._doc.questionInteraction,
         voteScore: voteScore,
       },
+      tags: tagsList,
       answers: answersList,
     },
     userData: {

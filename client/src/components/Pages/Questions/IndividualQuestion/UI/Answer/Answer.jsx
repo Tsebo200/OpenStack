@@ -11,7 +11,6 @@ export const Answer = (props) => {
   const answer = props.answer;
 
   const { Auth } = useAuth();
-  const [AnswerScore, setAnswerScore] = useState(0);
   const [userHasVoted, setUserHasVoted] = useState({});
   const isOwnedByUser = Auth?.userData?.UserInfo?.userId === answer.user.id;
 
@@ -20,19 +19,9 @@ export const Answer = (props) => {
   };
 
   useEffect(() => {
-    let answerScore = 0;
-    answer.votes.map((vote) => {
-      if (vote.action) {
-        answerScore = answerScore + 1;
-        return;
-      }
-      answerScore = answerScore - 1;
-      return;
-    });
-    setAnswerScore(answerScore);
-  }, [props.answer]);
-
-  useEffect(() => {
+    if (answer.votes.length === 0) {
+      setUserHasVoted({});
+    }
     answer.votes.map((vote) => {
       if (vote.userId === Auth?.userData?.UserInfo?.userId) {
         setUserHasVoted({
@@ -48,8 +37,12 @@ export const Answer = (props) => {
     <div className={styles.container}>
       <div className={styles.question_container}>
         <div className={styles.voting}>
-          {Auth?.userData?.UserInfo?.userId === answer.user.id && (
-            <div className={`${styles.correct_button} ${ answer._id === props.correctAnswer ? styles.correct : undefined}`}>
+          {Auth?.userData?.UserInfo?.userId === answer.user.id ? (
+            <div
+              className={`${styles.correct_button} ${
+                answer._id === props.correctAnswer ? styles.correct : undefined
+              }`}
+            >
               <ion-icon
                 onClick={() => {
                   props.correctAnswerHandler(answer._id);
@@ -57,8 +50,13 @@ export const Answer = (props) => {
                 name="checkmark-outline"
               ></ion-icon>
             </div>
+          ) : answer._id === props.correctAnswer ? (
+            <div className={`${styles.correct_button_correct}`}>
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </div>
+          ) : (
+            <></>
           )}
-
           <div
             className={
               userHasVoted?.action && userHasVoted?.voted
@@ -73,7 +71,7 @@ export const Answer = (props) => {
               name="chevron-up-outline"
             ></ion-icon>
           </div>
-          <h3>{AnswerScore}</h3>
+          <h3>{answer.score}</h3>
           <div
             className={
               !userHasVoted?.action && userHasVoted?.voted
@@ -102,17 +100,19 @@ export const Answer = (props) => {
           <br />
           <div className={styles.question_user_details_container}>
             {Auth?.userData?.UserInfo?.userId ? (
-              (!isOwnedByUser && (
-                <p className={styles.report_question}>Report answer</p>
-              ),
-              isOwnedByUser && (
-                <p
-                  onClick={removeAnswerHandlerChild}
-                  className={styles.report_question}
-                >
-                  Delete answer
-                </p>
-              ))
+              <>
+                {!isOwnedByUser && (
+                  <p className={styles.report_question}>Report answer</p>
+                )}
+                {isOwnedByUser && (
+                  <p
+                    onClick={removeAnswerHandlerChild}
+                    className={styles.report_question}
+                  >
+                    Delete answer
+                  </p>
+                )}
+              </>
             ) : (
               <p></p>
             )}

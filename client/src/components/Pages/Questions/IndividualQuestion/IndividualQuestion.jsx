@@ -116,7 +116,6 @@ export default function IndividualQuestion() {
   };
 
   useEffect(() => {
-    console.log(QuestionData?.Question?.questionInteraction?.votes);
     if (QuestionData?.Question?.questionInteraction?.votes.length === 0) {
       setUserHasVoted({});
     }
@@ -126,19 +125,15 @@ export default function IndividualQuestion() {
           action: vote.action,
           voted: true,
         });
-        return
-      } else{
+        return;
+      } else {
         setUserHasVoted({});
         return;
       }
     });
   }, [QuestionData, GetQuestionData]);
 
-  console.log(userHasVoted);
-
   const answerVoteHandler = async (action, answerId) => {
-    console.log(answerId);
-    console.log(action);
     try {
       const response = await axios.patch("/answer-vote", {
         userId: Auth?.userData?.UserInfo?.userId,
@@ -180,6 +175,11 @@ export default function IndividualQuestion() {
       console.log(error);
     }
   };
+
+  const isOwnedByUser =
+    Auth?.userData?.UserInfo?.userId === QuestionData?.Question?.userId;
+
+  console.log(isOwnedByUser);
 
   return (
     <div className={styles.container}>
@@ -254,13 +254,36 @@ export default function IndividualQuestion() {
               >
                 {QuestionData?.Question?.code?.codeBody}
               </SyntaxHighlighter>
-              {/* <div className={styles.tag_list}>
-                {QuestionTags.map((tag) => {
-                  return <Link key={tag._id}>{tag.tagName}</Link>;
+              <div className={styles.tag_list}>
+                {QuestionData?.Question?.tags.map((tag) => {
+                  if (!tag.tombstone) {
+                    return <Link key={tag._id}>{tag?.tagName}</Link>;
+                  }
+                  return (
+                    <p key={tag._id} className={styles.tag_tombstone}>
+                      {tag.tagName}
+                    </p>
+                  );
                 })}
-              </div> */}
+              </div>
               <div className={styles.question_user_details_container}>
-                <p className={styles.report_question}>report question</p>
+                {Auth?.userData?.UserInfo?.userId ? (
+                  <>
+                    {!isOwnedByUser && (
+                      <p className={styles.report_question}>Report answer</p>
+                    )}
+                    {isOwnedByUser && (
+                      <p
+                        // onClick={removeAnswerHandlerChild}
+                        className={styles.report_question}
+                      >
+                        Delete answer
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <p></p>
+                )}
                 <div className={styles.user_details}>
                   <h6>
                     Asked{" "}

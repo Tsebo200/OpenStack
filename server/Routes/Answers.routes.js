@@ -97,7 +97,13 @@ answersRouter.patch("/answer-vote", async (req, res) => {
   }
   if (voteDuplicate.length > 0) {
     if (voteDuplicate[0].action === action) {
-      res.status(209).json("You cant vote twice on a answer");
+      console.log("remove vote");
+      const index = update.votes.findIndex((vote) => {
+        return vote === voteDuplicate[0];
+      });
+      update.votes.splice(index, 1);
+      update.save();
+      res.status(200).json("vote removed");
     } else {
       const index = update.votes.findIndex((vote) => {
         return vote === voteDuplicate[0];

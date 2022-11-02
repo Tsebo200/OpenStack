@@ -58,6 +58,11 @@
       .correct_button:hover ion-icon{
         color: $success;
       }
+      .correct_button_correct ion-icon{
+        color: $success;
+        font-size: 40px;
+        cursor: default;
+      }
     }
 
     .question_content {
