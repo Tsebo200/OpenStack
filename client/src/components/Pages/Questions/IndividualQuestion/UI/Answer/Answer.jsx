@@ -33,11 +33,14 @@ export const Answer = (props) => {
     });
   }, [props.answer]);
 
+  console.log(Auth?.userData?.UserInfo?.userId);
+  console.log(props.questionUser);
+
   return (
     <div className={styles.container}>
       <div className={styles.question_container}>
         <div className={styles.voting}>
-          {Auth?.userData?.UserInfo?.userId === answer.user.id ? (
+          {Auth?.userData?.UserInfo?.userId === props.questionUser ? (
             <div
               className={`${styles.correct_button} ${
                 answer._id === props.correctAnswer ? styles.correct : undefined
@@ -109,7 +112,7 @@ export const Answer = (props) => {
                     onClick={removeAnswerHandlerChild}
                     className={styles.report_question}
                   >
-                    Delete Answer
+                    Remove Answer
                   </p>
                 )}
               </>

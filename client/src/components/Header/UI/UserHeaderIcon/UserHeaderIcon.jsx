@@ -30,7 +30,9 @@ export const UserHeaderIcon = (props) => {
         <ion-icon name="notifications-outline"></ion-icon>
         <p>+99</p>
       </div>
+      
       <img className={styles.user_img} onClick={navigateUserSettingsHandler} src={userIcon} />
+      <h5>{Auth.userData.UserInfo.username}</h5>
       <a onClick={props.onClick}>Logout</a>
     </div>
   );

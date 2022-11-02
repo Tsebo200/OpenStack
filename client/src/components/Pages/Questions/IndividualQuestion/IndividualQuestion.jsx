@@ -123,7 +123,7 @@ export default function IndividualQuestion() {
         const response = await axios.delete("/question", {
           params: { questionId: params.questionId },
         });
-        console.log("delete question");
+        console.log("removed question");
         navigate("/questions")
       } catch (error) {
         console.log(error);
@@ -131,7 +131,7 @@ export default function IndividualQuestion() {
     };
     setModalOptions({
       show: true,
-      message: "Are you sure you want to delete this question",
+      message: "Are you sure you want to remove this question",
       modal_box_css: `${styles.modal_box} ${styles.modal_box_show}`,
       button: true,
       buttonHtml: (
@@ -208,6 +208,32 @@ export default function IndividualQuestion() {
 
   const isOwnedByUser =
     Auth?.userData?.UserInfo?.userId === QuestionData?.Question?.userId;
+
+  // reporting 
+
+
+  const reportServiceHandler = () => {
+    
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className={styles.container}>
@@ -309,7 +335,7 @@ export default function IndividualQuestion() {
                         onClick={removeQuestionHandler}
                         className={styles.report_question}
                       >
-                        Delete Question
+                        Remove Question
                       </p>
                     )}
                   </>
@@ -359,6 +385,7 @@ export default function IndividualQuestion() {
                   correctAnswer={
                     QuestionData?.Question?.questionInteraction?.correctAnswer
                   }
+                  questionUser={ QuestionData?.Question?.userId}
                 />
               );
             })}

@@ -120,7 +120,7 @@ questionsRouter.get("/question", async (req, res) => {
   )
     .sort((a, b) => (a.score > b.score ? -1 : 1))
     .sort((a) =>
-      a._id.toString() === Question.questionInteraction.correctAnswer.toString()
+      a._id.toString() === Question.questionInteraction.correctAnswer
         ? -1
         : 1
     );
