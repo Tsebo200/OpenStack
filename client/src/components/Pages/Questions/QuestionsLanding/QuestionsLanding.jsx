@@ -103,7 +103,7 @@ export const QuestionsLanding = () => {
   }, [UniqueUsersList]);
 
   // sorting will need to be done server side
-
+  
   return (
     <div className={styles.questions_list}>
       <header>
@@ -111,7 +111,7 @@ export const QuestionsLanding = () => {
         <Link to="/questions-portal">Ask Question</Link>
       </header>
       <div className={styles.questions_filter_header}>
-        <h4>20,003,103 questions</h4>
+        <h4>{QuestionList.length} Questions</h4>
         <table>
           <thead>
             <tr>
@@ -128,16 +128,18 @@ export const QuestionsLanding = () => {
           </thead>
         </table>
       </div>
-      {QuestionList.map((question) => {
-        return (
-          <QuestionCard
-            key={question._id}
-            TagDetailsList={TagDetailsList}
-            UserDetailsList={UserDetailsList}
-            questionDetails={question}
-          />
-        );
-      })}
+      {QuestionList.length > 0 ? (
+        QuestionList.map((question) => {
+          return (
+            <QuestionCard
+              key={question._id}
+              TagDetailsList={TagDetailsList}
+              UserDetailsList={UserDetailsList}
+              questionDetails={question}
+            />
+          );
+        })
+      ) : (<></>)}
     </div>
   );
 };

@@ -7,6 +7,39 @@
   // display: flex;
   // flex-flow: column;
 
+
+  .loader_container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-top: 100px;
+  }
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   .question_activity_header {
     display: flex;
     flex-direction: row;
@@ -65,7 +98,16 @@
         font-size: 50px;
         color: rgb(214, 214, 214);
       }
+
+      ion-icon:hover{
+        color: $primary;
+      }
+
+      .voted ion-icon{
+        color: $primary;
+      }
     }
+
 
     .question_content {
       margin-left: 20px;
@@ -80,6 +122,17 @@
       align-items: flex-start;
       margin-top: 20px;
       margin-bottom: 30px;
+    }
+
+    .tag_tombstone {
+      padding: 5px;
+      font-size: 13px;
+      background-color: rgb(182, 182, 182);
+      margin-right: 10px;
+      color: rgb(255, 255, 255);
+      border-radius: 4px;
+      cursor: not-allowed;
+      box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f;
     }
 
     .tag_list a {
@@ -132,7 +185,68 @@
     }
   }
 
-  //   .report_question {
-  //     text-align: right;
-  //   }
+  .report_question:hover {
+    color: $error;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
+
+.modal{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+}
+.modal_buttons{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.modal_buttons button{
+  width: 200px;
+  margin: 0 50px;
+}
+
+.modal_box{
+  width: 50%;
+  position: fixed;
+  padding: 30px;
+  border-radius: 5px;
+  top: -50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  z-index: 101;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal_box_show{
+  top: 50%;
+}
+
+.close_btn{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  
+}
+
+.close_btn ion-icon{
+  background-color: $primary;
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+}
+
+

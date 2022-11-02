@@ -14,7 +14,7 @@ const answerSchema = mongoose.Schema({
     default: Date.now,
   },
   user: String,
-  votes: { type: Number, default: 0 },
+  votes: { type: Array},
   reports: Number,
   questionId: {
     type: Array,

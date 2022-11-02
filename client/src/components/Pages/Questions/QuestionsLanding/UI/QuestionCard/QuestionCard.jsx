@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
@@ -83,12 +83,35 @@ export const QuestionCard = (props) => {
     });
   }, []);
 
+
+
+
+  const [VoteScore, setVoteScore] = useState(0)
+  useEffect(() => {
+    let voteScore = 0;
+
+    question.questionInteraction.votes.map((vote) => {
+    // vote action true add one
+    if (vote.action) {
+      voteScore = voteScore + 1;
+    }
+    // else vote action false subtract one
+    else {
+      voteScore = voteScore - 1;
+    }
+
+    // get answers
+  });
+  setVoteScore(voteScore)
+  }, [])
+
+
   return (
     <div className={styles.question}>
       <div className={styles.question_interaction}>
         {answerState}
         <div className={styles.question_interaction_child}>
-          <p>{question.questionInteraction?.votes | 0} votes</p>
+          <p>{VoteScore | 0} votes</p>
         </div>
       </div>
       <div className={styles.question_details}>

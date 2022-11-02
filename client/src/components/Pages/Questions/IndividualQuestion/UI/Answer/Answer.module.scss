@@ -41,6 +41,28 @@
         font-size: 50px;
         color: rgb(214, 214, 214);
       }
+      ion-icon:hover{
+        color: $primary;
+      }
+      .voted ion-icon{
+        color: $primary;
+      }
+
+      .correct_button ion-icon{
+        font-size: 40px;
+        margin-top: 10px;
+      }
+      .correct ion-icon{
+        color: $success;
+      }
+      .correct_button:hover ion-icon{
+        color: $success;
+      }
+      .correct_button_correct ion-icon{
+        color: $success;
+        font-size: 40px;
+        cursor: default;
+      }
     }
 
     .question_content {
@@ -82,7 +104,7 @@
     }
   }
 
-  .user_details{
+  .user_details {
     padding: 8px;
     border-radius: 5px;
     background-color: rgb(198, 223, 238);
@@ -103,12 +125,14 @@
       border-radius: 100px;
       margin: 5px;
     }
-    div{
-        margin-left: 5px;
+    div {
+      margin-left: 5px;
     }
   }
 
-  //   .report_question {
-  //     text-align: right;
-  //   }
+  .report_question:hover {
+    color: $error;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
