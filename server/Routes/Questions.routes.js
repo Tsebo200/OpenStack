@@ -6,40 +6,34 @@ const questionsRouter = express();
 const multer = require("multer");
 const path = require("path");
 const tagSchema = require("../models/Tags");
-const AWS = require('aws-sdk');
-
+const AWS = require("aws-sdk");
 
 //Setting up AWS S3 Buckets
-AWS.config.update({region: 'us-east-1'})
+AWS.config.update({ region: "us-east-1" });
 
 s3 = new AWS.S3({
-    credentials: {
-        accessKeyId: process.env.ACCESS_KEY_ID,
-        secretAccessKey: process.env.SECRET_ACCESS_KEY
-    }
-})
-
-// Multer Middleware
-
-const questionImageStore = multer.diskStorage({
-  destination: (req, res, callback) => {
-    callback(null, "./questionImages");
-  },
-
-  filename: (req, file, callback) => {
-    console.log(file);
-    callback(null, Date.now() + path.extname(file.originalname));
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY_ID,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
   },
 });
 
-const uploadQuestionImage = multer({ storage: questionImageStore });
-
 questionsRouter.post(
   "/api/add-question",
-  // uploadQuestionImage.single("image"),
   async (req, res) => {
-    // let data = JSON.parse(req.body.information);
+    const uploadParams = {
+      Bucket: process.env.BUCKET,
+      Key: req.files.file.name,
+      Body: Buffer.from(req.files.file.data),
+      ContentType: req.files.file.mimeType,
+      ACL: 'public-read'
+    }
 
+    s3.upload(uploadParams, function (err, data){
+      err && console.log("Error", err)
+      data && console.log("Upload Success", data.location)
+    })
+    
     // console.log(req.file.filename);
     const { title, body, codeBody, codeLanguage, user_id, tags } = req.body;
     const newQuestion = new questionSchema({
