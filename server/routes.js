@@ -13,11 +13,13 @@ const questionsRouter = require('./Routes/Questions.routes')
 const usersRouter = require('./Routes/users/User.routes')
 const authRouter = require('./Routes/auth.routes');
 const answersRouter = require('./Routes/Answers.routes');
+const reportRouter = require('./Routes/report.routes');
 
 router.use(questionsRouter);
 router.use(usersRouter);
 router.use(authRouter);
 router.use(answersRouter);
+router.use(reportRouter);
 
 
 //Adding a question post route
