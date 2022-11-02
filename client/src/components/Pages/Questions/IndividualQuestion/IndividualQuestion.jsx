@@ -9,225 +9,253 @@ import { CommentList } from "./UI/ComentList/CommentList";
 import { AnswerPortal } from "./UI/AnswerPortal/AnswerPortal";
 import axios from "../../../../api/axios";
 import moment from "moment";
+import { useAuth } from "../../../../Hooks/useAuth";
+import { LoadingScreen } from "../../../UI/LoadingScreen/LoadingScreen";
+
+const convertTimeCreated = (timeCreated) => {
+  // https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/07-difference/#:~:text=To%20get%20the%20difference%20in,you%20would%20use%20moment%23from%20.&text=To%20get%20the%20difference%20in%20another%20unit%20of%20measurement%2C%20pass,measurement%20as%20the%20second%20argument.&text=To%20get%20the%20duration%20of,an%20argument%20into%20moment%23duration%20.
+
+  let displayTime = moment()
+    .subtract(2, "h")
+    .diff(moment(timeCreated), "seconds");
+  let displayTimeMessage = "Asked " + displayTime + " seconds ago";
+  if (displayTime > 604800) {
+    displayTimeMessage = moment(timeCreated).format("lll");
+  } else if (displayTime / (3600 * 24) > 2) {
+    displayTimeMessage =
+      "Asked " + Math.floor(displayTime / (3600 * 24)) + " days ago";
+  } else if (displayTime / (3600 * 24) > 1) {
+    displayTimeMessage =
+      "Asked " + Math.floor(displayTime / (3600 * 24)) + " day ago";
+  } else if (displayTime / 3600 > 2) {
+    displayTimeMessage =
+      "Asked " + Math.round(displayTime / 3600) + " hours ago";
+  } else if (displayTime / 3600 > 1) {
+    displayTimeMessage =
+      "Asked " + Math.round(displayTime / 3600) + " hour ago";
+  } else if (displayTime / 60 > 2) {
+    displayTimeMessage =
+      "Asked " + Math.round(displayTime / 60) + " minuets ago";
+  } else if (displayTime / 60 > 1) {
+    displayTimeMessage =
+      "Asked " + Math.round(displayTime / 60) + " minuet ago";
+  }
+  return displayTimeMessage;
+};
 
 export default function IndividualQuestion() {
   let params = useParams();
+  const { Auth } = useAuth();
 
-  const [QuestionDetails, setQuestionDetails] = useState(null);
-  const [QuestionUserDetails, setQuestionUserDetails] = useState(null);
-  const [QuestionTags, setQuestionTags] = useState([]);
-  const [AnswersList, setAnswersList] = useState([]);
+  const [QuestionData, setQuestionData] = useState(null);
+  const [GetQuestionData, setGetQuestionData] = useState(true);
+  const [userHasVoted, setUserHasVoted] = useState({})
 
-  const getQuestions = async () => {
+
+  const [ModalOptions, setModalOptions] = useState({
+    show: false,
+    message: "",
+    modal_box_css: styles.modal_box,
+  });
+
+  const closeModalHandler = () => {
+    setModalOptions({
+      show: false,
+      message: "",
+      modal_box_css: styles.modal_box,
+    });
+  };
+
+  const getQuestion = async (questionId) => {
+    setGetQuestionData(true);
     const response = await axios.get("/question", {
-      params: { questionId: params.questionId },
+      params: { questionId: questionId },
     });
-    setQuestionDetails(response.data.findQuestion);
-    setQuestionUserDetails(response.data.userData);
-  };
-
-  const getAnswers = async () => {
-    const response = await axios.get("/get-answers", {
-      params: { questionId: params.questionId },
-    });
-    setAnswersList(response.data);
-  };
-
-  const getTags = async (tags) => {
-    const response = await axios.post("/unique-tags", {
-      UniqueTagsList: tags,
-    });
-    setQuestionTags(response.data);
+    setQuestionData(response.data);
   };
 
   useEffect(() => {
-    getQuestions();
-    getAnswers();
-    getTags(QuestionDetails?.tags);
-  }, []);
+    const timer = setTimeout(() => {
+      getQuestion(params.questionId);
+      setGetQuestionData(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [GetQuestionData]);
 
-  const convertTimeCreated = (timeCreated) => {
-    // https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/07-difference/#:~:text=To%20get%20the%20difference%20in,you%20would%20use%20moment%23from%20.&text=To%20get%20the%20difference%20in%20another%20unit%20of%20measurement%2C%20pass,measurement%20as%20the%20second%20argument.&text=To%20get%20the%20duration%20of,an%20argument%20into%20moment%23duration%20.
+  console.log(QuestionData);
 
-    let displayTime = moment()
-      .subtract(2, "h")
-      .diff(moment(timeCreated), "seconds");
-    let displayTimeMessage = "Asked " + displayTime + " seconds ago";
-    if (displayTime > 604800) {
-      displayTimeMessage = moment(timeCreated).format("lll");
-    } else if (displayTime / (3600 * 24) > 2) {
-      displayTimeMessage =
-        "Asked " + Math.floor(displayTime / (3600 * 24)) + " days ago";
-    } else if (displayTime / (3600 * 24) > 1) {
-      displayTimeMessage =
-        "Asked " + Math.floor(displayTime / (3600 * 24)) + " day ago";
-    } else if (displayTime / 3600 > 2) {
-      displayTimeMessage =
-        "Asked " + Math.round(displayTime / 3600) + " hours ago";
-    } else if (displayTime / 3600 > 1) {
-      displayTimeMessage =
-        "Asked " + Math.round(displayTime / 3600) + " hour ago";
-    } else if (displayTime / 60 > 2) {
-      displayTimeMessage =
-        "Asked " + Math.round(displayTime / 60) + " minuets ago";
-    } else if (displayTime / 60 > 1) {
-      displayTimeMessage =
-        "Asked " + Math.round(displayTime / 60) + " minuet ago";
+  const voteHandler = async (action) => {
+    try {
+      const response = await axios.patch("/question-vote", {
+        userId: Auth?.userData?.UserInfo?.userId,
+        action: action,
+        questionId: params.questionId,
+      });
+      if (response.status === 209) {
+        setModalOptions({
+          show: true,
+          message: response.data,
+          modal_box_css: `${styles.modal_box} ${styles.modal_box_show}`,
+        });
+        return;
+      } else if (response.status === 200) {
+        setGetQuestionData(true);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    return displayTimeMessage;
   };
+
+  const removeAnswerHandler = async (answerId) => {
+    try {
+      const response = await axios.delete("/answer", {
+        params: { answerId: answerId, questionId: params.questionId },
+      });
+      setGetQuestionData(true);
+    } catch (error) {
+      console.log(error);
+    }
+    return;
+  };  
+
+  useEffect(() => {
+    QuestionData?.Question?.questionInteraction.votes.map(
+      
+      (vote) => {
+        if (vote.userId === Auth?.userData?.UserInfo?.userId) {
+          setUserHasVoted({
+            action: vote.action,
+            voted: true,
+          }) 
+        }
+        return null;
+      }
+    ); 
+  }, [QuestionData])
+  
+  
 
   return (
     <div className={styles.container}>
-      {QuestionDetails ? (
+      {GetQuestionData ? (
+        <div className={styles.loader_container}>
+          <LoadingScreen />
+          <h3>Loading Question...</h3>
+        </div>
+      ) : (
         <>
+          {ModalOptions.show && (
+            <div onClick={closeModalHandler} className={styles.modal}></div>
+          )}
+
+          <div className={ModalOptions.modal_box_css}>
+            <div className={styles.close_btn} onClick={closeModalHandler}>
+              <ion-icon name="close-outline"></ion-icon>
+            </div>
+            <h3>Error</h3>
+            <h4>{ModalOptions.message}</h4>
+          </div>
           <header>
             <div className={styles.header_main}>
-              <h2>{QuestionDetails.title}</h2>
+              <h2>{QuestionData?.Question?.title}</h2>
               <Link to="/questions-portal">Ask Question</Link>
             </div>
             <div className={styles.question_activity_header}>
-              <p>{convertTimeCreated(QuestionDetails?.questionCreated)}</p>
-              {/* <p>Modified 1 month ago</p> */}
+              <p>
+                {convertTimeCreated(QuestionData?.Question?.questionCreated)}
+              </p>
             </div>
           </header>
           <div className={styles.question_container}>
             <div className={styles.voting}>
-              <ion-icon name="chevron-up-outline"></ion-icon>
-              <h3>{QuestionDetails?.questionInteraction?.votes}</h3>
-              <ion-icon name="chevron-down-outline"></ion-icon>
+              <div className={userHasVoted?.action && userHasVoted?.voted ? styles.voted : undefined}>
+                <ion-icon
+                  onClick={() => {
+                    voteHandler(true);
+                  }}
+                  name="chevron-up-outline"
+                ></ion-icon>
+              </div>
+              <h3>{QuestionData?.Question?.questionInteraction.voteScore}</h3>
+              <div className={!userHasVoted?.action && userHasVoted?.voted ? styles.voted : undefined}>
+                <ion-icon
+                  onClick={() => {
+                    voteHandler(false);
+                  }}
+                  name="chevron-down-outline"
+                ></ion-icon>
+              </div>
             </div>
             <div className={styles.question_content}>
-              <h5>{QuestionDetails.body}</h5>
+              <h5>{QuestionData?.Question?.body}</h5>
               <SyntaxHighlighter
-                language={QuestionDetails?.code?.codeLanguage}
+                language={QuestionData?.Question?.code?.codeLanguage}
                 children={true}
                 wrapLines={true}
-                // style={a11yLight}
                 showLineNumbers={true}
               >
-                {QuestionDetails?.code?.codeBody}
+                {QuestionData?.Question?.code?.codeBody}
               </SyntaxHighlighter>
-              <div className={styles.tag_list}>
+              {/* <div className={styles.tag_list}>
                 {QuestionTags.map((tag) => {
                   return <Link key={tag._id}>{tag.tagName}</Link>;
                 })}
-              </div>
+              </div> */}
               <div className={styles.question_user_details_container}>
                 <p className={styles.report_question}>report question</p>
                 <div className={styles.user_details}>
                   <h6>
                     Asked{" "}
-                    {moment(QuestionDetails?.questionCreated).format("lll")}
+                    {moment(QuestionData?.Question?.questionCreated).format(
+                      "lll"
+                    )}
                   </h6>
                   <div className={styles.user_card}>
                     <img src={userProfileImage} />
                     <div>
-                      <p>{QuestionUserDetails.username}</p>
-                      <h6>user score {QuestionUserDetails.userScore} </h6>
+                      <p>{QuestionData?.userData?.username}</p>
+                      <h6>user score {QuestionData?.userData?.userScore} </h6>
                     </div>
                   </div>
                 </div>
               </div>
-              {/* <CommentList/> */}
             </div>
           </div>
           <br></br>
           <div>
             <h3>
-              {AnswersList?.findAnswers.length}{" "}
-              {AnswersList?.findAnswers.length === 1 ? <>Answer</> : <>Answers</>}{" "}
+              {QuestionData?.Question?.answers.length}{" "}
+              {QuestionData?.Question?.answers.length === 1 ? (
+                <>Answer</>
+              ) : (
+                <>Answers</>
+              )}{" "}
             </h3>
-            {/* <p>Sorted by:</p> */}
+            <p>Sorted by:</p>
           </div>
-          {AnswersList?.findAnswers.length > 0 &&
-            AnswersList?.findAnswers.map((answer) => {
-              return <Answer userRefList={AnswersList?.userDataCompressed} key={answer._id} answer={answer} />;
+          {QuestionData?.Question?.answers.length > 0 &&
+            QuestionData?.Question?.answers.map((answer) => {
+              return (
+                <Answer
+                  removeAnswerHandler={removeAnswerHandler}
+                  key={answer._id}
+                  language={QuestionData?.Question?.code?.codeLanguage}
+                  answer={answer}
+                />
+              );
             })}
 
           <AnswerPortal
-            tag={QuestionDetails?.code.codeLanguage}
+            tag={QuestionData?.Question?.code?.codeLanguage}
             questionId={params.questionId}
-            getAnswers={getAnswers}
+            getQuestion={getQuestion}
           />
           <br></br>
           <br></br>
           <br></br>
           <br></br>
         </>
-      ) : (
-        <></>
       )}
     </div>
-    // <div className={styles.container}>
-    //     <div className={styles.pageContent}>
-    //         <h1>How do you write HTML?</h1>
-    //         <h4>First Year Question</h4>
-    //         <br />
-    //         <hr />
-    //         <div className={styles.flexCon}>
-    //             <div className={styles.flex}>
-    //                 <ion-icon name="eye"></ion-icon><h4>34</h4>
-    //             </div>
-    //             <div className={styles.flex}>
-    //             <ion-icon name="trending-up"></ion-icon><h4>34</h4>
-    //             </div>
-    //             <div className={styles.flex}>
-    //             <ion-icon name="trending-down"></ion-icon><h4>34</h4>
-    //             </div>
-    //             <div className={styles.flex}>
-    //                 <ion-icon name="chatbubbles"></ion-icon><h4>34</h4>
-    //             </div>
-    //             <div className={styles.flex}>
-    //             <ion-icon name="close-circle"></ion-icon><h4>3</h4>
-    //             <ion-icon name="arrow-dropup"></ion-icon>
-    //             </div>
-    //             <div className={`${styles.flex} ${styles.report}`}>
-    //             <Button type="report" text='Report Question'/>
-    //             </div>
-
-    //         </div>
-    //         <p>How do you write some html code? The reason I am asking this question because I have no idea how to write some html code so that I can create the coolest of apps. Here is some example code I am including</p>
-
-    //         <SyntaxHighlighter className={styles.code} language="javascript" children={true}>
-    //             {exampleCode}
-    //         </SyntaxHighlighter>
-    //         <br />
-    //         <hr />
-    //         <br />
-    //         <h4 className={styles.userInfo}>Answered: 13 August 2022 by JellyBeans</h4>
-    //         <br />
-    //         <div className={styles.correct}>Correct Answer</div>
-    //         <div className={styles.flexCon}>
-    //         <div className={styles.flex}>
-    //         <ion-icon name="trending-up" size="large"></ion-icon><h4>34</h4>
-    //         </div>
-    //         <div className={styles.flex}>
-    //         <ion-icon name="trending-down" size="large"></ion-icon><h4>34</h4>
-    //         </div>
-    //         <div className={styles.flex}>
-    //             <ion-icon name="chatbubbles" size="large"></ion-icon><h4>34</h4>
-    //         </div>
-    //         <div className={styles.flex}>
-    //         <ion-icon name="close-circle" size="large"></ion-icon><h4>3</h4>
-    //         </div>
-    //         </div>
-    //         <p>How do you write some html code? The reason I am asking this question because I have no idea how to write some html code so that I can create the coolest of apps. Here is some example code I am including</p>
-    //         <Button type="report" text='Report Answer'/>
-    //         <SyntaxHighlighter className={styles.code} language="javascript" children={true}>
-    //                {exampleCode}
-    //         </SyntaxHighlighter>
-    //         <br />
-    //         <hr />
-    //         <label htmlFor="body">Body</label>
-    //         <textarea className={styles.body} name="codeBlock"></textarea>
-    //         <label htmlFor="code">Code</label>
-    //         <textarea className={styles.body} name="codeBlock"></textarea>
-    //         <Button type="questionSubmit" text="Submit Answer"/>
-
-    //     </div>
-    //     <ion-icon name="airplane"></ion-icon>
-
-    // </div>
   );
 }

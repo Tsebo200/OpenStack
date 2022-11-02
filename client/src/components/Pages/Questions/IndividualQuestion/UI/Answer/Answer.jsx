@@ -2,13 +2,21 @@ import moment from "moment";
 import React from "react";
 import { Link } from "react-router-dom";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
+import axios from "../../../../../../api/axios";
 import userProfileImage from "../../../../../../assets/profilePicture.jpg";
+import { useAuth } from "../../../../../../Hooks/useAuth";
 import styles from "./Answer.module.scss";
 
 export const Answer = (props) => {
   const answer = props.answer;
 
-  const usersRefList = props.userRefList;
+  const { Auth } = useAuth();
+
+  const isOwnedByUser = Auth?.userData?.UserInfo?.userId === answer.user.id;
+
+  const removeAnswerHandlerChild = async () => {
+    props.removeAnswerHandler(answer._id);
+  };
 
   return (
     <div className={styles.container}>
@@ -21,7 +29,7 @@ export const Answer = (props) => {
         <div className={styles.question_content}>
           <h5>{answer.body}</h5>
           <SyntaxHighlighter
-            language="javascript"
+            language={props.language}
             children={true}
             wrapLines={true}
             showLineNumbers={true}
@@ -30,28 +38,33 @@ export const Answer = (props) => {
           </SyntaxHighlighter>
           <br />
           <div className={styles.question_user_details_container}>
-            <p className={styles.report_question}>report question</p>
+            {Auth?.userData?.UserInfo?.userId ? (
+              (!isOwnedByUser && (
+                <p className={styles.report_question}>Report answer</p>
+              ),
+              isOwnedByUser && (
+                <p
+                  onClick={removeAnswerHandlerChild}
+                  className={styles.report_question}
+                >
+                  Delete answer
+                </p>
+              ))
+            ) : (
+              <p></p>
+            )}
+
             <div className={styles.user_details}>
               <h6>Answered {moment(answer.created).format("lll")}</h6>
               <div className={styles.user_card}>
                 <img src={userProfileImage} />
-                {usersRefList
-                  .filter((i) => {
-                    return i.id === answer.user;
-                  })
-                  .map((userDetails) => {
-                    return (
-                      <div>
-                        <p>{userDetails.username}</p>
-                        <h6>user score {userDetails.userScore}</h6>
-                      </div>
-                    );
-                  })}
+                <div>
+                  <p>{answer.user.username}</p>
+                  <h6>user score {answer.user.userScore}</h6>
+                </div>
               </div>
             </div>
           </div>
-          {/* <CommentList/> */}
-          {/* <Answer /> */}
         </div>
       </div>
     </div>

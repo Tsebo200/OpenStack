@@ -128,16 +128,18 @@ export const QuestionsLanding = () => {
           </thead>
         </table>
       </div>
-      {QuestionList.map((question) => {
-        return (
-          <QuestionCard
-            key={question._id}
-            TagDetailsList={TagDetailsList}
-            UserDetailsList={UserDetailsList}
-            questionDetails={question}
-          />
-        );
-      })}
+      {QuestionList.length > 0 ? (
+        QuestionList.map((question) => {
+          return (
+            <QuestionCard
+              key={question._id}
+              TagDetailsList={TagDetailsList}
+              UserDetailsList={UserDetailsList}
+              questionDetails={question}
+            />
+          );
+        })
+      ) : (<></>)}
     </div>
   );
 };

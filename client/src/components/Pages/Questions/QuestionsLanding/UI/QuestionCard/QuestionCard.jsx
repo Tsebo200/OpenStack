@@ -8,6 +8,8 @@ export const QuestionCard = (props) => {
   const question = props.questionDetails;
   const tagReferenceList = props.TagDetailsList;
 
+  console.log(question);
+
   const UserDetailsReferenceList = props.UserDetailsList;
   const formattedSentence = (sentence) => {
     let newSentence = sentence

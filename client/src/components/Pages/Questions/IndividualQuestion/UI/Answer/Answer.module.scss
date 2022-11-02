@@ -82,7 +82,7 @@
     }
   }
 
-  .user_details{
+  .user_details {
     padding: 8px;
     border-radius: 5px;
     background-color: rgb(198, 223, 238);
@@ -103,12 +103,14 @@
       border-radius: 100px;
       margin: 5px;
     }
-    div{
-        margin-left: 5px;
+    div {
+      margin-left: 5px;
     }
   }
 
-  //   .report_question {
-  //     text-align: right;
-  //   }
+  .report_question:hover {
+    color: $error;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }

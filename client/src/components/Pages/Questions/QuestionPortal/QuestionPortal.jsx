@@ -9,7 +9,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
-import axios from '../../../../api/axios';
+import axios from "../../../../api/axios";
 import SuccessModal from "../../../SuccessModal/SuccessModal";
 import { useAuth } from "../../../../Hooks/useAuth";
 import TagsSelected from "./TagsSelected/TagsSelected";
@@ -26,7 +26,6 @@ function QuestionPortal() {
   useEffect(() => {
     getTags();
   }, []);
-
 
   // useState's and Ref's
   const defValues = [
@@ -76,7 +75,6 @@ function QuestionPortal() {
   const [searchTag, setSearchTag] = useState("");
   const [tagsSelected, setTagsSelected] = useState([]);
   const [tagId, setTagId] = useState([]);
-
 
   const titlePreview = (e) => {
     const value = e.target.value;
@@ -163,34 +161,32 @@ function QuestionPortal() {
 
   const closeModal = () => {
     // navigate("/");
+    setModal(false);
   };
 
-
   const addTagHandler = (e, key) => {
-    console.log(e)
-    console.log(key)
+    console.log(e);
+    console.log(key);
     const arr = tagsSelected;
     const idArr = tagId;
     // console.log(key)
     // // console.log(e.target.__reactFiber$3393ywe519t.key);
     const tags = e.target.innerText;
 
-    if(!arr.includes(tags)){
+    if (!arr.includes(tags)) {
       arr.push(tags);
       idArr.push(key);
       setTagsSelected(arr);
       setTagId(idArr);
       console.log(tagId);
       setRerender(true);
-
     }
-
-  }
+  };
 
   const [rerender, setRerender] = useState(false);
   useEffect(() => {
     setRerender(false);
-  }, [rerender])
+  }, [rerender]);
 
   const formHandle = (e) => {
     e.preventDefault();
@@ -233,9 +229,11 @@ function QuestionPortal() {
     let payload = {
       title: titleString,
       body: bodyString,
-      code: code,
+      codeBody: code,
+      codeLanguage: previewQuestion.qLanguage,
       selectedYear: year,
-      tagSelected: tagId,
+      tags: tagId,
+      user_id: Auth.userData.UserInfo.userId,
     };
 
     console.log(payload);
@@ -245,15 +243,16 @@ function QuestionPortal() {
 
     console.log(payloadData);
 
-    axios.post('http://localhost:5001/api/add-question/', payload)
-    .then(res => {
+    axios
+      .post("http://localhost:5001/api/add-question/", payload)
+      .then((res) => {
         console.log("Question Added!");
         setModal(true);
-    })
-    .catch(err => {
+      })
+      .catch((err) => {
         console.log(err);
         setModal(false);
-    })
+      });
   };
 
   return (
@@ -378,7 +377,8 @@ function QuestionPortal() {
             inputType="text"
             ref={tag}
             value={values["tag"]}
-            onChange={(e) => {setSearchTag(e.target.value);
+            onChange={(e) => {
+              setSearchTag(e.target.value);
             }}
           />
         ) : (
@@ -388,20 +388,32 @@ function QuestionPortal() {
             inputType="text"
             ref={tag}
             value={values["tag"]}
-            onChange={(e) => {setSearchTag(e.target.value.toUpperCase());}}
+            onChange={(e) => {
+              setSearchTag(e.target.value.toUpperCase());
+            }}
           />
         )}
         {/* <SuggestedTags searchTag={searchTag} test={value => setTestState(value)} onClick={addTagHandler}/> */}
         <div className={styles.tagCon}>
-            {tagList.filter((i) =>{
-            if(searchTag == ""){
-              return i.tagName
-            } else if (i.tagName.includes(searchTag.toUpperCase())){
-              return i.tagName
-            }
-          }).map((i, index)=> <p className={styles.tagName} key={i._id} onClick={(e, key) => addTagHandler(e, i._id)}>{i.tagName}</p>)}  
+          {tagList
+            .filter((i) => {
+              if (searchTag == "") {
+                return i.tagName;
+              } else if (i.tagName.includes(searchTag.toUpperCase())) {
+                return i.tagName;
+              }
+            })
+            .map((i, index) => (
+              <p
+                className={styles.tagName}
+                key={i._id}
+                onClick={(e, key) => addTagHandler(e, i._id)}
+              >
+                {i.tagName}
+              </p>
+            ))}
         </div>
-        <TagsSelected tag={tagsSelected}/>
+        <TagsSelected tag={tagsSelected} />
         <hr />
         <h2>Review your question</h2>
         <hr />

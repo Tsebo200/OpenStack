@@ -18,6 +18,7 @@ s3 = new AWS.S3({
         secretAccessKey: process.env.SECRET_ACCESS_KEY
     }
 })
+const answersSchema = require("../models/Answers");
 
 // Multer Middleware
 
@@ -61,37 +62,6 @@ questionsRouter.post(
     } catch (err) {
       console.log(err);
     }
-
-    // const userDetails = {
-    //   // userProfilePicture: String,
-    //     userName: String,
-    //     userScore: Number
-    // }
-
-    // const tagList = await tags.map(async (tag_id) => {
-    //   console.log(tag_id);
-    //   const tag = await tagSchema.findById(tag_id).exec();
-    //   console.log(tag);
-    //   // return tag;
-    // });
-    // try {
-    //   console.log(tagList);
-    //   res.json(tagList);
-    // } catch (err) {
-    //   res.json(err);
-    // }
-    // const findTags = await tagSchema.find();
-
-    // return tagName
-
-    // newQuestion
-    //   .save()
-    //   .then((i) => {
-    //     res.json(i);
-    //   })
-    //   .catch((err) => {
-    //     res.status(400).json({ msg: "Question could not be added!", err });
-    //   });
   }
 );
 
@@ -103,12 +73,50 @@ questionsRouter.get("/api/all-questions", async (req, res) => {
 questionsRouter.get("/question", async (req, res) => {
   const { questionId } = req.query;
 
-  const findQuestion = await questionSchema.findOne({ _id: questionId });
-  const userData = await userSchema.findOne({ _id: findQuestion.userId });
-  const { userScore, username } = userData;
+  const Question = await questionSchema.findOne({ _id: questionId });
+  const userData = await userSchema.findOne({ _id: Question.userId });
 
+  const answers = await answersSchema.find({ questionId: questionId });
+
+  // https://stackoverflow.com/questions/42964102/syntax-for-an-async-arrow-function
+
+  const answersList = await Promise.all(
+    answers.map(async (answer) => {
+      const answerUser = await userSchema.findOne({ _id: answer.user });
+      return {
+        ...answer._doc,
+        user: {
+          userScore: answerUser.userScore,
+          username: answerUser.username,
+          id: answerUser._id,
+        },
+      };
+    })
+  );
+  const { userScore, username } = userData;
+  let voteScore = 0;
+
+  Question.questionInteraction.votes.map((vote) => {
+    // vote action true add one
+    if (vote.action) {
+      voteScore = voteScore + 1;
+    }
+    // else vote action false subtract one
+    else {
+      voteScore = voteScore - 1;
+    }
+
+    // get answers
+  });
   res.json({
-    findQuestion: findQuestion,
+    Question: {
+      ...Question._doc,
+      questionInteraction: {
+        ...Question._doc.questionInteraction,
+        voteScore: voteScore,
+      },
+      answers: answersList,
+    },
     userData: {
       userScore: userScore,
       username: username,
@@ -170,6 +178,47 @@ questionsRouter.patch("/delete-tag", async (req, res) => {
     .findByIdAndUpdate(tagId, { tombstone: true })
     .exec();
   res.json("tag has been removed");
+});
+
+questionsRouter.patch("/question-vote", async (req, res) => {
+  const { userId, action, questionId } = req.body;
+
+  // find if user id and user exists
+  const userFound = await userSchema.findOne({ _id: userId }).exec();
+  const update = await questionSchema.findById(questionId).exec();
+  const voteDuplicate = update.questionInteraction.votes.filter((vote) => {
+    return vote.userId === userId;
+  });
+  if (!userFound) {
+    res.status(209).json("You need to be logged in to vote on a question");
+    return;
+  }
+  if (voteDuplicate.length > 0) {
+    if (voteDuplicate[0].action === action) {
+      res.status(209).json("You cant vote twice on a question");
+    } else {
+      const index = update.questionInteraction.votes.findIndex((vote) => {
+        return vote === voteDuplicate[0];
+      });
+      update.questionInteraction.votes.splice(index, 1);
+      update.questionInteraction.votes.push({
+        userId: userId,
+        action: action,
+      });
+      update.save();
+      res.status(200).json("Vote updated");
+    } 
+    return;
+  } else{
+    update.questionInteraction.votes.push({
+      userId: userId,
+      action: action,
+    })
+    update.save();
+  }
+
+  res.json("vote complete");
+  return;
 });
 
 module.exports = questionsRouter;

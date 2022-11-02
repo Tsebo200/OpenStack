@@ -46,32 +46,31 @@ export const AnswerPortal = (props) => {
         const response = await axios.post("/answer-post", {
           AnswerValues: AnswerValues,
           user: Auth.userData.UserInfo.userId,
-          questionId: props.questionId
+          questionId: props.questionId,
         });
-        props.getAnswers()
-        console.log(response);
+        props.getQuestion(props.questionId);
       } catch (error) {
         console.log(error);
       }
       return;
     }
     setError(true);
-    if (Error) {
-      errorRef.current.scrollIntoView(
-        {
-          behavior: "smooth",
-          block: "center",
-          inline: "center",
-        }
-      );
-    }
-    
     return;
   };
 
+  useEffect(() => {
+    if (Error) {
+      errorRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      });
+    }
+  }, [Error]);
+
   return (
     <div>
-      <br/>
+      <br />
       {Auth?.accessToken ? (
         <>
           <h3>Your answer</h3>
@@ -109,7 +108,9 @@ export const AnswerPortal = (props) => {
           </form>
         </>
       ) : (
-        <></>
+        <>
+          <h4>You need to be logged in to answer a question</h4>
+        </>
       )}
     </div>
   );

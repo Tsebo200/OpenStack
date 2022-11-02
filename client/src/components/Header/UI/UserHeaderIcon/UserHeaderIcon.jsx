@@ -3,15 +3,26 @@ import React from "react";
 import styles from "./UserHeaderIcon.module.scss";
 
 import userIcon from "../../../../assets/profilePicture.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../Hooks/useAuth";
 
 export const UserHeaderIcon = (props) => {
   const { Auth } = useAuth();
+
+  const navigate = useNavigate();
+
+  const navigateUserSettingsHandler = () => {
+    navigate("/questions/UserSettings");
+  }
+
   return (
     <div className={styles.user_buttons}>
-      {Auth?.roles?.find((role) => role === 5150) && <Link className={styles.admin_button} to='/admin'>Admin</Link>}
-      
+      {Auth?.roles?.find((role) => role === 5150) && (
+        <Link className={styles.admin_button} to="/admin">
+          Admin
+        </Link>
+      )}
+
       <div
         className={styles.notification_badge}
         onClick={console.log("Show notifications ")}
@@ -19,10 +30,7 @@ export const UserHeaderIcon = (props) => {
         <ion-icon name="notifications-outline"></ion-icon>
         <p>+99</p>
       </div>
-      <div className={styles.user_icon}>
-        <img src={userIcon} />
-        {/* <ion-icon name="caret-down-outline"></ion-icon> */}
-      </div>
+      <img className={styles.user_img} onClick={navigateUserSettingsHandler} src={userIcon} />
       <a onClick={props.onClick}>Logout</a>
     </div>
   );
