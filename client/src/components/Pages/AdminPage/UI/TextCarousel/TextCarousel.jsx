@@ -1,19 +1,24 @@
 import React, { useState } from "react";
-import style from "react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark";
+import { Link } from "react-router-dom";
 import styles from "./TextCarousel.module.scss";
 
 export default function TextCarousel(props) {
- 
+  // console.log(().split('/').to(-1));
+
+  const url = window.location.href
+  
   return (
     <div className={styles.container}>
       <nav>
         {props.links.map((i) => (
-          <a
-            onClick={() => props.setTab(i)}
-            className={props.selectedTab === i ? styles.selected : null}
+          <Link
+            key={i.title}
+            to={i.to}
+            onClick={() => props.setTab(i.title)}
+            className={props.selectedTab === i.title ? styles.selected : null}
           >
-            {i}
-          </a>
+            {i.title}
+          </Link>
         ))}
       </nav>
     </div>

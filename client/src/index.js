@@ -19,7 +19,11 @@ import { AuthProvider } from "./Store/AuthProvider/AuthProvider";
 import { Main } from "./components/Main/Main";
 import { Missing } from "./components/Pages/Missing/Missing";
 import { RequireAuth } from "./components/Security/RequireAuth";
-import { UsersList } from "./components/Pages/AdminPage/UI/UsersList/UsersList";
+import { UsersList } from "./components/Pages/AdminPage/UI/Pages/UsersList/UsersList";
+import { QuestionList } from "./components/Pages/AdminPage/UI/Pages/ReportedQuestions/QuestionList";
+import { Tags } from "./components/Pages/AdminPage/UI/Pages/Tags/Tags";
+import { ReportedAnswers } from "./components/Pages/AdminPage/UI/Pages/ReportedAnswers/ReportedAnswers";
+import { PasswordReset } from "./components/Pages/PasswordReset/PasswordReset";
 
 const ROLES = [2001, 5150];
 
@@ -33,11 +37,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
           <Route path="/" element={<Main />}>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/password-reset/:id/:token" element={<PasswordReset/>} />
             <Route path="/questions" element={<QuestionsHome />}>
               <Route
                 path="/questions/UserSettings"
                 element={<UserSettings />}
               />
+              
               <Route path="/questions" element={<QuestionsLanding />} />
               <Route path="/questions/resultsPage" element={<ResultsPage />} />
               <Route
@@ -52,7 +58,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <Route path="/questions-portal" element={<QuestionPortal />} />
             </Route>
             <Route element={<RequireAuth allowedRoles={[ROLES[1]]} />}>
-              <Route path="/admin" element={<AdminPage />} />
+              <Route path="/admin" element={<AdminPage />} >
+                <Route path="/admin" element={<UsersList/>} />
+                <Route path="/admin/question-list" element={<QuestionList/>} />
+                <Route path="/admin/tags" element={<Tags/>} />
+                <Route path="/admin/all-answers" element={<ReportedAnswers/>} />
+              </Route>
             </Route>
           </Route>
 

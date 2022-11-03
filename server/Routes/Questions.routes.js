@@ -2,6 +2,7 @@ const express = require("express");
 
 const questionSchema = require("../models/Questions");
 const userSchema = require("../models/Users");
+const reportSchema = require("../models/Reports");
 const questionsRouter = express();
 const multer = require("multer");
 const path = require("path");
@@ -32,51 +33,82 @@ const questionImageStore = multer.diskStorage({
   },
 });
 
-questionsRouter.post(
-  "/api/add-question",
-  async (req, res) => {
-    // const uploadParams = {
-    //   Bucket: process.env.BUCKET,
-    //   Key: req.files.file.name,
-    //   Body: Buffer.from(req.files.file.data),
-    //   ContentType: req.files.file.mimeType,
-    //   ACL: 'public-read'
-    // }
+questionsRouter.post("/api/add-question", async (req, res) => {
+  // const uploadParams = {
+  //   Bucket: process.env.BUCKET,
+  //   Key: req.files.file.name,
+  //   Body: Buffer.from(req.files.file.data),
+  //   ContentType: req.files.file.mimeType,
+  //   ACL: 'public-read'
+  // }
 
-    // s3.upload(uploadParams, function (err, data){
-    //   err && console.log("Error", err)
-    //   data && console.log("Upload Success", data.location)
-    // })
-    
-    // console.log(req.file.filename);
-    const { title, body, codeBody, codeLanguage, user_id, tags } = req.body;
-    const newQuestion = new questionSchema({
-      title: title,
-      body: body,
-      code: {
-        codeBody: codeBody,
-        codeLanguage: codeLanguage,
-      },
-      // image: req.file.filename,
-      tags: tags,
-      userId: user_id,
-    });
+  // s3.upload(uploadParams, function (err, data){
+  //   err && console.log("Error", err)
+  //   data && console.log("Upload Success", data.location)
+  // })
 
-    try {
-      const response = await newQuestion.save();
-      res.status(201).json({ success: `new question: ${title} created!` });
-      // res.json(newQuestion);
-    } catch (err) {
-      console.log(err);
-    }
+  // console.log(req.file.filename);
+  const { title, body, codeBody, codeLanguage, user_id, tags } = req.body;
+  const newQuestion = new questionSchema({
+    title: title,
+    body: body,
+    code: {
+      codeBody: codeBody,
+      codeLanguage: codeLanguage,
+    },
+    // image: req.file.filename,
+    tags: tags,
+    userId: user_id,
+  });
+
+  try {
+    const response = await newQuestion.save();
+    res.status(201).json({ success: `new question: ${title} created!` });
+    // res.json(newQuestion);
+  } catch (err) {
+    console.log(err);
   }
-);
+});
 
 questionsRouter.get("/api/all-questions", async (req, res) => {
-  const findQuestions = (await questionSchema.find()).filter(question => {
-    return !question.private
+  const findQuestions = (await questionSchema.find()).filter((question) => {
+    return !question.private;
   });
   res.json(findQuestions);
+});
+
+questionsRouter.get("/admin/questions-list", async (req, res) => {
+  const questionList = await questionSchema.find();
+  const response = await Promise.all(
+    questionList.map(async (question) => {
+      const user = await userSchema.findById(question.userId);
+      const reports = await reportSchema.find({
+        questionId: question._id,
+      });
+      const responseReport = await Promise.all(
+        reports.map(async (report) => {
+          const user = await userSchema.findById(report.userId);
+          return {
+            ...report._doc,
+            userDetails: user
+          }
+        })
+      )
+
+
+
+
+      return {
+        ...question._doc,
+        user: user,
+        reports: responseReport
+      };
+    })
+  );
+  console.log(response);
+  // const user = await userSchema.findById()
+
+  res.status(200).json(response);
 });
 
 questionsRouter.get("/question", async (req, res) => {
@@ -87,15 +119,12 @@ questionsRouter.get("/question", async (req, res) => {
 
   const answers = await answersSchema.find({ questionId: questionId });
 
-
-  const tagsList = (
-    await Promise.all(
-      Question.tags.map(async (tagId) => {
-        const tag = await tagSchema.findById(tagId)
-        return tag
-      })
-    )
-  )
+  const tagsList = await Promise.all(
+    Question.tags.map(async (tagId) => {
+      const tag = await tagSchema.findById(tagId);
+      return tag;
+    })
+  );
 
   // https://stackoverflow.com/questions/42964102/syntax-for-an-async-arrow-function
   const answersList = (
@@ -128,9 +157,7 @@ questionsRouter.get("/question", async (req, res) => {
   )
     .sort((a, b) => (a.score > b.score ? -1 : 1))
     .sort((a) =>
-      a._id.toString() === Question.questionInteraction.correctAnswer
-        ? -1
-        : 1
+      a._id.toString() === Question.questionInteraction.correctAnswer ? -1 : 1
     );
 
   // sort based on votes
@@ -271,21 +298,28 @@ questionsRouter.patch("/question-vote", async (req, res) => {
   return;
 });
 
-
-
 questionsRouter.delete("/question", async (req, res) => {
   const { questionId } = req.query;
   try {
     const update = await questionSchema
-    .findByIdAndUpdate(questionId, { private: true })
-    .exec();
-    update.save()
+      .findByIdAndUpdate(questionId, { private: true })
+      .exec();
+    update.save();
 
     res.json("question has been removed");
   } catch (error) {
     res.json("error there was an error");
   }
-})
+});
 
+questionsRouter.delete("/admin-question", async (req, res) => {
+  const {questionId} = req.query
+try {
+  const response = await questionSchema.deleteOne({ _id : questionId });
+  res.status(200).json("question has been removed");
+} catch (error) {
+  res.status(500).json(error);
+}
+});
 
 module.exports = questionsRouter;

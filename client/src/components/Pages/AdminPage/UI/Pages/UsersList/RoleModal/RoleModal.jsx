@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../../../../../api/axios";
-import { Button } from "../../../../../UI/Button/Button";
-import { Checkbox } from "../../../../../UI/Checkbox/Checkbox";
+import axios from "../../../../../../../api/axios";
+import { Button } from "../../../../../../UI/Button/Button";
+import { Checkbox } from "../../../../../../UI/Checkbox/Checkbox";
 import styles from "./RoleModal.module.scss";
 
 export default function RoleModal(props) {

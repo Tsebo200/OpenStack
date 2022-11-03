@@ -1,0 +1,46 @@
+@import '../../../../../../../index.scss';
+
+.modal_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 9;
+}
+
+.modal_container {
+  width: 50%;
+  transition: 0.3s ease-in-out;
+  background-color: white;
+  border-radius: 15px;
+  z-index: 10;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 3%;
+}
+
+.close_btn{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .close_btn ion-icon{
+    border: 1px solid $primary;
+    padding: 5px;
+    color: $primary;
+    border-radius: 5px;
+  }
+  
+  .close_btn:hover ion-icon{
+    background-color: $primary;
+    color: white;
+    border: 1px solid transparent;
+  }
+  

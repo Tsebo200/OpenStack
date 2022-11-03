@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
-import axios from "../../../../../api/axios";
-import { Button } from "../../../../UI/Button/Button";
-import { Input } from "../../../../UI/Input/Input";
+import axios from "../../../../../../api/axios";
+import { Button } from "../../../../../UI/Button/Button";
+import { Input } from "../../../../../UI/Input/Input";
 import styles from "./Tags.module.scss";
 
 export const Tags = () => {

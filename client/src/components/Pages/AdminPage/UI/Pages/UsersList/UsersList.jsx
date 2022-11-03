@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../../../../api/axios";
-import { useRefreshToken } from "../../../../../Hooks/useRefreshToken";
-import SuccessModal from "../../../../SuccessModal/SuccessModal";
-import { Button } from "../../../../UI/Button/Button";
+import axios from "../../../../../../api/axios";
 import RoleModal from "./RoleModal/RoleModal";
 
 import styles from "./UserList.module.scss";
 
 export const UsersList = () => {
   const [users, setUsers] = useState();
-
-  const [openModal, setOpenModal] = useState(false);
 
   const [ModalSettings, setModalSettings] = useState({
     user: null,
@@ -51,18 +46,10 @@ export const UsersList = () => {
   };
 
   return (
-    <section className={styles.row}>
-      {/* <nav>
-        <p>Students</p>
-        <p>Editors</p>
-        <p>Admins</p>
-      </nav> */}
-      {/* <Button onClick={() => refresh()}>Refresh</Button> */}
+    <section>
       <br />
       {users?.length ? (
         <div className={styles.container}>
-          {/* <Button text="refresh" children="Refresh" onClick={() => refresh()}/> */}
-
           <table>
             <thead>
               <th>Username</th>

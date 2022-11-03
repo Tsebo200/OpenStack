@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "../../../../../../api/axios";
 import { useAuth } from "../../../../../../Hooks/useAuth";
 import { Button } from "../../../../../UI/Button/Button";
-import { Input } from "../../../../../UI/Input/Input";
-import { Select } from "../../../../../UI/Select/Select";
 import { Textarea } from "../../../../../UI/Textarea/Textarea";
 import { AnswerPreview } from "./AnswerPreview/AnswerPreview";
 

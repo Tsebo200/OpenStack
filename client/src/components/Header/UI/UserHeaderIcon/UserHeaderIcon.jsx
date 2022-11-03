@@ -23,13 +23,13 @@ export const UserHeaderIcon = (props) => {
         </Link>
       )}
 
-      <div
+      {/* <div
         className={styles.notification_badge}
         onClick={console.log("Show notifications ")}
       >
         <ion-icon name="notifications-outline"></ion-icon>
         <p>+99</p>
-      </div>
+      </div> */}
       
       <img className={styles.user_img} onClick={navigateUserSettingsHandler} src={userIcon} />
       <h5>{Auth.userData.UserInfo.username}</h5>
