@@ -5,6 +5,7 @@ const nodemailer = require("nodemailer");
 const userSchema = require("../../models/Users");
 const userRouter = express();
 var bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const emailService = require("./userAuthenticationEmail.service");
 
 userRouter.get("/all-users", async (req, res) => {
@@ -151,13 +152,20 @@ userRouter.post("/unique-users", async (req, res) => {
 
 userRouter.get("/reset-password", async (req, res) => {
   const { Email } = req.query;
-  console.log(Email);
-  resetLink= "/reset-response/:id/:token"
+
   const user = await userSchema.findOne({ email: Email }).exec();
-  console.log(user);
   if (user) {
-   
-    
+    const refreshToken = jwt.sign(
+      { username: user.username, passwordReset: true },
+      process.env.REFRESH_TOKEN_SECRET,
+      { expiresIn: "1d" }
+    );
+    // Saving refreshToken
+    user.refreshToken = refreshToken;
+    await user.save();
+    console.log(user);
+    resetLink =
+      "http://localhost:3000/reset-response/" + user._id + "/" + refreshToken;
     const mailerOutput = `
     <html>
       <body style="width: calc(100% - 200px); padding: 100px; margin: 0">
@@ -172,8 +180,7 @@ userRouter.get("/reset-password", async (req, res) => {
         <h2 style="font-weight: 300">
           Reset Your Password
         </h2>
-        <p style="margin: 0; font-size: 22px">Let's reset your password so you can get back to answering and asking questions.</p>
-        <br/>
+        <p style="margin: 0; font-size: 18px">Let's reset your password so you can get back to answering and asking questions.</p>
         <br/>
         <a href=${resetLink}
           style="
@@ -190,15 +197,14 @@ userRouter.get("/reset-password", async (req, res) => {
           >Change my password</a
         >
         <br />
-        <br />
-        <p>If you did not ask to reset your password please ignore this email.</p>
-    
-    
-        <p style="margin: 0; font-size: 18px">
+        <br/>
+        <p style="margin: 0; font-size: 16px">If you did not ask to reset your password please ignore this email.</p>
+        <br/>
+        <p style="margin: 0; font-size: 16px">
           Have any questions need help please email us at support@open-stack.co.za
         </p>
         <br/>
-        <p style="margin: 0; font-size: 18px">Happy coding Openstack</p>
+        <p style="margin: 0; font-size: 16px">Happy coding Openstack</p>
       </body>
     </html>
   `;
@@ -214,7 +220,7 @@ userRouter.get("/reset-password", async (req, res) => {
     });
 
     const mailOptions = {
-      from: '"Website Mailer Client <noreply@open-stack.co.za>"',
+      from: '"Open Stack Team <noreply@open-stack.co.za>"',
       to: Email,
       subject: "Password Reset",
       html: mailerOutput,
@@ -225,10 +231,52 @@ userRouter.get("/reset-password", async (req, res) => {
 
       console.log("Message Sent:", info.messageId);
     });
+
     res.status(200).json("email sent to " + Email);
     return;
   }
   return res.sendStatus(409);
+});
+
+userRouter.post("/reset-password", async (req, res) => {
+  const { userId, token, pwd } = req.body;
+  const user = await userSchema.findOne({ _id: userId }).exec();
+
+  if (user) {
+    console.log(user);
+    var tokenValid = false;
+    var clientIdValid = token === user.refreshToken;
+
+    const jwtDecode = JSON.parse(
+      Buffer.from(token.split(".")[1], "base64").toString()
+    );
+    console.log(jwtDecode.passwordReset);
+    if (!jwtDecode.passwordReset) {
+      res.sendStatus(410);
+      return;
+    }
+
+    var currentTimestamp = new Date().getTime() / 1000;
+    var jwtDate = new Date(jwtDecode.exp * 1000);
+    var tokenIsNotExpired = jwtDate > currentTimestamp;
+    console.log(tokenIsNotExpired);
+
+    tokenValid = clientIdValid && tokenIsNotExpired;
+    if (!tokenValid) {
+      res.sendStatus(409);
+      return;
+    }
+    bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash(pwd, salt, function (err, hash) {
+        user.password = hash;
+        user.save();
+      });
+    });
+    res.status(200).json("password reset");
+    return;
+  }
+  res.sendStatus(409);
+  return;
 });
 
 module.exports = userRouter;

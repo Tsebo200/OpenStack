@@ -35,17 +35,20 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         {/* public routes */}
         <Route path="/" element={<App />}>
           <Route path="/register" element={<Register />} />
+          <Route path="/reset" element={<PasswordReset />} />
+          <Route
+            path="/reset-response/:id/:token"
+            element={<PasswordResetResponse />}
+          />
 
           <Route path="/" element={<Main />}>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/reset" element={<PasswordReset/>}/>
-            <Route path="/reset-response/:id/:token" element={<PasswordResetResponse/>}/>
             <Route path="/questions" element={<QuestionsHome />}>
               <Route
                 path="/questions/UserSettings"
                 element={<UserSettings />}
               />
-              
+
               <Route path="/questions" element={<QuestionsLanding />} />
               <Route path="/questions/resultsPage" element={<ResultsPage />} />
               <Route
@@ -60,11 +63,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <Route path="/questions-portal" element={<QuestionPortal />} />
             </Route>
             <Route element={<RequireAuth allowedRoles={[ROLES[1]]} />}>
-              <Route path="/admin" element={<AdminPage />} >
-                <Route path="/admin" element={<UsersList/>} />
-                <Route path="/admin/question-list" element={<QuestionList/>} />
-                <Route path="/admin/tags" element={<Tags/>} />
-                <Route path="/admin/all-answers" element={<ReportedAnswers/>} />
+              <Route path="/admin" element={<AdminPage />}>
+                <Route path="/admin" element={<UsersList />} />
+                <Route path="/admin/question-list" element={<QuestionList />} />
+                <Route path="/admin/tags" element={<Tags />} />
+                <Route
+                  path="/admin/all-answers"
+                  element={<ReportedAnswers />}
+                />
               </Route>
             </Route>
           </Route>

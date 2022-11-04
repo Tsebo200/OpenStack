@@ -29,18 +29,13 @@ export const PasswordReset = () => {
       });
       console.log(JSON.stringify(response.data));
       setSuccess(true);
-      //clear state and controlled inputs
-      //need value attrib on inputs for this
-      // setUser("");
-      // setPwd("");
-      // setEmail("");
-      // setMatchPwd("");
+      setErrMsg(false)
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 409) {
         setErrMsg("The email entered is not valid or does not exist");
-      }
+      } 
       errRef.current.focus();
     }
   };

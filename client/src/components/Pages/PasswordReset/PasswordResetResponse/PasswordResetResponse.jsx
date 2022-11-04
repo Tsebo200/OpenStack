@@ -1,71 +1,89 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./PasswordResetResponse.module.scss";
 import formLogo from "../../../../assets/OpenStackLogo.png";
 import { Button } from "../../../UI/Button/Button";
 import { Input } from "../../../UI/Input/Input";
 import Axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 export const PasswordResetResponse = () => {
-    const { id, token } = useParams();
-    console.log(id);
-    console.log(token);
-    const [pwd, setPwd] = useState("Margincd1!");
-    const [validPwd, setValidPwd] = useState(true);
-    const [pwdFocus, setPwdFocus] = useState(false);
-    const [ShowPassword, setShowPassword] = useState(false);
-  
-    const [matchPwd, setMatchPwd] = useState("Margincd1!");
-    const [validMatch, setValidMatch] = useState(true);
-    const [matchFocus, setMatchFocus] = useState(false);
-  
-    const [errMsg, setErrMsg] = useState(null);
-    const [success, setSuccess] = useState(false);
-  
-    const errRef = useRef();
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      // if button enabled with JS hack
-      const v2 = PWD_REGEX.test(pwd);
-      console.log(!PWD_REGEX.test(pwd));
-      if ( !v2) {
-        setErrMsg("Invalid Entry");
-        return;
+  const { id, token } = useParams();
+  console.log(id);
+  console.log(token);
+  const [pwd, setPwd] = useState("Margincd1!");
+  const [validPwd, setValidPwd] = useState(true);
+  const [pwdFocus, setPwdFocus] = useState(false);
+  const [ShowPassword, setShowPassword] = useState(false);
+
+  const [matchPwd, setMatchPwd] = useState("Margincd1!");
+  const [validMatch, setValidMatch] = useState(true);
+  const [matchFocus, setMatchFocus] = useState(false);
+
+  const [errMsg, setErrMsg] = useState(null);
+  const [success, setSuccess] = useState(false);
+
+  const errRef = useRef();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setErrMsg("");
+  }, [pwd, matchPwd]);
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      if (pwdFocus || matchFocus) {
+        setValidPwd(PWD_REGEX.test(pwd));
+        setValidMatch(pwd === matchPwd);
+        console.log(pwd === matchPwd);
       }
-      try {
-        const response = await Axios.request({
-          method: "POST",
-          url: "http://localhost:5001/api/register",
-          headers: { "Content-Type": "application/json" },
-          data: { id, token, pwd },
-        });
-        console.log(response?.data);
-        console.log(response?.accessToken);
-        console.log(JSON.stringify(response));
-        setSuccess(true);
-        //clear state and controlled inputs
-        //need value attrib on inputs for this
-        // setUser("");
-        // setPwd("");
-        // setEmail("");
-        // setMatchPwd("");
-      } catch (err) {
-        if (!err?.response) {
-          setErrMsg("No Server Response");
-        } else if (err.response?.status === 409) {
-          setErrMsg("Username Taken");
-        } else if (err.response?.status === 410) {
-          setErrMsg("Email is in use");
-        } else {
-          setErrMsg("Registration Failed");
-        }
-        errRef.current.focus();
-      }
+    }, 1000);
+    return () => {
+      clearTimeout(identifier);
     };
-    return (
-      <div className={styles.passwordReset_container}>
+  }, [pwd, matchPwd]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // if button enabled with JS hack
+    const v2 = PWD_REGEX.test(pwd);
+    console.log(!PWD_REGEX.test(pwd));
+    if (!v2) {
+      setErrMsg("Invalid Entry");
+      return;
+    }
+    try {
+      const response = await Axios.request({
+        method: "POST",
+        url: "http://localhost:5001/reset-password",
+        headers: { "Content-Type": "application/json" },
+        data: { userId: id, token, pwd },
+      });
+      console.log(response?.data);
+      console.log(response?.accessToken);
+      console.log(JSON.stringify(response));
+      setSuccess(true)
+      //clear state and controlled inputs
+      //need value attrib on inputs for this
+      setPwd("");
+      setMatchPwd("");
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 409) {
+        setErrMsg(
+          "Data is incorrect please try resent the password reset email"
+        );
+      } else {
+        setErrMsg("Password reset Failed");
+      } 
+      errRef.current.focus();
+    }
+  };
+  return (
+    <div className={styles.passwordReset_container}>
+      {!success ? (
         <form onSubmit={handleSubmit}>
           <img src={formLogo} />
           <hr></hr>
@@ -99,8 +117,8 @@ export const PasswordResetResponse = () => {
             <p id="pwdnote" className={styles.helper_text}>
               8 to 24 characters.
               <br />
-              Must include uppercase and lowercase letters, a number and a special
-              character.
+              Must include uppercase and lowercase letters, a number and a
+              special character.
               <br />
               Allowed special characters:{" "}
               <span aria-label="exclamation mark">!</span>{" "}
@@ -110,7 +128,7 @@ export const PasswordResetResponse = () => {
               <span aria-label="percent">%</span>
             </p>
           )}
-  
+
           <Input
             label="Re-enter password"
             type={ShowPassword ? "text" : "password"}
@@ -135,6 +153,9 @@ export const PasswordResetResponse = () => {
             </Button>
           </div>
         </form>
-      </div>
-    );
-}
+      ) : (
+        <></>
+      )}
+    </div>
+  );
+};
