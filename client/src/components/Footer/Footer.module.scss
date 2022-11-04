@@ -1,54 +1,87 @@
-@import '../../index.scss';
+@import "../../index.scss";
 
 .footer {
-    height: 56px;
-    background-color: #2b2b2b;
-    width: 100vw;
-    position: relative;
-    float: left;
-}
-
-.footer_nav {
+  // height: 56px;
+  background-color: #2b2b2b;
+  width: 100vw;
+  position: relative;
+  float: left;
+  padding: 20px 0px;
+  img {
+    width: 300px;
+    height: auto;
+    margin-right: 40px;
+  }
+  .footer_container {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-content: center;
-    align-items: center;
-    height: 100%;
-    max-width: 1440px;
-    margin: auto;
-}
-
-.footer_nav a {
+    align-content: flex-start;
+    align-items: flex-start;
     color: white;
-    margin-left: 60px;
-    cursor: pointer;
+    div{
+        margin-left: 40px;
+        h4{
+            margin-bottom: 5px;
+        }
+    }
+    a{  
+        color: white;
+    }
+    .external_links{
+        margin-left: auto;
+        a{
+            margin-left: 20px;
+        }
+    }
+  }
 }
+.copywrite{
+    color: white;
+    float: right;
+}
+// .footer_nav {
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: nowrap;
+//     justify-content: flex-start;
+//     align-content: center;
+//     align-items: center;
+//     height: 100%;
+//     max-width: 1440px;
+//     margin: auto;
+// }
 
-.footer_nav a:hover {
-    color: $primary-light;
-}
+// .footer_nav a {
+//     color: white;
+//     margin-left: 60px;
+//     cursor: pointer;
+// }
 
-.logo {
-    width: auto;
-    height: 48px;
-}
+// .footer_nav a:hover {
+//     color: $primary-light;
+// }
 
-.mediaContaier{
-    width: 50%;
-    margin: auto;
-    margin-left: 65%;
-}
+// .logo {
+//     width: auto;
+//     height: 48px;
+// }
 
-.mediaLink {
-    margin-left: 10% !important;
-    display: inline;
-    
-}
+// .mediaContaier{
+//     width: 50%;
+//     margin: auto;
+//     margin-left: 65%;
+// }
 
-.media {
-    width: auto;
-    height: 20px;
-    box-shadow: 0px 1px 1px 0px hsla(0, 0%, 0%, 0.2);
-}
+// .mediaLink {
+//     margin-left: 10% !important;
+//     display: inline;
+
+// }
+
+// .media {
+//     width: auto;
+//     height: 20px;
+//     box-shadow: 0px 1px 1px 0px hsla(0, 0%, 0%, 0.2);
+// }
