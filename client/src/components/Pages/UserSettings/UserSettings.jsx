@@ -22,36 +22,39 @@ const UserSettings = () => {
           <header>
             <h3 className={styles.questions_heading}>Questions</h3>
             <header className={styles.questions_nav}>
-            <table>
+
+            {/* <table>
             <tr>
             <td>
             <div className={styles.score_container}>
             <p className={styles.score_text}>Score</p>
-            </div>
+            </div> */}
             {/* <div className={styles.vert_line}></div> */}
 
-            </td>
+            {/* </td> */}
+
             {/* <div className={styles.test}></div> */}
             {/* <div className={styles.vert_line}></div> */}
-            <td>
+            {/* <td>
             <div className={styles.activity_container}>
             <p className={styles.activity_text}>Activity</p>
             </div>
-            </td>
+            </td> */}
 
-            <td>
+            {/* <td>
             <div className={styles.newest_container}>
             <p className={styles.newest_text}>Newest</p>
             </div>
-            </td>
+            </td> */}
 
-            <td>
+            {/* <td>
             <div className={styles.views_container}>
             <p className={styles.views_text}>Views</p>
             </div>
             </td>
             </tr>
-            </table>
+            </table> */}
+
             </header>
               {/* <div className={styles.views_container}>
    
@@ -82,18 +85,18 @@ const UserSettings = () => {
         <div className={styles.user_questions_container}>
         <header className={styles.answers_heading}>
             <h3 className={styles.questions_heading}>Answers</h3>
-            <header className={styles.answers_nav}>
+            {/* <header className={styles.answers_nav}>
             <table>
             <tr>
             <td>
             <div className={styles.score_container}>
             <p className={styles.score_text}>Score</p>
             </div>
-            {/* <div className={styles.vert_line}></div> */}
+            <div className={styles.vert_line}></div>
 
             </td>
-            {/* <div className={styles.test}></div> */}
-            {/* <div className={styles.vert_line}></div> */}
+            <div className={styles.test}></div>
+            <div className={styles.vert_line}></div>
             <td>
             <div className={styles.activity_container}>
             <p className={styles.activity_text}>Activity</p>
@@ -107,7 +110,7 @@ const UserSettings = () => {
             </td>
             </tr>
             </table>
-          </header> {/* End of Answers Nav */}
+          </header> End of Answers Nav */}
           </header>
 
           {/* inside the answers container */}
@@ -121,7 +124,7 @@ const UserSettings = () => {
         </div>
 
           {/* inside the Badges container */}
-          <header className={styles.answers_heading}>
+          {/* <header className={styles.answers_heading}>
             <h3 className={styles.questions_heading}>Answers</h3>
             <header className={styles.answers_nav}>
             <table>
@@ -130,11 +133,11 @@ const UserSettings = () => {
             <div className={styles.score_container}>
             <p className={styles.score_text}>Score</p>
             </div>
-            {/* <div className={styles.vert_line}></div> */}
+            <div className={styles.vert_line}></div>
 
             </td>
-            {/* <div className={styles.test}></div> */}
-            {/* <div className={styles.vert_line}></div> */}
+            <div className={styles.test}></div>
+            <div className={styles.vert_line}></div>
             <td>
             <div className={styles.activity_container}>
             <p className={styles.activity_text}>Activity</p>
@@ -147,10 +150,12 @@ const UserSettings = () => {
             </div>
             </td>
             </tr>
-            </table>
-          </header> {/* End of Answers Nav */}
+            </table> 
+          </header> End of Answers Nav
           </header>
              {/* inside the Badges container */}
+
+             
           <div className={styles.questions_container_content_box}>
           <div className={styles.questions_row}>
           <div className={styles.question_notification_container}>
@@ -161,7 +166,6 @@ const UserSettings = () => {
           </div>
         {/* <div className={styles.badges_container_}></di> */}
       </div>{/* End of answers_container */}
-
 
   </div>
   );
