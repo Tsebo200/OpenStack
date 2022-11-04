@@ -125,10 +125,10 @@ export const QuestionCard = (props) => {
               return i._id === tag;
             });
             if (!tagDetails[0]?.tombstone) {
-              return <Link>{tagDetails[0]?.tagName}</Link>;
+              return <Link key={tagDetails[0]?._id}>{tagDetails[0]?.tagName}</Link>;
             }
             return (
-              <p className={styles.tag_tombstone}>{tagDetails[0]?.tagName}</p>
+              <p key={tagDetails[0]?._id} className={styles.tag_tombstone}>{tagDetails[0]?.tagName}</p>
             );
           })}
         </div>
@@ -140,12 +140,12 @@ export const QuestionCard = (props) => {
           return i.userId === question.userId;
         }).map((userDetails) => {
           return (
-            <>
+            <div className={styles.user_details_na_sc} key={userDetails._id}>
               <Link>{userDetails?.username}</Link>
               <p className={styles.user_details_score}>
                 {userDetails?.userScore}
               </p>
-            </>
+            </div>
           );
         })}
         <p>{convertTimeCreated()}</p>

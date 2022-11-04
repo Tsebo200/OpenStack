@@ -4,14 +4,12 @@ import formLogo from "../../../../assets/OpenStackLogo.png";
 import { Button } from "../../../UI/Button/Button";
 import { Input } from "../../../UI/Input/Input";
 import Axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 export const PasswordResetResponse = () => {
   const { id, token } = useParams();
-  console.log(id);
-  console.log(token);
   const [pwd, setPwd] = useState("Margincd1!");
   const [validPwd, setValidPwd] = useState(true);
   const [pwdFocus, setPwdFocus] = useState(false);
@@ -25,7 +23,6 @@ export const PasswordResetResponse = () => {
   const [success, setSuccess] = useState(false);
 
   const errRef = useRef();
-  const navigate = useNavigate();
 
   useEffect(() => {
     setErrMsg("");
@@ -63,7 +60,7 @@ export const PasswordResetResponse = () => {
       console.log(response?.data);
       console.log(response?.accessToken);
       console.log(JSON.stringify(response));
-      setSuccess(true)
+      setSuccess(true);
       //clear state and controlled inputs
       //need value attrib on inputs for this
       setPwd("");
@@ -77,7 +74,7 @@ export const PasswordResetResponse = () => {
         );
       } else {
         setErrMsg("Password reset Failed");
-      } 
+      }
       errRef.current.focus();
     }
   };
@@ -154,7 +151,18 @@ export const PasswordResetResponse = () => {
           </div>
         </form>
       ) : (
-        <></>
+        <div className={styles.register_container}>
+          <img src={formLogo} />
+          <hr></hr>
+          <h2>Success</h2>
+          <p className={styles.success_p}>
+            Your password has been reset
+          </p>
+          <br/>
+          <div className={styles.after_links}>
+            <Link to="/?action=login">Sign In</Link>
+          </div>
+        </div>
       )}
     </div>
   );

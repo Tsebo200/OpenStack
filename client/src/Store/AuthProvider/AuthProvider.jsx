@@ -14,10 +14,16 @@ export const AuthProvider = ({ children }) => {
       ...prevState,
       userData: JSON.parse(decodedString),
     }));
-  }, [decodedString])
-  
+  }, [decodedString]);
 
-  
+  console.log("check local srotage");
+
+  useEffect(() => {
+    const localAccessToken = localStorage.getItem("accessToken");
+    const localRoles = JSON.parse(localStorage.getItem("roles"));
+    console.log(localRoles);
+    setAuth({ roles: localRoles, accessToken: localAccessToken });
+  }, []);
 
   return (
     <AuthContext.Provider value={{ Auth, setAuth }}>

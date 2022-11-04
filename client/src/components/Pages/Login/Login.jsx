@@ -47,9 +47,13 @@ export const Login = (props) => {
       const roles = response?.data?.roles;
 
       localStorage.setItem("refreshToken", refreshToken)
+      
       setAuth({ roles: response.data.roles, accessToken: accessToken})
       // setEmail('')
       // setPwd('')
+
+      localStorage.setItem("accessToken", accessToken)
+      localStorage.setItem("roles", JSON.stringify(response.data.roles))
       props.onClick()
     } catch (err) {
       console.log(err);
