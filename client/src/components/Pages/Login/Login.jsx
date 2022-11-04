@@ -45,16 +45,8 @@ export const Login = (props) => {
       const accessToken = response?.data?.accessToken;
       const refreshToken = response?.data?.refreshToken;
       const roles = response?.data?.roles;
-      // console.log(response.data)
-      // console.log(refreshToken)
-
-      // add refresh to local
 
       localStorage.setItem("refreshToken", refreshToken)
-
-
-      // console.log(accessToken)
-      // console.log(roles)
       setAuth({ roles: response.data.roles, accessToken: accessToken})
       // setEmail('')
       // setPwd('')
@@ -109,8 +101,16 @@ export const Login = (props) => {
         ShowHide={true}
         valid={true}
       />
-      <br />
-      <br />
+      <h5>
+        <Link
+          className={styles.register_a}
+          onClick={props.onClick}
+          to="/reset"
+        >
+          Reset password
+        </Link>
+      </h5>
+      <br /> 
       <Button>Login</Button>
       <br />
       <h5>
