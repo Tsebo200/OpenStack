@@ -74,13 +74,22 @@ const UserSettings = () => {
           <p className={styles.question_text}>Adding custom SVGs to ion icons</p>
           <p className={styles.date_text}>Oct 31</p>
             
-          <div className={styles.space_breaker}></div>
+        
             {/* Adding more static questions */}
+          <div className={styles.space_breaker}></div>
           <div className={styles.question_notification_container}>
           <h4 className={styles.question_notification_counter_text}>2</h4>
           </div> 
-          <p className={styles.question_text}>Adding custom SVGs to ion icons</p>
-          <p className={styles.date_text}>Oct 31</p>
+          <p className={styles.question_text}>Adding custom PNG's to ion icons</p>
+          <p className={styles.date_text}>Sep 24</p>
+ 
+
+          <div className={styles.space_breaker}></div>
+          <div className={styles.question_notification_container}>
+          <h4 className={styles.question_notification_counter_text}>21</h4>
+          </div> 
+          <p className={styles.question_text}>Adding custom JPG's to ion icons</p>
+          <p className={styles.date_text}>Nov 5</p>
           </div>
 
 
