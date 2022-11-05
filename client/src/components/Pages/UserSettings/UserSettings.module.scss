@@ -1,553 +1,212 @@
 @import "../../../index.scss";
 
-.user_settings_container {
-  width: 100%;
-  margin-top: 30px;
-  margin-left: 40px;
-
-  // remove
-  // background-color: #2b2b2b;
-  height: 100vh;
-}
-
-.user_settings_container header {
-  background: #F7F7F7;
-  // background: #e5e5f7;
+.user_page header {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-start;
-  align-content: stretch;
-  align-items: flex-start;
-}
-
-.user_settings_container img {
-  border-radius: 10px;
-  width: 200px;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  margin-right: 20px;
-}
-
-.user_settings_container h1 {
-  align-self: center;
-}
-
-.user_settings_container ion-icon {
-  align-self: center;
-  margin-top: -20px;
-  margin-left: 5px;
-}
-
-.user_questions_container {
-  width: 47%;
-  height: 25vh;
-  border-radius: 10px;
-  background: #F7F7F7;;
-  // background: #e5e5f7;
-  margin: auto;
+  align-content: flex-start;
+  align-items: center;
   margin-top: 50px;
+}
+
+.user_page {
   margin-left: 20px;
-  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%), 0 1px 5px rgb(0 0 0 / 12%);
-  float: left;
-  // display: flex;
-  // flex-direction: row;
-  // flex-wrap: wrap;
-  // justify-content: flex-start;
-  // align-content: stretch;
-  // align-items: flex-start;
-
-  .questions_heading {
-    margin-left: 10px;
-    margin-top: 10px;
-  }
-  .user_questions_container header {
-    background: none;
-  }
 }
 
-header{
-  border-radius: 5px 5px 0px 0px;
+.user_page header a:last-child {
+  margin-left: auto;
+  box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f;
+  box-sizing: border-box;
+  padding: 0.5rem 20px;
+  border: none;
+  color: white;
+  background-color: $primary;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 8px;
 }
 
-.questions_nav{
+.user_header {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: stretch;
-  align-items: flex-start;
-}
-
-
-
-.questions_nav table{
-  width: 100%;
-  height: 3vh;
-  // background: white;
-  border-collapse:collapse;
-  margin-left: 45px;
-  margin-top: 15px;
-  
- tr{
-    // width: 100%;
-    // height: 2.2vh;
+  height: 200px;
+  .user_img {
+    border-radius: 10px;
+    aspect-ratio: 1/1;
     height: 100%;
-    border-radius: 5px;
-    border: solid 1px grey;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+
+  .achievement_list_container {
+    flex: 1;
     display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    .achievement_list {
+      background-color: rgb(236, 236, 236);
+      border-radius: 5px;
+      padding: 5px;
+      display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      justify-content: flex-start;
-      align-content: center;
-      align-items: flex-start;
-      float: left;
-
-      td:nth-child(n+2){ 
-        border-left: 1px solid grey;
+      height: calc(100% - 24px);
+      .achievement_container {
+        height: calc(50% - 10px);
+        cursor: pointer;
+        position: relative;
+        margin: 5px 7px;
+        img {
+          height: 100%;
+        }
+        .achieved {
+          filter: grayscale(100%);
+        }
+        .achievement_desc {
+          position: absolute;
+          bottom: -130%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 200px;
+          background-color: white;
+          padding: 5px;
+          height: 64px;
+          border-radius: 5px;
+          text-align: center;
+          display: none;
+          z-index: 10;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+        &:hover .achievement_desc {
+          display: block;
+        }
       }
-
-
-    .activity_text {
-      text-align: center;
-    }
-
-    .newest_text {
-      text-align: center;
-    }
-
-    .views_text {
-      text-align: center;
-    }
-
-    .score_container {
-      width: 50px;
-      height: 3vh;
-      border-radius: 4px 0px 0px 4px;
-      float: left;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-content: center;
-      align-items: flex-start;
-      
-    }
-    .score_container:hover{
-      background: $primary;
-    }
-
-    .activity_container {
-      width: 60px;
-      height: 3vh;
-      float: left;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-content: center;
-      align-items: flex-start;
-    }
-    
-    .activity_container:hover{
-      background: $primary;
-    }
-    
-    .newest_container {
-      width: 60px;
-      height: 3vh;
-      float: left;
-      display: flex;
-          flex-direction: column;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-content: center;
-          align-items: flex-start;
-    }
-    
-    .newest_container:hover {
-      background: $primary;
-    }
-    
-    .views_container {
-      width: 50px;
-      height: 3vh;
-      border-radius: 0px 4px 4px 0px;
-      float: left;
-      display: flex;
-          flex-direction: column;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-content: center;
-          align-items: flex-start;
-    }
-    
-    .views_container:hover{
-      background: $primary;
     }
   }
 }
 
-
-
-
-
-// Question Container
-.questions_container_content_box{
-  width: 90%;
-  height: 17vh;
-  margin: auto;
-  margin-top: 10px;
-  border-radius: 7px;
-  border: solid 1px grey;
-  // overflow: auto;
-  overflow-x: hidden;
-  overflow-y: scroll;
- 
-  .questions_row{
-    width: 100%;
-    height: 18%; //remove this come back
+.divide {
+  display: flex;
+  flex-direction: row;
+  div {
+    width: 50%;
+  }
+  .spacer {
+    width: 20px;
+  }
+  .container {
     margin-top: 10px;
+    width: 100%;
+    border: 1px rgb(202, 202, 202) solid;
+    border-radius: 5px;
+  }
+  .question_card {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: flex-start;
-  }
-  .question_notification_container{
-    width: 9%;
-    // height: 15%;
-    border-radius: 5px;
-    margin-left: 10px;
-    background: $secondary;
-    align-self: auto;
-
-    .question_notification_counter_text{
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px rgb(202, 202, 202) solid;
+    width: 100%;
+    .correct {
+      background-color: $success;
+      border: 1px rgb(67, 177, 76) solid;
+    }
+    span {
+      border: 1px rgb(202, 202, 202) solid;
       text-align: center;
+      padding: 5px;
+      width: 50px;
+      margin: 0px 40px;
+      border-radius: 5px;
+    }
+    a {
+      color: rgb(75, 73, 216);
+      flex: 1;
+    }
+    p {
+      margin: 0 20px;
+    }
+    &:last-child {
+      border-bottom: none;
     }
   }
-
-  .question_text{
-    margin-left: 15px;
-    align-self: center;
-    background: red;
-    // text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  .date_text{
-    margin-left: 155px;
-    // align-self: center;
-    // align-self: flex-end;
-    float: right;
-  }
 }
 
-
-
-.space_breaker{
-  width: 100%;
-  height: 60%;
-  // background: red;
-}
-
-
-
-
-
-
-// Answers section
-.answers_heading {
-  // margin-left: 10px;
-  // margin-top: 10px;
-}
-.answers_nav table{
-  width: 100%;
-  height: 3vh;
-  margin-left: 200px;
-  // background: white;
-
-}
-
-.answers_container_content_box{
-  width: 90%;
-  height: 17vh;
-  margin: auto;
+.danger_zone_a {
+  color: black;
+  cursor: pointer;
+  margin-right: 40px;
   margin-top: 10px;
-  border-radius: 7px;
-  border: solid 1px grey;
 }
 
-.answers_nav table{
-  width: 100%;
-  height: 3vh;
-  // background: white;
-  border-collapse:collapse;
-  margin-left: 205px;
-  margin-top: -25px;
-
-  tr{
-    // width: 100%;
-    // height: 2.2vh;
-    height: 100%;
-    border-radius: 5px;
-    border: solid 1px grey;
-    display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-content: center;
-      align-items: flex-start;
-      float: left;
-
-      td:nth-child(n+2){ 
-        border-left: 1px solid grey;
-      }
-
-
-    .activity_text {
-      text-align: center;
-    }
-
-    .newest_text {
-      text-align: center;
-    }
-
-    .views_text {
-      text-align: center;
-    }
-
-    .score_container {
-      width: 50px;
-      height: 3vh;
-      border-radius: 4px 0px 0px 4px;
-      float: left;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-content: center;
-      align-items: flex-start;
-      
-    }
-    .score_container:hover{
-      background: $primary;
-    }
-
-    .activity_container {
-      width: 60px;
-      height: 3vh;
-      float: left;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-content: center;
-      align-items: flex-start;
-    }
-    
-    .activity_container:hover{
-      background: $primary;
-    }
-    
-    .newest_container {
-      width: 60px;
-      height: 3vh;
-      float: left;
-      display: flex;
-          flex-direction: column;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-content: center;
-          align-items: flex-start;
-    }
-    
-    .newest_container:hover {
-      background: $primary;
-    }
-    
-    .views_container {
-      width: 50px;
-      height: 3vh;
-      border-radius: 0px 4px 4px 0px;
-      float: left;
-      display: flex;
-          flex-direction: column;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-content: center;
-          align-items: flex-start;
-    }
-    
-    .views_container:hover{
-      background: $primary;
-    }
-  }
+.danger_zone_a:hover {
+  color: $error;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-.answers_nav{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: stretch;
-  align-items: flex-start;
+.modal_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 9;
 }
 
-
-
-.user_answers_container {
-  width: 47%;
-  height: 25vh;
-  border-radius: 10px;
-  background: #F7F7F7;
-  // background: #e5e5f7;
-  margin: auto;
-  margin-top: 50px;
-  margin-left: 20px;
-  float: left;
-}
-.answers_heading {
-}
-.user_answers_container header {
-  background: none;
+.modal_container {
+  width: 50%;
+  transition: 0.3s ease-in-out;
+  background-color: white;
+  border-radius: 15px;
+  z-index: 10;
+  position: fixed;
+  top: -50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 3%;
 }
 
-// .user_settings_container header{
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: nowrap;
-//   justify-content: flex-start;
-//   align-content: flex-start;
-//   align-items: flex-start;
-// }
+.open{
+  top: 50%;
+}
 
+.close_btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
 
+.close_btn ion-icon {
+  border: 1px solid $primary;
+  padding: 5px;
+  color: $primary;
+  border-radius: 5px;
+}
 
+.close_btn:hover ion-icon {
+  background-color: $primary;
+  color: white;
+  border: 1px solid transparent;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Old Styling
-// .settings_background {
-//   background-position: center;
-//   background-size: cover;
-//   height: calc(100vh);
-//   opacity: 0.8;
-//   background-color: #e5e5f7;
-//   opacity: 0.8;
-//   background-image: repeating-radial-gradient(
-//       circle at 0 0,
-//       transparent 0,
-//       #e5e5f7 7px
-//     ),
-//     repeating-linear-gradient($secondary-shadow, $primary); //wavy but customizzed
-//   position: relative;
-// }
-
-// .settings_form_container {
-//   position: relative;
-//   width: 650px;
-//   margin: 0 auto;
-//   top: 21vh;
-// }
-
-// .settings_box {
-//   display: inline-block;
-//   border-radius: 20px;
-//   background-color: white;
-//   box-shadow: rgba(17, 12, 46, 0.15) 0px 18px 100px 0px;
-// }
-
-// .inputs_container {
-//   // overflow: hidden;
-//   padding: 30px;
-//   width: 100%;
-// }
-
-// .form_logo {
-//   width: 150px;
-//   height: auto;
-// }
-
-// .profile_icon {
-//   width: 130px;
-//   height: 130px;
-//   margin-top: 23px;
-//   border-radius: 130px;
-// }
-
-// .labels_container {
-//   position: relative;
-//   width: 20vw;
-//   height: 20vh;
-//   margin: auto;
-//   top: -130px;
-
-//   .username_label {
-//     position: absolute;
-//   }
-
-//   .email_label {
-//     top: 40%;
-//     width: 100%;
-//   }
-
-//   .input_container {
-//     position: absolute;
-//     top: 15%;
-//   }
-// }
-
-// .achieve_container {
-//   position: relative;
-//   width: 15%;
-//   height: 60%;
-//   margin: auto;
-//   left: 16.3vw;
-//   top: -40vh;
-//   border-radius: 60px;
-//   background: #2b2b2b;
-// }
-
-// .achievement {
-//   width: 60px;
-//   height: 60px;
-//   position: absolute;
-//   top: auto auto;
-//   left: 25%;
-//   // margin: 0 auto;
-//   border-radius: 60px;
-//   background: yellow;
-// }
+.helper_text {
+  // border: 1px solid $error;
+  margin-top: 4px;
+  padding: 4px;
+  background-color: rgba(255, 0, 0, 0.05);
+  color: rgb(216, 1, 1);
+}
+.error_message {
+  background-color: rgba(255, 0, 0, 0.05);
+  color: rgb(216, 1, 1);
+  font-weight: 400;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  text-align: center;
+  font-size: 24px;
+}

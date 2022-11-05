@@ -12,7 +12,8 @@ export const UserHeaderIcon = (props) => {
   const navigate = useNavigate();
 
   const navigateUserSettingsHandler = () => {
-    navigate("/questions/UserSettings");
+    console.log(Auth);
+    navigate("/questions/UserSettings/" + Auth.userData.UserInfo.userId);
   }
 
   return (
@@ -22,14 +23,6 @@ export const UserHeaderIcon = (props) => {
           Admin
         </Link>
       )}
-
-      {/* <div
-        className={styles.notification_badge}
-        onClick={console.log("Show notifications ")}
-      >
-        <ion-icon name="notifications-outline"></ion-icon>
-        <p>+99</p>
-      </div> */}
       
       <img className={styles.user_img} onClick={navigateUserSettingsHandler} src={userIcon} />
       <h5>{Auth.userData.UserInfo.username}</h5>

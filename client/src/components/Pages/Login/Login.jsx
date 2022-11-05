@@ -44,11 +44,13 @@ export const Login = (props) => {
       const response = await Axios.request(options);
       const accessToken = response?.data?.accessToken;
       const refreshToken = response?.data?.refreshToken;
+      const imgLink = response?.data?.imgLink;
       const roles = response?.data?.roles;
 
       localStorage.setItem("refreshToken", refreshToken)
+      localStorage.setItem("img", imgLink)
       
-      setAuth({ roles: response.data.roles, accessToken: accessToken})
+      setAuth({ roles: response.data.roles, accessToken: accessToken, imgLink: imgLink })
       // setEmail('')
       // setPwd('')
 

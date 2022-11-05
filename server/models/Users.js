@@ -16,7 +16,6 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    userLevel: String,
     roles: {
         type: Array,
         required: true,
@@ -30,28 +29,12 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    // achievements: {
-    //     type: Array
-    //     //get id and push to arr
-    // },
-    achievement1: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
-    achievement2: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
-    achievement3: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
     userScore: {
         type: Number,
         default: 0
+    },
+    profilePictureLink: {
+        type: String
     },
     refreshToken: String
 

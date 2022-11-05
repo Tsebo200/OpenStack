@@ -16,20 +16,20 @@ const Register = () => {
   const userRef = useRef();
   const errRef = useRef();
 
-  const [user, setUser] = useState("CaidynGinger");
+  const [user, setUser] = useState("user");
   const [validName, setValidName] = useState(true);
   const [userFocus, setUserFocus] = useState(false);
 
-  const [Email, setEmail] = useState("21100204@virtualwindow.co.za");
+  const [Email, setEmail] = useState("21000@virtualwindow.co.za");
   const [ValidEmail, setValidEmail] = useState(true);
   const [EmailFocus, setEmailFocus] = useState(false);
 
-  const [pwd, setPwd] = useState("Margincd1!");
+  const [pwd, setPwd] = useState("Catdog305!");
   const [validPwd, setValidPwd] = useState(true);
   const [pwdFocus, setPwdFocus] = useState(false);
   const [ShowPassword, setShowPassword] = useState(false);
 
-  const [matchPwd, setMatchPwd] = useState("Margincd1!");
+  const [matchPwd, setMatchPwd] = useState("Catdog305!");
   const [validMatch, setValidMatch] = useState(true);
   const [matchFocus, setMatchFocus] = useState(false);
 
@@ -81,12 +81,54 @@ const Register = () => {
     setErrMsg("");
   }, [user, pwd, matchPwd]);
 
+  const [ImageList, setImageList] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+    const getImageList = async () => {
+      try {
+        const response = await Axios.request({
+          method: "GET",
+          url: "http://localhost:5001/get-images",
+          headers: { "Content-Type": "application/json" },
+        });
+        isMounted && setImageList(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getImageList();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, []);
+
+  const [OpenProfileSelection, setOpenProfileSelection] = useState(false);
+
+  const openProfileSectionHandler = () => {
+    setOpenProfileSelection((prevState) => {
+      return !prevState;
+    });
+  };
+
+  const selectProfileImageHandler = (img) => {
+    setSelectedImg(img);
+    openProfileSectionHandler();
+  };
+
+  const [SelectedImg, setSelectedImg] = useState(
+    "1LSeKoGFWmQt5XdlDGOQ-ZAQbeyMnP89q"
+  );
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // if button enabled with JS hack
     const v1 = USER_REGEX.test(user);
     const v2 = PWD_REGEX.test(pwd);
-    const v3 = Email.includes("@virtualwindow.co.za")
+    const v3 = Email.includes("@virtualwindow.co.za");
     console.log(!USER_REGEX.test(user));
     console.log(!PWD_REGEX.test(pwd));
     if (!v1 || !v2 || !v3) {
@@ -95,10 +137,10 @@ const Register = () => {
     }
     try {
       const response = await Axios.request({
-        method: 'POST',
-        url: 'http://localhost:5001/api/register',
-        headers: {'Content-Type': 'application/json'},
-        data: { user, pwd, Email }
+        method: "POST",
+        url: "http://localhost:5001/api/register",
+        headers: { "Content-Type": "application/json" },
+        data: { user, pwd, Email, SelectedImg },
       });
       console.log(response?.data);
       console.log(response?.accessToken);
@@ -106,10 +148,10 @@ const Register = () => {
       setSuccess(true);
       //clear state and controlled inputs
       //need value attrib on inputs for this
-      // setUser("");
-      // setPwd("");
+      setUser("");
+      setPwd("");
       // setEmail("");
-      // setMatchPwd("");
+      setMatchPwd("");
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -117,6 +159,8 @@ const Register = () => {
         setErrMsg("Username Taken");
       } else if (err.response?.status === 410) {
         setErrMsg("Email is in use");
+      } else if (err.response?.status === 411) {
+        setErrMsg("User img is not allowed");
       } else {
         setErrMsg("Registration Failed");
       }
@@ -134,13 +178,15 @@ const Register = () => {
             <h2>Success</h2>
             <p className={styles.success_p}>
               Almost there we just need you to validate your email that was sent
-              to you at <br /> <br /><span>{Email}</span>
+              to you at <br /> <br />
+              <span>{Email}</span>
             </p>
             <div className={styles.after_links}>
-            <a target="blank" href="https://mail.google.com/">Go to your email</a>
-            <Link to="/?action=login">Sign In</Link>
+              <a target="blank" href="https://mail.google.com/">
+                Go to your email
+              </a>
+              <Link to="/?action=login">Sign In</Link>
             </div>
-            
           </div>
         </section>
       ) : (
@@ -159,6 +205,38 @@ const Register = () => {
               </p>
             )}
             <form onSubmit={handleSubmit} autoComplete="off">
+              <div className={styles.profile_selection}>
+                {OpenProfileSelection && (
+                  <div
+                    onClick={openProfileSectionHandler}
+                    className={styles.gradient}
+                  ></div>
+                )}
+                <h4>Select your profile image</h4>
+                <img
+                  onClick={openProfileSectionHandler}
+                  src={
+                    "https://drive.google.com/uc?export=view&id=" + SelectedImg
+                  }
+                />
+                {OpenProfileSelection && (
+                  <div className={styles.profile_img_list}>
+                    {ImageList.map((img) => {
+                      return (
+                        <img
+                          key={img}
+                          src={
+                            "https://drive.google.com/uc?export=view&id=" + img
+                          }
+                          onClick={() => {
+                            selectProfileImageHandler(img);
+                          }}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
               <Input
                 label="Username"
                 type="text"

@@ -54,7 +54,7 @@ authRouter.post("/auth", async (req, res) => {
 
     // Send authorization roles and access token to user
     // console.log(accessToken);
-    res.json({ roles, accessToken, refreshToken });
+    res.json({ roles, accessToken, refreshToken , imgLink: foundUser.profilePictureLink });
   } else {
     res.sendStatus(401);
   }
