@@ -51,7 +51,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               />
 
               <Route path="/questions" element={<QuestionsLanding />} />
-              <Route path='/questions/searchQuestion' element={<></>}/>
+              <Route path=':searchTerm' element={<>dabiwdaw;d</>}/>
               <Route path="/questions/tags" element={<TagsList/>}/>
               <Route path="/questions/resultsPage" element={<ResultsPage />} />
               <Route

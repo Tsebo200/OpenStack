@@ -320,26 +320,18 @@ try {
 } catch (error) {
   res.status(500).json(error);
 }
-
 });
 
-questionsRouter.get("/all-questions-search", async (req, res) => {
-  const {search} = req.query
+questionsRouter.delete("/admin-question", async (req, res) => {
+  const {questionId} = req.query
 try {
-  const response = await questionSchema.find().exec();
-  const searchedQuestionList = response.map(question => {
-
-   if(question.title.includes(search)){
-    return question;
-   }
-  }).filter(element => {
-    return element !== undefined;
-  })
-  res.status(200).json(searchedQuestionList);
+  const response = await questionSchema.deleteOne({ _id : questionId });
+  res.status(200).json("question has been removed");
 } catch (error) {
   res.status(500).json(error);
 }
-
 });
+
+
 
 module.exports = questionsRouter;
