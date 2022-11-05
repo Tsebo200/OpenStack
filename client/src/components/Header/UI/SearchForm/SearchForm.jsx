@@ -10,14 +10,6 @@ export const SearchForm = () => {
 
     const [SearchTerm, setSearchTerm] = useState("")
 
-    const [QuestionList, setQuestionList] = useState([]);
-
-    const [UniqueTagsList, setUniqueTagsList] = useState([]);
-    const [TagDetailsList, setTagDetailsList] = useState([]);
-  
-    const [UniqueUsersList, setUniqueUsersList] = useState([]);
-    const [UserDetailsList, setUserDetailsList] = useState([]);
-
     const navigate = useNavigate();
   
 
@@ -26,33 +18,10 @@ export const SearchForm = () => {
     } 
 
     const searchForQuestionHandler = (event) => {
-        event.preventDefault()
-        // console.log("search server for " + SearchTerm);
-
-        let isMounted = true;
-        const controller = new AbortController();
-        const getAllQuestions = async () => {
-          try {
-            const response = await axios.get("/all-questions-search", {
-              signal: controller.signal,
-              params: {search: SearchTerm}
-            });
-            navigate('/questions/searchQuestion/');
-          } catch (err) {
-            console.log(err);
-          }
-        };
-    
-        getAllQuestions();
-        return () => {
-          isMounted = false;
-          controller.abort();
-        };
+      event.preventDefault()
+      setSearchTerm('')
+      navigate('/questions/' + SearchTerm);  
     }
-
-    useEffect(() => {
-
-    }, []);
 
     return (
         <form onSubmit={searchForQuestionHandler} className={styles.search_from}>

@@ -90,18 +90,15 @@ questionsRouter.get("/admin/questions-list", async (req, res) => {
           const user = await userSchema.findById(report.userId);
           return {
             ...report._doc,
-            userDetails: user
-          }
+            userDetails: user,
+          };
         })
-      )
-
-
-
+      );
 
       return {
         ...question._doc,
         user: user,
-        reports: responseReport
+        reports: responseReport,
       };
     })
   );
@@ -313,41 +310,42 @@ questionsRouter.delete("/question", async (req, res) => {
 });
 
 questionsRouter.delete("/admin-question", async (req, res) => {
-  const {questionId} = req.query
-try {
-  const response = await questionSchema.deleteOne({ _id : questionId });
-  res.status(200).json("question has been removed");
-} catch (error) {
-  res.status(500).json(error);
-}
+  const { questionId } = req.query;
+  try {
+    const response = await questionSchema.deleteOne({ _id: questionId });
+    res.status(200).json("question has been removed");
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 questionsRouter.delete("/admin-question", async (req, res) => {
-  const {questionId} = req.query
-try {
-  const response = await questionSchema.deleteOne({ _id : questionId });
-  res.status(200).json("question has been removed");
-} catch (error) {
-  res.status(500).json(error);
-}
+  const { questionId } = req.query;
+  try {
+    const response = await questionSchema.deleteOne({ _id: questionId });
+    res.status(200).json("question has been removed");
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 questionsRouter.get("/all-questions-search", async (req, res) => {
-  const {search} = req.query
-try {
-  const response = await questionSchema.find().exec();
-  const searchedQuestionList = response.map(question => {
-
-   if(question.title.includes(search)){
-    return question;
-   }
-  }).filter(element => {
-    return element !== undefined;
-  })
-  res.status(200).json(searchedQuestionList);
-} catch (error) {
-  res.status(500).json(error);
-}
+  const { search } = (req.query);
+  try {
+    const response = await questionSchema.find({ title: { "$regex": `${search}`, "$options": "i" } });
+    // const searchedQuestionList = response
+    //   .map((question) => {
+    //     if (question.title.includes((search).toLowerCase()).toLowerCase()) {
+    //       return question;
+    //     }
+    //   })
+    //   .filter((element) => {
+    //     return element !== undefined;
+    //   });
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 module.exports = questionsRouter;
