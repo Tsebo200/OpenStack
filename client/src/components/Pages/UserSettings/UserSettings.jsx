@@ -10,6 +10,12 @@ import StockCards from "../Achievements/Achievements";
 import Axios from "axios";
 
 const UserSettings = () => {
+
+  const formateQuestionText = (text) => {
+    return text.slice(0, 32) + "...";
+  };   
+
+
   return (
     <div className={styles.user_settings_container}>
       <header>
@@ -71,7 +77,7 @@ const UserSettings = () => {
           <div className={styles.question_notification_container}>
             <h4 className={styles.question_notification_counter_text}>0</h4>
           </div> 
-          <p className={styles.question_text}>Adding custom SVGs to ion icons</p>
+          <p className={styles.question_text}>{formateQuestionText ("Adding custom PNG's to ion icons")}</p>
           <p className={styles.date_text}>Oct 31</p>
             
         
@@ -160,15 +166,59 @@ const UserSettings = () => {
           </header> End of Answers Nav */}
           </header>
 
-          {/* inside the answers container */}
+          {/* Inside the answers container */}
+          {/* Static Answer One*/}
           <div className={styles.questions_container_content_box}>
           <div className={styles.questions_row}>
           <div className={styles.question_notification_container}>
             <h4 className={styles.question_notification_counter_text}>1</h4></div> 
+          <p className={styles.question_text}>{formateQuestionText ("Change link colour with main div")}</p>
+          <p className={styles.date_text}>Oct 31</p>
+
+
+          {/* Static Answer Two*/}
+          <div className={styles.space_breaker}></div>
+          <div className={styles.question_notification_container}>
+          <h4 className={styles.question_notification_counter_text}>3</h4>
+          </div>
+          <p className={styles.question_text}>{formateQuestionText ("Change link colour with main div")}</p>
+          <p className={styles.date_text}>Oct 31</p>
+
+
+          {/* Static Answer Three*/}
+          <div className={styles.space_breaker}></div>
+          <div className={styles.question_notification_container}>
+          <h4 className={styles.question_notification_counter_text}>9</h4>
+          </div>
+          <p className={styles.question_text}>{formateQuestionText ("Change link colour with main div")}</p>
+          <p className={styles.date_text}>Oct 31</p>
+
+
+          {/* Static Answer Four*/}
+          <div className={styles.space_breaker}></div>
+          <div className={styles.question_notification_container}>
+          <h4 className={styles.question_notification_counter_text}>9</h4>
+          </div>
+          <p className={styles.question_text}>{formateQuestionText ("Change link colour with main div")}</p>
+          <p className={styles.date_text}>Oct 31</p>
+
+
+          {/* Static Answer Five*/}
+          <div className={styles.space_breaker}></div>
+          <div className={styles.question_notification_container}>
+          <h4 className={styles.question_notification_counter_text}>9</h4>
+          </div>
           <p className={styles.question_text}>Change link colour with main div</p>
           <p className={styles.date_text}>Oct 31</p>
           </div>
-        </div>
+
+
+
+
+        </div>  {/* End of Answers Container */}
+
+
+
 
           {/* inside the Badges container */}
           {/* <header className={styles.answers_heading}>
