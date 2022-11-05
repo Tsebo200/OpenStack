@@ -120,12 +120,12 @@ export const QuestionList = () => {
           params: { reportId: reportId },
         });
         setReportList((prevState) => {
-          const newReports = [...prevState];
           const index = prevState.findIndex((report) => {
             return report._id === reportId;
           });
-          newReports.splice(index, 1);
-          return newReports;
+          prevState = [...prevState.splice(index, 1)];
+          return prevState;
+
         });
         const getAllQuestions = async () => {
           try {
