@@ -75,7 +75,7 @@ const UserSettings = () => {
           <p className={styles.date_text}>Oct 31</p>
             
         
-            {/* Adding more static questions */}
+            {/* Adding more static questions One */}
           <div className={styles.space_breaker}></div>
           <div className={styles.question_notification_container}>
           <h4 className={styles.question_notification_counter_text}>2</h4>
@@ -83,7 +83,7 @@ const UserSettings = () => {
           <p className={styles.question_text}>Adding custom PNG's to ion icons</p>
           <p className={styles.date_text}>Sep 24</p>
  
-
+            {/* static questions Two */}
           <div className={styles.space_breaker}></div>
           <div className={styles.question_notification_container}>
           <h4 className={styles.question_notification_counter_text}>21</h4>
@@ -91,6 +91,24 @@ const UserSettings = () => {
           <p className={styles.question_text}>Adding custom JPG's to ion icons</p>
           <p className={styles.date_text}>Nov 5</p>
 
+            {/* static questions Three */}
+          <div className={styles.space_breaker}></div>
+          <div className={styles.question_notification_container}>
+          <h4 className={styles.question_notification_counter_text}>21</h4>
+          </div> 
+          <p className={styles.question_text}>Adding custom JPG's to ion icons</p>
+          <p className={styles.date_text}>Nov 5</p>
+
+             {/* static questions Four */}
+          <div className={styles.space_breaker}></div>
+          <div className={styles.question_notification_container}>
+          <h4 className={styles.question_notification_counter_text}>21</h4>
+          </div> 
+          <p className={styles.question_text}>Adding custom JPG's to ion icons</p>
+          <p className={styles.date_text}>Nov 5</p>
+
+
+          {/* static questions Five */}
           <div className={styles.space_breaker}></div>
           <div className={styles.question_notification_container}>
           <h4 className={styles.question_notification_counter_text}>21</h4>

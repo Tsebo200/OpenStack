@@ -200,7 +200,9 @@ header{
   margin-top: 10px;
   border-radius: 7px;
   border: solid 1px grey;
-  overflow: hidden;
+  // overflow: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
  
   .questions_row{
     width: 100%;
