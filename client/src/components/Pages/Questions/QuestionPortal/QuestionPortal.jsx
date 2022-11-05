@@ -64,9 +64,6 @@ function QuestionPortal() {
     qImg: "",
   });
 
-  const [questionTitle, setQuestionTitle] = useState();
-  const [questionBody, setQuestionBody] = useState();
-
   const [titleError, setTitleError] = useState();
   const [bodyError, setBodyError] = useState();
   const [codeError, setCodeError] = useState();
@@ -169,8 +166,6 @@ function QuestionPortal() {
     console.log(key);
     const arr = tagsSelected;
     const idArr = tagId;
-    // console.log(key)
-    // // console.log(e.target.__reactFiber$3393ywe519t.key);
     const tags = e.target.innerText;
 
     if (!arr.includes(tags)) {
@@ -189,19 +184,29 @@ function QuestionPortal() {
   }, [rerender]);
 
   const handleTagRemove = (index) => {
-    // const list = [...tagId];
-    // list.splice(index, 1);
-    // setTagId(list);
-    // console.log(list);
     console.log('something in there');
-    setTagId(prevState => {
-      prevState.splice(index, 1)
-      return prevState;
-    })
-    setTagsSelected(prevState => {
-      prevState.splice(index, 1)
-      return prevState;
-    });
+    // setTagId(prevState => {
+    //   const newIndex = prevState.findIndex( index => {
+    //     return index._id === tagId;
+    //   });
+    //   prevState = [...prevState.splice(index, 2)];
+    //   return prevState;
+    // })
+    const list = [...tagsSelected];
+    const listId = [...tagId];
+    listId.splice(index, 1);
+    list.splice(index, 1);
+    setTagsSelected(list);
+    setTagId(listId);
+
+    // setTagsSelected(prevState => {
+    //   const index = prevState.findIndex((tags) => {
+    //     return tags._id === tagId;
+    //   });
+    //   prevState = [...prevState.splice(index, 2)];
+    //   return prevState;
+    // });
+
   }
   console.log(tagsSelected);
   console.log(tagId);
