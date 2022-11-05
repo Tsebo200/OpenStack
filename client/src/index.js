@@ -25,6 +25,7 @@ import { Tags } from "./components/Pages/AdminPage/UI/Pages/Tags/Tags";
 import { ReportedAnswers } from "./components/Pages/AdminPage/UI/Pages/ReportedAnswers/ReportedAnswers";
 import { PasswordReset } from "./components/Pages/PasswordReset/PasswordReset";
 import { PasswordResetResponse } from "./components/Pages/PasswordReset/PasswordResetResponse/PasswordResetResponse";
+import TagsList from "./components/Pages/TagsList/TagsList";
 
 const ROLES = [2001, 5150];
 
@@ -50,6 +51,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               />
 
               <Route path="/questions" element={<QuestionsLanding />} />
+              <Route path="/questions/tags" element={<TagsList/>}/>
               <Route path="/questions/resultsPage" element={<ResultsPage />} />
               <Route
                 path="/questions/individual"

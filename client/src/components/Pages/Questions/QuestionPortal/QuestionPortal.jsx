@@ -185,13 +185,7 @@ function QuestionPortal() {
 
   const handleTagRemove = (index) => {
     console.log('something in there');
-    // setTagId(prevState => {
-    //   const newIndex = prevState.findIndex( index => {
-    //     return index._id === tagId;
-    //   });
-    //   prevState = [...prevState.splice(index, 2)];
-    //   return prevState;
-    // })
+
     const list = [...tagsSelected];
     const listId = [...tagId];
     listId.splice(index, 1);
@@ -199,13 +193,6 @@ function QuestionPortal() {
     setTagsSelected(list);
     setTagId(listId);
 
-    // setTagsSelected(prevState => {
-    //   const index = prevState.findIndex((tags) => {
-    //     return tags._id === tagId;
-    //   });
-    //   prevState = [...prevState.splice(index, 2)];
-    //   return prevState;
-    // });
 
   }
   console.log(tagsSelected);
