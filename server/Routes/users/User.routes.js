@@ -3,6 +3,8 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 
 const userSchema = require("../../models/Users");
+const questionSchema = require("../../models/Questions");
+const answerSchema = require("../../models/Answers");
 const userRouter = express();
 var bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -25,10 +27,9 @@ userRouter.patch("/update-user-roles", async (req, res) => {
 });
 
 userRouter.post("/api/register", async (req, res) => {
-  const { user, pwd, Email } = req.body;
-  console.log(user);
+  const { user, pwd, Email, SelectedImg } = req.body;
 
-  console.log(!user || !pwd || !Email);
+  // console.log(!user || !pwd || !Email);
 
   if (!user || !pwd || !Email) {
     return res
@@ -37,13 +38,32 @@ userRouter.post("/api/register", async (req, res) => {
   }
 
   const usernameDuplicate = await userSchema.findOne({ username: user }).exec();
-  console.log(usernameDuplicate);
   const emailDuplicate = await userSchema.findOne({ email: Email }).exec();
   if (usernameDuplicate) {
     return res.sendStatus(409); //Conflict
   }
   if (emailDuplicate) {
     return res.sendStatus(410); //Conflict
+  }
+
+  const allowedImages = [
+    "1QG1T8m5Dt57tVZ9eC7SBl7Ns9QlVuHjB",
+    "1HtSZf8L9cMPimRpG1sMC4_DH6jfznKjy",
+    "1fOdYMdeuh06uAheguTQOQGbkeqI7Lsmx",
+    "1j16LY_lPXKY8yc4ULBPc6WXh3Z2864YE",
+    "1dAQAD9DZijEiPfivZSDnoC-_C8Jn5iUg",
+    "1LSeKoGFWmQt5XdlDGOQ-ZAQbeyMnP89q",
+    "1-qWSvzB6nO8-OfAwVzbT2IbqhT0XV-HM",
+    "1fkkLUoHgGA0mUvys2GDGDRqlkl5ywZRf",
+    "1YtvDVIoebi5ijBeMR_BrXoU2asJIFWN2",
+  ];
+
+  if (
+    !(allowedImages.filter((img) => {
+      return img === SelectedImg;
+    }).length > 0)
+  ) {
+    return res.sendStatus(411); //Conflict
   }
   try {
     //encrypt the password
@@ -54,6 +74,7 @@ userRouter.post("/api/register", async (req, res) => {
       username: user,
       password: hashedPwd,
       email: Email,
+      profilePictureLink: SelectedImg,
     });
 
     console.log(result);
@@ -277,6 +298,77 @@ userRouter.post("/reset-password", async (req, res) => {
   }
   res.sendStatus(409);
   return;
+});
+
+userRouter.patch("/user-username", async (req, res) => {
+  const { userId, newUsername } = req.body;
+  const usernameDuplicate = await userSchema
+    .findOne({ username: newUsername })
+    .exec();
+  if (usernameDuplicate) {
+    res.status(409).json("username is taken");
+    return;
+  }
+  const user = await userSchema.findOne({ _id: userId }).exec();
+  user.username = newUsername;
+  user.save();
+  res.status(200).json("user name updated");
+});
+
+userRouter.get("/user", async (req, res) => {
+  const { userId } = req.query;
+
+  const user = await userSchema.findOne({ _id: userId }).exec();
+
+  const userQuestions = await questionSchema.find({ userId: userId }).exec();
+  const userAnswers = await answerSchema.find({ user: userId }).exec();
+
+  // questionTitle
+
+  const userAnswersRefined = await Promise.all(
+    userAnswers.map(async (answer) => {
+      const question = await questionSchema.find({
+        _id: answer.questionId[0],
+      });
+      console.log(question[0]);
+      if (question[0]?.title) {
+        return {
+          ...answer._doc,
+          questionTitle: question[0]?.title,
+          correctAnswer: question[0]?.questionInteraction.correctAnswer,
+        };
+      }
+      return;
+    })
+  );
+
+  let xxx = userAnswersRefined.filter((i) => {
+    return i != null;
+  });
+
+  try {
+    res.status(200).json({ user, userQuestions, userAnswers: xxx });
+    return;
+  } catch (error) {
+    res.status(404).json(error);
+    return;
+  }
+});
+
+userRouter.get("/get-images", async (req, res) => {
+  res
+    .status(200)
+    .json([
+      "1QG1T8m5Dt57tVZ9eC7SBl7Ns9QlVuHjB",
+      "1HtSZf8L9cMPimRpG1sMC4_DH6jfznKjy",
+      "1fOdYMdeuh06uAheguTQOQGbkeqI7Lsmx",
+      "1j16LY_lPXKY8yc4ULBPc6WXh3Z2864YE",
+      "1dAQAD9DZijEiPfivZSDnoC-_C8Jn5iUg",
+      "1LSeKoGFWmQt5XdlDGOQ-ZAQbeyMnP89q",
+      "1-qWSvzB6nO8-OfAwVzbT2IbqhT0XV-HM",
+      "1fkkLUoHgGA0mUvys2GDGDRqlkl5ywZRf",
+      "1YtvDVIoebi5ijBeMR_BrXoU2asJIFWN2",
+    ]);
 });
 
 module.exports = userRouter;

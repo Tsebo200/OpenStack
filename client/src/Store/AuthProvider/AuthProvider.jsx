@@ -16,12 +16,9 @@ export const AuthProvider = ({ children }) => {
     }));
   }, [decodedString]);
 
-  console.log("check local srotage");
-
   useEffect(() => {
     const localAccessToken = localStorage.getItem("accessToken");
     const localRoles = JSON.parse(localStorage.getItem("roles"));
-    console.log(localRoles);
     setAuth({ roles: localRoles, accessToken: localAccessToken });
   }, []);
 

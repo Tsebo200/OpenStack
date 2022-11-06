@@ -8,330 +8,334 @@ import { Button } from "../../UI/Button/Button";
 import StockCards from "../Achievements/Achievements";
 // import Button from "../../Button/Button"
 import Axios from "axios";
+import { Link, useParams } from "react-router-dom";
+import axios from "../../../api/axios";
+import moment from "moment";
+import { useAuth } from "../../../Hooks/useAuth";
+
+const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 
 const UserSettings = () => {
+  const { userId } = useParams();
 
-  const formateQuestionText = (text) => {
-    return text.slice(0, 32) + "...";
-  };   
+  const { Auth } = useAuth();
 
+  const [userData, setUserData] = useState();
+
+  const formattedSentence = (sentence) => {
+    let newSentence = sentence
+      .split(" ")
+      .map((word) => {
+        return word[0].toUpperCase() + word.toLowerCase().substring(1);
+      })
+      .join(" ");
+    return newSentence;
+  };
+
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+    const getUserData = async () => {
+      try {
+        const response = await axios.get("/user", {
+          signal: controller.signal,
+          params: { userId: userId },
+        });
+        isMounted && setUserData(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getUserData();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [userId]);
+
+  const achievementsArray = [
+    {
+      title: "Score",
+      id: 1,
+      location:
+        "https://drive.google.com/uc?export=view&id=1ivX2Mk5rLgE8BOgkbtTFbP7Y19hJsvGK",
+      decs: "Get a score of 10",
+      achieved: true,
+    },
+    {
+      title: "Score",
+      id: 2,
+      location:
+        "https://drive.google.com/uc?export=view&id=1q08fNmJexAs4xiZhn2wOJP0UF8uNYc6B",
+      decs: "Get a score of 15",
+      achieved: true,
+    },
+    {
+      title: "Score",
+      id: 3,
+      location:
+        "https://drive.google.com/uc?export=view&id=1ye4LYUHAJZDWpbvQJtiXlCmB9U9iQWUZ",
+      decs: "Get a score of 50",
+      achieved: false,
+    },
+    {
+      title: "Score",
+      id: 4,
+      location:
+        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      decs: "Get a score of 100",
+      achieved: false,
+    },
+  ];
+
+  console.log(userData);
+
+  const closeModalHandler = () => {
+    setUser("");
+    setModalSettings({
+      open: false,
+      scss: `${styles.modal_container}`,
+    });
+  };
+
+  const [ModalSettings, setModalSettings] = useState({
+    open: false,
+    scss: `${styles.modal_container}`,
+  });
+
+  const changeUserNameHandler = () => {
+    setModalSettings({
+      open: true,
+      scss: `${styles.modal_container} ${styles.open}`,
+    });
+  };
+
+  const userRef = useRef();
+  const errRef = useRef();
+
+  const [user, setUser] = useState("CaidynGinger");
+  const [validName, setValidName] = useState(true);
+  const [userFocus, setUserFocus] = useState(false);
+
+  const [errMsg, setErrMsg] = useState(null);
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      if (userFocus) {
+        setValidName(USER_REGEX.test(user));
+      }
+    }, 1000);
+    return () => {
+      clearTimeout(identifier);
+    };
+  }, [user]);
+  console.log(userData);
+
+  const changeUserNameSubmitHandler = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.patch("/user-username", {
+        userId: Auth?.userData?.UserInfo?.userId,
+        newUsername: user,
+      });
+      if (response.status === 209) {
+        setErrMsg("error name must be valid");
+        return;
+      } else if (response.status === 200) {
+        setUserData((prevState) => {
+          return { ...prevState, user: { ...prevState.user, username: user } };
+        });
+        setUser("");
+        setModalSettings({
+          open: false,
+          scss: `${styles.modal_container}`,
+        });
+      }
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 409) {
+        setErrMsg("Username Taken");
+      } else if (err.response?.status === 410) {
+        setErrMsg("Email is in use");
+      } else {
+        setErrMsg("Registration Failed");
+      }
+    }
+  };
 
   return (
-    <div className={styles.user_settings_container}>
-      <header>
-        <img src={profileIcon}/>
-        <h1>username</h1>
-        <ion-icon name="pencil-outline"></ion-icon>
-      </header>
-
-      <div className={styles.user_questions_container}>
+    <section className={styles.user_page}>
+      {userData ? (
+        <>
+          {ModalSettings.open && (
+            <div className={styles.modal_background}></div>
+          )}
+          <div className={ModalSettings.scss}>
+            <div onClick={closeModalHandler} className={styles.close_btn}>
+              <ion-icon name="close-outline"></ion-icon>
+            </div>
+            <form onSubmit={changeUserNameSubmitHandler}>
+              <h3>Change Username</h3>
+              {errMsg && (
+                <p
+                  ref={errRef}
+                  className={styles.error_message}
+                  aria-live="assertive"
+                >
+                  {errMsg}
+                </p>
+              )}
+              <Input
+                label="Username"
+                type="text"
+                id="username"
+                ref={userRef}
+                onChange={(e) => setUser(e.target.value)}
+                value={user}
+                required={true}
+                aria-invalid={validName ? "false" : "true"}
+                aria-describedby="uidnote"
+                onFocus={() => setUserFocus(true)}
+                onBlur={() => setUserFocus(false)}
+                valid={validName}
+              />
+              {!validName && (
+                <p id="uidnote" className={styles.helper_text}>
+                  4 to 24 characters.
+                  <br />
+                  No Spaces are allowed
+                  <br />
+                  Must begin with a letter.
+                  <br />
+                  Letters, numbers, underscores, hyphens allowed.
+                </p>
+              )}
+              <br></br>
+              <Button disabled={!validName}>Change My Name</Button>
+            </form>
+          </div>
           <header>
-            <h3 className={styles.questions_heading}>Questions</h3>
-            <header className={styles.questions_nav}>
-
-            {/* <table>
-            <tr>
-            <td>
-            <div className={styles.score_container}>
-            <p className={styles.score_text}>Score</p>
-            </div> */}
-            {/* <div className={styles.vert_line}></div> */}
-
-            {/* </td> */}
-
-            {/* <div className={styles.test}></div> */}
-            {/* <div className={styles.vert_line}></div> */}
-            {/* <td>
-            <div className={styles.activity_container}>
-            <p className={styles.activity_text}>Activity</p>
-            </div>
-            </td> */}
-
-            {/* <td>
-            <div className={styles.newest_container}>
-            <p className={styles.newest_text}>Newest</p>
-            </div>
-            </td> */}
-
-            {/* <td>
-            <div className={styles.views_container}>
-            <p className={styles.views_text}>Views</p>
-            </div>
-            </td>
-            </tr>
-            </table> */}
-
-            </header>
-              {/* <div className={styles.views_container}>
-   
-              <div className={styles.views}></div> */}
-              {/* </div> */}
-            </header>
-          {/* </header> */}
-
-
-
-          {/* Inside the Question Container */}
-          {/* Adding more static questions One */}
-          <div className={styles.questions_container_content_box}>
-          <div className={styles.questions_row}>
-          <div className={styles.question_notification_container}>
-            <h4 className={styles.question_notification_counter_text}>0</h4>
-          </div> 
-          <p className={styles.question_text}>{formateQuestionText ("Adding custom PNG's to ion icons")}</p>
-          <p className={styles.date_text}>Oct 31</p>
-            
-        
-            {/* Adding more static questions Two */}
-          <div className={styles.space_breaker}></div>
-          <div className={styles.question_notification_container}>
-          <h4 className={styles.question_notification_counter_text}>2</h4>
-          </div> 
-          <p className={styles.question_text}>Adding custom PNG's to ion icons</p>
-          <p className={styles.date_text}>Sep 24</p>
- 
-            {/* static questions Three */}
-          <div className={styles.space_breaker}></div>
-          <div className={styles.question_notification_container}>
-          <h4 className={styles.question_notification_counter_text}>21</h4>
-          </div> 
-          <p className={styles.question_text}>Adding custom JPG's to ion icons</p>
-          <p className={styles.date_text}>Nov 5</p>
-
-            {/* static questions Four */}
-          <div className={styles.space_breaker}></div>
-          <div className={styles.question_notification_container}>
-          <h4 className={styles.question_notification_counter_text}>21</h4>
-          </div> 
-          <p className={styles.question_text}>Adding custom JPG's to ion icons</p>
-          <p className={styles.date_text}>Nov 5</p>
-
-             {/* static questions Five */}
-          <div className={styles.space_breaker}></div>
-          <div className={styles.question_notification_container}>
-          <h4 className={styles.question_notification_counter_text}>21</h4>
-          </div> 
-          <p className={styles.question_text}>Adding custom JPG's to ion icons</p>
-          <p className={styles.date_text}>Nov 5</p>
-
-          {/* static questions Six */}
-          <div className={styles.space_breaker}></div>
-          <div className={styles.question_notification_container}>
-          <h4 className={styles.question_notification_counter_text}>21</h4>
-          </div> 
-          <p className={styles.question_text}>{formateQuestionText ("Adding custom JPG's to ion icons")}
-          </p>
-          <p className={styles.date_text}>Nov 5</p>
-          </div>
-
-
-          
-
-
-          </div>
-        </div> {/* End of Questions container */}
-
-
-
-
-        {/* <header> */}
-      
-        <div className={styles.user_questions_container}>
-        <header className={styles.answers_heading}>
-            <h3 className={styles.questions_heading}>Answers</h3>
-            {/* <header className={styles.answers_nav}>
-            <table>
-            <tr>
-            <td>
-            <div className={styles.score_container}>
-            <p className={styles.score_text}>Score</p>
-            </div>
-            <div className={styles.vert_line}></div>
-
-            </td>
-            <div className={styles.test}></div>
-            <div className={styles.vert_line}></div>
-            <td>
-            <div className={styles.activity_container}>
-            <p className={styles.activity_text}>Activity</p>
-            </div>
-            </td>
-
-            <td>
-            <div className={styles.newest_container}>
-            <p className={styles.newest_text}>Newest</p>
-            </div>
-            </td>
-            </tr>
-            </table>
-          </header> End of Answers Nav */}
+            <h2>
+              {userData.user.username} | Score {userData.user.userScore}
+            </h2>
+            <Link to="/questions-portal">Ask Question</Link>
           </header>
-
-          {/* Inside the answers container */}
-          {/* Static Answer One*/}
-          <div className={styles.questions_container_content_box}>
-          <div className={styles.questions_row}>
-          <div className={styles.question_notification_container}>
-            <h4 className={styles.question_notification_counter_text}>1</h4></div> 
-          <p className={styles.question_text}>{formateQuestionText ("Change link colour with main div")}</p>
-          <p className={styles.date_text}>Oct 31</p>
-
-
-          {/* Static Answer Two*/}
-          <div className={styles.space_breaker}></div>
-          <div className={styles.question_notification_container}>
-          <h4 className={styles.question_notification_counter_text}>3</h4>
-          </div>
-          <p className={styles.question_text}>{formateQuestionText ("Change link colour with main div")}</p>
-          <p className={styles.date_text}>Oct 31</p>
-
-
-          {/* Static Answer Three*/}
-          <div className={styles.space_breaker}></div>
-          <div className={styles.question_notification_container}>
-          <h4 className={styles.question_notification_counter_text}>9</h4>
-          </div>
-          <p className={styles.question_text}>{formateQuestionText ("Change link colour with main div")}</p>
-          <p className={styles.date_text}>Oct 31</p>
-
-
-          {/* Static Answer Four*/}
-          <div className={styles.space_breaker}></div>
-          <div className={styles.question_notification_container}>
-          <h4 className={styles.question_notification_counter_text}>9</h4>
-          </div>
-          <p className={styles.question_text}>{formateQuestionText ("Change link colour with main div")}</p>
-          <p className={styles.date_text}>Oct 31</p>
-
-
-          {/* Static Answer Five*/}
-          <div className={styles.space_breaker}></div>
-          <div className={styles.question_notification_container}>
-          <h4 className={styles.question_notification_counter_text}>9</h4>
-          </div>
-          <p className={styles.question_text}>{formateQuestionText ("Change link colour with main div")}</p>
-          <p className={styles.date_text}>Oct 31</p>
-          </div>
-
-
-
-
-        </div>  {/* End of Answers Container */}
-
-
-
-
-          {/* inside the Badges container */}
-          {/* <header className={styles.answers_heading}>
-            <h3 className={styles.questions_heading}>Answers</h3>
-            <header className={styles.answers_nav}>
-            <table>
-            <tr>
-            <td>
-            <div className={styles.score_container}>
-            <p className={styles.score_text}>Score</p>
+          <br />
+          <hr />
+          <br />
+          <div className={styles.user_header}>
+            <img className={styles.user_img} src={profileIcon} />
+            <div className={styles.achievement_list_container}>
+              <h4>Achievements List</h4>
+              <div className={styles.achievement_list}>
+                {achievementsArray.map((achievement) => {
+                  return (
+                    <div className={styles.achievement_container}>
+                      <img
+                        className={
+                          !achievement.achieved ? styles.achieved : undefined
+                        }
+                        src={achievement.location}
+                      />
+                      <div className={styles.achievement_desc}>
+                        <h5>{achievement.title}</h5>
+                        <p>{achievement.decs}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-            <div className={styles.vert_line}></div>
-
-            </td>
-            <div className={styles.test}></div>
-            <div className={styles.vert_line}></div>
-            <td>
-            <div className={styles.activity_container}>
-            <p className={styles.activity_text}>Activity</p>
+          </div>
+          <br />
+          <br />
+          <div className={styles.divide}>
+            <div>
+              <h3>Answers</h3>
+              <div className={styles.container}>
+                {userData.userAnswers.map((answer) => {
+                  // console.log(answer);
+                  return (
+                    <div className={styles.question_card}>
+                      <span
+                        className={
+                          answer.correctAnswer === answer._id
+                            ? styles.correct
+                            : undefined
+                        }
+                      >
+                        {answer.votes.length}
+                      </span>
+                      <Link
+                        to={`/questions/individual/${answer.questionId[0]}`}
+                      >
+                        <h5>{formattedSentence(answer.questionTitle)}</h5>
+                      </Link>
+                      <p>{moment(answer.date).format("MMM Do")}</p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-            </td>
-
-            <td>
-            <div className={styles.newest_container}>
-            <p className={styles.newest_text}>Newest</p>
+            <div className={styles.spacer}></div>
+            <div>
+              <h3>Questions asked</h3>
+              <div className={styles.container}>
+                {userData.userQuestions.map((question) => {
+                  return (
+                    <div className={styles.question_card}>
+                      <span
+                        className={
+                          question.questionInteraction.correctAnswer
+                            ? styles.correct
+                            : undefined
+                        }
+                      >
+                        {question.questionInteraction.votes.length}
+                      </span>
+                      <Link to={`/questions/individual/${question._id}`}>
+                        <h5>{formattedSentence(question.title)}</h5>
+                      </Link>
+                      <p>{moment(question.questionCreated).format("MMM Do")}</p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-            </td>
-            </tr>
-            </table> 
-          </header> End of Answers Nav
+          </div>
+          <br />
+          <br />
+          <hr />
+          <br />
+          {Auth?.userData?.UserInfo?.userId === userId && (
+            <>
+              <h3>Danger Zone</h3>
+              <a
+                onClick={changeUserNameHandler}
+                className={styles.danger_zone_a}
+              >
+                Change Username
+              </a>
+              <a className={styles.danger_zone_a}>Change Profile picture</a>
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          <header>
+            <h2>User</h2>
+            <Link to="/questions-portal">Ask Question</Link>
           </header>
-             {/* inside the Badges container */}
-
-             
-          <div className={styles.questions_container_content_box}>
-          <div className={styles.questions_row}>
-          <div className={styles.question_notification_container}>
-            <h4 className={styles.question_notification_counter_text}>1</h4></div> 
-          <p className={styles.question_text}>{formateQuestionText ("Change link colour with main div")}</p>
-          <p className={styles.date_text}>Oct 31</p>
-          </div>
-          </div>
-        {/* <div className={styles.badges_container_}></di> */}
-      </div>{/* End of answers_container */}
-
-  </div>
+          <br />
+          <hr />
+          <br />
+          <h3>Ohh no there was no user found</h3>
+        </>
+      )}
+    </section>
   );
-
-
-
-
-
-
-
-  
-  //  // Read all the DB Items
-  //  const [readProducts, setReadProducts] = useState();
-  //  const [renderProducts, setRenderProducts] = useState(false);
-
-  //  useEffect(()=>{
-  //      Axios.get('http://localhost:5001/api/userSetting')
-  //      .then(res =>{
-
-  //          let data = res.data;
-  //          console.log(data);
-  //          const productItem = data.map((item)=> <StockCards key={item._id} productId={item._id}
-
-  //          username={item.username}  achievement1={item.achievement1} achievement2={item.achievement2}  achievement3={item.achievement3}
-
-  //          editRender={setRenderProducts}/>);
-  //          setReadProducts(productItem);
-  //          setRenderProducts(false);
-  //      });
-  //  }, [renderProducts]);
-
-  // return (
-  //     //Add a margin top of 70px to accommodate for nav bar
-
-  //   <div className={styles.settings_background}>
-  //     <div className={styles.settings_form_container}>
-
-  //       <form
-  //       className={`${styles.settings_box} ${styles.inputs_container}`}>
-
-  //           <img className={styles.form_logo} src={formLogo} />
-  //           {/* <br />
-  //           <br/> */}
-  //             <center><h2>User Settings</h2></center>
-  //           <hr/>
-  //           <br/>
-  //           <center><h5>Hi user please edit your profile info here</h5></center>
-  //           <img className={styles.profile_icon} src={profileIcon} />
-  //           <div className={styles.labels_container}>
-  //           <h3 className={styles.username_label}>Your Current UserName:</h3>
-  //           <div className={styles.input_container}>
-  //           <Input label="Trevor100" name="new_username" type="username" />
-  //           <br/>
-  //           <h3 className={styles.email_label}>Your Current Email:</h3>
-  //           <Input label="200100@virtualwindow.co.za" name="new_email" type="email" />
-  //           </div>
-  //           </div>
-  //           <div className={styles.achieve_container}>
-  //             {/* <p>Hi user here are your achievements</p> */}
-  //             {readProducts}
-  //             <div className={styles.achievement}></div>
-  //             {/* <Button>Save Changes</Button> */}
-  //           </div>
-  //         <Button>Save Changes</Button>
-  //         </form>
-  //     </div>
-
-  //   </div>
-  // );
 };
 export default UserSettings;

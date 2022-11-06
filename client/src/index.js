@@ -26,6 +26,7 @@ import { ReportedAnswers } from "./components/Pages/AdminPage/UI/Pages/ReportedA
 import { PasswordReset } from "./components/Pages/PasswordReset/PasswordReset";
 import { PasswordResetResponse } from "./components/Pages/PasswordReset/PasswordResetResponse/PasswordResetResponse";
 import TagsList from "./components/Pages/TagsList/TagsList";
+import { UserList } from "./components/Pages/UsersList/UserList";
 
 const ROLES = [2001, 5150];
 
@@ -46,13 +47,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/" element={<LandingPage />} />
             <Route path="/questions" element={<QuestionsHome />}>
               <Route
-                path="/questions/UserSettings"
-                element={<UserSettings />}
-              />
+                path="/questions/UserSettings/:userId"
+                element={<UserSettings/>}
+              >
+              </Route>
 
               <Route path="/questions" element={<QuestionsLanding />} />
               <Route path=':searchTerm' element={<ResultsPage/>}/>
               <Route path="/questions/tags" element={<TagsList/>}/>
+              <Route path="/questions/users" element={<UserList/>}/>
               <Route path="/questions/resultsPage" element={<ResultsPage />} />
               <Route
                 path="/questions/individual"

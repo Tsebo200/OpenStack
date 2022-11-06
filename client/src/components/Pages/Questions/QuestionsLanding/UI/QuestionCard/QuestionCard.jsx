@@ -83,28 +83,24 @@ export const QuestionCard = (props) => {
     });
   }, []);
 
-
-
-
-  const [VoteScore, setVoteScore] = useState(0)
+  const [VoteScore, setVoteScore] = useState(0);
   useEffect(() => {
     let voteScore = 0;
 
     question.questionInteraction.votes.map((vote) => {
-    // vote action true add one
-    if (vote.action) {
-      voteScore = voteScore + 1;
-    }
-    // else vote action false subtract one
-    else {
-      voteScore = voteScore - 1;
-    }
+      // vote action true add one
+      if (vote.action) {
+        voteScore = voteScore + 1;
+      }
+      // else vote action false subtract one
+      else {
+        voteScore = voteScore - 1;
+      }
 
-    // get answers
-  });
-  setVoteScore(voteScore)
-  }, [])
-
+      // get answers
+    });
+    setVoteScore(voteScore);
+  }, []);
 
   return (
     <div className={styles.question}>
@@ -125,10 +121,14 @@ export const QuestionCard = (props) => {
               return i._id === tag;
             });
             if (!tagDetails[0]?.tombstone) {
-              return <Link key={tagDetails[0]?._id}>{tagDetails[0]?.tagName}</Link>;
+              return (
+                <Link key={tagDetails[0]?._id}>{tagDetails[0]?.tagName}</Link>
+              );
             }
             return (
-              <p key={tagDetails[0]?._id} className={styles.tag_tombstone}>{tagDetails[0]?.tagName}</p>
+              <p key={tagDetails[0]?._id} className={styles.tag_tombstone}>
+                {tagDetails[0]?.tagName}
+              </p>
             );
           })}
         </div>
@@ -141,7 +141,9 @@ export const QuestionCard = (props) => {
         }).map((userDetails) => {
           return (
             <div className={styles.user_details_na_sc} key={userDetails._id}>
-              <Link>{userDetails?.username}</Link>
+              <Link to={"/questions/UserSettings/" + userDetails.userId}>
+                {userDetails?.username}
+              </Link>
               <p className={styles.user_details_score}>
                 {userDetails?.userScore}
               </p>
