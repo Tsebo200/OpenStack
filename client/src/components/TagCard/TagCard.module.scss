@@ -1,0 +1,19 @@
+@import '../../index.scss';
+
+.container{
+    width: 100%;
+    background-color: $primary;
+    color: $white;
+    text-align: center;
+    border-radius: 10px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease-in-out;
+
+    &:hover{
+        cursor: pointer;
+        color: $black;
+    }
+}

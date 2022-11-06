@@ -348,4 +348,14 @@ questionsRouter.get("/all-questions-search", async (req, res) => {
   }
 });
 
+questionsRouter.get('/all-tags-search', async(req, res) => {
+  const { search } = (req.query);
+  try{
+    const response = await questionSchema.find({ tags: { "$regex": `${search}`, "$options": "i"}});
+    res.status(200).json(response);
+  } catch(err){
+    res.status(500).json(err);
+  }
+});
+
 module.exports = questionsRouter;
