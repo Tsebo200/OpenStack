@@ -53,118 +53,7 @@ const UserSettings = () => {
       isMounted = false;
       controller.abort();
     };
-  }, [userId]);
-
-  console.log(userData);
-
-  const achievementsArray = [
-    {
-      title: "Score",
-      id: 1,
-      location:
-        "https://drive.google.com/uc?export=view&id=1ivX2Mk5rLgE8BOgkbtTFbP7Y19hJsvGK",
-      decs: "Get a score of 10",
-      achieved: true,
-    },
-    {
-      title: "Score",
-      id: 2,
-      location:
-        "https://drive.google.com/uc?export=view&id=1q08fNmJexAs4xiZhn2wOJP0UF8uNYc6B",
-      decs: "Get a score of 15",
-      achieved: true,
-    },
-    {
-      title: "Score",
-      id: 3,
-      location:
-        "https://drive.google.com/uc?export=view&id=1ye4LYUHAJZDWpbvQJtiXlCmB9U9iQWUZ",
-      decs: "Get a score of 50",
-      achieved: false,
-    },
-    {
-      title: "Score",
-      id: 4,
-      location:
-        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
-      decs: "Get a score of 100",
-      achieved: false,
-    },
-    {
-      title: "Score",
-      id: 4,
-      location:
-        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
-      decs: "Get a score of 100",
-      achieved: false,
-    },
-    {
-      title: "Score",
-      id: 4,
-      location:
-        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
-      decs: "Get a score of 100",
-      achieved: false,
-    },{
-      title: "Score",
-      id: 4,
-      location:
-        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
-      decs: "Get a score of 100",
-      achieved: false,
-    },{
-      title: "Score",
-      id: 4,
-      location:
-        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
-      decs: "Get a score of 100",
-      achieved: false,
-    },{
-      title: "Score",
-      id: 4,
-      location:
-        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
-      decs: "Get a score of 100",
-      achieved: false,
-    },{
-      title: "Score",
-      id: 4,
-      location:
-        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
-      decs: "Get a score of 100",
-      achieved: false,
-    },{
-      title: "Score",
-      id: 4,
-      location:
-        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
-      decs: "Get a score of 100",
-      achieved: false,
-    },{
-      title: "Score",
-      id: 4,
-      location:
-        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
-      decs: "Get a score of 100",
-      achieved: false,
-    },{
-      title: "Score",
-      id: 4,
-      location:
-        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
-      decs: "Get a score of 100",
-      achieved: false,
-    },{
-      title: "Score",
-      id: 4,
-      location:
-        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
-      decs: "Get a score of 100",
-      achieved: false,
-    },
-  ];
-
-  console.log(userData);
+  }, [userId]);;
 
   const closeModalHandler = () => {
     setUser("");
@@ -312,7 +201,8 @@ const UserSettings = () => {
             <div className={styles.achievement_list_container}>
               <h4>Achievements List</h4>
               <div className={styles.achievement_list}>
-                {achievementsArray.map((achievement) => {
+                {userData?.achievements.map((achievement) => {
+                  console.log(achievement);
                   return (
                     <div className={styles.achievement_container}>
                       <img
@@ -366,7 +256,6 @@ const UserSettings = () => {
               <h3>Questions asked</h3>
               <div className={styles.container}>
                 {userData.userQuestions.map((question) => {
-                  console.log(question);
                   return (
                     <div className={styles.question_card}>
                       <span

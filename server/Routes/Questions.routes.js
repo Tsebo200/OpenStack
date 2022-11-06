@@ -56,6 +56,37 @@ questionsRouter.post('/api/add-question', uploadQuestionImage.single('image') , 
   }
 });
 
+questionsRouter.post('/api/add-question-no-img', uploadQuestionImage.single('image') , async (req, res) => {
+  const { title, body, codeBody, codeLanguage, user_id, tags } = JSON.parse(req.body.information);
+  // add question + 1
+
+
+  const ownerOfQuestion = await userSchema.findById(user_id)
+  ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
+  await ownerOfQuestion.save();
+
+
+  const newQuestion = new questionSchema({
+    title: title,
+    body: body,
+    code: {
+      codeBody: codeBody,
+      codeLanguage: codeLanguage,
+    },
+    tags: tags,
+    userId: user_id,
+  });
+  // console.log(newQuestion);
+  try {
+    const response = await newQuestion.save();
+    res.status(201).json({ success: `new question: ${title} created!` });
+    // res.json(newQuestion);
+  } catch (err) {
+    console.log("error in server");
+    console.log(err);
+  }
+});
+
 questionsRouter.get("/api/all-questions", async (req, res) => {
   const findQuestions = (await questionSchema.find().sort({questionCreated: 'desc'})).filter((question) => {
     return !question.private;

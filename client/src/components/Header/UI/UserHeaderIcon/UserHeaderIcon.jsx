@@ -19,7 +19,6 @@ export const UserHeaderIcon = (props) => {
   const [userImg, setUserImg] = useState("");
 
   useEffect(() => {
-    console.log(Auth);
     setUserImg(localStorage.getItem("img"));
   }, []);
 

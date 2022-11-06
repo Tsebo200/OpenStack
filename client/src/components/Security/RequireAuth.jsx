@@ -5,7 +5,6 @@ import { useAuth } from "../../Hooks/useAuth";
 export const RequireAuth = ({ allowedRoles }) => {
   const { Auth } = useAuth();
   const location = useLocation();
-  console.log(Auth.roles);
   const localRoles = JSON.parse(localStorage.getItem("roles"));
   if (localRoles) {
     const localRoles = JSON.parse(localStorage.getItem("roles"));

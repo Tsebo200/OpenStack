@@ -351,8 +351,114 @@ userRouter.get("/user", async (req, res) => {
     return i != null;
   });
 
+  // console.log(userQuestions.length);
+
+  // correctly answer
+  console.clear()
+  console.log(xxx.map(x => {
+    
+  }));
+
+  let achievements = [
+    {
+      title: "Admin",
+      id: 0,
+      location:
+        "https://drive.google.com/uc?export=view&id=1aftQbAO38Age6xOIy9GqB9hjuwKRol9K",
+      decs: "Be given the privilege of admin",
+      achieved: user.roles.filter(role => {
+        return role === 5150
+      }) > 0,
+    },
+    {
+      title: "Admin",
+      id: 0,
+      location:
+        "https://drive.google.com/uc?export=view&id=1aftQbAO38Age6xOIy9GqB9hjuwKRol9K",
+      decs: "Be given the privilege of admin",
+      achieved: user.roles.filter(role => {
+        return role === 5150
+      }) > 0,
+    },
+    {
+      title: "Score",
+      id: 1,
+      location:
+        "https://drive.google.com/uc?export=view&id=1ivX2Mk5rLgE8BOgkbtTFbP7Y19hJsvGK",
+      decs: "Get a score of 20",
+      achieved: (user.userScore > 20),
+    },
+    {
+      title: "Score",
+      id: 2,
+      location:
+        "https://drive.google.com/uc?export=view&id=1q08fNmJexAs4xiZhn2wOJP0UF8uNYc6B",
+      decs: "Get a score of 50",
+      achieved: (user.userScore > 50),
+    },
+    {
+      title: "Score",
+      id: 3,
+      location:
+        "https://drive.google.com/uc?export=view&id=1ye4LYUHAJZDWpbvQJtiXlCmB9U9iQWUZ",
+      decs: "Get a score of 100",
+      achieved: (user.userScore > 100),
+    },
+    {
+      title: "Score",
+      id: 4,
+      location:
+        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      decs: "Get a score of 500",
+      achieved: (user.userScore > 500),
+    },
+    {
+      title: "Ask",
+      id: 5,
+      location:
+        "https://drive.google.com/uc?export=view&id=12fU8k7SZnroEYvj77VTG0mX5p_q_uFus",
+      decs: "Ask your first question",
+      achieved: (userQuestions.length >= 1),
+    },
+    {
+      title: "Ask",
+      id: 6,
+      location:
+        "https://drive.google.com/uc?export=view&id=1n0E-asNCvZ8NqVvlzBtWFY8ZXF-4aU9z",
+      decs: "Ask 3 questions",
+      achieved: (userQuestions.length >= 3),
+    },
+    {
+      title: "Ask",
+      id: 7,
+      location:
+        "https://drive.google.com/uc?export=view&id=1uUuLjOTtf73anwOLmu4JUHD74YC9U2VZ",
+        decs: "Ask 10 questions",
+      achieved: (userQuestions.length >= 10),
+    },
+    {
+      title: "Ask",
+      id: 8,
+      location:
+        "https://drive.google.com/uc?export=view&id=1lJubM-5AzyiPqxiI1GOagD2-W377dFmI",
+        decs: "Ask 20 questions",
+      achieved: (userQuestions.length >= 20),
+    },
+    {
+      title: "Ask",
+      id: 8,
+      location:
+        "https://drive.google.com/uc?export=view&id=1bzSXnwby0OQwHdZIkw3QqLpKIsaKUNJT",
+        decs: "Ask 50 questions",
+      achieved: (userQuestions.length >= 50),
+    },
+    
+  ];
+
   try {
-    res.status(200).json({ user, userQuestions, userAnswers: xxx });
+    res
+      .status(200)
+      .json({ user, achievements, userQuestions, userAnswers: xxx });
     return;
   } catch (error) {
     res.status(404).json(error);

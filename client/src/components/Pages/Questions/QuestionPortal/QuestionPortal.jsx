@@ -261,20 +261,39 @@ function QuestionPortal() {
 
     // console.log(payloadData);
     console.log(payload);
-    axios
-      .post("http://localhost:5001/api/add-question/", payloadData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((res) => {
-        console.log("Question Added!");
-        setModal(true);
-      })
-      .catch((err) => {
-        console.log(err);
-        setModal(false);
-      });
+    if (payloadData.image) {
+      axios
+        .post("http://localhost:5001/api/add-question/", payloadData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log("Question Added!");
+          setModal(true);
+        })
+        .catch((err) => {
+          console.log(err);
+          setModal(false);
+        });
+      return;
+    } else {
+      console.log("no image");
+      axios
+        .post("http://localhost:5001/api/add-question-no-img", payloadData, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((res) => {
+          console.log("Question Added!");
+          setModal(true);
+        })
+        .catch((err) => {
+          console.log(err);
+          setModal(false);
+        });
+    }
   };
 
   return (
