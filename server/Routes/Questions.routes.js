@@ -286,6 +286,13 @@ questionsRouter.patch("/delete-tag", async (req, res) => {
 });
 
 questionsRouter.patch("/question-vote", async (req, res) => {
+
+
+
+
+
+
+  
   const { userId, action, questionId } = req.body;
 
   // find if user id and user exists
