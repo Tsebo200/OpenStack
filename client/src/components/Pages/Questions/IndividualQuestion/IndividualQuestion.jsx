@@ -282,6 +282,8 @@ export default function IndividualQuestion() {
     }
   };
 
+  console.log(QuestionData);
+
   return (
     <div className={styles.container}>
       {GetQuestionData ? (
@@ -434,7 +436,9 @@ export default function IndividualQuestion() {
                     )}
                   </h6>
                   <div className={styles.user_card}>
-                    <img src={userProfileImage} />
+                    <img src={
+                    "https://drive.google.com/uc?export=view&id=" + QuestionData?.userData?.profilePictureLink
+                  } />
                     <div>
                       <p onClick={() => {navigate(`/questions/UserSettings/${QuestionData?.Question?.userId}`)}}>{QuestionData?.userData?.username}</p>
                       <h6>user score {QuestionData?.userData?.userScore} </h6>
@@ -454,7 +458,7 @@ export default function IndividualQuestion() {
                 <>Answers</>
               )}{" "}
             </h3>
-            <p>Sorted by:</p>
+            {/* <p>Sorted by:</p> */}
           </div>
           {QuestionData?.Question?.answers.length > 0 &&
             QuestionData?.Question?.answers.map((answer) => {
@@ -470,6 +474,7 @@ export default function IndividualQuestion() {
                     QuestionData?.Question?.questionInteraction?.correctAnswer
                   }
                   questionUser={QuestionData?.Question?.userId}
+                  profilePictureLink={answer.user.profilePictureLink}
                 />
               );
             })}

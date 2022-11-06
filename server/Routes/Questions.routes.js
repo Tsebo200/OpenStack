@@ -64,14 +64,14 @@ questionsRouter.post("/api/add-question", async (req, res) => {
 });
 
 questionsRouter.get("/api/all-questions", async (req, res) => {
-  const findQuestions = (await questionSchema.find()).filter((question) => {
+  const findQuestions = (await questionSchema.find().sort({questionCreated: 'desc'})).filter((question) => {
     return !question.private;
   });
   res.json(findQuestions);
 });
 
 questionsRouter.get("/admin/questions-list", async (req, res) => {
-  const questionList = await questionSchema.find();
+  const questionList = await questionSchema.find().sort({questionCreated: 'desc'});
   const response = await Promise.all(
     questionList.map(async (question) => {
       const user = await userSchema.findById(question.userId);
@@ -104,8 +104,13 @@ questionsRouter.get("/admin/questions-list", async (req, res) => {
 questionsRouter.get("/question", async (req, res) => {
   const { questionId } = req.query;
 
-  const Question = await questionSchema.findOne({ _id: questionId });
-  const userData = await userSchema.findOne({ _id: Question.userId });
+  const Question = await questionSchema.findOne({ _id: questionId }).exec();
+  console.log(Question);
+  let userData = null
+  if (Question?.userId) {
+    userData = await userSchema.findOne({ _id: Question.userId });
+  }
+ 
 
   const answers = await answersSchema.find({ questionId: questionId });
 
@@ -140,6 +145,7 @@ questionsRouter.get("/question", async (req, res) => {
             userScore: answerUser.userScore,
             username: answerUser.username,
             id: answerUser._id,
+            profilePictureLink: answerUser.profilePictureLink
           },
         };
       })
@@ -152,7 +158,7 @@ questionsRouter.get("/question", async (req, res) => {
 
   // sort based on votes
 
-  const { userScore, username } = userData;
+  const { userScore, username, profilePictureLink } = userData;
   let voteScore = 0;
 
   Question.questionInteraction.votes.map((vote) => {
@@ -180,6 +186,7 @@ questionsRouter.get("/question", async (req, res) => {
     userData: {
       userScore: userScore,
       username: username,
+      profilePictureLink: profilePictureLink
     },
   });
 });

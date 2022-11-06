@@ -23,8 +23,6 @@ export const Header = () => {
   const { Auth, setAuth } = useAuth();
   const navigate = useNavigate();
 
-  console.log(Auth);
-
   const [LoginContainerCss, setLoginContainerCss] = useState(
     `${styles.login_container}`
   );
