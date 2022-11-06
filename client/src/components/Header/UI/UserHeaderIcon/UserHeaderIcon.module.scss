@@ -54,6 +54,10 @@
   object-fit: cover;
   border-radius: 100px;
   margin-right: 10px;
+
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 

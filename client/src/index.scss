@@ -66,6 +66,10 @@ $font-weight-bold: 700;
   a {
     text-decoration: none;
     list-style-type: none;
+
+    &:hover{
+      cursor: pointer;
+    }
   }
 }
 
