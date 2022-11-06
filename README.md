@@ -1,10 +1,10 @@
 
 <br />
 
-![GitHub repo size](https://img.shields.io/github/repo-size/wiaandev/OpenStack?color=lightblue)
-![GitHub watchers](https://img.shields.io/github/watchers/wiaandev/OpenStack?color=lightblue)
-![GitHub language count](https://img.shields.io/github/languages/count/wiaandev/OpenStack?color=lightblue)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/wiaandev/OpenStack?color=lightblue)
+![GitHub repo size](https://img.shields.io/github/repo-size/CaidynGinger/OpenStack?color=lightblue)
+![GitHub watchers](https://img.shields.io/github/watchers/CaidynGinger/OpenStack?color=lightblue)
+![GitHub language count](https://img.shields.io/github/languages/count/CaidynGinger/OpenStack?color=lightblue)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/CaidynGinger/OpenStack?color=lightblue)
 
 <h5 align="center" style="padding:0;margin:0;">Caidyn Ginger | Carlo Kuyper | Tsebo Ramonyalioa | Wiaan Duvenhage</h5>
 <h5 align="center" style="padding:0;margin:0;">21100204 | 180145 | 200200 | 200307</h5>
@@ -12,7 +12,7 @@
 </br>
 <p align="center">
 
-  <a href="https://github.com/wiaandev/OpenStack">
+  <a href="https://github.com/CaidynGinger/OpenStack">
     <img src="client/src/assets/OpenStackLogo-white.svg" width="200px">
   </a>
 
@@ -25,9 +25,9 @@
    <br />
    <a href="https://youtu.be/8iZ_rSmcN0E">View Demo</a>
     ·
-    <a href="https://github.com/wiaandev/OpenStack/issues">Report Bug</a>
+    <a href="https://github.com/CaidynGinger/OpenStack/issues">Report Bug</a>
     ·
-    <a href="https://github.com/wiaandev/OpenStack/issues">Request Feature</a>
+    <a href="https://github.com/CaidynGinger/OpenStack/issues">Request Feature</a>
 </p>
 <!-- TABLE OF CONTENTS -->
 
@@ -66,13 +66,14 @@
 
 ### Project Description
 
-This is OpenStack! A guitar e-commerce store where the user can interact with it via adding guitars to the cart and then checking out, in which they will push an order to the database that can be retrieved by the admin and then can later be dispatched. The only brand sold on this site is Gibson. NOTE: THIS IS A MOCK E-COMMERCE WEBSITE.
+Welcome to OpenStack! This is a developer's Q&A platform, something you probably have seen on sites like Stack Overflow. This is exactly the same thing, except we took on our own spin on it! Users can ask and answer questions, receive achievements based on user score and much, much more. This application was built with the MERN Stack and hosted on Heroku.
 
 ### Built With
 [<img src="https://www.svgrepo.com/show/331488/mongodb.svg" width="5%" height="5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://www.mongodb.com/cloud/atlas/lp/try4?utm_source=google&utm_campaign=gs_emea_south_africa_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624560&adgroup=115749711783)
 [<img src="https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg" width="5%" height="5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://expressjs.com/)
 [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="6%" height="6%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://reactjs.org/)
 [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png?20170401104355" width="7%" height="7%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://nodejs.org/en/)
+[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg" width="5%" height="7%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://www.heroku.com/)
 
 
 
@@ -94,13 +95,13 @@ For development, the latest version of Android Studio is required. The latest ve
 Here are a couple of ways to clone this repo:
 
 1.  GitHub Desktop </br>
-    Enter `https://github.com/wiaandev/OpenStack.git` into the URL field and press the `Clone` button.
+    Enter `https://github.com/CaidynGinger/OpenStack.git` into the URL field and press the `Clone` button.
 
 2.  Clone Repository </br>
     Run the following in the command-line to clone the project:
 
     ```sh
-    git clone https://github.com/wiaandev/OpenStack.git
+    git clone https://github.com/CaidynGinger/OpenStack.git
     ```
 
         Open `Software` and select `File | Open...` from the menu. Select cloned directory and press `Open` button
@@ -118,28 +119,44 @@ Here are a couple of ways to clone this repo:
 
 ### For the User
 
-#### Logging In
+#### Register their account
 
 ![image2][image2]
-The user can log into their profile using their email and passwords.
+The user can create a new account but it requires that the user has a valid virtualwindow email. They can also choose a number of preset profile pictures to be added to their account, which will serve as their avatar.
 
-#### Viewing Products Individually
+#### Verify Their Email
 
 ![image3][image3]
-The user can view the product they are looking for individually and they can look for more in-depth information about it, like the neck length, the handedness and much more!
+After registering, the user is required that have to verify their email before they can use OpenStack and all its features.
 
-#### Adding products to a cart
+#### Asking a question
 
 ![image4][image4]
-After the user has decided what guitar they want to order, they can add it to the cart (Note: this can only be done if the user is logged in!).
+When the user has verified their account, they can now ask a question (the user needs to stay logged in). The user can enter all the necessary information ,like the title, the code and even something like a screenshot or even related tags for better clarity.
 
-#### Placing orders via checkout
-If the user wants to place an order for their guitar, they can do so by proceeding to the checkout page and typing in their card details (this is a mock payment card section)
+#### Answering a question
+After another user has already asked a question. Another user can anwer that question, both the user that asked the question and the user that answered the question gets a reliability score.
+
+#### Question Interaction
+
+The user can upvote, downvote or even report a question, should it be something inappropriate or something that has vulgar language or potential nudity, racist or pornographic content linked to it. This will also influence the user's reliability score. They can also click on the checkmark of a question, should that question be correct, and it will update visually.
+
+#### Update their username
+
+If the user feels like they want to update their username. That is something that they would be able to do. They can head to the user settings page and do it there with the upmost ease.
+
+#### Password Resetting
+
+If the user has forgotten their password. This is not something that should worry the user, as they can reset their password by clicking on the indicated button on the sign-in page.
+
+#### Earn Achievements
+
+As mentioned previously by the reliability score. The user can earn achievements based on this reliability score, with the highest achievement being the admin achievement, granting them access to the admin privileges of OpenStack.
 
 ### For the Admin
-#### Adding Guitars To The Store
+#### Monitoring User Interaction
 ![image6][image5]
-The admin has access the to the inventory management page, which means he can add guitars to the store by clicking on "New Guitar+", wherein a modal will popup and the admin can enter all the necessary information to add a guitar to OpenStack.
+The user can monitor any incoming questions and answers from the users interacting with OpenStack.
 
 #### Updating Guitar Information
 ![image7][image6] If the user feels like there is some information on a guitar that is not accurate or that needs updating, the  admin can do so by clicking on the update button, where again, a modal will pop-up and the admin can update a guitar's information accordingly.
@@ -237,13 +254,16 @@ To see a run through of OpenStack, click below:
 
 [View Demonstration](https://youtu.be/8iZ_rSmcN0E)
 
-See the [open issues](https://github.com/wiaandev/OpenStack/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/CaidynGinger/OpenStack/issues) for a list of proposed features (and known issues).
 
 <!-- AUTHORS -->
 
 ## Authors
 
+- **Caidyn Ginger** - [Github](https://github.com/CaidynGinger)
 - **Wiaan Duvenhage** - [Github](https://github.com/wiaandev)
+- **Tsebo Ramonyalioa** - [Github](https://github.com/Tsebo200)
+- **Carlo Kuyper** - [Github](https://github.com/carlokuyper)
 
 <!-- LICENSE -->
 
@@ -256,7 +276,8 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 ## Contact
 
 - **Wiaan Duvenhage** - [wiaanduvenhage.dev@gmail.com](mailto:wiaanduvenhage.dev@gmail.com) - [@wiaan.dev](https://www.instagram.com/wiaan.dev/)
-- **Project Link** - https://github.com/wiaandev/OpenStack
+- **Caidyn Ginger** - [21100204@virtualwindow.co.za](mailto:21100204@virtualwindow.co.za) - [@caidynginger](https://www.instagram.com/caidynginger/)
+- **Project Link** - https://github.com/CaidynGinger/OpenStack
 
 <!-- ACKNOWLEDGEMENTS -->
 
@@ -270,7 +291,6 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 - [Lecturer](https://github.com/MikeMaynard14)
 - [Freepik](https://www.freepik.com)
 - [unDraw](https://undraw.co/)
-- [Gibson](http://gibson.com/)
 - [Leander van Aarde](https://github.com/leandervanAarde)
 - [Vian Du Plessis](https://github.com/Vian-du-Plessis)
 - [Reinhardt de Beer](https://github.com/EpicBlue1)
