@@ -34,21 +34,14 @@ const questionImageStore = multer.diskStorage({
 });
 
 questionsRouter.post("/api/add-question", async (req, res) => {
-  // const uploadParams = {
-  //   Bucket: process.env.BUCKET,
-  //   Key: req.files.file.name,
-  //   Body: Buffer.from(req.files.file.data),
-  //   ContentType: req.files.file.mimeType,
-  //   ACL: 'public-read'
-  // }
-
-  // s3.upload(uploadParams, function (err, data){
-  //   err && console.log("Error", err)
-  //   data && console.log("Upload Success", data.location)
-  // })
-
-  // console.log(req.file.filename);
   const { title, body, codeBody, codeLanguage, user_id, tags } = req.body;
+
+  // add question + 1
+  const ownerOfQuestion = await userSchema.findById(user_id)
+  ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
+  await ownerOfQuestion.save();
+
+
   const newQuestion = new questionSchema({
     title: title,
     body: body,
@@ -306,16 +299,6 @@ questionsRouter.delete("/question", async (req, res) => {
     res.json("question has been removed");
   } catch (error) {
     res.json("error there was an error");
-  }
-});
-
-questionsRouter.delete("/admin-question", async (req, res) => {
-  const { questionId } = req.query;
-  try {
-    const response = await questionSchema.deleteOne({ _id: questionId });
-    res.status(200).json("question has been removed");
-  } catch (error) {
-    res.status(500).json(error);
   }
 });
 

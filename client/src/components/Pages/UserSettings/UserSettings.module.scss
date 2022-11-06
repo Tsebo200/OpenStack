@@ -54,6 +54,7 @@
       height: calc(100% - 24px);
       .achievement_container {
         height: calc(50% - 10px);
+        
         cursor: pointer;
         position: relative;
         margin: 5px 7px;
@@ -62,6 +63,7 @@
         }
         .achieved {
           filter: grayscale(100%);
+          opacity: 40%;
         }
         .achievement_desc {
           position: absolute;

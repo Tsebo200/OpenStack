@@ -55,6 +55,8 @@ const UserSettings = () => {
     };
   }, [userId]);
 
+  console.log(userData);
+
   const achievementsArray = [
     {
       title: "Score",
@@ -81,6 +83,78 @@ const UserSettings = () => {
       achieved: false,
     },
     {
+      title: "Score",
+      id: 4,
+      location:
+        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      decs: "Get a score of 100",
+      achieved: false,
+    },
+    {
+      title: "Score",
+      id: 4,
+      location:
+        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      decs: "Get a score of 100",
+      achieved: false,
+    },
+    {
+      title: "Score",
+      id: 4,
+      location:
+        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      decs: "Get a score of 100",
+      achieved: false,
+    },{
+      title: "Score",
+      id: 4,
+      location:
+        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      decs: "Get a score of 100",
+      achieved: false,
+    },{
+      title: "Score",
+      id: 4,
+      location:
+        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      decs: "Get a score of 100",
+      achieved: false,
+    },{
+      title: "Score",
+      id: 4,
+      location:
+        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      decs: "Get a score of 100",
+      achieved: false,
+    },{
+      title: "Score",
+      id: 4,
+      location:
+        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      decs: "Get a score of 100",
+      achieved: false,
+    },{
+      title: "Score",
+      id: 4,
+      location:
+        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      decs: "Get a score of 100",
+      achieved: false,
+    },{
+      title: "Score",
+      id: 4,
+      location:
+        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      decs: "Get a score of 100",
+      achieved: false,
+    },{
+      title: "Score",
+      id: 4,
+      location:
+        "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
+      decs: "Get a score of 100",
+      achieved: false,
+    },{
       title: "Score",
       id: 4,
       location:
@@ -166,6 +240,13 @@ const UserSettings = () => {
     }
   };
 
+  // const [userImg, setUserImg] = useState("");
+
+  // useEffect(() => {
+  //   console.log(Auth);
+  //   setUserImg(localStorage.getItem("img"));
+  // }, []);
+
   return (
     <section className={styles.user_page}>
       {userData ? (
@@ -227,7 +308,7 @@ const UserSettings = () => {
           <hr />
           <br />
           <div className={styles.user_header}>
-            <img className={styles.user_img} src={profileIcon} />
+            <img className={styles.user_img} src={"https://drive.google.com/uc?export=view&id=" + userData.user.profilePictureLink} />
             <div className={styles.achievement_list_container}>
               <h4>Achievements List</h4>
               <div className={styles.achievement_list}>

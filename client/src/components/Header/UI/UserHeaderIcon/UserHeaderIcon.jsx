@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./UserHeaderIcon.module.scss";
 
@@ -14,7 +14,14 @@ export const UserHeaderIcon = (props) => {
   const navigateUserSettingsHandler = () => {
     console.log(Auth);
     navigate("/questions/UserSettings/" + Auth.userData.UserInfo.userId);
-  }
+  };
+
+  const [userImg, setUserImg] = useState("");
+
+  useEffect(() => {
+    console.log(Auth);
+    setUserImg(localStorage.getItem("img"));
+  }, []);
 
   return (
     <div className={styles.user_buttons}>
@@ -23,9 +30,11 @@ export const UserHeaderIcon = (props) => {
           Admin
         </Link>
       )}
-      
-      <img className={styles.user_img} onClick={navigateUserSettingsHandler} src={userIcon} />
-      <h5>{Auth.userData.UserInfo.username}</h5>
+
+      <img onClick={navigateUserSettingsHandler}
+        className={styles.user_img}
+        src={"https://drive.google.com/uc?export=view&id=" + userImg}
+      />
       <a onClick={props.onClick}>Logout</a>
     </div>
   );
