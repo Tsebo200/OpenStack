@@ -12,6 +12,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "../../../api/axios";
 import moment from "moment";
 import { useAuth } from "../../../Hooks/useAuth";
+import { ProfilePicModal } from "./ProfilePicModal/ProfilePicModal";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 
@@ -21,6 +22,8 @@ const UserSettings = () => {
   const { Auth } = useAuth();
 
   const [userData, setUserData] = useState();
+
+  const [SelectedProfile, setSelectedProfile] = useState();
 
   const formattedSentence = (sentence) => {
     let newSentence = sentence
@@ -42,18 +45,22 @@ const UserSettings = () => {
           params: { userId: userId },
         });
         isMounted && setUserData(response.data);
+        setSelectedProfile(response.data.user.profilePictureLink);
       } catch (err) {
         console.log(err);
       }
     };
 
     getUserData();
-
     return () => {
       isMounted = false;
       controller.abort();
     };
-  }, [userId]);;
+  }, [userId]);
+
+  const [ProfilePictureModal, setProfilePictureModal] = useState(
+    `${styles.profile_picture_modal}`
+  );
 
   const closeModalHandler = () => {
     setUser("");
@@ -61,6 +68,7 @@ const UserSettings = () => {
       open: false,
       scss: `${styles.modal_container}`,
     });
+    setProfilePictureModal(`${styles.profile_picture_modal}`);
   };
 
   const [ModalSettings, setModalSettings] = useState({
@@ -73,6 +81,14 @@ const UserSettings = () => {
       open: true,
       scss: `${styles.modal_container} ${styles.open}`,
     });
+  };
+
+  const changeUserImageHandler = () => {
+    setModalSettings({
+      open: true,
+      scss: `${styles.modal_container}`,
+    });
+    setProfilePictureModal(`${styles.modal_container} ${styles.open}`);
   };
 
   const userRef = useRef();
@@ -94,7 +110,6 @@ const UserSettings = () => {
       clearTimeout(identifier);
     };
   }, [user]);
-  console.log(userData);
 
   const changeUserNameSubmitHandler = async (event) => {
     event.preventDefault();
@@ -129,20 +144,52 @@ const UserSettings = () => {
     }
   };
 
-  // const [userImg, setUserImg] = useState("");
+  const selectProfileImageHandler = (img) => {
+    console.log(img);
+    setSelectedProfile(img);
+  };
 
-  // useEffect(() => {
-  //   console.log(Auth);
-  //   setUserImg(localStorage.getItem("img"));
-  // }, []);
-
+  const changeUserImage = () => {
+    const ChangeUserProfile = async () => {
+      try {
+        const response = await axios.patch("/user-profile", {
+          newUserImg: SelectedProfile,
+          userId: Auth?.userData?.UserInfo?.userId
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    ChangeUserProfile()
+    closeModalHandler()
+    setUserData((prevState) => {
+      console.log(prevState);
+      return {
+        ...prevState,
+        user: { ...prevState.user, profilePictureLink: SelectedProfile },
+      };
+    });
+  };
   return (
     <section className={styles.user_page}>
       {userData ? (
         <>
           {ModalSettings.open && (
-            <div className={styles.modal_background}></div>
+            <div
+              onClick={closeModalHandler}
+              className={styles.modal_background}
+            ></div>
           )}
+          <div className={ProfilePictureModal}>
+            <div onClick={closeModalHandler} className={styles.close_btn}>
+              <ion-icon name="close-outline"></ion-icon>
+            </div>
+            <ProfilePicModal
+              changeUserImage={changeUserImage}
+              selectedUserImage={SelectedProfile}
+              selectProfileImage={selectProfileImageHandler}
+            />
+          </div>
           <div className={ModalSettings.scss}>
             <div onClick={closeModalHandler} className={styles.close_btn}>
               <ion-icon name="close-outline"></ion-icon>
@@ -197,12 +244,17 @@ const UserSettings = () => {
           <hr />
           <br />
           <div className={styles.user_header}>
-            <img className={styles.user_img} src={"https://drive.google.com/uc?export=view&id=" + userData.user.profilePictureLink} />
+            <img
+              className={styles.user_img}
+              src={
+                "https://drive.google.com/uc?export=view&id=" +
+                userData.user.profilePictureLink
+              }
+            />
             <div className={styles.achievement_list_container}>
               <h4>Achievements List</h4>
               <div className={styles.achievement_list}>
                 {userData?.achievements.map((achievement) => {
-                  console.log(achievement);
                   return (
                     <div className={styles.achievement_container}>
                       <img
@@ -290,7 +342,12 @@ const UserSettings = () => {
               >
                 Change Username
               </a>
-              <a className={styles.danger_zone_a}>Change Profile picture</a>
+              <a
+                onClick={changeUserImageHandler}
+                className={styles.danger_zone_a}
+              >
+                Change Profile picture
+              </a>
             </>
           )}
         </>

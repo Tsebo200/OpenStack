@@ -10,6 +10,23 @@ var bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const emailService = require("./userAuthenticationEmail.service");
 
+const allowedUserImages = [
+  // "1QG1T8m5Dt57tVZ9eC7SBl7Ns9QlVuHjB",
+  // "1HtSZf8L9cMPimRpG1sMC4_DH6jfznKjy",
+  // "1fOdYMdeuh06uAheguTQOQGbkeqI7Lsmx",
+  // "1j16LY_lPXKY8yc4ULBPc6WXh3Z2864YE",
+  // "1dAQAD9DZijEiPfivZSDnoC-_C8Jn5iUg",
+  // "1LSeKoGFWmQt5XdlDGOQ-ZAQbeyMnP89q",
+  // "1-qWSvzB6nO8-OfAwVzbT2IbqhT0XV-HM",
+  // "1fkkLUoHgGA0mUvys2GDGDRqlkl5ywZRf",
+  // "1YtvDVIoebi5ijBeMR_BrXoU2asJIFWN2",
+  "1Pm_01uH03eAsBO3RbYNNw8EhupFtNZGb",
+  "1pQmvEXCKRcOVPZzrN3qLCcT4JxoyrxvG",
+  "1VU9N6NKcX9R4FYwwszxCX86_mC8cdgYh",
+  "15zGQhYBLNxE86DJw-Rb6He8kt9jTOScJ",
+  "1wV2BwHurrAWOJo3HJ3dX4e2dlI5qUFmA",
+];
+
 userRouter.get("/all-users", async (req, res) => {
   const findUsers = await userSchema.find();
   res.json(findUsers);
@@ -46,21 +63,9 @@ userRouter.post("/api/register", async (req, res) => {
     return res.sendStatus(410); //Conflict
   }
 
-  const allowedImages = [
-    "1QG1T8m5Dt57tVZ9eC7SBl7Ns9QlVuHjB",
-    "1HtSZf8L9cMPimRpG1sMC4_DH6jfznKjy",
-    "1fOdYMdeuh06uAheguTQOQGbkeqI7Lsmx",
-    "1j16LY_lPXKY8yc4ULBPc6WXh3Z2864YE",
-    "1dAQAD9DZijEiPfivZSDnoC-_C8Jn5iUg",
-    "1LSeKoGFWmQt5XdlDGOQ-ZAQbeyMnP89q",
-    "1-qWSvzB6nO8-OfAwVzbT2IbqhT0XV-HM",
-    "1fkkLUoHgGA0mUvys2GDGDRqlkl5ywZRf",
-    "1YtvDVIoebi5ijBeMR_BrXoU2asJIFWN2",
-  ];
-
   if (
     !(
-      allowedImages.filter((img) => {
+      allowedUserImages.filter((img) => {
         return img === SelectedImg;
       }).length > 0
     )
@@ -351,13 +356,17 @@ userRouter.get("/user", async (req, res) => {
     return i != null;
   });
 
-  // console.log(userQuestions.length);
+  console.log(xxx);
 
   // correctly answer
-  console.clear()
-  console.log(xxx.map(x => {
-    
-  }));
+  // console.clear()
+  const usersCorrectAnswers = xxx
+    .map((x) => {
+      return x.correctAnswer;
+    })
+    .filter((i) => {
+      return i != null;
+    }).length;
 
   let achievements = [
     {
@@ -366,19 +375,10 @@ userRouter.get("/user", async (req, res) => {
       location:
         "https://drive.google.com/uc?export=view&id=1aftQbAO38Age6xOIy9GqB9hjuwKRol9K",
       decs: "Be given the privilege of admin",
-      achieved: user.roles.filter(role => {
-        return role === 5150
-      }) > 0,
-    },
-    {
-      title: "Admin",
-      id: 0,
-      location:
-        "https://drive.google.com/uc?export=view&id=1aftQbAO38Age6xOIy9GqB9hjuwKRol9K",
-      decs: "Be given the privilege of admin",
-      achieved: user.roles.filter(role => {
-        return role === 5150
-      }) > 0,
+      achieved:
+        user.roles.filter((role) => {
+          return role === 5150;
+        }) > 0,
     },
     {
       title: "Score",
@@ -386,7 +386,7 @@ userRouter.get("/user", async (req, res) => {
       location:
         "https://drive.google.com/uc?export=view&id=1ivX2Mk5rLgE8BOgkbtTFbP7Y19hJsvGK",
       decs: "Get a score of 20",
-      achieved: (user.userScore > 20),
+      achieved: user.userScore > 20,
     },
     {
       title: "Score",
@@ -394,7 +394,7 @@ userRouter.get("/user", async (req, res) => {
       location:
         "https://drive.google.com/uc?export=view&id=1q08fNmJexAs4xiZhn2wOJP0UF8uNYc6B",
       decs: "Get a score of 50",
-      achieved: (user.userScore > 50),
+      achieved: user.userScore > 50,
     },
     {
       title: "Score",
@@ -402,7 +402,7 @@ userRouter.get("/user", async (req, res) => {
       location:
         "https://drive.google.com/uc?export=view&id=1ye4LYUHAJZDWpbvQJtiXlCmB9U9iQWUZ",
       decs: "Get a score of 100",
-      achieved: (user.userScore > 100),
+      achieved: user.userScore > 100,
     },
     {
       title: "Score",
@@ -410,7 +410,7 @@ userRouter.get("/user", async (req, res) => {
       location:
         "https://drive.google.com/uc?export=view&id=1v04q-f6MiRM0rMIS-OZL4DhukfA2K4Pd",
       decs: "Get a score of 500",
-      achieved: (user.userScore > 500),
+      achieved: user.userScore >= 500,
     },
     {
       title: "Ask",
@@ -418,7 +418,7 @@ userRouter.get("/user", async (req, res) => {
       location:
         "https://drive.google.com/uc?export=view&id=12fU8k7SZnroEYvj77VTG0mX5p_q_uFus",
       decs: "Ask your first question",
-      achieved: (userQuestions.length >= 1),
+      achieved: userQuestions.length >= 1,
     },
     {
       title: "Ask",
@@ -426,33 +426,56 @@ userRouter.get("/user", async (req, res) => {
       location:
         "https://drive.google.com/uc?export=view&id=1n0E-asNCvZ8NqVvlzBtWFY8ZXF-4aU9z",
       decs: "Ask 3 questions",
-      achieved: (userQuestions.length >= 3),
+      achieved: userQuestions.length >= 3,
     },
     {
       title: "Ask",
       id: 7,
       location:
         "https://drive.google.com/uc?export=view&id=1uUuLjOTtf73anwOLmu4JUHD74YC9U2VZ",
-        decs: "Ask 10 questions",
-      achieved: (userQuestions.length >= 10),
+      decs: "Ask 10 questions",
+      achieved: userQuestions.length >= 10,
     },
     {
       title: "Ask",
       id: 8,
       location:
         "https://drive.google.com/uc?export=view&id=1lJubM-5AzyiPqxiI1GOagD2-W377dFmI",
-        decs: "Ask 20 questions",
-      achieved: (userQuestions.length >= 20),
+      decs: "Ask 20 questions",
+      achieved: userQuestions.length >= 20,
     },
     {
       title: "Ask",
       id: 8,
       location:
         "https://drive.google.com/uc?export=view&id=1bzSXnwby0OQwHdZIkw3QqLpKIsaKUNJT",
-        decs: "Ask 50 questions",
-      achieved: (userQuestions.length >= 50),
+      decs: "Ask 50 questions",
+      achieved: userQuestions.length >= 50,
     },
-    
+    {
+      title: "Answers",
+      id: 9,
+      location:
+        "https://drive.google.com/uc?export=view&id=1GEoIigGEd44RQsJPRlgBl3T3T1fY15rH",
+      decs: "Have one Correct Answer",
+      achieved: usersCorrectAnswers >= 1,
+    },
+    {
+      title: "Answers",
+      id: 10,
+      location:
+        "https://drive.google.com/uc?export=view&id=1miy19rMBOGFAavAXvrgWAnF1MRcRjhgF",
+      decs: "Have 3 correct answers",
+      achieved: usersCorrectAnswers >= 3,
+    },
+    {
+      title: "Answers",
+      id: 11,
+      location:
+        "https://drive.google.com/uc?export=view&id=1vFIM4k7yFcVhQsR6MUEDJQ2R-5sAjlCh",
+      decs: "Have 5 correct answers",
+      achieved: usersCorrectAnswers >= 5,
+    },
   ];
 
   try {
@@ -467,19 +490,17 @@ userRouter.get("/user", async (req, res) => {
 });
 
 userRouter.get("/get-images", async (req, res) => {
-  res
-    .status(200)
-    .json([
-      "1QG1T8m5Dt57tVZ9eC7SBl7Ns9QlVuHjB",
-      "1HtSZf8L9cMPimRpG1sMC4_DH6jfznKjy",
-      "1fOdYMdeuh06uAheguTQOQGbkeqI7Lsmx",
-      "1j16LY_lPXKY8yc4ULBPc6WXh3Z2864YE",
-      "1dAQAD9DZijEiPfivZSDnoC-_C8Jn5iUg",
-      "1LSeKoGFWmQt5XdlDGOQ-ZAQbeyMnP89q",
-      "1-qWSvzB6nO8-OfAwVzbT2IbqhT0XV-HM",
-      "1fkkLUoHgGA0mUvys2GDGDRqlkl5ywZRf",
-      "1YtvDVIoebi5ijBeMR_BrXoU2asJIFWN2",
-    ]);
+  res.status(200).json(allowedUserImages);
+});
+
+userRouter.patch("/user-profile", async (req, res) => {
+  const { userId, newUserImg } = req.body;
+
+  const user = await userSchema.findOne({ _id: userId }).exec();
+  user.profilePictureLink = newUserImg
+  user.save()
+
+  res.status(200).json("userprofile changed");
 });
 
 module.exports = userRouter;

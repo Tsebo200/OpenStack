@@ -98,7 +98,11 @@ answersRouter.delete("/answer", async (req, res) => {
     const question = await questionSchema.findById(questionId);
     question.questionInteraction.answers =
       question.questionInteraction.answers - 1;
+    if (question.questionInteraction.correctAnswer === answerId) {
+      question.questionInteraction.correctAnswer = null
+    }
     question.save();
+
     res.status(200).json("answer " + answerId + " was deleted");
   } catch (error) {
     res.json("error there was an error");
