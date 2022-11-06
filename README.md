@@ -5,8 +5,6 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/wiaandev/OpenStack?color=lightblue)
 ![GitHub language count](https://img.shields.io/github/languages/count/wiaandev/OpenStack?color=lightblue)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/wiaandev/OpenStack?color=lightblue)
-[![LinkedIn][linkedin-shield]][linkedin-url]
-[![Instagram][instagram-shield]][instagram-url]
 
 <h5 align="center" style="padding:0;margin:0;">Caidyn Ginger | Carlo Kuyper | Tsebo Ramonyalioa | Wiaan Duvenhage</h5>
 <h5 align="center" style="padding:0;margin:0;">21100204 | 180145 | 200200 | 200307</h5>
@@ -15,13 +13,13 @@
 <p align="center">
 
   <a href="https://github.com/wiaandev/OpenStack">
-    <img src="client/src/assests/OpenStackLogo-white.svg" width="200px">
+    <img src="client/src/assets/OpenStackLogo-white.svg" width="200px">
   </a>
 
 <h3 align="center">OpenStack</h3>
 
   <p align="center">
-    A Developer's Q&A platform for The Open Window, similar to that of StackOverflow.<br>
+    This is a developer's questions & answers platform, similar to that of Stack Overflow.<br>
 
    <br />
    <br />
