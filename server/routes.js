@@ -21,6 +21,8 @@ router.use(authRouter);
 router.use(answersRouter);
 router.use(reportRouter);
 
+router.use('/questionImages', express.static('questionImages'));
+
 
 //Adding a question post route
 // router.post('/api/addQuestion', (req, res) => {

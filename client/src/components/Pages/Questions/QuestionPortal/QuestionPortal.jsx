@@ -18,14 +18,20 @@ function QuestionPortal() {
   const [tagList, setTagList] = useState([]);
 
   const getTags = async () => {
-    const options = {method: 'GET', url: 'http://localhost:5001/api/all-tags'};
+    const options = {
+      method: "GET",
+      url: "http://localhost:5001/api/all-tags",
+    };
 
-    await axios.request(options).then(function (response) {
-      console.log(response.data);
-      setTagList(response.data);
-    }).catch(function (error) {
-      console.error(error);
-    })
+    await axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setTagList(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   useEffect(() => {
@@ -189,7 +195,7 @@ function QuestionPortal() {
   }, [rerender]);
 
   const handleTagRemove = (index) => {
-    console.log('something in there');
+    console.log("something in there");
 
     const list = [...tagsSelected];
     const listId = [...tagId];
@@ -197,9 +203,7 @@ function QuestionPortal() {
     list.splice(index, 1);
     setTagsSelected(list);
     setTagId(listId);
-
-
-  }
+  };
   console.log(tagsSelected);
   console.log(tagId);
 
@@ -249,7 +253,7 @@ function QuestionPortal() {
       selectedYear: year,
       tags: tagId,
       user_id: Auth.userData.UserInfo.userId,
-      imgName: imgSubStr
+      imgName: imgSubStr,
     };
 
     payloadData.append("information", JSON.stringify(payload));
@@ -257,22 +261,20 @@ function QuestionPortal() {
 
     // console.log(payloadData);
     console.log(payload);
-
-    // axios
-    //   .post("http://localhost:5001/api/add-question/", questionImage , payload)
-    //   .then((res) => {
-    //     console.log("Question Added!");
-    //     setModal(true);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setModal(false);
-    //   });
-    axios.post("http://localhost:5001/api/add-question/", payloadData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
+    axios
+      .post("http://localhost:5001/api/add-question/", payloadData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log("Question Added!");
+        setModal(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        setModal(false);
+      });
   };
 
   return (
@@ -433,7 +435,7 @@ function QuestionPortal() {
               </p>
             ))}
         </div>
-        <TagsSelected tag={tagsSelected} onClick={handleTagRemove}/>
+        <TagsSelected tag={tagsSelected} onClick={handleTagRemove} />
         <hr />
         <h2>Review your question</h2>
         <hr />

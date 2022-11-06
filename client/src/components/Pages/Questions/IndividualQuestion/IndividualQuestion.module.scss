@@ -136,6 +136,10 @@
     .question_content {
       margin-left: 20px;
       width: 100%;
+      .question_screenshot{
+        display: block;
+        border-radius: 15px;
+      }
     }
     .tag_list {
       display: flex;

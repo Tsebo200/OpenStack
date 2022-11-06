@@ -17,7 +17,7 @@ const questionImageStore = multer.diskStorage({
   },
 
   filename: (req, file, callback) => {
-      console.log(file);
+      // console.log(file);
       callback(null, Date.now() + path.extname(file.originalname));
   }
 });
@@ -26,9 +26,9 @@ const uploadQuestionImage = multer({storage: questionImageStore});
 
 questionsRouter.post('/api/add-question', uploadQuestionImage.single('image') , async (req, res) => {
   const { title, body, codeBody, codeLanguage, user_id, tags, imgName } = JSON.parse(req.body.information);
-
-  console.log(req.body);
   // add question + 1
+
+
   const ownerOfQuestion = await userSchema.findById(user_id)
   ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
   await ownerOfQuestion.save();
@@ -41,21 +41,19 @@ questionsRouter.post('/api/add-question', uploadQuestionImage.single('image') , 
       codeBody: codeBody,
       codeLanguage: codeLanguage,
     },
-    image: imgName,
+    image: req.file.filename,
     tags: tags,
     userId: user_id,
   });
-  console.log(req.body);
-  console.log(newQuestion);
-  res.status(200)
-  // try {
-  //   const response = await newQuestion.save();
-  //   res.status(201).json({ success: `new question: ${title} created!` });
-  //   // res.json(newQuestion);
-  // } catch (err) {
-  //   console.log("error in server");
-  //   console.log(err);
-  // }
+  // console.log(newQuestion);
+  try {
+    const response = await newQuestion.save();
+    res.status(201).json({ success: `new question: ${title} created!` });
+    // res.json(newQuestion);
+  } catch (err) {
+    console.log("error in server");
+    console.log(err);
+  }
 });
 
 questionsRouter.get("/api/all-questions", async (req, res) => {
@@ -64,6 +62,12 @@ questionsRouter.get("/api/all-questions", async (req, res) => {
   });
   res.json(findQuestions);
 });
+
+// questionsRouter.get("/image", (req, res) => {
+//   const { imageId } = req.query
+//   console.log(path.join(__dirname, "../questionImages/" + imageId));
+//   res.sendFile(path.join(__dirname, "../questionImages/" + imageId));
+// });
 
 questionsRouter.get("/admin/questions-list", async (req, res) => {
   const questionList = await questionSchema.find().sort({questionCreated: 'desc'});
@@ -100,7 +104,7 @@ questionsRouter.get("/question", async (req, res) => {
   const { questionId } = req.query;
 
   const Question = await questionSchema.findOne({ _id: questionId }).exec();
-  console.log(Question);
+  // console.log(Question);
   let userData = null
   if (Question?.userId) {
     userData = await userSchema.findOne({ _id: Question.userId });
@@ -168,6 +172,13 @@ questionsRouter.get("/question", async (req, res) => {
 
     // get answers
   });
+
+  let img = undefined
+
+  if (Question.image) {
+    img = "http://localhost:5001/questionImages/" + Question.image
+  }
+
   res.json({
     Question: {
       ...Question._doc,
@@ -177,6 +188,7 @@ questionsRouter.get("/question", async (req, res) => {
       },
       tags: tagsList,
       answers: answersList,
+      image: img
     },
     userData: {
       userScore: userScore,

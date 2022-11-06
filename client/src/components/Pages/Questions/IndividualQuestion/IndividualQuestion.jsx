@@ -45,8 +45,6 @@ const convertTimeCreated = (timeCreated) => {
   return displayTimeMessage;
 };
 
-
-
 export default function IndividualQuestion() {
   let params = useParams();
   const { Auth } = useAuth();
@@ -260,7 +258,7 @@ export default function IndividualQuestion() {
       console.log(response);
       if (response.status === 200) {
         closeReportModalHandler();
-        setReportBody("")
+        setReportBody("");
         setModalOptions({
           title: "Report Submitted",
           show: true,
@@ -393,6 +391,18 @@ export default function IndividualQuestion() {
               >
                 {QuestionData?.Question?.code?.codeBody}
               </SyntaxHighlighter>
+
+              {QuestionData?.Question?.image && (
+                <>
+                  <h5>Screenshot</h5>
+                  <br />
+                  <img
+                    className={styles.question_screenshot}
+                    src={QuestionData?.Question?.image}
+                  />
+                </>
+              )}
+
               <div className={styles.tag_list}>
                 {QuestionData?.Question?.tags.map((tag) => {
                   if (!tag.tombstone) {
@@ -436,11 +446,22 @@ export default function IndividualQuestion() {
                     )}
                   </h6>
                   <div className={styles.user_card}>
-                    <img src={
-                    "https://drive.google.com/uc?export=view&id=" + QuestionData?.userData?.profilePictureLink
-                  } />
+                    <img
+                      src={
+                        "https://drive.google.com/uc?export=view&id=" +
+                        QuestionData?.userData?.profilePictureLink
+                      }
+                    />
                     <div>
-                      <p onClick={() => {navigate(`/questions/UserSettings/${QuestionData?.Question?.userId}`)}}>{QuestionData?.userData?.username}</p>
+                      <p
+                        onClick={() => {
+                          navigate(
+                            `/questions/UserSettings/${QuestionData?.Question?.userId}`
+                          );
+                        }}
+                      >
+                        {QuestionData?.userData?.username}
+                      </p>
                       <h6>user score {QuestionData?.userData?.userScore} </h6>
                     </div>
                   </div>
