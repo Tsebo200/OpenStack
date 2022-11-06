@@ -9,7 +9,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
-import axios from "../../../../api/axios";
+import axios from "axios";
 import SuccessModal from "../../../SuccessModal/SuccessModal";
 import { useAuth } from "../../../../Hooks/useAuth";
 import TagsSelected from "./TagsSelected/TagsSelected";
@@ -18,9 +18,14 @@ function QuestionPortal() {
   const [tagList, setTagList] = useState([]);
 
   const getTags = async () => {
-    const response = await axios.get("/api/all-tags");
-    console.log(response);
-    setTagList(response.data);
+    const options = {method: 'GET', url: 'http://localhost:5001/api/all-tags'};
+
+    await axios.request(options).then(function (response) {
+      console.log(response.data);
+      setTagList(response.data);
+    }).catch(function (error) {
+      console.error(error);
+    })
   };
 
   useEffect(() => {
@@ -107,7 +112,7 @@ function QuestionPortal() {
     let reader = new FileReader();
 
     reader.onloadend = function () {
-      console.log(reader.result);
+      // console.log(reader.result);
       let imgFile = reader.result;
 
       setPreviewQuestion({ ...previewQuestion, qImg: imgFile });
@@ -236,7 +241,7 @@ function QuestionPortal() {
       setTagError();
     }
 
-    let payload = {
+    const payload = {
       title: titleString,
       body: bodyString,
       codeBody: code,
@@ -244,25 +249,30 @@ function QuestionPortal() {
       selectedYear: year,
       tags: tagId,
       user_id: Auth.userData.UserInfo.userId,
+      imgName: imgSubStr
     };
-
-    console.log(payload);
 
     payloadData.append("information", JSON.stringify(payload));
     payloadData.append("image", questionImage);
 
-    console.log(payloadData);
+    // console.log(payloadData);
+    console.log(payload);
 
-    axios
-      .post("http://localhost:5001/api/add-question/", payload)
-      .then((res) => {
-        console.log("Question Added!");
-        setModal(true);
-      })
-      .catch((err) => {
-        console.log(err);
-        setModal(false);
-      });
+    // axios
+    //   .post("http://localhost:5001/api/add-question/", questionImage , payload)
+    //   .then((res) => {
+    //     console.log("Question Added!");
+    //     setModal(true);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setModal(false);
+    //   });
+    axios.post("http://localhost:5001/api/add-question/", payloadData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
   };
 
   return (

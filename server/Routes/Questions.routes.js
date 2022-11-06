@@ -7,35 +7,27 @@ const questionsRouter = express();
 const multer = require("multer");
 const path = require("path");
 const tagSchema = require("../models/Tags");
-const AWS = require("aws-sdk");
-
-//Setting up AWS S3 Buckets
-AWS.config.update({ region: "us-east-1" });
-
-s3 = new AWS.S3({
-  credentials: {
-    accessKeyId: process.env.ACCESS_KEY_ID,
-    secretAccessKey: process.env.SECRET_ACCESS_KEY,
-  },
-});
 const answersSchema = require("../models/Answers");
 
 // Multer Middleware
 
 const questionImageStore = multer.diskStorage({
   destination: (req, res, callback) => {
-    callback(null, "./questionImages");
+      callback(null, './questionImages');
   },
 
   filename: (req, file, callback) => {
-    console.log(file);
-    callback(null, Date.now() + path.extname(file.originalname));
-  },
+      console.log(file);
+      callback(null, Date.now() + path.extname(file.originalname));
+  }
 });
 
-questionsRouter.post("/api/add-question", async (req, res) => {
-  const { title, body, codeBody, codeLanguage, user_id, tags } = req.body;
+const uploadQuestionImage = multer({storage: questionImageStore});
 
+questionsRouter.post('/api/add-question', uploadQuestionImage.single('image') , async (req, res) => {
+  const { title, body, codeBody, codeLanguage, user_id, tags, imgName } = JSON.parse(req.body.information);
+
+  console.log(req.body);
   // add question + 1
   const ownerOfQuestion = await userSchema.findById(user_id)
   ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
@@ -49,18 +41,21 @@ questionsRouter.post("/api/add-question", async (req, res) => {
       codeBody: codeBody,
       codeLanguage: codeLanguage,
     },
-    // image: req.file.filename,
+    image: imgName,
     tags: tags,
     userId: user_id,
   });
-
-  try {
-    const response = await newQuestion.save();
-    res.status(201).json({ success: `new question: ${title} created!` });
-    // res.json(newQuestion);
-  } catch (err) {
-    console.log(err);
-  }
+  console.log(req.body);
+  console.log(newQuestion);
+  res.status(200)
+  // try {
+  //   const response = await newQuestion.save();
+  //   res.status(201).json({ success: `new question: ${title} created!` });
+  //   // res.json(newQuestion);
+  // } catch (err) {
+  //   console.log("error in server");
+  //   console.log(err);
+  // }
 });
 
 questionsRouter.get("/api/all-questions", async (req, res) => {
@@ -347,5 +342,4 @@ questionsRouter.get('/all-tags-search', async(req, res) => {
     res.status(500).json(err);
   }
 });
-
 module.exports = questionsRouter;
