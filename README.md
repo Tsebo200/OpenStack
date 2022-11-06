@@ -89,7 +89,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-For development, the latest version of Android Studio is required. The latest version can be downloaded from [Android Studio](https://developer.android.com/studio?gclid=CjwKCAjwuYWSBhByEiwAKd_n_q4WXi5vcCji08peoWOEsv-KHFT7QWNZNmozB_CIiiSNl_HOUL-1JBoCGx8QAvD_BwE&gclsrc=aw.ds)
+For development, the latest version of Node.js is required. The latest version can be downloaded from [Node.js](https://nodejs.org/en/download/)
 
 ### Installation
 
@@ -104,8 +104,6 @@ Here are a couple of ways to clone this repo:
     ```sh
     git clone https://github.com/CaidynGinger/OpenStack.git
     ```
-
-        Open `Software` and select `File | Open...` from the menu. Select cloned directory and press `Open` button
 
 3.  Install Dependencies </br>
     Run the following in the command-line to install all the required dependencies:
