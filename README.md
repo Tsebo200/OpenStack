@@ -73,11 +73,12 @@ Welcome to OpenStack! This is a developer's Q&A platform, something you probably
 [<img src="https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg" width="5%" height="5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://expressjs.com/)
 [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="6%" height="6%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://reactjs.org/)
 [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png?20170401104355" width="7%" height="7%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://nodejs.org/en/)
+[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg" width="7%" height="7%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://ionicframework.com/)
+[<img src="https://raw.githubusercontent.com/nodemailer/nodemailer/master/assets/nm_logo_200x136.png" width="7%" height="7%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://nodemailer.com/about/)
+
+
+### Hosted With
 [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg" width="5%" height="7%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://www.heroku.com/)
-
-
-
-
 
 <!-- GETTING STARTED -->
 <!-- Make sure to add appropriate information about what prerequesite technologies the user would need and also the steps to install your project on their own mashines -->
@@ -158,13 +159,13 @@ As mentioned previously by the reliability score. The user can earn achievements
 ![image6][image5]
 The user can monitor any incoming questions and answers from the users interacting with OpenStack.
 
-#### Updating Guitar Information
-![image7][image6] If the user feels like there is some information on a guitar that is not accurate or that needs updating, the  admin can do so by clicking on the update button, where again, a modal will pop-up and the admin can update a guitar's information accordingly.
+#### Manage User Roles
+![image7][image6] The admin can manage any role for any user on the entirety of OpenStack. The user can also "ban" people from interacting with OpenStack by removing all their roles
 
-#### Deleting Guitars From the Database
+#### Removing Questions
 ![image7][image7]Sometimes you feel that you just want to delete a guitar that may be not of interest to some people. The admin can delete a guitar from the store by simply clicking on delete, and then confirming yes by clicking on the modal that will appear next.
 
-#### Dispatching Orders
+#### Mana
 ![image14][image14]From the order processing page, the admin can view any incoming orders and their information, by clicking on the dispatch button, the user will remove the order from the database and so delivery will take place.
 
 <!-- CONCEPT PROCESS -->
