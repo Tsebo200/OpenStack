@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
 import axios from "../../../../../../api/axios";
 import userProfileImage from "../../../../../../assets/profilePicture.jpg";
@@ -17,6 +17,8 @@ export const Answer = (props) => {
   const removeAnswerHandlerChild = async () => {
     props.removeAnswerHandler(answer._id);
   };
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (answer.votes.length === 0) {
@@ -122,7 +124,7 @@ export const Answer = (props) => {
               <div className={styles.user_card}>
                 <img src={userProfileImage} />
                 <div>
-                  <p>{answer.user.username}</p>
+                  <p onClick={() => {navigate(`/questions/UserSettings/${answer.user.id}`)}}>{answer.user.username}</p>
                   <h6>user score {answer.user.userScore}</h6>
                 </div>
               </div>

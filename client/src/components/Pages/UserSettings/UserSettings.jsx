@@ -366,6 +366,7 @@ const UserSettings = () => {
               <h3>Questions asked</h3>
               <div className={styles.container}>
                 {userData.userQuestions.map((question) => {
+                  console.log(question);
                   return (
                     <div className={styles.question_card}>
                       <span

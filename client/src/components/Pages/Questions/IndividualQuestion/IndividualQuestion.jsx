@@ -45,6 +45,8 @@ const convertTimeCreated = (timeCreated) => {
   return displayTimeMessage;
 };
 
+
+
 export default function IndividualQuestion() {
   let params = useParams();
   const { Auth } = useAuth();
@@ -434,7 +436,7 @@ export default function IndividualQuestion() {
                   <div className={styles.user_card}>
                     <img src={userProfileImage} />
                     <div>
-                      <p>{QuestionData?.userData?.username}</p>
+                      <p onClick={() => {navigate(`/questions/UserSettings/${QuestionData?.Question?.userId}`)}}>{QuestionData?.userData?.username}</p>
                       <h6>user score {QuestionData?.userData?.userScore} </h6>
                     </div>
                   </div>

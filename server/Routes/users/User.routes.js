@@ -59,9 +59,11 @@ userRouter.post("/api/register", async (req, res) => {
   ];
 
   if (
-    !(allowedImages.filter((img) => {
-      return img === SelectedImg;
-    }).length > 0)
+    !(
+      allowedImages.filter((img) => {
+        return img === SelectedImg;
+      }).length > 0
+    )
   ) {
     return res.sendStatus(411); //Conflict
   }
@@ -76,8 +78,6 @@ userRouter.post("/api/register", async (req, res) => {
       email: Email,
       profilePictureLink: SelectedImg,
     });
-
-    console.log(result);
 
     res.status(201).json({ success: `New user ${user} created!` });
   } catch (err) {
@@ -184,7 +184,6 @@ userRouter.get("/reset-password", async (req, res) => {
     // Saving refreshToken
     user.refreshToken = refreshToken;
     await user.save();
-    console.log(user);
     resetLink =
       "http://localhost:3000/reset-response/" + user._id + "/" + refreshToken;
     const mailerOutput = `
@@ -264,7 +263,6 @@ userRouter.post("/reset-password", async (req, res) => {
   const user = await userSchema.findOne({ _id: userId }).exec();
 
   if (user) {
-    console.log(user);
     var tokenValid = false;
     var clientIdValid = token === user.refreshToken;
 
@@ -320,17 +318,24 @@ userRouter.get("/user", async (req, res) => {
 
   const user = await userSchema.findOne({ _id: userId }).exec();
 
-  const userQuestions = await questionSchema.find({ userId: userId }).exec();
+  const userQuestions = (await questionSchema.find({ userId: userId })).filter(
+    (question) => {
+      return !question.private;
+    }
+  );
   const userAnswers = await answerSchema.find({ user: userId }).exec();
 
   // questionTitle
 
   const userAnswersRefined = await Promise.all(
     userAnswers.map(async (answer) => {
-      const question = await questionSchema.find({
-        _id: answer.questionId[0],
+      const question = (
+        await questionSchema.find({
+          _id: answer.questionId[0],
+        })
+      ).filter((question) => {
+        return !question.private;
       });
-      console.log(question[0]);
       if (question[0]?.title) {
         return {
           ...answer._doc,

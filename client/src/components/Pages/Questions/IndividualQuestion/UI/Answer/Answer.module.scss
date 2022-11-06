@@ -127,7 +127,12 @@
     }
     div {
       margin-left: 5px;
+      p{
+        color: rgb(75, 73, 216);
+        cursor: pointer;
+      }
     }
+    
   }
 
   .report_question:hover {
