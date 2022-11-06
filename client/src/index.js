@@ -27,6 +27,7 @@ import { PasswordReset } from "./components/Pages/PasswordReset/PasswordReset";
 import { PasswordResetResponse } from "./components/Pages/PasswordReset/PasswordResetResponse/PasswordResetResponse";
 import TagsList from "./components/Pages/TagsList/TagsList";
 import { UserList } from "./components/Pages/UsersList/UserList";
+import { VerifyAccount } from "./components/Pages/VerifyAccount/VerifyAccount";
 
 const ROLES = [2001, 5150];
 
@@ -37,6 +38,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         {/* public routes */}
         <Route path="/" element={<App />}>
           <Route path="/register" element={<Register />} />
+          <Route path="/verify-account/:accountData" element={<VerifyAccount />} />
           <Route path="/reset" element={<PasswordReset />} />
           <Route
             path="/reset-response/:id/:token"

@@ -120,7 +120,7 @@ const Register = () => {
   };
 
   const [SelectedImg, setSelectedImg] = useState(
-    "1LSeKoGFWmQt5XdlDGOQ-ZAQbeyMnP89q"
+    "1pQmvEXCKRcOVPZzrN3qLCcT4JxoyrxvG"
   );
 
   const handleSubmit = async (e) => {
@@ -182,10 +182,9 @@ const Register = () => {
               <span>{Email}</span>
             </p>
             <div className={styles.after_links}>
-              <a target="blank" href="https://mail.google.com/">
+              <a href="https://mail.google.com/">
                 Go to your email
               </a>
-              <Link to="/?action=login">Sign In</Link>
             </div>
           </div>
         </section>

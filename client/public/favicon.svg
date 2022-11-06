@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="1000" height="1000"><rect width="1000" height="1000" rx="250" ry="250" fill="#1e1e1e"></rect><g transform="matrix(1.6032064128256514,0,0,1.6032064128256514,222.80363042368919,99.99995858110265)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="346" height="499"><svg width="346" height="499" viewBox="0 0 346 499" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="172.625" y="9.19239" width="231.129" height="231.129" rx="39.5" transform="rotate(45 172.625 9.19239)" stroke="#FCA62B" stroke-width="13"></rect>
-<rect x="172.85" y="162.942" width="231.129" height="231.129" rx="39.5" transform="rotate(45 172.85 162.942)" stroke="#84D5DE" stroke-width="13"></rect>
-</svg></svg></g></svg>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="100.188" y="7.07107" width="87.8473" height="87.8473" rx="13.4369" transform="rotate(45 100.188 7.07107)" stroke="#FCA62B" stroke-width="10"/>
+<rect x="100.279" y="68.694" width="87.8473" height="87.8473" rx="13.4369" transform="rotate(45 100.279 68.694)" stroke="#84D5DE" stroke-width="10"/>
+</svg>

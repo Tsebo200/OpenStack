@@ -1,90 +1,62 @@
-.joinCon{
-    width: 80vw;
-    height: 50vh;
-    margin-left: 10vw;
-    margin-top: 14vh;
-    
-    background-color: white;
+@import "../../../index.scss";
+
+.joinCon {
+  width: 100%;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%),
+    0 1px 5px rgb(0 0 0 / 12%);
+  display: flex;
+  flex-direction: row;
+  margin-top: 120px;
+  padding: 50px;
+  div {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    a {
+      margin: auto;
+      margin-top: auto;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f;
+      box-sizing: border-box;
+      width: 200px;
+      padding: 0.5rem 0;
+      border: none;
+      color: white;
+      background-color: $primary;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 8px;
+      &:hover{
+        background-color: #F7CB3F;
+      }
+    }
+  }
+  img {
+    width: 400px;
+    height: 400px;
+    margin-left: auto;
+  }
+
+  h2 {
+    margin-bottom: 50px;
+  }
+}
+
+.video_card{
+    margin-top: 40px;
+    display: flex;
+    padding: 20px;
+    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%),
+    0 1px 5px rgb(0 0 0 / 12%);
     border-radius: 10px;
-    float: left;
-    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%), 0 1px 5px rgb(0 0 0 / 12%);
-}
-
-.textCon{
-    width: 60%;
-    margin-left: 5%;
-    height: 10vh;
-    margin-top: 3%;
-    float: left;
-}
-
-.joinBTN {
-    padding: 0.5rem 20px;
-    float: left;
-    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%), 0 1px 5px rgb(0 0 0 / 12%);
-    box-sizing: border-box;
-    border: none;
-    color: white;
-    background-color: #fca62b;
-    cursor: pointer;
-    font-size: 15px;
-    border-radius: 8px;
-    margin-top: 3vh;
-    margin-left: 5%;
-}
-
-.imgCon{
-    width:30%;
-    margin-right: 5%;
-    float: right;
-}
-
-.textHolderCon{
-    width: 60%;
-    float: left;
-}
-
-.optionsCon{
-    width: 50%;
-    float: left;
-    margin-left: 13vh;
-}
-
-.optionBTN{
-    padding: 0.5rem 20px;
-    float: left;
-    // box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%), 0 1px 5px rgb(0 0 0 / 12%);
-    box-sizing: border-box;
-    border: 1px solid black;
-    color: black;
-    cursor: pointer;
-    font-size: 15px;
-    border-radius: 8px;
-    margin-top: 3vh;
-    margin-left: 1%;
-}
-
-.optionBTN:hover{
-    padding: 0.5rem 20px;
-    float: left;
-    // box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%), 0 1px 5px rgb(0 0 0 / 12%);
-    box-sizing: border-box;
-    border: none;
-    color: white;
-    background-color: #fca62b;
-    cursor: pointer;
-    font-size: 15px;
-    border-radius: 8px;
-    margin-top: 3vh;
-    margin-left: 1%;
-}
-
-.questionHolder{
-    width: 80vw;
-    margin-left: 10vw;
-    margin-top: 6vh;
-    padding-bottom: 3vh;
-    border-radius: 10px;
-    float: left;
-    // scroll-behavior: auto;
+    div{
+        flex: 1;
+    }
+    iframe{
+        height: 400px;
+        aspect-ratio: 16/9;
+    }
 }

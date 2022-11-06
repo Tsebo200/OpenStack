@@ -13,82 +13,97 @@ const answersSchema = require("../models/Answers");
 
 const questionImageStore = multer.diskStorage({
   destination: (req, res, callback) => {
-      callback(null, './questionImages');
+    callback(null, "./questionImages");
   },
 
   filename: (req, file, callback) => {
-      // console.log(file);
-      callback(null, Date.now() + path.extname(file.originalname));
-  }
+    // console.log(file);
+    callback(null, Date.now() + path.extname(file.originalname));
+  },
 });
 
-const uploadQuestionImage = multer({storage: questionImageStore});
+const uploadQuestionImage = multer({ storage: questionImageStore });
 
-questionsRouter.post('/api/add-question', uploadQuestionImage.single('image') , async (req, res) => {
-  const { title, body, codeBody, codeLanguage, user_id, tags, imgName } = JSON.parse(req.body.information);
-  // add question + 1
+questionsRouter.post(
+  "/api/add-question",
+  uploadQuestionImage.single("image"),
+  async (req, res) => {
+    const { title, body, codeBody, codeLanguage, user_id, tags, imgName } =
+      JSON.parse(req.body.information);
+    // add question + 1
 
+    const ownerOfQuestion = await userSchema.findById(user_id);
+    ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
+    await ownerOfQuestion.save();
 
-  const ownerOfQuestion = await userSchema.findById(user_id)
-  ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
-  await ownerOfQuestion.save();
-
-
-  const newQuestion = new questionSchema({
-    title: title,
-    body: body,
-    code: {
-      codeBody: codeBody,
-      codeLanguage: codeLanguage,
-    },
-    image: req.file.filename,
-    tags: tags,
-    userId: user_id,
-  });
-  // console.log(newQuestion);
-  try {
-    const response = await newQuestion.save();
-    res.status(201).json({ success: `new question: ${title} created!` });
-    // res.json(newQuestion);
-  } catch (err) {
-    console.log("error in server");
-    console.log(err);
+    const newQuestion = new questionSchema({
+      title: title,
+      body: body,
+      code: {
+        codeBody: codeBody,
+        codeLanguage: codeLanguage,
+      },
+      image: req.file.filename,
+      tags: tags,
+      userId: user_id,
+    });
+    // console.log(newQuestion);
+    try {
+      const userToBeScored = await userSchema.findById(user_id);
+      userToBeScored.userScore = userToBeScored.userScore + 1;
+      userToBeScored.save();
+      const response = await newQuestion.save();
+      res.status(201).json({ success: `new question: ${title} created!` });
+      // res.json(newQuestion);
+    } catch (err) {
+      console.log("error in server");
+      console.log(err);
+    }
   }
-});
+);
 
-questionsRouter.post('/api/add-question-no-img', uploadQuestionImage.single('image') , async (req, res) => {
-  const { title, body, codeBody, codeLanguage, user_id, tags } = JSON.parse(req.body.information);
-  // add question + 1
+questionsRouter.post(
+  "/api/add-question-no-img",
+  uploadQuestionImage.single("image"),
+  async (req, res) => {
+    const { title, body, codeBody, codeLanguage, user_id, tags } = JSON.parse(
+      req.body.information
+    );
+    // add question + 1
 
+    const ownerOfQuestion = await userSchema.findById(user_id);
+    ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
+    await ownerOfQuestion.save();
 
-  const ownerOfQuestion = await userSchema.findById(user_id)
-  ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
-  await ownerOfQuestion.save();
-
-
-  const newQuestion = new questionSchema({
-    title: title,
-    body: body,
-    code: {
-      codeBody: codeBody,
-      codeLanguage: codeLanguage,
-    },
-    tags: tags,
-    userId: user_id,
-  });
-  // console.log(newQuestion);
-  try {
-    const response = await newQuestion.save();
-    res.status(201).json({ success: `new question: ${title} created!` });
-    // res.json(newQuestion);
-  } catch (err) {
-    console.log("error in server");
-    console.log(err);
+    const newQuestion = new questionSchema({
+      title: title,
+      body: body,
+      code: {
+        codeBody: codeBody,
+        codeLanguage: codeLanguage,
+      },
+      tags: tags,
+      userId: user_id,
+    });
+    // console.log(newQuestion);
+    try {
+      const userToBeScored = await userSchema.findById(user_id);
+      userToBeScored.userScore = userToBeScored.userScore + 1;
+      userToBeScored.save();
+      const response = await newQuestion.save();
+      res.status(201).json({ success: `new question: ${title} created!` });
+      // res.json(newQuestion);
+    } catch (err) {
+      console.log("error in server");
+      console.log(err);
+    }
   }
-});
+);
 
 questionsRouter.get("/api/all-questions", async (req, res) => {
-  const findQuestions = (await questionSchema.find().sort({questionCreated: 'desc'})).filter((question) => {
+  const findQuestions = (
+    await questionSchema.find().sort({ questionCreated: "desc" })
+  ).filter((question) => {
     return !question.private;
   });
   res.json(findQuestions);
@@ -101,7 +116,9 @@ questionsRouter.get("/api/all-questions", async (req, res) => {
 // });
 
 questionsRouter.get("/admin/questions-list", async (req, res) => {
-  const questionList = await questionSchema.find().sort({questionCreated: 'desc'});
+  const questionList = await questionSchema
+    .find()
+    .sort({ questionCreated: "desc" });
   const response = await Promise.all(
     questionList.map(async (question) => {
       const user = await userSchema.findById(question.userId);
@@ -136,11 +153,10 @@ questionsRouter.get("/question", async (req, res) => {
 
   const Question = await questionSchema.findOne({ _id: questionId }).exec();
   // console.log(Question);
-  let userData = null
+  let userData = null;
   if (Question?.userId) {
     userData = await userSchema.findOne({ _id: Question.userId });
   }
- 
 
   const answers = await answersSchema.find({ questionId: questionId });
 
@@ -175,7 +191,7 @@ questionsRouter.get("/question", async (req, res) => {
             userScore: answerUser.userScore,
             username: answerUser.username,
             id: answerUser._id,
-            profilePictureLink: answerUser.profilePictureLink
+            profilePictureLink: answerUser.profilePictureLink,
           },
         };
       })
@@ -204,10 +220,10 @@ questionsRouter.get("/question", async (req, res) => {
     // get answers
   });
 
-  let img = undefined
+  let img = undefined;
 
   if (Question.image) {
-    img = "http://localhost:5001/questionImages/" + Question.image
+    img = "http://localhost:5001/questionImages/" + Question.image;
   }
 
   res.json({
@@ -219,12 +235,12 @@ questionsRouter.get("/question", async (req, res) => {
       },
       tags: tagsList,
       answers: answersList,
-      image: img
+      image: img,
     },
     userData: {
       userScore: userScore,
       username: username,
-      profilePictureLink: profilePictureLink
+      profilePictureLink: profilePictureLink,
     },
   });
 });
@@ -286,18 +302,13 @@ questionsRouter.patch("/delete-tag", async (req, res) => {
 });
 
 questionsRouter.patch("/question-vote", async (req, res) => {
-
-
-
-
-
-
-  
   const { userId, action, questionId } = req.body;
 
-  // find if user id and user exists
   const userFound = await userSchema.findOne({ _id: userId }).exec();
   const update = await questionSchema.findById(questionId).exec();
+
+  const ownerOfQuestion = await userSchema.findById(update.userId).exec();
+  // find if user id and user exists
   const voteDuplicate = update.questionInteraction.votes.filter((vote) => {
     return vote.userId === userId;
   });
@@ -305,30 +316,101 @@ questionsRouter.patch("/question-vote", async (req, res) => {
     res.status(209).json("You need to be logged in to vote on a question");
     return;
   }
+
+  // there is a vote duplicate
   if (voteDuplicate.length > 0) {
+    // if action "vote" is same as stored vote remove vote
     if (voteDuplicate[0].action === action) {
-      console.log("remove vote");
+      console.log("remove Vote");
+      // remove vote
+      // owner of answer is voting
+      if (ownerOfQuestion._id.toString() === userFound._id.toString()) {
+        // owner up voted + 2 now must be -2
+        if (action) {
+          userFound.userScore = userFound.userScore - 2;
+        }
+      } else {
+        // user and owner are not the same
+        // user gets a -1
+        userFound.userScore = userFound.userScore - 1;
+        // owner on a upvote "true" get + 1
+        if (action === true) {
+          ownerOfQuestion.userScore = ownerOfQuestion.userScore - 1;
+        }
+        // owner on a down vote "false" get - 1
+        if (action === false) {
+          ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
+        }
+      }
+      console.log("saving");
+      await ownerOfQuestion.save();
+      await userFound.save();
+      console.log("saved");
+      console.log(update);
       const index = update.questionInteraction.votes.findIndex((vote) => {
         return vote === voteDuplicate[0];
       });
       update.questionInteraction.votes.splice(index, 1);
+      console.log(update);
       update.save();
       res.status(200).json("vote removed");
+      return;
     } else {
-      const index = update.questionInteraction.votes.findIndex((vote) => {
+      // vote must change
+      if (ownerOfQuestion._id.toString() === userFound._id.toString()) {
+        // owner changed vote
+        if (action) {
+          userFound.userScore = userFound.userScore + 2;
+        } else {
+          userFound.userScore = userFound.userScore - 2;
+        }
+        await userFound.save();
+      } else {
+        // user and owner are not the same
+        // user wont change as user has still voted!
+        // owner on a upvote "true" get + 1
+        if (action === true) {
+          ownerOfQuestion.userScore = ownerOfQuestion.userScore - 1;
+        }
+        // owner on a down vote "false" get - 1
+        if (action === false) {
+          ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
+        }
+      }
+      const index = update.votes.findIndex((vote) => {
         return vote === voteDuplicate[0];
       });
-      update.questionInteraction.votes.splice(index, 1);
-      update.questionInteraction.votes.push({
+      update.votes.splice(index, 1);
+      update.votes.push({
         userId: userId,
         action: action,
       });
-      update.save();
-      res.status(200).json("Vote updated");
+      await update.save();
     }
-    return;
   } else {
-    console.log("add vote");
+    // new vote
+
+    // owner of answer is up voting answer
+    if (ownerOfQuestion._id.toString() === userFound._id.toString()) {
+      if (action) {
+        userFound.userScore = userFound.userScore + 2;
+      }
+      // owner of answer is down voting answer causes a +1 -1 = 0
+    } else {
+      // user gets a +1
+      userFound.userScore = userFound.userScore + 1;
+
+      // owner on a upvote "true" get + 1
+      if (action === true) {
+        ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
+      }
+      // owner on a down vote "false" get - 1
+      if (action === false) {
+        ownerOfQuestion.userScore = ownerOfQuestion.userScore - 1;
+      }
+    }
+    await ownerOfQuestion.save();
+    await userFound.save();
     update.questionInteraction.votes.push({
       userId: userId,
       action: action,
@@ -365,9 +447,11 @@ questionsRouter.delete("/admin-question", async (req, res) => {
 });
 
 questionsRouter.get("/all-questions-search", async (req, res) => {
-  const { search } = (req.query);
+  const { search } = req.query;
   try {
-    const response = await questionSchema.find({ title: { "$regex": `${search}`, "$options": "i" } });
+    const response = await questionSchema.find({
+      title: { $regex: `${search}`, $options: "i" },
+    });
     // const searchedQuestionList = response
     //   .map((question) => {
     //     if (question.title.includes((search).toLowerCase()).toLowerCase()) {
@@ -383,12 +467,14 @@ questionsRouter.get("/all-questions-search", async (req, res) => {
   }
 });
 
-questionsRouter.get('/all-tags-search', async(req, res) => {
-  const { search } = (req.query);
-  try{
-    const response = await questionSchema.find({ tags: { "$regex": `${search}`, "$options": "i"}});
+questionsRouter.get("/all-tags-search", async (req, res) => {
+  const { search } = req.query;
+  try {
+    const response = await questionSchema.find({
+      tags: { $regex: `${search}`, $options: "i" },
+    });
     res.status(200).json(response);
-  } catch(err){
+  } catch (err) {
     res.status(500).json(err);
   }
 });

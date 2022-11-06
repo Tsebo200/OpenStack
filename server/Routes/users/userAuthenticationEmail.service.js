@@ -15,7 +15,7 @@ async function emailService(data) {
       Welcome to open stack, we just need to verify your account by clicking the
       button bellow
     </h2>
-    <a
+    <a href=${data.emailLink}
       style="
         padding: 10px;
         background-color: #fca62b;
@@ -25,6 +25,7 @@ async function emailService(data) {
           0 1px 5px #0000001f;
         color: white;
         font-size: 18px;
+        text-decoration: none;
       "
       
       >Verify my account</a

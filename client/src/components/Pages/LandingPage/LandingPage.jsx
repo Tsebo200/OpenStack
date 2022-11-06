@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import axios from "../../../api/axios";
 
 import styles from "./LandingPage.module.scss";
-import {QuestionCard} from "../Questions/QuestionsLanding/UI/QuestionCard/QuestionCard"
+import { QuestionCard } from "../Questions/QuestionsLanding/UI/QuestionCard/QuestionCard";
 // import QuestionCard from "../../ResultsQuestions/ResultsQuestions"
 
-import knowledgeIMG from "../../../assets/knowledgeIMG.svg"
+import knowledgeIMG from "../../../assets/knowledgeIMG.svg";
+import { Link } from "react-router-dom";
 
 export const LandingPage = () => {
-
   const [QuestionList, setQuestionList] = useState([]);
 
   const [UniqueTagsList, setUniqueTagsList] = useState([]);
@@ -88,7 +88,7 @@ export const LandingPage = () => {
       try {
         const response = await axios.post("/unique-users", {
           signal: controller.signal,
-          UniqueUsersList: UniqueUsersList
+          UniqueUsersList: UniqueUsersList,
         });
         isMounted && setUserDetailsList(response.data);
       } catch (err) {
@@ -105,33 +105,49 @@ export const LandingPage = () => {
   // sorting will need to be done server side
 
   return (
-    <>
-  
-
+    <div className={styles.row}>
       <div className={styles.joinCon}>
-        <img className={styles.imgCon} src={knowledgeIMG}/>
-        <h2 className={styles.textCon}>Join the Open Stack  comunity!</h2>
-        <h3 className={styles.textCon}>New to Open Stack? <br/> Join the community and share in the wealth of knowledge</h3>
-        <a href="/register" className={styles.joinBTN}><h4>Sign up</h4></a>
-      </div>
-        
-        {/* <QuestionCard /> */}
-
-        <div className={styles.questionHolder}>
-          <h2>Most recent questions</h2>
-          <br/>
-          <br/>
-          {QuestionList.slice(0, 5).map((question) => {
-            return (
-              <QuestionCard
-                key={question._id}
-                TagDetailsList={TagDetailsList}
-                UserDetailsList={UserDetailsList}
-                questionDetails={question}
-              />
-              );
-          })}
+        <div>
+          <h2>Open Stack</h2>
+          <h3>
+            Are you new here? <br /> Join the community and share in the wealth
+            of knowledge
+          </h3>
+          <Link to={"/register"}>Sign Up</Link>
         </div>
-    </>
+
+        <img className={styles.imgCon} src={knowledgeIMG} />
+      </div>
+      <div className={styles.video_card}>
+        <div>
+          <h3>How to ask a Question and answer</h3>
+          <br></br>
+          <h4>Watch this video to get to grips on how to ask a question</h4>
+        </div>
+        <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+      </div>
+      <div className={styles.video_card}>
+        <div>
+          <h3>The score Eco System</h3>
+          <br></br>
+          <h4>Watch this video to get to grips on how to ask a question</h4>
+        </div>
+        <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+      </div>
+      <br />
+      <h3>Most recent questions</h3>
+      <br />
+      <br />
+      {QuestionList.slice(0, 5).map((question) => {
+        return (
+          <QuestionCard
+            key={question._id}
+            TagDetailsList={TagDetailsList}
+            UserDetailsList={UserDetailsList}
+            questionDetails={question}
+          />
+        );
+      })}
+    </div>
   );
 };

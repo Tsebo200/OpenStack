@@ -1,0 +1,63 @@
+@import "../../../index.scss";
+
+.verify_background {
+  background-position: center;
+  background-size: cover;
+  height: calc(100vh);
+  opacity: 0.8;
+  background-color: #e5e5f7;
+  // background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 10px ), repeating-linear-gradient( #444cf755, #444cf7 );
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #e5e5f7 7px
+    ),
+    repeating-linear-gradient($secondary-shadow, $primary); //wavy but customizzed
+  position: relative;
+  display: flex;
+}
+
+.verify_container {
+  background-color: white;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 18px 100px 0px; //#13 but customizzed
+  width: 45vw;
+  margin: auto;
+  border-radius: 10px;
+  padding: 40px;
+  p{
+    color: rgb(245, 20, 20);
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+    padding: 10px;
+    background-color: #db656513;
+  }
+  h2 {
+    text-align: center;
+  }
+  img {
+    width: 250px;
+    height: auto;
+    display: block;
+    margin: auto;
+  }
+  a {
+    display: block;
+    text-align: center;
+    width: 200px;
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f;
+    box-sizing: border-box;
+    padding: 0.5rem 0;
+    border: none;
+    color: white;
+    background-color: $primary;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 8px;
+    &:hover{
+      background-color: #F7CB3F;
+    }
+  }
+}

@@ -6,7 +6,7 @@ const userSchema = require("../../models/Users");
 const questionSchema = require("../../models/Questions");
 const answerSchema = require("../../models/Answers");
 const userRouter = express();
-var bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const emailService = require("./userAuthenticationEmail.service");
 
@@ -25,6 +25,8 @@ const allowedUserImages = [
   "1VU9N6NKcX9R4FYwwszxCX86_mC8cdgYh",
   "15zGQhYBLNxE86DJw-Rb6He8kt9jTOScJ",
   "1wV2BwHurrAWOJo3HJ3dX4e2dlI5qUFmA",
+  "1UYNBX1N9AeuOG58YsKJu777zmxfGhZn3",
+  "1UTzn9UWPgrRJXUMXIPejSQWtGjlScUJf",
 ];
 
 userRouter.get("/all-users", async (req, res) => {
@@ -46,7 +48,7 @@ userRouter.patch("/update-user-roles", async (req, res) => {
 userRouter.post("/api/register", async (req, res) => {
   const { user, pwd, Email, SelectedImg } = req.body;
 
-  // console.log(!user || !pwd || !Email);
+  console.log(!user || !pwd || !Email);
 
   if (!user || !pwd || !Email) {
     return res
@@ -76,48 +78,56 @@ userRouter.post("/api/register", async (req, res) => {
     //encrypt the password
     const hashedPwd = await bcrypt.hash(pwd, 10);
 
-    //create and store the new user
-    const result = await userSchema.create({
+    const emailData = jwt.sign(
+      { user, hashedPwd, Email, SelectedImg },
+      process.env.REFRESH_TOKEN_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    emailLink = "http://localhost:3000/verify-account/" + emailData;
+
+    console.log(emailData);
+    emailService({
       username: user,
-      password: hashedPwd,
       email: Email,
-      profilePictureLink: SelectedImg,
+      emailLink: emailLink,
     });
 
     res.status(201).json({ success: `New user ${user} created!` });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: err.message });
   }
+});
 
-  // emailService({
-  //   username: req.body.username,
-  //   email: req.body.email,
-  // });
-  // res.json("awdawawd");
-  // bcrypt.genSalt(10, function (err, salt) {
-  //   bcrypt.hash(req.body.password, salt, function (err, hash) {
-  //     const newUser = new userSchema({
-  //       username: req.body.username,
-  //       email: req.body.email,
-  //       password: hash,
-  //     });
+userRouter.post("/api/create-user", async (req, res) => {
+  const { accountData } = req.body;
 
-  //     newUser
-  //       .save()
-  //       .then((item) => {
-  //         res.json(item);
-  //         // emailService({
-  //         //   username: req.body.username,
-  //         //   email: req.body.email,
-  //         // });
-  //       })
-  //       .catch((err) => {
-  //         // res.status((400).json({ msg: "there was an error", err: err }));
-  //         res.json(err)
-  //         console.log(err);
-  //       });
-  //   });
-  // });
+  try {
+    function parseJwt(token) {
+      return JSON.parse(Buffer.from(token.split(".")[1], "base64").toString());
+    }
+    const userDetails = parseJwt(accountData)
+    // if user exists force exit
+    const foundUser = await userSchema.find({ email: userDetails.Email });
+
+    if (foundUser.length > 0) {
+      console.log("userexistes");
+      res.status(401);
+    } else {
+      console.log("create user");
+      const result = await userSchema.create({
+        username: userDetails.user,
+        password: userDetails.hashedPwd,
+        email: userDetails.Email,
+        profilePictureLink: userDetails.SelectedImg,
+      });
+      res.status(200).json("account verified");
+    }
+  } catch (error) {
+    console.log('error');
+    res.status(402);
+  }
 });
 
 // dont use ever
@@ -125,38 +135,6 @@ userRouter.post("/api/register", async (req, res) => {
 //   const findUsers = await userSchema.find().remove();
 //   res.json("all users are gone!");
 // });
-
-userRouter.post("/api/create-user", async (req, res) => {
-  // emailService({
-  //   username: req.body.username,
-  //   email: req.body.email,
-  // });
-  // res.json("awdawawd");
-  bcrypt.genSalt(10, function (err, salt) {
-    bcrypt.hash(req.body.password, salt, function (err, hash) {
-      const newUser = new userSchema({
-        username: req.body.username,
-        email: req.body.email,
-        password: hash,
-      });
-
-      newUser
-        .save()
-        .then((item) => {
-          res.json(item);
-          // emailService({
-          //   username: req.body.username,
-          //   email: req.body.email,
-          // });
-        })
-        .catch((err) => {
-          // res.status((400).json({ msg: "there was an error", err: err }));
-          res.json(err);
-          console.log(err);
-        });
-    });
-  });
-});
 
 userRouter.post("/unique-users", async (req, res) => {
   const { UniqueUsersList } = req.body;
@@ -386,7 +364,7 @@ userRouter.get("/user", async (req, res) => {
       location:
         "https://drive.google.com/uc?export=view&id=1ivX2Mk5rLgE8BOgkbtTFbP7Y19hJsvGK",
       decs: "Get a score of 20",
-      achieved: user.userScore > 20,
+      achieved: user.userScore >= 20,
     },
     {
       title: "Score",
@@ -394,7 +372,7 @@ userRouter.get("/user", async (req, res) => {
       location:
         "https://drive.google.com/uc?export=view&id=1q08fNmJexAs4xiZhn2wOJP0UF8uNYc6B",
       decs: "Get a score of 50",
-      achieved: user.userScore > 50,
+      achieved: user.userScore >= 50,
     },
     {
       title: "Score",
@@ -402,7 +380,7 @@ userRouter.get("/user", async (req, res) => {
       location:
         "https://drive.google.com/uc?export=view&id=1ye4LYUHAJZDWpbvQJtiXlCmB9U9iQWUZ",
       decs: "Get a score of 100",
-      achieved: user.userScore > 100,
+      achieved: user.userScore >= 100,
     },
     {
       title: "Score",
@@ -497,8 +475,8 @@ userRouter.patch("/user-profile", async (req, res) => {
   const { userId, newUserImg } = req.body;
 
   const user = await userSchema.findOne({ _id: userId }).exec();
-  user.profilePictureLink = newUserImg
-  user.save()
+  user.profilePictureLink = newUserImg;
+  user.save();
 
   res.status(200).json("userprofile changed");
 });
