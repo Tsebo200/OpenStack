@@ -161,10 +161,10 @@ The user can monitor any incoming questions and answers from the users interacti
 ![image7][image6] The admin can manage any role for any user on the entirety of OpenStack. The user can also "ban" people from interacting with OpenStack by removing all their roles
 
 #### Removing Questions
-![image7][image7]Sometimes you feel that you just want to delete a guitar that may be not of interest to some people. The admin can delete a guitar from the store by simply clicking on delete, and then confirming yes by clicking on the modal that will appear next.
+![image7][image7]If there are any questions that the admin feel that they want to remove, they can do so on the admin tab and clicking on the delete button
 
-#### Mana
-![image14][image14]From the order processing page, the admin can view any incoming orders and their information, by clicking on the dispatch button, the user will remove the order from the database and so delivery will take place.
+#### Tag Management
+![image14][image14]The admins can remove and add any tags they feel like would be necessary. The admins can also [Tombstone](https://en.wikipedia.org/wiki/Tombstone_(programming)#:~:text=Tombstones%20are%20a%20mechanism%20to,C%2B%2B%20and%20assembly%20languages.) the tags, which would disable the tag, but it would still be on the database.
 
 <!-- CONCEPT PROCESS -->
 <!-- Briefly eOpenStacklain your concept ideation process -->
@@ -172,7 +172,7 @@ The user can monitor any incoming questions and answers from the users interacti
 
 ## Concept Process
 
-The color blue just gives a website just that sleek premium feel combined with a color like white, I wanted to use a sans-seriff typeface for this project, cause I just feel like something like cursive or Serif typefaces just won't cut it.
+We really went with a simple and a minimalistic UI design. OpenStack is there to be functional and helpful to any newcomer or veteran of OpenStack. Where they can simply ask, answer and view questions in a quick, concise and effective way. We stick to a simple orange with accents of a baby blue palette, with a light-themed website. A UI trend that really started to rise among web apps, was rounded corners, so we also incorporated that into our design, just to round it off even further.
 
 ### Wireframes
 
@@ -206,16 +206,18 @@ The `Development Process` is the technical implementations and functionality don
 <!-- stipulated the highlight you eOpenStackerienced with the project -->
 
 - A very big high point was seeing the data from my backend being populated dynamically in my front-end.
-- Seeing everything come together in the end was also a big highlight for me
-- Even though working with the MERN stack was a challenge, it was also extremely fun and interesting
+- It was also really amazing to see our site being hosted on Heroku, for the entire digital world to see and interact with
+- Fixing all the annoying bugs will always be a plus point
+- Handing in the project on time
+- Working with deployment software like Heroku
 
 #### Challenges
 
 <!-- stipulated the challenges you faced with the project and why you think you faced it or how you think you'll solve it (if not solved) -->
 
-- Implementing the cart was definitely a challenge, I didn't know how I would go about doing it, but luckily with the help of my peers, I was able to get it to work like intended.
-- In the beginning I did not know how I was going to map my objects in MongoDB and translate it to my front-end.
-- Showing only certain data was definitely challenging, as I did not get to it, so eventually I just dropped it.
+- Something we unfortunately could not implement because of time restrictions was Amazon's S3 Bucket's, in the end we had to drop it revert back to Multer for image uploading
+- A big challenge was the tag handling in the question's portal, with the help of the team, we were able to get it working
+- Getting the emailer to work was also a big pain point, but eventually after a lot of trial-and-error we got it working
 
 ### Future Implementation
 
@@ -223,11 +225,9 @@ The `Development Process` is the technical implementations and functionality don
 
 <!-- stipulate functionality and improvements that can be implemented in the future. -->
 
-- I would like to implement chart.js for data visualisation
-- I want to show the total amount in the cart
-- I want to add a wishlist page
-- I want to add an about us page
-- I want to add video section of each guitar when viewing the guitar individually
+- We would like to make this a fully responsive website
+- We would like to implement dark mode
+- Implement Pagination on Questions Page
 
 <!-- MOCKUPS -->
 
