@@ -157,15 +157,15 @@ function QuestionPortal() {
     "swift",
     "typescript",
   ];
-  let levels = [
-    "-- Please Select --",
-    "First Year",
-    "Second Year",
-    "Third Year",
-    "Honours",
-    "Creative Computing",
-    "Lecturer",
-  ];
+  // let levels = [
+  //   "-- Please Select --",
+  //   "First Year",
+  //   "Second Year",
+  //   "Third Year",
+  //   "Honours",
+  //   "Creative Computing",
+  //   "Lecturer",
+  // ];
 
   const closeModal = () => {
     // navigate("/");
@@ -394,12 +394,12 @@ function QuestionPortal() {
         ) : (
           ""
         )}
-        <label htmlFor="dropdown">Select Your Year</label>
+        {/* <label htmlFor="dropdown">Select Your Year</label>
         <select ref={yearSelection} onChange={yearPreview}>
           {levels.map((i) => (
             <option>{i}</option>
           ))}
-        </select>
+        </select> */}
         <label className={styles.upload} for="upload">
           Upload Screenshot(s)
           <Input
@@ -455,21 +455,22 @@ function QuestionPortal() {
             ))}
         </div>
         <TagsSelected tag={tagsSelected} onClick={handleTagRemove} />
-        <hr />
-        <h2>Review your question</h2>
-        <hr />
+        {previewQuestion.qTitle == "" ? "" : <hr />}
+        {previewQuestion.qTitle == "" ? "" : <h2>Review your question</h2>}
+        {previewQuestion.qTitle == "" ? "" : <hr />}
         <br />
         <br />
-        <h1>{previewQuestion.qTitle}</h1>
-        <h4>{previewQuestion.qSelectedYear}</h4>
-        <h3>{previewQuestion.qBody}</h3>
-        <SyntaxHighlighter
+        <h2>{previewQuestion.qTitle}</h2>
+        {/* <h4>{previewQuestion.qSelectedYear}</h4> */}
+
+        {previewQuestion.qBody == "" ? "" : <p className={styles.questionBody}>{previewQuestion.qBody}</p>}
+        {previewQuestion.qCode == "" ? "" : <SyntaxHighlighter
           className={styles.code}
           language={previewQuestion.qLanguage}
           children={true}
         >
           {previewQuestion.qCode}
-        </SyntaxHighlighter>
+        </SyntaxHighlighter>}
         <div id="screenshot" className={styles.screenshot}></div>
         <Button text="Submit" type="questionSubmit" onClick={formHandle} />
         {modal ? <SuccessModal onClick={closeModal} /> : ""}
