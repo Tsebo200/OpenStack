@@ -30,11 +30,11 @@ export default function RoleModal(props) {
         code: 2001,
         selected: findChecked(2001),
       },
-      {
-        title: "editor",
-        code: 3001,
-        selected: findChecked(3001),
-      },
+      // {
+      //   title: "editor",
+      //   code: 3001,
+      //   selected: findChecked(3001),
+      // },
       {
         title: "admin",
         code: 5150,

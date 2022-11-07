@@ -348,6 +348,30 @@ userRouter.get("/user", async (req, res) => {
       return i != null;
     }).length;
 
+    const findQuestions = (
+      await questionSchema.find().sort({ questionCreated: "desc" })
+    ).filter((question) => {
+      return !question.private;
+    });
+
+    const questionVotes = findQuestions.map(question => {
+      return question.questionInteraction.votes
+    })
+    let userQuestionVotes = []
+    // console.log(questionVotes);
+    questionVotes.forEach(votes => {
+      votes.filter(vote => {
+        console.log(vote.userId);
+        console.log(userId);
+        if ( vote.userId === userId) {
+          userQuestionVotes.push(vote)
+        }
+        
+      })
+      // return votes
+    })
+    console.log(userQuestionVotes.length);
+
   let achievements = [
     {
       title: "Admin",
@@ -455,6 +479,38 @@ userRouter.get("/user", async (req, res) => {
         "https://drive.google.com/uc?export=view&id=1vFIM4k7yFcVhQsR6MUEDJQ2R-5sAjlCh",
       decs: "Have 5 correct answers",
       achieved: usersCorrectAnswers >= 5,
+    },
+    {
+      title: "Question votes",
+      id: 12,
+      location:
+        "https://drive.google.com/uc?export=view&id=144T0WwMOsym8UxFFQY0-n33Fak49xuPp",
+      decs: "Vote on 5 questions",
+      achieved: userQuestionVotes.length >= 5,
+    },
+    {
+      title: "Question votes",
+      id: 13,
+      location:
+        "https://drive.google.com/uc?export=view&id=1LOInQGHoekvsevJGcUIby1vmFZZAvX5Z",
+      decs: "Vote on 25 questions",
+      achieved: userQuestionVotes.length >= 25,
+    },
+    {
+      title: "Question votes",
+      id: 14,
+      location:
+        "https://drive.google.com/uc?export=view&id=1Jq6AwC-IzWf5nyuEfTXUgIPsW3fodwbb",
+      decs: "Vote on 50 questions",
+      achieved: userQuestionVotes.length >= 50,
+    },
+    {
+      title: "Question votes",
+      id: 15,
+      location:
+        "https://drive.google.com/uc?export=view&id=1J_NOsmf4WqV9sltTGl7rp4cnYDscz-t2",
+      decs: "Vote on 100 questions",
+      achieved: userQuestionVotes.length >= 100,
     },
   ];
 

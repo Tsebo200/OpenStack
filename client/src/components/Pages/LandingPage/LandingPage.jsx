@@ -108,7 +108,7 @@ export const LandingPage = () => {
     <div className={styles.row}>
       <div className={styles.joinCon}>
         <div>
-          <h2>Open Stack</h2>
+          <h2>OpenStack</h2>
           <h3>
             Are you new here? <br /> Join the community and share in the wealth
             of knowledge
@@ -120,20 +120,20 @@ export const LandingPage = () => {
       </div>
       <div className={styles.video_card}>
         <div>
-          <h3>How to ask a Question and answer</h3>
+          <h3>How to Register Your account</h3>
           <br></br>
-          <h4>Watch this video to get to grips on how to ask a question</h4>
+          <h4>Watch this video to get to grips on how to register your account</h4>
         </div>
-        <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+        <iframe src="https://www.youtube.com/embed/A1Ep3DR204g"></iframe>
       </div>
-      <div className={styles.video_card}>
+      {/* <div className={styles.video_card}>
         <div>
           <h3>The score Eco System</h3>
           <br></br>
           <h4>Watch this video to get to grips on how to ask a question</h4>
         </div>
         <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-      </div>
+      </div> */}
       <br />
       <h3>Most recent questions</h3>
       <br />

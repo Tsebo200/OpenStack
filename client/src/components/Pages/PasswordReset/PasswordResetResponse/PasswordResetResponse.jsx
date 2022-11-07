@@ -10,12 +10,12 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 export const PasswordResetResponse = () => {
   const { id, token } = useParams();
-  const [pwd, setPwd] = useState("Margincd1!");
+  const [pwd, setPwd] = useState("");
   const [validPwd, setValidPwd] = useState(true);
   const [pwdFocus, setPwdFocus] = useState(false);
   const [ShowPassword, setShowPassword] = useState(false);
 
-  const [matchPwd, setMatchPwd] = useState("Margincd1!");
+  const [matchPwd, setMatchPwd] = useState("");
   const [validMatch, setValidMatch] = useState(true);
   const [matchFocus, setMatchFocus] = useState(false);
 

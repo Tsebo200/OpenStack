@@ -51,8 +51,8 @@ export const Login = (props) => {
       localStorage.setItem("img", imgLink)
       
       setAuth({ roles: response.data.roles, accessToken: accessToken, imgLink: imgLink })
-      // setEmail('')
-      // setPwd('')
+      setEmail('')
+      setPwd('')
 
       localStorage.setItem("accessToken", accessToken)
       localStorage.setItem("roles", JSON.stringify(response.data.roles))

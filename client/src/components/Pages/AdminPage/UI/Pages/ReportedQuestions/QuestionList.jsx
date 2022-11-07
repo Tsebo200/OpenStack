@@ -196,7 +196,7 @@ export const QuestionList = () => {
             {ReportList.map((report) => {
               return (
                 <div key={report._id} className={styles.report_card}>
-                  <h4>{report.userDetails.username}</h4>
+                  <h4>{report?.userDetails?.username}</h4>
                   <br />
                   <h5>Report Details</h5>
                   <p>{report.reportBody}</p>
@@ -228,7 +228,7 @@ export const QuestionList = () => {
             {QuestionList.map((question) => {
               return (
                 <tr key={question._id}>
-                  <td>{question.user.username}</td>
+                  <td>{question?.user?.username}</td>
                   <td>{question.title.substring(0,25)}...</td>
                   <td>
                     <Link to={"/questions/individual/" + question._id}>

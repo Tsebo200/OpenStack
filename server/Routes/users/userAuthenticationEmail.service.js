@@ -12,8 +12,8 @@ async function emailService(data) {
     />
     <h1 style="font-weight: 300">Hello ${data.username}</h1>
     <h2 style="font-weight: 300">
-      Welcome to open stack, we just need to verify your account by clicking the
-      button bellow
+      Welcome to openStack, we just need to verify your account by clicking the
+      button below
     </h2>
     <a href=${data.emailLink}
       style="
@@ -32,9 +32,9 @@ async function emailService(data) {
     >
     <br>
     <br>
-    <p style="margin: 0; font-size: 18px;">questions need help please email us at support@open-stack.co.za</p>
+    <p style="margin: 0; font-size: 18px;">Questions need help please email us at support@open-stack.co.za</p>
     <p style="margin: 0; font-size: 18px;">Happy coding</p>
-    <p style="margin: 0; font-size: 18px;">Openstack</p>   
+    <p style="margin: 0; font-size: 18px;">OpenStack</p>   
   </body>
   
 </html>
