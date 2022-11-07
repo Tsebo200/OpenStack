@@ -31,14 +31,23 @@ const userInfo = [imageLink, username, userScore];
 
   return (
     <>
-      {/* <h1>Users</h1> */}
-      <h1 className={styles.user_heading}>Users</h1>
+    <div className={styles.main_container}>
+        {/* <h1>Users</h1> */}
+        <div className={styles.header}>
+            <h1 className={styles.user_heading}>Users</h1>
+            <div className={styles.filter_container}></div>
+        </div>{/*End of header */}
 
-      {/* User Cards */}
-      <h2 className={styles.user_profile}>
-     {userInfo.userProfile}
-      </h2>
-      
+              {/* User Cards Section*/}
+              <div className={styles.all_users_container}>
+                    <div className={styles.user_card}>
+                      <h2 className={styles.user_name}>
+                      {userInfo.userProfile}</h2>
+                    </div> {/* End of User_Card */}
+          
+              </div> {/* End of users_container */}
+          
+    </div> {/* End of main-container */}
     </>
 
   )
