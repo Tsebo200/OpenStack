@@ -13,7 +13,7 @@ export default function SuccessModal(props) {
         <h2>Question Added!</h2>
         <div className={styles.btnCon}>
           <div className={styles.btnCon}>
-          <Button text="OK" onClick={props.onClick}/>
+          <Button text="OK" onClick={props.onClick} type="questionSubmit"/>
 
           </div>
         </div>
