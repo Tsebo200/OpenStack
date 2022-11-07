@@ -19,12 +19,12 @@ export const UserList = () => {
 
 
 let imageLink = {profileIcon}
-let username = "Mike"
-let userScore = 1
+let username = "Jack"
+let userScore = 50
 
 const userInfo = [imageLink, username, userScore];
 
-// let userProfile = userInfo.map((imageLink));
+// let userProfile = userInfo.map((userInfo.username));
 // console.log(userProfile);
 
 
@@ -44,7 +44,7 @@ const userInfo = [imageLink, username, userScore];
                       <div className={styles.user_profile_icon}></div>
                       <h3 className={styles.user_name}>Mike</h3>
                       <h5 className={styles.user_score}>1</h5>
-                      {/* {userInfo.userProfile}</h2> */}
+                      {/* {userInfo.userProfile} */}
                     </div> {/* End of User_Card One */}
 
                     {/* Start Of Card Two */}
