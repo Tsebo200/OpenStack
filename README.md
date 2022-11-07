@@ -279,7 +279,7 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 
 - **Wiaan Duvenhage** - [wiaanduvenhage.dev@gmail.com](mailto:wiaanduvenhage.dev@gmail.com) - [@wiaan.dev](https://www.instagram.com/wiaan.dev/)
 - **Caidyn Ginger** - [21100204@virtualwindow.co.za](mailto:21100204@virtualwindow.co.za) - [@caidynginger](https://www.instagram.com/caidynginger/)
-- **Tsebo Ramonyalioa** - [tsebo.ramonyalioa.an@gmail.com](mailto:21100204@virtualwindow.co.za) - [@inspiration200](https://www.instagram.com/inspiration200) 
+- **Tsebo Ramonyalioa** - [tsebo.ramonyalioa.an@gmail.com](mailto:21100204@virtualwindow.co.za) - [@inspiration200200](https://www.instagram.com/inspiration200200) 
 - 
 - **Project Link** - https://github.com/CaidynGinger/OpenStack
 
