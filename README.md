@@ -294,7 +294,7 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 - [Vian Du Plessis](https://github.com/Vian-du-Plessis)
 - [Reinhardt de Beer](https://github.com/EpicBlue1)
 
-[image1]: client/src/Assets/mockups/mockup1.jpg
+[image1]: client/readme-assets/about-project.png
 [image2]: client/src/Assets/mockups/mockup2.jpg
 [image3]: client/src/Assets/mockups/mockup3.jpg
 [image4]: client/src/Assets/mockups/mockup4.jpg
