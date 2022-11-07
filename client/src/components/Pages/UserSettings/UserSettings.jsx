@@ -236,7 +236,7 @@ const UserSettings = () => {
           </div>
           <header>
             <h2>
-              {userData.user.username} | Score {userData.user.userScore}
+              {userData?.user?.username} | Score {userData?.user?.userScore}
             </h2>
             <Link to="/questions-portal">Ask Question</Link>
           </header>
@@ -248,7 +248,7 @@ const UserSettings = () => {
               className={styles.user_img}
               src={
                 "https://drive.google.com/uc?export=view&id=" +
-                userData.user.profilePictureLink
+                userData?.user?.profilePictureLink
               }
             />
             <div className={styles.achievement_list_container}>

@@ -39,8 +39,10 @@ export const QuestionList = () => {
   }, []);
 
   const displayReportsHandler = (reportList, question) => {
+    
     setReportList(reportList);
     setSelectedQuestion(question);
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
   };
   const closeReportHandler = () => {
     setReportList([]);
@@ -95,6 +97,7 @@ export const QuestionList = () => {
   };
 
   const removeReportHandler = async (reportId) => {
+    
     setModalSettings({
       open: true,
       html: (

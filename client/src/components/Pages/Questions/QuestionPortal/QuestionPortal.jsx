@@ -43,7 +43,6 @@ function QuestionPortal() {
     "title",
     "body",
     "codeBlock",
-    "selectedYear",
     "image",
     "tag",
   ];
@@ -62,7 +61,6 @@ function QuestionPortal() {
   const title = useRef();
   const body = useRef();
   const codeBlock = useRef();
-  const yearSelection = useRef();
   const tag = useRef();
   const img = useRef();
 
@@ -71,7 +69,6 @@ function QuestionPortal() {
     qBody: "",
     qLanguage: "",
     qCode: "",
-    qSelectedYear: "",
     qImg: "",
   });
 
@@ -105,12 +102,12 @@ function QuestionPortal() {
     setPreviewQuestion({ ...previewQuestion, qCode: value });
   };
 
-  const yearPreview = (e) => {
-    const value = e.target.value;
+  // const yearPreview = (e) => {
+  //   const value = e.target.value;
 
-    // setPreviewQuestion([...previewQuestion]);
-    setPreviewQuestion({ ...previewQuestion, qSelectedYear: value });
-  };
+  //   // setPreviewQuestion([...previewQuestion]);
+  //   setPreviewQuestion({ ...previewQuestion, qSelectedYear: value });
+  // };
 
   const imageVal = (e) => {
     let file = e.target.files[0];
@@ -216,7 +213,6 @@ function QuestionPortal() {
     let bodyString = body.current.value;
     let code = codeBlock.current.value;
     let imgName = img.current.value;
-    let year = yearSelection.current.value;
     let tags = tag.current.value;
 
     const imgSubStr = imgName.substr(12);
@@ -250,7 +246,6 @@ function QuestionPortal() {
       body: bodyString,
       codeBody: code,
       codeLanguage: previewQuestion.qLanguage,
-      selectedYear: year,
       tags: tagId,
       user_id: Auth.userData.UserInfo.userId,
       imgName: imgSubStr,
@@ -468,6 +463,8 @@ function QuestionPortal() {
           className={styles.code}
           language={previewQuestion.qLanguage}
           children={true}
+          wrapLines={true}
+          showLineNumbers={true}
         >
           {previewQuestion.qCode}
         </SyntaxHighlighter>}

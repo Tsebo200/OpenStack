@@ -23,6 +23,7 @@ export const QuestionsLanding = () => {
   }
 
   useEffect(() => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     let isMounted = true;
     const controller = new AbortController();
     const getAllQuestions = async () => {

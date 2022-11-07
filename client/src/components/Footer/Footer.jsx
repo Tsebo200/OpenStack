@@ -22,9 +22,9 @@ export const Footer = () => {
             <Link to="/questions">Github</Link>
             <Link to="/questions">Youtube</Link>
           </div>
-        </div>
-        <div className={styles.copywrite}>
-        &copy; <em id="date"></em>OpenStack 2022
+          <div className={styles.copywrite}>
+            &copy; <em id="date"></em>OpenStack 2022
+          </div>
         </div>
       </div>
     </footer>

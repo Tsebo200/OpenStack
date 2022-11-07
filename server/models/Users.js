@@ -25,10 +25,6 @@ const userSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    accountStatus: {
-        type: Boolean,
-        default: false
-    },
     userScore: {
         type: Number,
         default: 0

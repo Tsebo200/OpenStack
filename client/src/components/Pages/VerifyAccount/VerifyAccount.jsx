@@ -16,6 +16,7 @@ export const VerifyAccount = () => {
         const response = await axios.post("/api/create-user", {
          accountData: accountData,
         });
+        console.log(response);
       } catch (err) {
         console.log(err);
         if (err.response?.status === 401) {

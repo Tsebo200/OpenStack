@@ -28,13 +28,9 @@ questionsRouter.post(
   "/api/add-question",
   uploadQuestionImage.single("image"),
   async (req, res) => {
-    const { title, body, codeBody, codeLanguage, user_id, tags, imgName } =
+    const { title, body, codeBody, codeLanguage, user_id, tags } =
       JSON.parse(req.body.information);
     // add question + 1
-
-    const ownerOfQuestion = await userSchema.findById(user_id);
-    ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
-    await ownerOfQuestion.save();
 
     const newQuestion = new questionSchema({
       title: title,
@@ -70,10 +66,6 @@ questionsRouter.post(
       req.body.information
     );
     // add question + 1
-
-    const ownerOfQuestion = await userSchema.findById(user_id);
-    ownerOfQuestion.userScore = ownerOfQuestion.userScore + 1;
-    await ownerOfQuestion.save();
 
     const newQuestion = new questionSchema({
       title: title,

@@ -16,20 +16,20 @@ const Register = () => {
   const userRef = useRef();
   const errRef = useRef();
 
-  const [user, setUser] = useState("user");
+  const [user, setUser] = useState("");
   const [validName, setValidName] = useState(true);
   const [userFocus, setUserFocus] = useState(false);
 
-  const [Email, setEmail] = useState("21000@virtualwindow.co.za");
+  const [Email, setEmail] = useState("");
   const [ValidEmail, setValidEmail] = useState(true);
   const [EmailFocus, setEmailFocus] = useState(false);
 
-  const [pwd, setPwd] = useState("Catdog305!");
+  const [pwd, setPwd] = useState("");
   const [validPwd, setValidPwd] = useState(true);
   const [pwdFocus, setPwdFocus] = useState(false);
   const [ShowPassword, setShowPassword] = useState(false);
 
-  const [matchPwd, setMatchPwd] = useState("Catdog305!");
+  const [matchPwd, setMatchPwd] = useState("");
   const [validMatch, setValidMatch] = useState(true);
   const [matchFocus, setMatchFocus] = useState(false);
 
