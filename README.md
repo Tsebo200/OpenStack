@@ -295,9 +295,9 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 - [Reinhardt de Beer](https://github.com/EpicBlue1)
 
 [image1]: client/readme-assets/about-project.png
-[image2]: client/src/Assets/mockups/mockup2.jpg
-[image3]: client/src/Assets/mockups/mockup3.jpg
-[image4]: client/src/Assets/mockups/mockup4.jpg
+[image2]: client/readme-assets/register.jpg
+[image3]: client/readme-assets/verify.jpg
+[image4]: client/readme-assets/question.jpg
 [image5]: client/src/Assets/mockups/mockup5.jpg
 [image6]: client/src/Assets/mockups/mockup6.jpg
 [image7]: client/src/Assets/mockups/mockup7.jpg
