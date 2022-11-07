@@ -34,8 +34,14 @@ console.log(doubled);
 
 // const actualUserInfo = [{profileIcon}, "Jack", 50];
 
-const actualUserInfo = [10, 11, 50];
-const userInfo = actualUserInfo.map((number) => number * 2);
+
+// This is working ✅
+// const actualUserInfo = [10, 11, 50];
+// const userInfo = actualUserInfo.map((number) => number * 2);
+// console.log(userInfo);
+
+const actualUserInfo = ["Jack", "Jack", "Jack"];
+const userInfo = actualUserInfo.map((string) => string * 2);
 console.log(userInfo);
 
   return (
