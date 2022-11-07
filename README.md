@@ -140,6 +140,10 @@ After another user has already asked a question. Another user can anwer that que
 
 The user can upvote, downvote or even report a question, should it be something inappropriate or something that has vulgar language or potential nudity, racist or pornographic content linked to it. This will also influence the user's reliability score. They can also click on the checkmark of a question, should that question be correct, and it will update visually.
 
+#### View Profile Page
+
+The user can view their own profile as well as other user's profile pages.
+
 #### Update their username
 
 If the user feels like they want to update their username. That is something that they would be able to do. They can head to the user settings page and do it there with the upmost ease.
