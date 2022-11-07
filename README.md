@@ -302,7 +302,7 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 [image2]: client/readme-assets/register.jpg
 [image3]: client/readme-assets/verify.jpg
 [image4]: client/readme-assets/question.jpg
-[image5]: client/src/Assets/mockups/mockup5.jpg
+[image5]: client/readme-assets/answer.jpg
 [image6]: client/src/Assets/mockups/mockup6.jpg
 [image7]: client/src/Assets/mockups/mockup7.jpg
 [image8]: client/src/Assets/mockups/wireframes.jpg
