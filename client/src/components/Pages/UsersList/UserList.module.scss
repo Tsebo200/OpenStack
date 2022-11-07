@@ -7,210 +7,229 @@
 
 
 .header{
-    width: 100%;
-    height: 30%;
-    background: red;
-
     .user_heading{
-        margin-left: 3%;
-        margin-top: 2%;
+        margin-left: 40px;
+        margin-top: 20px;
     }
 
     .filter_container{
         width: 20%;
         height: 20%;
-        margin-top: 2%;
+        // margin-top: 2%;
         margin-left: 3%;
         // // background: blue;
     }
 }
 
-
-
-// User Cards
 .all_users_container{
-    // Add a flex box here to utilize margins
-    width: 100%;
-    height: 70vh;
-    // margin-top: 30vh;
-    background: green;
+    padding: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: stretch;
     align-items: flex-start;
-    float: left;
-
-    .user_card_one{
-        width: 20%;
-        height: 15%;
-        border: solid 1px;
-        margin-left: 3%;
-        margin-top: 10px;
-        // margin-top: 10%;
-        // // background: black;
-        align-self: auto;
-
-        .user_profile_icon{
-            width: 55px;
-            height: 50px;
-            margin-top: 10px;
-            margin-left: 10px;
-            background: blue;
-            border-radius: 5px;
+    box-sizing: border-box;
+    .user_card{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: flex-start;
+        box-sizing: border-box;
+        width: 25%;
+        img{
+            width: 50px;
+            aspect-ratio: 1/1;
+            margin-right: 8px;
         }
 
-        .user_name{
-            color:black;
-            margin-top: -50px;
-            margin-left: 70px;
-            // float: left;
-        }
-
-        .user_score{
-            color:black;
-            margin-left: 70px; 
-            float: left;
-        }
     }
+    
 }
 
 
-// Card Two
-.hor_spacer_one{
-    width: 50px;
-    height: 10px;
-    margin-top: 10px;
-    // margin-left: 290px;
-    // margin-top: -50px;
-    // background: transparent;
-    align-self: auto;
-}
 
-.user_card_two{
-    width: 20%;
-    height: 15%;
-    margin-top: 10px;
-    border: solid 1px;
-    // margin-left: 27%;
-    // margin-top: -3.4%;
-    // background: black;
-    align-self: auto;
 
-    .user_profile_icon{
-        width: 55px;
-        height: 50px;
-        margin-top: 10px;
-        margin-left: 10px;
-        background: blue;
-        border-radius: 5px;
-    }
 
-    .user_name{
-        color:black;
-        margin-top: -50px;
-        margin-left: 70px;
-        // float: left;
-    }
+// User Cards
+// .all_users_container{
+//     // Add a flex box here to utilize margins
+//     width: 100%;
+//     height: 70vh;
+//     // margin-top: 30vh;
+//     background: green;
+    
+//     float: left;
 
-    .user_score{
-        color:black;
-        margin-left: 70px; 
-        float: left;
-    }
+//     .user_card_one{
+//         width: 20%;
+//         height: 15%;
+//         border: solid 1px;
+//         margin-left: 3%;
+//         margin-top: 10px;
+//         // margin-top: 10%;
+//         // // background: black;
+//         align-self: auto;
+
+//         .user_profile_icon{
+//             width: 55px;
+//             height: 50px;
+//             margin-top: 10px;
+//             margin-left: 10px;
+//             background: blue;
+//             border-radius: 5px;
+//         }
+
+//         .user_name{
+//             color:black;
+//             margin-top: -50px;
+//             margin-left: 70px;
+//             // float: left;
+//         }
+
+//         .user_score{
+//             color:black;
+//             margin-left: 70px; 
+//             float: left;
+//         }
+//     }
+// }
+
+
+// // Card Two
+// .hor_spacer_one{
+//     width: 50px;
+//     height: 10px;
+//     margin-top: 10px;
+//     // margin-left: 290px;
+//     // margin-top: -50px;
+//     // background: transparent;
+//     align-self: auto;
+// }
+
+// .user_card_two{
+//     width: 20%;
+//     height: 15%;
+//     margin-top: 10px;
+//     border: solid 1px;
+//     // margin-left: 27%;
+//     // margin-top: -3.4%;
+//     // background: black;
+//     align-self: auto;
+
+//     .user_profile_icon{
+//         width: 55px;
+//         height: 50px;
+//         margin-top: 10px;
+//         margin-left: 10px;
+//         background: blue;
+//         border-radius: 5px;
+//     }
+
+//     .user_name{
+//         color:black;
+//         margin-top: -50px;
+//         margin-left: 70px;
+//         // float: left;
+//     }
+
+//     .user_score{
+//         color:black;
+//         margin-left: 70px; 
+//         float: left;
+//     }
    
-}
+// }
  
 
-// Card Three
-.hor_spacer_two{
-    width: 50px;
-    height: 10px;
-    margin-top: 10px;
-    // margin-left: 591px;
-    // margin-top: -50px;
-    // background: transparent;
-    align-self: auto;
-}
-.user_card_three{
-    width: 20%;
-    height: 15%;
-    margin-top: 10px;
-    border: solid 1px;
-    // margin-left: 51%;
-    // margin-top: -3.4%;
-    // background: black;
-    align-self: auto;
+// // Card Three
+// .hor_spacer_two{
+//     width: 50px;
+//     height: 10px;
+//     margin-top: 10px;
+//     // margin-left: 591px;
+//     // margin-top: -50px;
+//     // background: transparent;
+//     align-self: auto;
+// }
+// .user_card_three{
+//     width: 20%;
+//     height: 15%;
+//     margin-top: 10px;
+//     border: solid 1px;
+//     // margin-left: 51%;
+//     // margin-top: -3.4%;
+//     // background: black;
+//     align-self: auto;
 
-    .user_profile_icon{
-        width: 55px;
-        height: 50px;
-        margin-top: 10px;
-        margin-left: 10px;
-        background: blue;
-        border-radius: 5px;
-    }
+//     .user_profile_icon{
+//         width: 55px;
+//         height: 50px;
+//         margin-top: 10px;
+//         margin-left: 10px;
+//         background: blue;
+//         border-radius: 5px;
+//     }
 
-    .user_name{
-        color:black;
-        margin-top: -50px;
-        margin-left: 70px;
-        // float: left;
-    }
+//     .user_name{
+//         color:black;
+//         margin-top: -50px;
+//         margin-left: 70px;
+//         // float: left;
+//     }
 
-    .user_score{
-        color:black;
-        margin-left: 70px; 
-        float: left;
-    }
-}
-
-
-// Card Four
-.hor_spacer_three{
-    width: 50px;
-    height: 10px;
-    margin-top: 10px;
-    // margin-left: 893px;
-    // margin-top: -50px;
-    // background: transparent;
-    align-self: auto;
-}
-.user_card_four{
-    width: 20%;
-    height: 15%;
-    margin-top: 10px;
-    border: solid 1px;
-    // margin-left: 75%;
-    // margin-top: -3.4%;
-    // background: black;
-    align-self: auto;
-
-    .user_profile_icon{
-        width: 55px;
-        height: 50px;
-        margin-top: 10px;
-        margin-left: 10px;
-        background: blue;
-        border-radius: 5px;
-    }
-
-    .user_name{
-        color:black;
-        margin-top: -50px;
-        margin-left: 70px;
-        // float: left;
-    }
-
-    .user_score{
-        color:black;
-        margin-left: 70px; 
-        float: left;
-    }
-}
+//     .user_score{
+//         color:black;
+//         margin-left: 70px; 
+//         float: left;
+//     }
+// }
 
 
+// // Card Four
+// .hor_spacer_three{
+//     width: 50px;
+//     height: 10px;
+//     margin-top: 10px;
+//     // margin-left: 893px;
+//     // margin-top: -50px;
+//     // background: transparent;
+//     align-self: auto;
+// }
+// .user_card_four{
+//     width: 20%;
+//     height: 15%;
+//     margin-top: 10px;
+//     border: solid 1px;
+//     // margin-left: 75%;
+//     // margin-top: -3.4%;
+//     // background: black;
+//     align-self: auto;
+
+//     .user_profile_icon{
+//         width: 55px;
+//         height: 50px;
+//         margin-top: 10px;
+//         margin-left: 10px;
+//         background: blue;
+//         border-radius: 5px;
+//     }
+
+//     .user_name{
+//         color:black;
+//         margin-top: -50px;
+//         margin-left: 70px;
+//         // float: left;
+//     }
+
+//     .user_score{
+//         color:black;
+//         margin-left: 70px; 
+//         float: left;
+//     }
+// }
 
 
 
@@ -219,54 +238,56 @@
 
 
 
-// Start Of Row 2
-.vert_spacer_one{
-    width: 100%;
-    height: 50px;
-    // margin-left: 1050px;
-    // margin-top: 50px;
-    // margin-top: -50px;
-    // background: red;
-    float: left;
-}
-// Card Five in Row 2
-.user_card_five{
-    width: 20%;
-    height: 15%;
-    margin-left: 3%;
-    // background: black;
-    float: left
-}
-
-// Card Six in Row 2
-// From Card Two
-.user_card_six{
-    width: 20%;
-    height: 15%;
-    margin-left: 4%;
-    // margin-top: 0%;
-    // background: black;
-    float: left;
-}
-
-// Card Seven in Row 2
-.user_card_seven{
-    width: 20%;
-    height: 15%;
-    margin-left: 4%;
-    // margin-top: -3.4%;
-    // background: black;
-    float: left;
-}
 
 
-.user_card_eight{
-    width: 20%;
-    height: 15%;
-    margin-left: 4%;
-    // margin-top: 5%;
-    // margin-top: -3.4%;
-    // background: black;
-    float: left;
-}
+// // Start Of Row 2
+// .vert_spacer_one{
+//     width: 100%;
+//     height: 50px;
+//     // margin-left: 1050px;
+//     // margin-top: 50px;
+//     // margin-top: -50px;
+//     // background: red;
+//     float: left;
+// }
+// // Card Five in Row 2
+// .user_card_five{
+//     width: 20%;
+//     height: 15%;
+//     margin-left: 3%;
+//     // background: black;
+//     float: left
+// }
+
+// // Card Six in Row 2
+// // From Card Two
+// .user_card_six{
+//     width: 20%;
+//     height: 15%;
+//     margin-left: 4%;
+//     // margin-top: 0%;
+//     // background: black;
+//     float: left;
+// }
+
+// // Card Seven in Row 2
+// .user_card_seven{
+//     width: 20%;
+//     height: 15%;
+//     margin-left: 4%;
+//     // margin-top: -3.4%;
+//     // background: black;
+//     float: left;
+// }
+
+
+// .user_card_eight{
+//     width: 20%;
+//     height: 15%;
+//     margin-left: 4%;
+//     // margin-top: 5%;
+//     // margin-top: -3.4%;
+//     // background: black;
+//     float: left;
+// }
 
