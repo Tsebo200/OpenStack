@@ -1,7 +1,7 @@
 .main_container{
     width: 100%;
     height: 100vh;
-    background: #F8F9F9;
+    // background: #F8F9F9;
 }
 
 
@@ -33,16 +33,23 @@
     width: 100%;
     height: 70%;
     margin: auto;
-    background: green;
+    // background: green;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
     // float: lef;
-
 
     .user_card_one{
         width: 20%;
         height: 15%;
         margin-left: 3%;
+        margin-top: 10px;
         // margin-top: 10%;
         background: black;
+        align-self: auto;
 
         .user_profile_icon{
             width: 50px;
@@ -69,16 +76,20 @@
 .hor_spacer_one{
     width: 50px;
     height: 10px;
-    margin-left: 290px;
-    margin-top: -50px;
-    background: red;
+    margin-top: 10px;
+    // margin-left: 290px;
+    // margin-top: -50px;
+    background: transparent;
+    align-self: auto;
 }
 .user_card_two{
     width: 20%;
     height: 15%;
-    margin-left: 27%;
-    margin-top: -3.4%;
+    margin-top: 10px;
+    // margin-left: 27%;
+    // margin-top: -3.4%;
     background: black;
+    align-self: auto;
 }
  
 
@@ -86,16 +97,20 @@
 .hor_spacer_two{
     width: 50px;
     height: 10px;
-    margin-left: 591px;
-    margin-top: -50px;
-    background: red;
+    margin-top: 10px;
+    // margin-left: 591px;
+    // margin-top: -50px;
+    background: transparent;
+    align-self: auto;
 }
 .user_card_three{
     width: 20%;
     height: 15%;
-    margin-left: 51%;
-    margin-top: -3.4%;
+    margin-top: 10px;
+    // margin-left: 51%;
+    // margin-top: -3.4%;
     background: black;
+    align-self: auto;
 }
 
 
@@ -103,17 +118,29 @@
 .hor_spacer_three{
     width: 50px;
     height: 10px;
-    margin-left: 893px;
-    margin-top: -50px;
-    background: red;
+    margin-top: 10px;
+    // margin-left: 893px;
+    // margin-top: -50px;
+    background: transparent;
+    align-self: auto;
 }
 .user_card_four{
     width: 20%;
     height: 15%;
-    margin-left: 75%;
-    margin-top: -3.4%;
+    margin-top: 10px;
+    // margin-left: 75%;
+    // margin-top: -3.4%;
     background: black;
+    align-self: auto;
 }
+
+
+
+
+
+
+
+
 
 
 // Start Of Row 2
