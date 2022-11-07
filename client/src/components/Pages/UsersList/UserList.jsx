@@ -41,8 +41,10 @@ const userInfo = [imageLink, username, userScore];
               {/* User Cards Section*/}
               <div className={styles.all_users_container}>
                     <div className={styles.user_card}>
-                      <h2 className={styles.user_name}>
-                      {userInfo.userProfile}</h2>
+                      <div className={styles.user_profile_icon}></div>
+                      <h3 className={styles.user_name}>Mike</h3>
+                      <h5 className={styles.user_score}>1</h5>
+                      {/* {userInfo.userProfile}</h2> */}
                     </div> {/* End of User_Card */}
           
               </div> {/* End of users_container */}
