@@ -33,6 +33,18 @@ export const UserList = () => {
 
   const numbers = [1, 2, 3, 4, 5];
 
+// const actualUserInfo = [{profileIcon}, "Jack", 50];
+
+
+// This is working ✅
+// const actualUserInfo = [10, 11, 50];
+// const userInfo = actualUserInfo.map((number) => number * 2);
+// console.log(userInfo);
+
+// const actualUserInfo = ["Jack", "Jack", "Jack"];
+// const userInfo = actualUserInfo.map((string) => string * 2);
+// console.log(userInfo);
+
   return (
     <>
       <div className={styles.main_container}>
