@@ -133,8 +133,9 @@ After registering, the user is required that have to verify their email before t
 ![image4][image4]
 When the user has verified their account, they can now ask a question (the user needs to stay logged in). The user can enter all the necessary information ,like the title, the code and even something like a screenshot or even related tags for better clarity.
 
-![image5][image5]
 #### Answering a question
+
+![image5][image5]
 After another user has already asked a question. Another user can anwer that question, both the user that asked the question and the user that answered the question gets a reliability score.
 
 #### Question Interaction
