@@ -133,12 +133,17 @@ After registering, the user is required that have to verify their email before t
 ![image4][image4]
 When the user has verified their account, they can now ask a question (the user needs to stay logged in). The user can enter all the necessary information ,like the title, the code and even something like a screenshot or even related tags for better clarity.
 
+![image5][image5]
 #### Answering a question
 After another user has already asked a question. Another user can anwer that question, both the user that asked the question and the user that answered the question gets a reliability score.
 
 #### Question Interaction
 
 The user can upvote, downvote or even report a question, should it be something inappropriate or something that has vulgar language or potential nudity, racist or pornographic content linked to it. This will also influence the user's reliability score. They can also click on the checkmark of a question, should that question be correct, and it will update visually.
+
+#### View Profile Page
+
+The user can view their own profile as well as other user's profile pages.
 
 #### Update their username
 
@@ -295,10 +300,10 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 - [Reinhardt de Beer](https://github.com/EpicBlue1)
 
 [image1]: client/readme-assets/about-project.png
-[image2]: client/src/Assets/mockups/mockup2.jpg
-[image3]: client/src/Assets/mockups/mockup3.jpg
-[image4]: client/src/Assets/mockups/mockup4.jpg
-[image5]: client/src/Assets/mockups/mockup5.jpg
+[image2]: client/readme-assets/register.jpg
+[image3]: client/readme-assets/verify.jpg
+[image4]: client/readme-assets/question.jpg
+[image5]: client/readme-assets/answer.jpg
 [image6]: client/src/Assets/mockups/mockup6.jpg
 [image7]: client/src/Assets/mockups/mockup7.jpg
 [image8]: client/src/Assets/mockups/wireframes.jpg
