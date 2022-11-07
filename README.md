@@ -160,17 +160,17 @@ As mentioned previously by the reliability score. The user can earn achievements
 
 ### For the Admin
 #### Monitoring User Interaction
-![image6][image5]
+
 The user can monitor any incoming questions and answers from the users interacting with OpenStack.
 
 #### Manage User Roles
-![image7][image6] The admin can manage any role for any user on the entirety of OpenStack. The user can also "ban" people from interacting with OpenStack by removing all their roles
+The admin can manage any role for any user on the entirety of OpenStack. The user can also "ban" people from interacting with OpenStack by removing all their roles
 
 #### Removing Questions
-![image7][image7]If there are any questions that the admin feel that they want to remove, they can do so on the admin tab and clicking on the delete button
+If there are any questions that the admin feel that they want to remove, they can do so on the admin tab and clicking on the delete button
 
 #### Tag Management
-![image14][image14]The admins can remove and add any tags they feel like would be necessary. The admins can also [Tombstone](https://en.wikipedia.org/wiki/Tombstone_(programming)#:~:text=Tombstones%20are%20a%20mechanism%20to,C%2B%2B%20and%20assembly%20languages.) the tags, which would disable the tag, but it would still be on the database.
+The admins can remove and add any tags they feel like would be necessary. The admins can also [Tombstone](https://en.wikipedia.org/wiki/Tombstone_(programming)#:~:text=Tombstones%20are%20a%20mechanism%20to,C%2B%2B%20and%20assembly%20languages.) the tags, which would disable the tag, but it would still be on the database.
 
 <!-- CONCEPT PROCESS -->
 <!-- Briefly eOpenStacklain your concept ideation process -->
@@ -183,9 +183,6 @@ We really went with a simple and a minimalistic UI design. OpenStack is there to
 ### Wireframes
 
 ![image8](client/src/Assets/mockups/wireframes.jpg)
-
-### Moodboard
-![image9][image9]
 
 ## Development Process
 
@@ -282,6 +279,8 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 
 - **Wiaan Duvenhage** - [wiaanduvenhage.dev@gmail.com](mailto:wiaanduvenhage.dev@gmail.com) - [@wiaan.dev](https://www.instagram.com/wiaan.dev/)
 - **Caidyn Ginger** - [21100204@virtualwindow.co.za](mailto:21100204@virtualwindow.co.za) - [@caidynginger](https://www.instagram.com/caidynginger/)
+- **Tsebo Ramonyalioa** - [tsebo.ramonyalioa.an@gmail.com](mailto:21100204@virtualwindow.co.za) - [@inspiration200](https://www.instagram.com/inspiration200) 
+- 
 - **Project Link** - https://github.com/CaidynGinger/OpenStack
 
 <!-- ACKNOWLEDGEMENTS -->
@@ -295,10 +294,11 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 - [Figma](https://www.figma.com/)
 - [Lecturer](https://github.com/MikeMaynard14)
 - [Freepik](https://www.freepik.com)
-- [unDraw](https://undraw.co/)
-- [Leander van Aarde](https://github.com/leandervanAarde)
-- [Vian Du Plessis](https://github.com/Vian-du-Plessis)
-- [Reinhardt de Beer](https://github.com/EpicBlue1)
+- [Miro](https://miro.com/?utm_source=google&utm_medium=cpc&utm_campaign=S|GOO|BRN|ZA|EN-EN|Brand|Exact&utm_adgroup=&utm_custom=18259414532&utm_content=620159863882&utm_term=miro&device=c&location=1028971)
+- [Mongoose Docs](https://mongoosejs.com/docs/api.html)
+- [MockupWorld](https://www.mockupworld.co/)
+- [Flexy Boxes](https://the-echoplex.net/flexyboxes/)
+
 
 [image1]: client/readme-assets/about-project.png
 [image2]: client/readme-assets/register.jpg
