@@ -31,7 +31,7 @@ export const UserList = () => {
   const userInfo = actualUserInfo.map((number) => number * 2);
   console.log(userInfo);
 
-  const numbers = [1, 2, 3, 4, 5];
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
 // const actualUserInfo = [{profileIcon}, "Jack", 50];
 
@@ -55,13 +55,20 @@ export const UserList = () => {
         <div className={styles.all_users_container}>
           {numbers.map((number) => {
             return (
-              <div className={styles.user_card}>
-                <img src={profileIcon} />
-                <div>
-                  <h5>username</h5>
-                  <p>user score : 1</p>
+              <>
+              <div className={styles.top_header}></div>
+                <header></header>
+                <div className={styles.user_card}>
+                  <img src={profileIcon} />
+                  <div>
+                    <h5 className={styles.username}>Mike</h5>
+                    <p>User Score : 2</p>
+                    <br />
+                    <br />
+                    {/* <br className={styles.vert_breaker}/> */}
+                  </div>
                 </div>
-              </div>
+              </>
             );
           })}
         </div>
